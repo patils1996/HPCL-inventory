@@ -2592,7 +2592,7 @@ button, input, select, textarea {
             <div class="modal-body">
                 <form id="gate-pass-form">
                     <!-- Multi-Asset Dispatch Selection Panel -->
-                    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 14px; margin-bottom: 16px;">
+                    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px; margin-bottom: 16px; box-sizing: border-box; width: 100%; overflow: hidden;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                             <label style="margin: 0; font-weight: 700; color: var(--text-primary); font-size: 0.88rem; display: flex; align-items: center; gap: 8px;">
                                 <i class="fa-solid fa-boxes-stacked" style="color: var(--hpcl-orange);"></i>
@@ -2601,22 +2601,23 @@ button, input, select, textarea {
                             <span class="badge badge-info" id="gp-selected-assets-badge" style="font-size: 0.75rem; padding: 2px 8px;">0 Assets Added</span>
                         </div>
 
-                        <div class="form-row" style="margin-bottom: 6px; align-items: flex-end;">
-                            <div class="form-group col-4" style="margin-bottom: 0;">
-                                <label for="gp-category" style="font-size: 0.8rem;">Item Category</label>
-                                <select id="gp-category" class="form-control">
+                        <!-- Responsive 3-Column Asset Input Group that never overflows -->
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; width: 100%; box-sizing: border-box; margin-bottom: 6px;">
+                            <div style="flex: 0 0 145px; min-width: 0;">
+                                <label for="gp-category" style="font-size: 0.8rem; margin-bottom: 4px; display: block; font-weight: 600;">Item Category</label>
+                                <select id="gp-category" class="form-control" style="width: 100%; min-width: 0; box-sizing: border-box; padding: 0.5rem 0.65rem;">
                                     <option value="DU">Dispensing Unit (DU)</option>
                                     <option value="STP">Submersible Pump (STP)</option>
                                 </select>
                             </div>
-                            <div class="form-group col-5" style="margin-bottom: 0;">
-                                <label for="gp-serial-select" style="font-size: 0.8rem;">Select Serial No (In Store)</label>
-                                <select id="gp-serial-select" class="form-control">
+                            <div style="flex: 1 1 230px; min-width: 0;">
+                                <label for="gp-serial-select" style="font-size: 0.8rem; margin-bottom: 4px; display: block; font-weight: 600;">Select Serial No (In Store)</label>
+                                <select id="gp-serial-select" class="form-control" style="width: 100%; min-width: 0; max-width: 100%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; box-sizing: border-box; padding: 0.5rem 0.65rem;">
                                     <option value="">-- Choose Available Item --</option>
                                 </select>
                             </div>
-                            <div class="form-group col-3" style="margin-bottom: 0;">
-                                <button type="button" class="btn btn-outline" id="gp-add-asset-btn" style="width: 100%; border-color: var(--hpcl-orange); color: var(--hpcl-orange); font-weight: 700; font-size: 0.82rem; padding: 0.55rem 0.5rem; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                            <div style="flex: 0 0 auto;">
+                                <button type="button" class="btn btn-primary" id="gp-add-asset-btn" style="white-space: nowrap; height: 38px; padding: 0 16px; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: var(--hpcl-orange); border-color: var(--hpcl-orange); border-radius: 8px; box-sizing: border-box;">
                                     <i class="fa-solid fa-plus"></i>
                                     <span>Add Asset</span>
                                 </button>
