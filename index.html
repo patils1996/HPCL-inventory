@@ -1541,10 +1541,13 @@ button, input, select, textarea {
         visibility: hidden !important;
     }
     #gate-pass-print-modal,
-    #gate-pass-print-modal * {
+    #gate-pass-print-modal *,
+    #emr-print-modal,
+    #emr-print-modal * {
         visibility: visible !important;
     }
-    #gate-pass-print-modal {
+    #gate-pass-print-modal,
+    #emr-print-modal {
         position: absolute !important;
         left: 0 !important;
         top: 0 !important;
@@ -1614,10 +1617,10 @@ button, input, select, textarea {
                     <span>Outward Ledger</span>
                     <span class="nav-badge" id="nav-badge-outward">0</span>
                 </a>
-                <a href="#gate-pass" class="nav-item" data-tab="gate-pass">
-                    <i class="fa-solid fa-id-card"></i>
-                    <span>Gate Pass</span>
-                    <span class="nav-badge" id="nav-badge-gatepass">0</span>
+                <a href="#emr" class="nav-item" data-tab="emr">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span>EMR</span>
+                    <span class="nav-badge" id="nav-badge-emr">0</span>
                 </a>
                 <a href="#data-mgmt" class="nav-item" data-tab="data-mgmt">
                     <i class="fa-solid fa-database"></i>
@@ -1910,7 +1913,7 @@ button, input, select, textarea {
 
                     <div class="filter-bar">
                         <div class="search-group">
-                            <input type="text" id="outward-search" class="form-control" placeholder="Search EMR No, Destination, Vendor...">
+                            <input type="text" id="outward-search" class="form-control" placeholder="Search Gate Pass No, Destination, Vendor, Serial No...">
                         </div>
                         <div class="filter-group reset-group" style="display: flex; gap: 0.5rem;">
                             <button class="btn btn-outline" id="btn-export-outward" title="Export Outward Ledger to CSV"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
@@ -1927,8 +1930,8 @@ button, input, select, textarea {
                                     <table class="data-table" id="outward-du-table">
                                         <thead>
                                             <tr>
-                                                <th>EMR Date</th>
-                                                <th>EMR No</th>
+                                                <th>Gate Pass Date</th>
+                                                <th>Gate Pass No</th>
                                                 <th>Serial No</th>
                                                 <th>Details</th>
                                                 <th>Make / Model</th>
@@ -1950,8 +1953,8 @@ button, input, select, textarea {
                                     <table class="data-table" id="outward-stp-table">
                                         <thead>
                                             <tr>
-                                                <th>EMR Date</th>
-                                                <th>EMR No</th>
+                                                <th>Gate Pass Date</th>
+                                                <th>Gate Pass No</th>
                                                 <th>Serial No</th>
                                                 <th>HP Type</th>
                                                 <th>Make</th>
@@ -1974,8 +1977,8 @@ button, input, select, textarea {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>EMR Date</th>
-                                                <th>EMR No</th>
+                                                <th>Gate Pass Date</th>
+                                                <th>Gate Pass No</th>
                                                 <th>Capacity</th>
                                                 <th>Destination</th>
                                                 <th>Vendor</th>
@@ -1995,8 +1998,8 @@ button, input, select, textarea {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>EMR Date</th>
-                                                <th>EMR No</th>
+                                                <th>Gate Pass Date</th>
+                                                <th>Gate Pass No</th>
                                                 <th>Material Description</th>
                                                 <th>Quantity</th>
                                                 <th>Destination</th>
@@ -2055,7 +2058,7 @@ button, input, select, textarea {
                                 <h5 style="margin: 0; font-size: 1.1rem;">Google Sheets Auto-Sync</h5>
                                 <span id="sheets-connection-status" class="status-badge status-warning" style="margin-left: auto; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight:600;">Local DB Active</span>
                             </div>
-                            <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.4;">All inventory data, Gate Passes, and Ledgers are saved locally in your browser database. When internet connection is active, adding or modifying entries automatically pushes updates to your Google Sheet.</p>
+                            <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.4;">All inventory data, EMR Vouchers, and Ledgers are saved locally in your browser database. When internet connection is active, adding or modifying entries automatically pushes updates to your Google Sheet.</p>
                             
                             <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 100%; margin-top: 0.5rem;">
                                 <div class="form-group" style="width: 100%; margin: 0;">
@@ -2076,7 +2079,7 @@ button, input, select, textarea {
                             </div>
                             
                             <p id="sheets-instructions-text" style="font-size: 0.75rem; color: var(--text-muted); margin: 0; line-height: 1.4; border-top: 1px solid var(--border-color); padding-top: 0.75rem; width: 100%;">
-                                <i class="fa-solid fa-circle-info" style="color: var(--hpcl-orange);"></i> <strong>Offline Ready:</strong> Inventory, Gate Passes, and Ledgers are saved locally in your browser. Paste your Google Sheet URL above to automatically push updates whenever connected to the internet.
+                                <i class="fa-solid fa-circle-info" style="color: var(--hpcl-orange);"></i> <strong>Offline Ready:</strong> Inventory, EMR Vouchers, and Ledgers are saved locally in your browser. Paste your Google Sheet URL above to automatically push updates whenever connected to the internet.
                             </p>
                         </div>
 
@@ -2129,7 +2132,7 @@ button, input, select, textarea {
                                 </div>
                                 <div class="diag-item" style="background: var(--bg-surface); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); text-align: center;">
                                     <div class="diag-val" id="diag-gps" style="font-size: 1.5rem; font-weight: 800; color: #06b6d4;">0</div>
-                                    <div class="diag-lbl" style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 600; margin-top: 0.25rem;">Gate Passes</div>
+                                    <div class="diag-lbl" style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 600; margin-top: 0.25rem;">EMR Vouchers</div>
                                 </div>
                             </div>
                         </div>
@@ -2159,32 +2162,32 @@ button, input, select, textarea {
                     </div>
                 </section>
 
-                <!-- 7. GATE PASS TAB -->
-                <section id="tab-gate-pass" class="tab-panel">
+                <!-- 7. EMR TAB (Previously Gate Pass) -->
+                <section id="tab-emr" class="tab-panel">
                     <div class="panel-header">
                         <div>
-                            <h2>Gate Pass Management</h2>
-                            <p>Generate, track, and print Gate Passes for outgoing DUs, STPs, and depot equipment</p>
+                            <h2>EMR Management</h2>
+                            <p>Generate, track, and print Equipment Movement Records (EMRs) for outgoing DUs, STPs, and depot equipment</p>
                         </div>
                         <div class="panel-actions" style="display: flex; gap: 0.5rem;">
-                            <button class="btn btn-outline" id="btn-export-gps" title="Export Gate Passes to CSV">
+                            <button class="btn btn-outline" id="btn-export-gps" title="Export EMRs to CSV">
                                 <i class="fa-solid fa-file-csv"></i>
                                 <span>Export CSV</span>
                             </button>
                             <button class="btn btn-primary" id="create-gate-pass-btn">
                                 <i class="fa-solid fa-plus"></i>
-                                <span>Generate Gate Pass</span>
+                                <span>Generate EMR</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Gate Pass Metrics Grid -->
+                    <!-- EMR Metrics Grid -->
                     <div class="metrics-grid">
                         <div class="metric-card du-card">
                             <div class="card-glass"></div>
-                            <div class="card-icon"><i class="fa-solid fa-file-signature"></i></div>
+                            <div class="card-icon"><i class="fa-solid fa-file-invoice"></i></div>
                             <div class="card-info">
-                                <span class="card-title">Total Gate Passes</span>
+                                <span class="card-title">Total EMRs</span>
                                 <h3 id="gp-stat-total">0</h3>
                                 <span class="card-change">Generated Vouchers</span>
                             </div>
@@ -2214,19 +2217,19 @@ button, input, select, textarea {
                             <div class="card-glass"></div>
                             <div class="card-icon"><i class="fa-solid fa-truck"></i></div>
                             <div class="card-info">
-                                <span class="card-title">Recent Gate Pass</span>
+                                <span class="card-title">Recent EMR</span>
                                 <h3 id="gp-stat-latest" style="font-size: 1.1rem;">-</h3>
                                 <span class="card-change" id="gp-stat-latest-sub">No recent dispatch</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Filters & Search Bar for Gate Passes -->
+                    <!-- Filters & Search Bar for EMRs -->
                     <div class="filter-card">
                         <div class="filter-row">
                             <div class="search-box">
                                 <i class="fa-solid fa-magnifying-glass"></i>
-                                <input type="text" id="gp-search" placeholder="Search Gate Pass #, Serial No, Destination, Vendor...">
+                                <input type="text" id="gp-search" placeholder="Search EMR #, Serial No, Destination, Vendor...">
                             </div>
                             <div class="filter-group">
                                 <label for="gp-filter-category">Category:</label>
@@ -2245,20 +2248,20 @@ button, input, select, textarea {
                         </div>
                     </div>
 
-                    <!-- Gate Pass Log Table -->
+                    <!-- EMR Log Table -->
                     <div class="table-container">
                         <div class="table-responsive">
                             <table class="data-table" id="gate-pass-table">
                                 <thead>
                                     <tr>
-                                        <th class="sortable" data-sort="gate_pass_no">Gate Pass No <i class="fa-solid fa-sort sort-icon"></i></th>
+                                        <th class="sortable" data-sort="emr_no">EMR No <i class="fa-solid fa-sort sort-icon"></i></th>
                                         <th class="sortable" data-sort="out_date">Out Date <i class="fa-solid fa-sort sort-icon"></i></th>
                                         <th class="sortable" data-sort="category">Category <i class="fa-solid fa-sort sort-icon"></i></th>
                                         <th class="sortable" data-sort="serial_no">Serial No <i class="fa-solid fa-sort sort-icon"></i></th>
                                         <th>Make / Model</th>
                                         <th class="sortable" data-sort="vendor">Vendor Details <i class="fa-solid fa-sort sort-icon"></i></th>
                                         <th class="sortable" data-sort="destination">Destination (RO/Site) <i class="fa-solid fa-sort sort-icon"></i></th>
-                                        <th>EMR &amp; Vehicle</th>
+                                        <th>Gate Pass &amp; Vehicle</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -2308,8 +2311,8 @@ button, input, select, textarea {
                         <span style="font-size: 0.78rem; font-weight: 600;">Local Caching</span>
                     </div>
                     <div style="background: var(--bg-surface-elevated); padding: 0.65rem 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fa-solid fa-id-card" style="color: #f59e0b; font-size: 1rem;"></i>
-                        <span style="font-size: 0.78rem; font-weight: 600;">Gate Pass Print</span>
+                        <i class="fa-solid fa-file-invoice" style="color: #f59e0b; font-size: 1rem;"></i>
+                        <span style="font-size: 0.78rem; font-weight: 600;">EMR Voucher Print</span>
                     </div>
                 </div>
 
@@ -2460,11 +2463,11 @@ button, input, select, textarea {
 
                         <div class="form-row">
                             <div class="form-group col-6">
-                                <label for="out-emr-no">EMR / Issue No *</label>
-                                <input type="text" id="out-emr-no" class="form-control" placeholder="Issue reference number">
+                                <label for="out-emr-no">Gate Pass / Issue No *</label>
+                                <input type="text" id="out-emr-no" class="form-control" placeholder="Gate Pass reference number (e.g. GP-2026-001)">
                             </div>
                             <div class="form-group col-6">
-                                <label for="out-emr-date">EMR Date *</label>
+                                <label for="out-emr-date">Gate Pass Date *</label>
                                 <input type="date" id="out-emr-date" class="form-control">
                             </div>
                         </div>
@@ -2579,11 +2582,11 @@ button, input, select, textarea {
         </div>
     </div>
 
-    <!-- 4. GATE PASS CREATION MODAL -->
+    <!-- 4. EMR CREATION MODAL (Previously Gate Pass Creation Modal) -->
     <div id="gate-pass-modal" class="modal-overlay">
         <div class="modal-content" style="max-width: 680px;">
             <div class="modal-header">
-                <h4><i class="fa-solid fa-id-card" style="color: var(--hpcl-orange); margin-right: 8px;"></i> Generate New Gate Pass</h4>
+                <h4><i class="fa-solid fa-file-invoice" style="color: var(--hpcl-orange); margin-right: 8px;"></i> Generate New EMR (Equipment Movement Record)</h4>
                 <button class="modal-close" id="gate-pass-modal-close"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal-body">
@@ -2621,8 +2624,8 @@ button, input, select, textarea {
 
                     <div class="form-row">
                         <div class="form-group col-6">
-                            <label for="gp-number">Gate Pass No *</label>
-                            <input type="text" id="gp-number" class="form-control" required placeholder="e.g. GP-20260722-0001">
+                            <label for="gp-number">EMR No *</label>
+                            <input type="text" id="gp-number" class="form-control" required placeholder="e.g. EMR-20260722-0001">
                         </div>
                         <div class="form-group col-6">
                             <label for="gp-out-date">Out Date *</label>
@@ -2643,8 +2646,8 @@ button, input, select, textarea {
 
                     <div class="form-row">
                         <div class="form-group col-4">
-                            <label for="gp-emr-no">EMR No.</label>
-                            <input type="text" id="gp-emr-no" class="form-control" placeholder="e.g. EMR-10492">
+                            <label for="gp-emr-no">Gate Pass No.</label>
+                            <input type="text" id="gp-emr-no" class="form-control" placeholder="e.g. GP-10492 or Gate Pass #">
                         </div>
                         <div class="form-group col-4">
                             <label for="gp-vehicle-no">Vehicle No.</label>
@@ -2663,23 +2666,23 @@ button, input, select, textarea {
 
                     <div style="background: rgba(234, 88, 12, 0.08); border-left: 3px solid var(--hpcl-orange); padding: 10px 14px; border-radius: 4px; margin-bottom: 16px; font-size: 0.8rem; color: var(--text-secondary);">
                         <i class="fa-solid fa-circle-info" style="color: var(--hpcl-orange); margin-right: 6px;"></i>
-                        Submitting this Gate Pass will <strong>automatically remove</strong> the serial number from Store Inventory and <strong>update the Outward Ledger</strong> with full vendor and destination details.
+                        Submitting this EMR will <strong>automatically remove</strong> the serial number from Store Inventory and <strong>update the Outward Ledger</strong> with full vendor and destination details.
                     </div>
 
                     <div class="modal-actions">
                         <button type="button" class="btn btn-outline" id="gp-modal-cancel">Cancel</button>
-                        <button type="submit" class="btn btn-primary" id="gp-modal-submit">Issue Gate Pass &amp; Dispatch</button>
+                        <button type="submit" class="btn btn-primary" id="gp-modal-submit">Issue EMR &amp; Dispatch</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- 5. PRINTABLE GATE PASS VOUCHER MODAL -->
+    <!-- 5. PRINTABLE EMR VOUCHER MODAL -->
     <div id="gate-pass-print-modal" class="modal-overlay">
         <div class="modal-content" style="max-width: 800px; background: #ffffff; color: #111827; padding: 0;">
             <div class="modal-header" style="background: #0f172a; color: #ffffff; padding: 1rem 1.5rem;">
-                <h4 style="margin: 0; color: #ffffff;"><i class="fa-solid fa-print"></i> Official Gate Pass Voucher</h4>
+                <h4 style="margin: 0; color: #ffffff;"><i class="fa-solid fa-print"></i> Official EMR Voucher</h4>
                 <div>
                     <button class="btn btn-primary btn-sm" id="do-print-gp-btn" style="margin-right: 8px;"><i class="fa-solid fa-print"></i> Print Voucher</button>
                     <button class="modal-close" id="gp-print-modal-close" style="color: #ffffff;"><i class="fa-solid fa-xmark"></i></button>
@@ -13363,7 +13366,8 @@ window.baselineData = {
   "hanging_hardware": [],
   "gate_passes": [
     {
-      "gate_pass_no": "GP-20260722-0001",
+      "emr_no": "EMR-20260722-0001",
+      "gate_pass_no": "GP-01",
       "category": "DU",
       "serial_no": "202412000611",
       "make": "GVR",
@@ -13371,13 +13375,13 @@ window.baselineData = {
       "vendor": "Spark enterprises",
       "destination": "COMCO Udyambagh",
       "out_date": "2026-07-22",
-      "emr_no": "EMR01",
       "vehicle_no": "KA22AB1122",
       "driver": "ramesh",
       "remarks": "Provide DU"
     },
     {
-      "gate_pass_no": "GP-20260722-0002",
+      "emr_no": "EMR-20260722-0002",
+      "gate_pass_no": "GP-02",
       "category": "STP",
       "serial_no": "RJ019118I",
       "make": "GVR",
@@ -13385,10 +13389,9 @@ window.baselineData = {
       "vendor": "Spark enterprise",
       "destination": "Comco udyabagh",
       "out_date": "2026-07-22",
-      "emr_no": "EMR02",
       "vehicle_no": "KA22C1234",
       "driver": "Vasu",
-      "remarks": "This is test gate pass"
+      "remarks": "This is test EMR"
     }
   ],
   "original_summary": {
@@ -13514,12 +13517,13 @@ function normalizeRecord(item) {
         qty: getVal('qty', 'Qty', 'quantity') || 0,
         status: safeStr(getVal('status', 'Status')) || 'N',
         remarks: safeStr(getVal('remarks', 'Remarks')),
-        emr_no: safeStr(getVal('emr_no', 'EMR No', 'emr_number')),
-        emr_date: safeStr(getVal('emr_date', 'EMR Date')),
+        emr_no: safeStr(getVal('emr_no', 'EMR No', 'emr_number', 'gate_pass_no', 'Gate Pass No')),
+        emr_date: safeStr(getVal('emr_date', 'EMR Date', 'gate_pass_date', 'Gate Pass Date')),
         destination: safeStr(getVal('destination', 'Destination')),
         vendor: safeStr(getVal('vendor', 'Vendor')),
         out_date: safeStr(getVal('out_date', 'Out Date')),
-        gate_pass_no: safeStr(getVal('gate_pass_no', 'Gate Pass No')),
+        gate_pass_no: safeStr(getVal('gate_pass_no', 'Gate Pass No', 'emr_no', 'EMR No')),
+        gate_pass_date: safeStr(getVal('gate_pass_date', 'Gate Pass Date', 'emr_date', 'EMR Date')),
         item: safeStr(getVal('item', 'Item', 'material', 'Material')),
         tank_capacity: safeStr(getVal('tank_capacity', 'Tank Capacity', 'capacity', 'Capacity')),
         material: safeStr(getVal('material', 'Material', 'item', 'Item'))
@@ -13880,7 +13884,7 @@ async function pullFromSpreadsheetCsvEndpoints(spreadsheetId) {
         { names: ["DU_Outward", "DU_Outword", "DU OUTWORD"], target: ["du_outword"] },
         { names: ["Tank_Outward", "Tank_Outword", "TANK OUTWORD"], target: ["tank_outword"] },
         { names: ["Others_Outward", "Others_Outword", "OTHERS OUTWORD"], target: ["others_outword"] },
-        { names: ["Gate_Passes", "Gate Passes"], target: ["gate_passes"] }
+        { names: ["EMR", "EMRs", "EMR_Records", "Gate_Passes", "Gate Passes"], target: ["gate_passes"] }
     ];
 
     let pulledDb = {
@@ -13982,7 +13986,7 @@ function parseWorkbookToDb(workbook) {
         foundAny = true;
     }
 
-    const gps = getSheetRows(["Gate_Passes", "Gate Passes"]);
+    const gps = getSheetRows(["EMR", "EMRs", "EMR_Records", "Gate_Passes", "Gate Passes"]);
     if (gps.length > 0) {
         newDb.gate_passes = gps;
         foundAny = true;
@@ -14064,7 +14068,7 @@ function updateSidebarBadges() {
     const bInv = document.getElementById('nav-badge-inventory');
     const bInw = document.getElementById('nav-badge-inward');
     const bOut = document.getElementById('nav-badge-outward');
-    const bGp = document.getElementById('nav-badge-gatepass');
+    const bGp = document.getElementById('nav-badge-emr') || document.getElementById('nav-badge-gatepass');
 
     if (bInv) bInv.textContent = activeInventoryCount;
     if (bInw) bInw.textContent = inwardCount;
@@ -14163,7 +14167,7 @@ function setupNavigation() {
             });
 
             tabPanels.forEach(panel => {
-                if (panel.id === `tab-${tabId}`) {
+                if (panel.id === `tab-${tabId}` || (tabId === 'emr' && panel.id === 'tab-gate-pass') || (tabId === 'gate-pass' && panel.id === 'tab-emr')) {
                     panel.classList.add('active');
                 } else {
                     panel.classList.remove('active');
@@ -14182,7 +14186,7 @@ function setupNavigation() {
                 renderInwardLedger();
             } else if (tabId === 'outward') {
                 renderOutwardLedger();
-            } else if (tabId === 'gate-pass') {
+            } else if (tabId === 'gate-pass' || tabId === 'emr') {
                 renderGatePassView();
             } else if (tabId === 'data-mgmt') {
                 updateDatabaseDiagnostics();
@@ -14791,8 +14795,8 @@ function renderInventoryList() {
                     <button class="btn btn-outline btn-sm action-btn edit-btn" data-sno="${item.sno}" data-cat="${item.category.includes('DU') ? 'du' : 'stp'}" title="Edit Condition / Status">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
-                    <button class="btn btn-primary btn-sm action-btn issue-gp-btn" data-sno="${item.sno}" data-cat="${item.category.includes('DU') ? 'DU' : 'STP'}" data-serial="${item.serial_no}" data-make="${item.make}" data-model="${item.model}" title="Issue Gate Pass">
-                        <i class="fa-solid fa-id-card"></i> Issue Pass
+                    <button class="btn btn-primary btn-sm action-btn issue-gp-btn" data-sno="${item.sno}" data-cat="${item.category.includes('DU') ? 'DU' : 'STP'}" data-serial="${item.serial_no}" data-make="${item.make}" data-model="${item.model}" title="Issue EMR">
+                        <i class="fa-solid fa-file-invoice"></i> Issue EMR
                     </button>
                 </div>
             </td>
@@ -14989,7 +14993,7 @@ function renderOutwardLedger() {
         duBody.innerHTML = '';
         let dus = (db.du_outword || []).map(normalizeRecord);
         if (searchVal) {
-            dus = dus.filter(d => safeLower(d.emr_no).includes(searchVal) || safeLower(d.serial_no).includes(searchVal) || safeLower(d.destination).includes(searchVal) || safeLower(d.vendor).includes(searchVal) || safeLower(d.make).includes(searchVal));
+            dus = dus.filter(d => (safeLower(d.gate_pass_no).includes(searchVal) || safeLower(d.emr_no).includes(searchVal)) || safeLower(d.serial_no).includes(searchVal) || safeLower(d.destination).includes(searchVal) || safeLower(d.vendor).includes(searchVal) || safeLower(d.make).includes(searchVal));
         }
         if (dus.length === 0) {
             duBody.innerHTML = `<tr><td colspan="8" class="text-center" style="padding:2rem; color: var(--text-muted);">No DU outward records found.</td></tr>`;
@@ -15018,7 +15022,7 @@ function renderOutwardLedger() {
         stpBody.innerHTML = '';
         let stps = (db.stp_outword || []).map(normalizeRecord);
         if (searchVal) {
-            stps = stps.filter(s => safeLower(s.emr_no).includes(searchVal) || safeLower(s.serial_no).includes(searchVal) || safeLower(s.destination).includes(searchVal) || safeLower(s.vendor).includes(searchVal) || safeLower(s.make).includes(searchVal));
+            stps = stps.filter(s => (safeLower(s.gate_pass_no).includes(searchVal) || safeLower(s.emr_no).includes(searchVal)) || safeLower(s.serial_no).includes(searchVal) || safeLower(s.destination).includes(searchVal) || safeLower(s.vendor).includes(searchVal) || safeLower(s.make).includes(searchVal));
         }
         if (stps.length === 0) {
             stpBody.innerHTML = `<tr><td colspan="8" class="text-center" style="padding:2rem; color: var(--text-muted);">No STP outward records found.</td></tr>`;
@@ -15047,7 +15051,7 @@ function renderOutwardLedger() {
         tankBody.innerHTML = '';
         let tanks = (db.tank_outword || []).map(normalizeRecord);
         if (searchVal) {
-            tanks = tanks.filter(t => safeLower(t.emr_no).includes(searchVal) || safeLower(t.destination).includes(searchVal) || safeLower(t.vendor).includes(searchVal) || safeLower(t.tank_capacity).includes(searchVal));
+            tanks = tanks.filter(t => (safeLower(t.gate_pass_no).includes(searchVal) || safeLower(t.emr_no).includes(searchVal)) || safeLower(t.destination).includes(searchVal) || safeLower(t.vendor).includes(searchVal) || safeLower(t.tank_capacity).includes(searchVal));
         }
         if (tanks.length === 0) {
             tankBody.innerHTML = `<tr><td colspan="6" class="text-center" style="padding:2rem; color: var(--text-muted);">No tank outward records found.</td></tr>`;
@@ -15074,7 +15078,7 @@ function renderOutwardLedger() {
         othBody.innerHTML = '';
         let oths = (db.others_outword || []).map(normalizeRecord);
         if (searchVal) {
-            oths = oths.filter(o => safeLower(o.emr_no).includes(searchVal) || safeLower(o.material).includes(searchVal) || safeLower(o.destination).includes(searchVal) || safeLower(o.vendor).includes(searchVal));
+            oths = oths.filter(o => (safeLower(o.gate_pass_no).includes(searchVal) || safeLower(o.emr_no).includes(searchVal)) || safeLower(o.material).includes(searchVal) || safeLower(o.destination).includes(searchVal) || safeLower(o.vendor).includes(searchVal));
         }
         if (oths.length === 0) {
             othBody.innerHTML = `<tr><td colspan="7" class="text-center" style="padding:2rem; color: var(--text-muted);">No other outward records found.</td></tr>`;
@@ -15376,12 +15380,12 @@ function handleNewRecord(e) {
 
     } else if (transactionType === 'outward') {
         const cat = document.getElementById('out-category').value;
-        const emrNo = safeStr(document.getElementById('out-emr-no').value);
-        const emrDate = document.getElementById('out-emr-date').value;
+        const gpNo = safeStr(document.getElementById('out-emr-no').value);
+        const gpDate = document.getElementById('out-emr-date').value;
         const destination = safeStr(document.getElementById('out-destination').value);
         const vendor = safeStr(document.getElementById('out-vendor').value);
         const qty = parseInt(document.getElementById('out-qty').value, 10) || 1;
-        const outDate = document.getElementById('out-date').value;
+        const outDate = document.getElementById('out-date').value || gpDate;
 
         if (cat === 'du') {
             const serial = safeStr(document.getElementById('out-serial').value);
@@ -15394,7 +15398,10 @@ function handleNewRecord(e) {
                 sno: nextSno,
                 type: 'Pressure',
                 variant: variant || 'MPD',
-                make, model, serial_no: serial, emr_date: emrDate, emr_no: emrNo, destination, vendor, out_date: outDate
+                make, model, serial_no: serial,
+                gate_pass_date: gpDate, gate_pass_no: gpNo,
+                emr_date: gpDate, emr_no: gpNo,
+                destination, vendor, out_date: outDate
             });
 
             const idx = db.inventory.pressure_dus.findIndex(d => safeLower(d.serial_no) === safeLower(serial));
@@ -15411,7 +15418,10 @@ function handleNewRecord(e) {
             db.stp_outword.push({
                 sno: nextSno,
                 hp_type: variant || '0.75',
-                make, serial_no: serial, emr_date: emrDate, emr_no: emrNo, destination, vendor, out_date: outDate
+                make, serial_no: serial,
+                gate_pass_date: gpDate, gate_pass_no: gpNo,
+                emr_date: gpDate, emr_no: gpNo,
+                destination, vendor, out_date: outDate
             });
 
             const idx = db.inventory.stps.findIndex(s => safeLower(s.serial_no) === safeLower(serial));
@@ -15424,7 +15434,10 @@ function handleNewRecord(e) {
             const nextSno = (db.tank_outword || []).reduce((max, t) => Number(t.sno) > max ? Number(t.sno) : max, 0) + 1;
             db.tank_outword.push({
                 sno: nextSno,
-                tank_capacity: capacity, emr_date: emrDate, emr_no: emrNo, destination, vendor
+                tank_capacity: capacity,
+                gate_pass_date: gpDate, gate_pass_no: gpNo,
+                emr_date: gpDate, emr_no: gpNo,
+                destination, vendor
             });
 
         } else if (cat === 'others') {
@@ -15432,10 +15445,13 @@ function handleNewRecord(e) {
             const nextSno = (db.others_outword || []).reduce((max, o) => Number(o.sno) > max ? Number(o.sno) : max, 0) + 1;
             db.others_outword.push({
                 sno: nextSno,
-                material: desc, qty, emr_date: emrDate, emr_no: emrNo, destination, vendor
+                material: desc, qty,
+                gate_pass_date: gpDate, gate_pass_no: gpNo,
+                emr_date: gpDate, emr_no: gpNo,
+                destination, vendor
             });
         }
-        showToast("Outward outpass registered successfully!");
+        showToast("Outward Gate Pass transaction registered successfully!");
     }
 
     saveState();
@@ -15576,25 +15592,25 @@ function exportCollectionToCsv(type) {
 
     } else if (type === 'outward') {
         fileName = `hpcl_outward_ledger_${today}.csv`;
-        csvContent += "Category,EMR Date,EMR No,Serial / Capacity,Make / Specs,Destination,Vendor,Out Date\n";
+        csvContent += "Category,Gate Pass Date,Gate Pass No,Serial / Capacity,Make / Specs,Destination,Vendor,Out Date\n";
         (db.du_outword || []).forEach(d => {
-            csvContent += `"DU","${d.emr_date || ''}","${d.emr_no || ''}","${d.serial_no || ''}","${d.make || ''} ${d.model || ''}","${(d.destination || '').replace(/"/g, '""')}","${(d.vendor || '').replace(/"/g, '""')}","${d.out_date || ''}"\n`;
+            csvContent += `"DU","${d.gate_pass_date || d.emr_date || ''}","${d.gate_pass_no || d.emr_no || ''}","${d.serial_no || ''}","${d.make || ''} ${d.model || ''}","${(d.destination || '').replace(/"/g, '""')}","${(d.vendor || '').replace(/"/g, '""')}","${d.out_date || ''}"\n`;
         });
         (db.stp_outword || []).forEach(s => {
-            csvContent += `"STP","${s.emr_date || ''}","${s.emr_no || ''}","${s.serial_no || ''}","${s.make || ''} (${s.hp_type}HP)","${(s.destination || '').replace(/"/g, '""')}","${(s.vendor || '').replace(/"/g, '""')}","${s.out_date || ''}"\n`;
+            csvContent += `"STP","${s.gate_pass_date || s.emr_date || ''}","${s.gate_pass_no || s.emr_no || ''}","${s.serial_no || ''}","${s.make || ''} (${s.hp_type}HP)","${(s.destination || '').replace(/"/g, '""')}","${(s.vendor || '').replace(/"/g, '""')}","${s.out_date || ''}"\n`;
         });
         (db.tank_outword || []).forEach(t => {
-            csvContent += `"Tank","${t.emr_date || ''}","${t.emr_no || ''}","${t.tank_capacity || ''}","Storage Tank","${(t.destination || '').replace(/"/g, '""')}","${(t.vendor || '').replace(/"/g, '""')}","${t.emr_date || ''}"\n`;
+            csvContent += `"Tank","${t.gate_pass_date || t.emr_date || ''}","${t.gate_pass_no || t.emr_no || ''}","${t.tank_capacity || ''}","Storage Tank","${(t.destination || '').replace(/"/g, '""')}","${(t.vendor || '').replace(/"/g, '""')}","${t.out_date || ''}"\n`;
         });
         (db.others_outword || []).forEach(o => {
-            csvContent += `"Others","${o.emr_date || ''}","${o.emr_no || ''}","Qty: ${o.qty || 1}","${(o.material || '').replace(/"/g, '""')}","${(o.destination || '').replace(/"/g, '""')}","${(o.vendor || '').replace(/"/g, '""')}","${o.emr_date || ''}"\n`;
+            csvContent += `"Others","${o.gate_pass_date || o.emr_date || ''}","${o.gate_pass_no || o.emr_no || ''}","Qty: ${o.qty || 1}","${(o.material || '').replace(/"/g, '""')}","${(o.destination || '').replace(/"/g, '""')}","${(o.vendor || '').replace(/"/g, '""')}","${o.out_date || ''}"\n`;
         });
 
-    } else if (type === 'gate_passes') {
-        fileName = `hpcl_gate_passes_${today}.csv`;
-        csvContent += "Gate Pass No,Out Date,Category,Serial No,Make,Model,Vendor,Destination,EMR No,Vehicle No,Driver,Remarks\n";
+    } else if (type === 'gate_passes' || type === 'emr' || type === 'emrs') {
+        fileName = `hpcl_emr_vouchers_${today}.csv`;
+        csvContent += "EMR No,Out Date,Category,Serial No,Make,Model,Vendor,Destination,Gate Pass No,Vehicle No,Driver,Remarks\n";
         (db.gate_passes || []).forEach(g => {
-            csvContent += `"${g.gate_pass_no || ''}","${g.out_date || ''}","${g.category || ''}","${g.serial_no || ''}","${g.make || ''}","${g.model || ''}","${(g.vendor || '').replace(/"/g, '""')}","${(g.destination || '').replace(/"/g, '""')}","${g.emr_no || ''}","${g.vehicle_no || ''}","${(g.driver || '').replace(/"/g, '""')}","${(g.remarks || '').replace(/"/g, '""')}"\n`;
+            csvContent += `"${g.emr_no || g.gate_pass_no || ''}","${g.out_date || ''}","${g.category || ''}","${g.serial_no || ''}","${g.make || ''}","${g.model || ''}","${(g.vendor || '').replace(/"/g, '""')}","${(g.destination || '').replace(/"/g, '""')}","${g.gate_pass_no || g.emr_no || ''}","${g.vehicle_no || ''}","${(g.driver || '').replace(/"/g, '""')}","${(g.remarks || '').replace(/"/g, '""')}"\n`;
         });
     }
 
@@ -16492,7 +16508,7 @@ function updateSheetsStatusBadge(isSyncing = false, customStatus = null) {
 }
 
 // ==========================================================================
-// Gate Pass Management Module
+// EMR (Equipment Movement Record) Management Module (Previously Gate Pass)
 // ==========================================================================
 function renderGatePassView() {
     if (!db.gate_passes) db.gate_passes = [];
@@ -16513,7 +16529,7 @@ function renderGatePassView() {
     if (latestElem && latestSubElem) {
         if (totalGPs > 0) {
             const latest = db.gate_passes[totalGPs - 1];
-            latestElem.textContent = latest.gate_pass_no;
+            latestElem.textContent = latest.emr_no || latest.gate_pass_no;
             latestSubElem.textContent = `${latest.category} - ${latest.serial_no} (${latest.out_date})`;
         } else {
             latestElem.textContent = '-';
@@ -16558,7 +16574,10 @@ function renderGatePassView() {
     }
     if (searchVal !== '') {
         list = list.filter(g => {
-            return (g.gate_pass_no && g.gate_pass_no.toLowerCase().includes(searchVal)) ||
+            const emrNum = g.emr_no || g.gate_pass_no || '';
+            const gpNum = g.gate_pass_no || g.emr_no || '';
+            return emrNum.toLowerCase().includes(searchVal) ||
+                   gpNum.toLowerCase().includes(searchVal) ||
                    (g.serial_no && g.serial_no.toLowerCase().includes(searchVal)) ||
                    (g.destination && g.destination.toLowerCase().includes(searchVal)) ||
                    (g.vendor && g.vendor.toLowerCase().includes(searchVal)) ||
@@ -16567,10 +16586,10 @@ function renderGatePassView() {
         });
     }
 
-    // Sort Gate Passes
+    // Sort EMRs
     list.sort((a, b) => {
-        let valA = a[gpSortColumn];
-        let valB = b[gpSortColumn];
+        let valA = a[gpSortColumn] || (gpSortColumn === 'emr_no' ? a.gate_pass_no : '');
+        let valB = b[gpSortColumn] || (gpSortColumn === 'emr_no' ? b.gate_pass_no : '');
 
         if (gpSortColumn === 'out_date') {
             return gpSortDirection === 'asc'
@@ -16583,7 +16602,7 @@ function renderGatePassView() {
     });
 
     if (list.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="9" class="text-center" style="padding: 2.5rem; color: var(--text-muted);">No Gate Passes recorded yet. Click <strong>Generate Gate Pass</strong> to create your first dispatch voucher.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="9" class="text-center" style="padding: 2.5rem; color: var(--text-muted);">No EMR vouchers recorded yet. Click <strong>Generate EMR</strong> to create your first dispatch voucher.</td></tr>`;
         return;
     }
 
@@ -16593,10 +16612,13 @@ function renderGatePassView() {
             ? '<span class="badge badge-new" style="background: rgba(0, 72, 153, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3);">Dispenser DU</span>'
             : '<span class="badge badge-used" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3);">STP Pump</span>';
 
+        const emrDisplay = item.emr_no || item.gate_pass_no || '-';
+        const gpDisplay = item.gate_pass_no || item.gp_no || 'N/A';
+
         tr.innerHTML = `
             <td>
-                <span class="copyable-serial" data-copy="${item.gate_pass_no}" title="Click to copy voucher #">
-                    ${item.gate_pass_no} <i class="fa-regular fa-copy"></i>
+                <span class="copyable-serial" data-copy="${emrDisplay}" title="Click to copy EMR #">
+                    ${emrDisplay} <i class="fa-regular fa-copy"></i>
                 </span>
             </td>
             <td>${item.out_date || '-'}</td>
@@ -16605,12 +16627,12 @@ function renderGatePassView() {
             <td>${item.make || ''} ${item.model || ''}</td>
             <td><strong>${item.vendor || '-'}</strong></td>
             <td>${item.destination || '-'}</td>
-            <td><span class="text-muted" style="font-size:0.8rem;">EMR: ${item.emr_no || 'N/A'}<br>Veh: ${item.vehicle_no || 'N/A'}</span></td>
+            <td><span class="text-muted" style="font-size:0.8rem;">Gate Pass: ${gpDisplay}<br>Veh: ${item.vehicle_no || 'N/A'}</span></td>
             <td class="actions-cell">
-                <button class="btn-icon btn-edit" title="Print Official Gate Pass Voucher" onclick="openGatePassPrintModal('${item.gate_pass_no}')" style="margin-right: 4px;">
+                <button class="btn-icon btn-edit" title="Print Official EMR Voucher" onclick="openGatePassPrintModal('${emrDisplay}')" style="margin-right: 4px;">
                     <i class="fa-solid fa-print"></i>
                 </button>
-                <button class="btn-icon btn-delete" title="Cancel / Revert Gate Pass" onclick="revertGatePass('${item.gate_pass_no}')">
+                <button class="btn-icon btn-delete" title="Cancel / Revert EMR" onclick="revertGatePass('${emrDisplay}')">
                     <i class="fa-solid fa-rotate-left"></i>
                 </button>
             </td>
@@ -16624,7 +16646,7 @@ function renderGatePassView() {
         gpTable.addEventListener('click', (e) => {
             const copyEl = e.target.closest('.copyable-serial');
             if (copyEl) {
-                copyToClipboard(copyEl.getAttribute('data-copy'), 'Gate Pass Number');
+                copyToClipboard(copyEl.getAttribute('data-copy'), 'EMR Number');
             }
         });
     }
@@ -16705,35 +16727,29 @@ function openGatePassModal(category = 'DU', preselectSerial = null) {
 
     const catSelect = document.getElementById('gp-category');
     if (catSelect) catSelect.value = category;
+
     populateGatePassSerialDropdown(category, preselectSerial);
 
-    // Auto-generate strictly unique Gate Pass Number
-    const dateStr = new Date().toISOString().split('T')[0].replace(/-/g, '');
-    let maxSuffix = 0;
-    (db.gate_passes || []).forEach(g => {
-        if (g.gate_pass_no && g.gate_pass_no.startsWith(`GP-${dateStr}-`)) {
-            const parts = g.gate_pass_no.split('-');
-            const sNum = parseInt(parts[2], 10);
-            if (!isNaN(sNum) && sNum > maxSuffix) maxSuffix = sNum;
-        }
-    });
-    const nextNo = `GP-${dateStr}-${String(maxSuffix + 1).padStart(4, '0')}`;
-    
-    document.getElementById('gp-number').value = nextNo;
-    document.getElementById('gp-out-date').value = new Date().toISOString().split('T')[0];
-    document.getElementById('gp-vendor').value = '';
-    document.getElementById('gp-destination').value = '';
-    document.getElementById('gp-emr-no').value = '';
-    document.getElementById('gp-vehicle-no').value = '';
-    document.getElementById('gp-driver').value = '';
-    document.getElementById('gp-remarks').value = '';
+    // Auto-generate strictly unique EMR Number
+    const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    const randSuffix = String(Math.floor(1000 + Math.random() * 9000));
+    const autoNumber = `EMR-${todayStr}-${randSuffix}`;
+
+    const numInput = document.getElementById('gp-number');
+    if (numInput) numInput.value = autoNumber;
+
+    const outDateInput = document.getElementById('gp-out-date');
+    if (outDateInput) outDateInput.value = new Date().toISOString().split('T')[0];
+
+    const gpEmrInput = document.getElementById('gp-emr-no');
+    if (gpEmrInput) gpEmrInput.value = '';
 
     modal.classList.add('active');
 }
 
 function quickIssueGatePass(category, serialNo) {
-    const navGatePass = document.querySelector('.nav-item[data-tab="gate-pass"]');
-    if (navGatePass) navGatePass.click();
+    const navItem = document.querySelector('.nav-item[data-tab="emr"]') || document.querySelector('.nav-item[data-tab="gate-pass"]');
+    if (navItem) navItem.click();
     openGatePassModal(category, serialNo);
 }
 
@@ -16743,7 +16759,6 @@ function populateGatePassSerialDropdown(category, preselectSerial = null) {
     serialSelect.innerHTML = '<option value="">-- Choose Available Item --</option>';
 
     let availableItems = [];
-
     if (category === 'DU') {
         availableItems = (db.inventory.pressure_dus || []).map(item => ({
             serial_no: item.serial_no,
@@ -16808,11 +16823,11 @@ function updateGatePassPreviewCard() {
 function handleGatePassSubmit() {
     const category = document.getElementById('gp-category').value;
     const serialNo = safeStr(document.getElementById('gp-serial-select').value);
-    const gpNumber = safeStr(document.getElementById('gp-number').value);
+    const emrNumber = safeStr(document.getElementById('gp-number').value);
     const outDate = document.getElementById('gp-out-date').value;
     const vendor = safeStr(document.getElementById('gp-vendor').value);
     const destination = safeStr(document.getElementById('gp-destination').value);
-    const emrNo = safeStr(document.getElementById('gp-emr-no').value);
+    const gpReference = safeStr(document.getElementById('gp-emr-no').value);
     const vehicleNo = safeStr(document.getElementById('gp-vehicle-no').value);
     const driver = safeStr(document.getElementById('gp-driver').value);
     const remarks = safeStr(document.getElementById('gp-remarks').value);
@@ -16821,13 +16836,13 @@ function handleGatePassSubmit() {
         alert("Please select a Serial Number from in-store inventory.");
         return;
     }
-    if (!gpNumber || !outDate || !vendor || !destination) {
-        alert("Please fill in all required fields (Gate Pass No, Out Date, Vendor, Destination).");
+    if (!emrNumber || !outDate || !vendor || !destination) {
+        alert("Please fill in all required fields (EMR No, Out Date, Vendor, Destination).");
         return;
     }
 
-    if ((db.gate_passes || []).some(g => safeUpper(g.gate_pass_no) === safeUpper(gpNumber))) {
-        alert(`Gate Pass Number '${gpNumber}' already exists. Please use a unique Gate Pass Number.`);
+    if ((db.gate_passes || []).some(g => safeUpper(g.emr_no || g.gate_pass_no) === safeUpper(emrNumber))) {
+        alert(`EMR Number '${emrNumber}' already exists. Please use a unique EMR Number.`);
         return;
     }
 
@@ -16848,8 +16863,10 @@ function handleGatePassSubmit() {
                 make: itemObj.make || '',
                 model: itemObj.model || '',
                 serial_no: serialNo,
+                gate_pass_date: outDate,
+                gate_pass_no: gpReference || emrNumber,
                 emr_date: outDate,
-                emr_no: emrNo || gpNumber,
+                emr_no: emrNumber,
                 destination: destination,
                 vendor: vendor,
                 out_date: outDate
@@ -16869,8 +16886,10 @@ function handleGatePassSubmit() {
                 make: itemObj.make || '',
                 serial_no: serialNo,
                 model: itemObj.model || '',
+                gate_pass_date: outDate,
+                gate_pass_no: gpReference || emrNumber,
                 emr_date: outDate,
-                emr_no: emrNo || gpNumber,
+                emr_no: emrNumber,
                 destination: destination,
                 vendor: vendor,
                 out_date: outDate
@@ -16884,8 +16903,9 @@ function handleGatePassSubmit() {
         return;
     }
 
-    const gatePassRecord = {
-        gate_pass_no: gpNumber,
+    const emrRecord = {
+        emr_no: emrNumber,
+        gate_pass_no: gpReference || emrNumber,
         category: category,
         serial_no: serialNo,
         make: itemObj.make || '',
@@ -16894,14 +16914,13 @@ function handleGatePassSubmit() {
         vendor: vendor,
         destination: destination,
         out_date: outDate,
-        emr_no: emrNo,
         vehicle_no: vehicleNo,
         driver: driver,
         remarks: remarks,
         created_at: new Date().toISOString()
     };
 
-    db.gate_passes.push(gatePassRecord);
+    db.gate_passes.push(emrRecord);
 
     saveState();
     refreshAllViews();
@@ -16910,20 +16929,21 @@ function handleGatePassSubmit() {
     const modal = document.getElementById('gate-pass-modal');
     if (modal) modal.classList.remove('active');
 
-    showToast(`Gate Pass ${gpNumber} issued! Item ${serialNo} removed from Store Inventory & added to Outward Ledger.`);
-    openGatePassPrintModal(gpNumber);
+    showToast(`EMR ${emrNumber} issued! Item ${serialNo} removed from Store Inventory & added to Outward Ledger.`);
+    openGatePassPrintModal(emrNumber);
 }
 
-function revertGatePass(gpNumber) {
-    const gpIndex = (db.gate_passes || []).findIndex(g => g.gate_pass_no === gpNumber);
+function revertGatePass(voucherNumber) {
+    const gpIndex = (db.gate_passes || []).findIndex(g => (g.emr_no === voucherNumber || g.gate_pass_no === voucherNumber));
     if (gpIndex === -1) {
-        alert(`Gate Pass '${gpNumber}' not found.`);
+        alert(`EMR '${voucherNumber}' not found.`);
         return;
     }
 
     const gp = db.gate_passes[gpIndex];
+    const displayNum = gp.emr_no || gp.gate_pass_no;
 
-    if (!confirm(`Are you sure you want to cancel Gate Pass '${gpNumber}'?\n\nThis will RETURN Serial Number '${gp.serial_no}' back to In-Store Inventory and REMOVE it from Outward Ledger.`)) {
+    if (!confirm(`Are you sure you want to cancel EMR '${displayNum}'?\n\nThis will RETURN Serial Number '${gp.serial_no}' back to In-Store Inventory and REMOVE it from Outward Ledger.`)) {
         return;
     }
 
@@ -16944,7 +16964,7 @@ function revertGatePass(gpNumber) {
             serial_no: gp.serial_no,
             receipt_date: new Date().toISOString().split('T')[0],
             status: 'N',
-            remarks: `Returned to store from cancelled Gate Pass ${gp.gate_pass_no}`
+            remarks: `Returned to store from cancelled EMR ${displayNum}`
         });
     } else {
         const outIdx = (db.stp_outword || []).findIndex(s => safeLower(s.serial_no) === safeLower(gp.serial_no));
@@ -16960,7 +16980,7 @@ function revertGatePass(gpNumber) {
             model: gp.model || '',
             receipt_date: new Date().toISOString().split('T')[0],
             status: 'N',
-            remarks: `Returned to store from cancelled Gate Pass ${gp.gate_pass_no}`
+            remarks: `Returned to store from cancelled EMR ${displayNum}`
         });
     }
 
@@ -16968,18 +16988,20 @@ function revertGatePass(gpNumber) {
     refreshAllViews();
     populateFilterDropdowns();
 
-    showToast(`Gate Pass ${gpNumber} cancelled. Item ${gp.serial_no} returned to Store Inventory.`);
+    showToast(`EMR ${displayNum} cancelled. Item ${gp.serial_no} returned to Store Inventory.`);
 }
 
-function openGatePassPrintModal(gpNumber) {
-    const gp = (db.gate_passes || []).find(g => g.gate_pass_no === gpNumber);
+function openGatePassPrintModal(voucherNumber) {
+    const gp = (db.gate_passes || []).find(g => (g.emr_no === voucherNumber || g.gate_pass_no === voucherNumber));
     if (!gp) return;
 
     const modal = document.getElementById('gate-pass-print-modal');
     const container = document.getElementById('printable-voucher-body');
     if (!container || !modal) return;
 
-    const qrMockCode = `HPCL-DESUR-GP-${gp.gate_pass_no.replace(/[^a-zA-Z0-9]/g, '')}`;
+    const emrDisplay = gp.emr_no || gp.gate_pass_no;
+    const gpDisplay = gp.gate_pass_no || gp.gp_no || 'N/A';
+    const qrMockCode = `HPCL-DESUR-EMR-${emrDisplay.replace(/[^a-zA-Z0-9]/g, '')}`;
 
     container.innerHTML = `
         <div class="printable-pass-sheet" style="font-family: 'Plus Jakarta Sans', Arial, sans-serif; color: #0f172a; line-height: 1.45;">
@@ -16994,8 +17016,8 @@ function openGatePassPrintModal(gpNumber) {
                     </div>
                 </div>
                 <div style="text-align: right;">
-                    <span style="display: inline-block; background: #004899; color: #ffffff; padding: 4px 14px; border-radius: 4px; font-weight: 800; font-size: 0.88rem; letter-spacing: 0.05em;">GATE PASS CHALLAN</span>
-                    <p style="margin: 5px 0 0 0; font-size: 1rem; font-family: monospace; font-weight: 800; color: #ea580c;">${gp.gate_pass_no}</p>
+                    <span style="display: inline-block; background: #004899; color: #ffffff; padding: 4px 14px; border-radius: 4px; font-weight: 800; font-size: 0.88rem; letter-spacing: 0.05em;">EMR CHALLAN</span>
+                    <p style="margin: 5px 0 0 0; font-size: 1rem; font-family: monospace; font-weight: 800; color: #ea580c;">${emrDisplay}</p>
                     <span style="font-size: 0.72rem; color: #64748b; font-family: monospace;">CODE: ${qrMockCode}</span>
                 </div>
             </div>
@@ -17008,7 +17030,7 @@ function openGatePassPrintModal(gpNumber) {
                     <p style="margin: 0;"><strong>Destination (RO Outlet / Site):</strong> <br><span style="font-weight:700;">${gp.destination || '-'}</span></p>
                 </div>
                 <div>
-                    <p style="margin: 0 0 6px 0;"><strong>EMR / Issue Reference No:</strong> <span style="font-family: monospace; font-weight:700;">${gp.emr_no || 'N/A'}</span></p>
+                    <p style="margin: 0 0 6px 0;"><strong>Gate Pass / Security Slip Ref:</strong> <span style="font-family: monospace; font-weight:700;">${gpDisplay}</span></p>
                     <p style="margin: 0 0 6px 0;"><strong>Vehicle Reg. Number:</strong> <span style="font-family: monospace; font-weight:700; color:#ea580c;">${gp.vehicle_no || 'N/A'}</span></p>
                     <p style="margin: 0;"><strong>Driver Name &amp; Contact:</strong> <span style="font-weight:700;">${gp.driver || 'N/A'}</span></p>
                 </div>
@@ -17050,7 +17072,7 @@ function openGatePassPrintModal(gpNumber) {
             ${gp.remarks ? `<div style="font-size: 0.82rem; background: #fff7ed; border-left: 4px solid #ea580c; padding: 8px 12px; margin-bottom: 1.25rem;"><strong>Remarks:</strong> ${gp.remarks}</div>` : ''}
 
             <div style="font-size: 0.74rem; color: #64748b; background: #f1f5f9; padding: 8px 12px; border-radius: 4px; margin-bottom: 2.5rem; line-height: 1.4;">
-                <strong>Statutory Notice:</strong> The materials specified above belong to HPCL Desur IRD Depot and are dispatched under authorized custody. Transporter and receiving dealer must verify serial numbers upon arrival and adhere strictly to OISD / PESO safety compliance standards.
+                <strong>Statutory Notice:</strong> The materials specified above belong to HPCL Desur IRD Depot and are dispatched under authorized EMR custody. Transporter and receiving dealer must verify serial numbers upon arrival and adhere strictly to OISD / PESO safety compliance standards.
             </div>
 
             <!-- 4 Formal Signature Blocks -->
@@ -17078,12 +17100,17 @@ function openGatePassPrintModal(gpNumber) {
     modal.classList.add('active');
 }
 
-// Global functions for inline HTML buttons and onclick handlers
-window.openStatusModal = openStatusModal;
+// Window global exports & aliases
+window.quickIssueEMR = quickIssueGatePass;
 window.quickIssueGatePass = quickIssueGatePass;
+window.openEMRModal = openGatePassModal;
 window.openGatePassModal = openGatePassModal;
+window.openEMRPrintModal = openGatePassPrintModal;
 window.openGatePassPrintModal = openGatePassPrintModal;
+window.revertEMR = revertGatePass;
 window.revertGatePass = revertGatePass;
+window.renderEMRView = renderGatePassView;
+window.renderGatePassView = renderGatePassView;
 window.copyToClipboard = copyToClipboard;
 
 // ==========================================================================

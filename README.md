@@ -17,8 +17,8 @@ flowchart TD
     B --> C["Executive Dashboard (Fleet Health & Charts)"]
     B --> D["In-Store Inventory (Quick Chips & Column Sorting)"]
     B --> E["Inward Ledger (Consignment Receipts)"]
-    B --> F["Outward Ledger (DUs, STPs, Tanks, Automation)"]
-    B --> G["Gate Pass Challan Register (Printable Bilingual A4)"]
+    B --> F["Outward Ledger (Gate Pass Tracking)"]
+    B --> G["EMR Challan Register (Printable Bilingual A4)"]
     B --> H["Backup, Google Sheets Sync & Health Diagnostics"]
 ```
 
@@ -40,14 +40,14 @@ flowchart TD
 
 ### 3. Comprehensive Material Ledgers
 - **Inward Ledger**: Detailed records of all incoming materials received from factories and inter-depot transfers.
-- **Outward Ledger**: 4 distinct sub-ledgers tracking material dispatches:
+- **Outward Ledger**: 4 distinct sub-ledgers tracking material dispatches with Gate Pass reference numbers:
   - *Dispensing Units (DUs)*
   - *Submersible Turbine Pumps (STPs)*
   - *Tanks (16 KL / 20 KL)*
   - *Automation & Other Spares*
 
-### 4. Official Bilingual Gate Pass Issuance & Printing
-- **Challan Generation**: 1-click Gate Pass creation directly from active in-store stock.
+### 4. Official Bilingual EMR (Equipment Movement Record) Issuance & Printing
+- **Challan Generation**: 1-click EMR creation directly from active in-store stock.
 - **Official Print Preview**: Bilingual corporate masthead (*हिन्दुस्तान पेट्रोलियम कॉर्पोरेशन लिमिटेड* / *HINDUSTAN PETROLEUM CORPORATION LIMITED*).
 - **Statutory Safety Compliance**: Aligned with OISD and PESO depot regulations.
 - **4 Formal Signature Blocks**:

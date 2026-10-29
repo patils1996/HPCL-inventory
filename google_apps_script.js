@@ -98,7 +98,7 @@ function pullData() {
   result.du_outword = readSheet(["DU_Outword", "DU_Outward", "DU OUTWORD"]);
   result.tank_outword = readSheet(["Tank_Outword", "Tank_Outward", "TANK OUTWORD"]);
   result.others_outword = readSheet(["Others_Outword", "Others_Outward", "OTHERS OUTWORD"]);
-  result.gate_passes = readSheet(["Gate_Passes", "Gate Passes"]);
+  result.gate_passes = readSheet(["EMR", "EMRs", "EMR_Records", "Gate_Passes", "Gate Passes"]);
   
   return ContentService.createTextOutput(JSON.stringify({
     status: "success",
@@ -127,6 +127,11 @@ function pushData(data) {
       for (var j = 0; j < headers.length; j++) {
         var key = headers[j];
         var val = rows[i][key] !== undefined && rows[i][key] !== null ? rows[i][key] : "";
+        // Fallback checks for Gate Pass vs EMR compatibility
+        if (val === "" && key === "gate_pass_no" && rows[i]["emr_no"] !== undefined) val = rows[i]["emr_no"];
+        if (val === "" && key === "gate_pass_date" && rows[i]["emr_date"] !== undefined) val = rows[i]["emr_date"];
+        if (val === "" && key === "emr_no" && rows[i]["gate_pass_no"] !== undefined) val = rows[i]["gate_pass_no"];
+        if (val === "" && key === "emr_date" && rows[i]["gate_pass_date"] !== undefined) val = rows[i]["gate_pass_date"];
         row.push(val);
       }
       payload.push(row);
@@ -146,18 +151,18 @@ function pushData(data) {
     writeSheet("Inword", ["Inword", "Inward"], ["item", "received_from", "received_date", "qty"], data.inword);
   }
   if (data.stp_outword) {
-    writeSheet("STP_Outword", ["STP_Outword", "STP_Outward", "STP OUTWORD"], ["sno", "hp_type", "make", "serial_no", "emr_date", "emr_no", "destination", "vendor", "out_date"], data.stp_outword);
+    writeSheet("STP_Outword", ["STP_Outword", "STP_Outward", "STP OUTWORD"], ["sno", "hp_type", "make", "serial_no", "gate_pass_date", "gate_pass_no", "destination", "vendor", "out_date", "emr_date", "emr_no"], data.stp_outword);
   }
   if (data.du_outword) {
-    writeSheet("DU_Outword", ["DU_Outword", "DU_Outward", "DU OUTWORD"], ["sno", "type", "variant", "make", "model", "serial_no", "emr_date", "emr_no", "destination", "vendor", "out_date"], data.du_outword);
+    writeSheet("DU_Outword", ["DU_Outword", "DU_Outward", "DU OUTWORD"], ["sno", "type", "variant", "make", "model", "serial_no", "gate_pass_date", "gate_pass_no", "destination", "vendor", "out_date", "emr_date", "emr_no"], data.du_outword);
   }
   if (data.tank_outword) {
-    writeSheet("Tank_Outword", ["Tank_Outword", "Tank_Outward", "TANK OUTWORD"], ["sno", "tank_capacity", "emr_date", "emr_no", "destination", "vendor"], data.tank_outword);
+    writeSheet("Tank_Outword", ["Tank_Outword", "Tank_Outward", "TANK OUTWORD"], ["sno", "tank_capacity", "gate_pass_date", "gate_pass_no", "destination", "vendor", "emr_date", "emr_no"], data.tank_outword);
   }
   if (data.others_outword) {
-    writeSheet("Others_Outword", ["Others_Outword", "Others_Outward", "OTHERS OUTWORD"], ["sno", "material", "qty", "emr_date", "emr_no", "destination", "vendor"], data.others_outword);
+    writeSheet("Others_Outword", ["Others_Outword", "Others_Outward", "OTHERS OUTWORD"], ["sno", "material", "qty", "gate_pass_date", "gate_pass_no", "destination", "vendor", "emr_date", "emr_no"], data.others_outword);
   }
   if (data.gate_passes) {
-    writeSheet("Gate_Passes", ["Gate_Passes", "Gate Passes"], ["gate_pass_no", "category", "serial_no", "make", "model", "vendor", "destination", "out_date", "emr_no", "vehicle_no", "driver", "remarks"], data.gate_passes);
+    writeSheet("EMR", ["EMR", "EMRs", "EMR_Records", "Gate_Passes", "Gate Passes"], ["emr_no", "category", "serial_no", "make", "model", "vendor", "destination", "out_date", "gate_pass_no", "vehicle_no", "driver", "remarks"], data.gate_passes);
   }
 }
