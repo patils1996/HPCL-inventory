@@ -2591,33 +2591,75 @@ button, input, select, textarea {
             </div>
             <div class="modal-body">
                 <form id="gate-pass-form">
-                    <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="gp-category">Item Category *</label>
-                            <select id="gp-category" class="form-control" required>
-                                <option value="DU">Dispensing Unit (DU)</option>
-                                <option value="STP">Submersible Pump (STP)</option>
-                            </select>
+                    <!-- Multi-Asset Dispatch Selection Panel -->
+                    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 14px; margin-bottom: 16px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <label style="margin: 0; font-weight: 700; color: var(--text-primary); font-size: 0.88rem; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-boxes-stacked" style="color: var(--hpcl-orange);"></i>
+                                Select Assets to Include on this EMR
+                            </label>
+                            <span class="badge badge-info" id="gp-selected-assets-badge" style="font-size: 0.75rem; padding: 2px 8px;">0 Assets Added</span>
                         </div>
-                        <div class="form-group col-6">
-                            <label for="gp-serial-select">Select Serial No from In-Store Stock *</label>
-                            <select id="gp-serial-select" class="form-control" required>
-                                <option value="">-- Choose Available Item --</option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <!-- Auto-filled Item Details Card -->
-                    <div id="gp-item-preview-card" class="item-edit-preview" style="display: none; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 16px; margin-bottom: 16px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <span id="gp-preview-badge" class="badge badge-success">Available</span>
-                                <h4 id="gp-preview-title" style="margin: 4px 0 2px 0; font-size: 1.1rem; color: var(--text-primary);">Make - Model</h4>
-                                <p id="gp-preview-details" style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">Variant | Receipt Date</p>
+                        <div class="form-row" style="margin-bottom: 6px; align-items: flex-end;">
+                            <div class="form-group col-4" style="margin-bottom: 0;">
+                                <label for="gp-category" style="font-size: 0.8rem;">Item Category</label>
+                                <select id="gp-category" class="form-control">
+                                    <option value="DU">Dispensing Unit (DU)</option>
+                                    <option value="STP">Submersible Pump (STP)</option>
+                                </select>
                             </div>
-                            <div style="text-align: right;">
-                                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Serial No</span>
-                                <strong id="gp-preview-serial" style="font-size: 1.1rem; font-family: monospace; color: var(--hpcl-orange);">-</strong>
+                            <div class="form-group col-5" style="margin-bottom: 0;">
+                                <label for="gp-serial-select" style="font-size: 0.8rem;">Select Serial No (In Store)</label>
+                                <select id="gp-serial-select" class="form-control">
+                                    <option value="">-- Choose Available Item --</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-3" style="margin-bottom: 0;">
+                                <button type="button" class="btn btn-outline" id="gp-add-asset-btn" style="width: 100%; border-color: var(--hpcl-orange); color: var(--hpcl-orange); font-weight: 700; font-size: 0.82rem; padding: 0.55rem 0.5rem; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Add Asset</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Single item live preview before clicking Add -->
+                        <div id="gp-item-preview-card" class="item-edit-preview" style="display: none; background: rgba(0,0,0,0.25); border: 1px dashed var(--border-color); border-radius: 6px; padding: 8px 12px; margin-top: 8px; margin-bottom: 4px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <span id="gp-preview-badge" class="badge badge-success" style="font-size: 0.7rem;">Ready to Add</span>
+                                    <span id="gp-preview-title" style="margin-left: 6px; font-weight: 600; font-size: 0.9rem; color: var(--text-primary);">Make - Model</span>
+                                    <span id="gp-preview-details" style="font-size: 0.8rem; color: var(--text-secondary); margin-left: 6px;">Variant</span>
+                                </div>
+                                <div style="text-align: right;">
+                                    <strong id="gp-preview-serial" style="font-family: monospace; color: var(--hpcl-orange); font-size: 0.95rem;">-</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Included Assets Table List -->
+                        <div id="gp-selected-assets-container" style="margin-top: 10px; display: none;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                <span style="font-size: 0.76rem; text-transform: uppercase; color: var(--text-secondary); font-weight: 700; letter-spacing: 0.04em;">
+                                    Current EMR Assets Manifest (<span id="gp-asset-count-num">0</span>)
+                                </span>
+                                <span style="font-size: 0.72rem; color: var(--text-muted);">You can add more items from other categories above</span>
+                            </div>
+                            <div style="max-height: 150px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 6px; background: rgba(0,0,0,0.3);">
+                                <table style="width: 100%; font-size: 0.82rem; border-collapse: collapse;">
+                                    <thead>
+                                        <tr style="background: rgba(255,255,255,0.04); text-align: left; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">
+                                            <th style="padding: 6px 10px; width: 28px;">#</th>
+                                            <th style="padding: 6px 10px; width: 70px;">Type</th>
+                                            <th style="padding: 6px 10px;">Serial No</th>
+                                            <th style="padding: 6px 10px;">Make &amp; Model / Specs</th>
+                                            <th style="padding: 6px 8px; text-align: center; width: 45px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="gp-selected-assets-tbody">
+                                        <!-- Dynamically added rows -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -2666,7 +2708,7 @@ button, input, select, textarea {
 
                     <div style="background: rgba(234, 88, 12, 0.08); border-left: 3px solid var(--hpcl-orange); padding: 10px 14px; border-radius: 4px; margin-bottom: 16px; font-size: 0.8rem; color: var(--text-secondary);">
                         <i class="fa-solid fa-circle-info" style="color: var(--hpcl-orange); margin-right: 6px;"></i>
-                        Submitting this EMR will <strong>automatically remove</strong> the serial number from Store Inventory and <strong>update the Outward Ledger</strong> with full vendor and destination details.
+                        Submitting this EMR will <strong>automatically remove all selected assets</strong> from Store Inventory and <strong>log them into Outward Ledger</strong> under this single EMR voucher.
                     </div>
 
                     <div class="modal-actions">
@@ -16508,14 +16550,115 @@ function updateSheetsStatusBadge(isSyncing = false, customStatus = null) {
 }
 
 // ==========================================================================
-// EMR (Equipment Movement Record) Management Module (Previously Gate Pass)
+// EMR (Equipment Movement Record) Management Module (Multi-Asset Capable)
 // ==========================================================================
+let currentEmrAssets = [];
+
+function renderEmrSelectedAssetsTable() {
+    const tbody = document.getElementById('gp-selected-assets-tbody');
+    const container = document.getElementById('gp-selected-assets-container');
+    const badge = document.getElementById('gp-selected-assets-badge');
+    const countNum = document.getElementById('gp-asset-count-num');
+    if (!tbody || !container) return;
+
+    tbody.innerHTML = '';
+    const count = currentEmrAssets.length;
+
+    if (badge) {
+        badge.textContent = `${count} Asset${count === 1 ? '' : 's'} Added`;
+        badge.className = count > 0 ? "badge badge-success" : "badge badge-info";
+    }
+    if (countNum) countNum.textContent = count;
+
+    if (count === 0) {
+        container.style.display = 'none';
+        return;
+    }
+
+    container.style.display = 'block';
+
+    currentEmrAssets.forEach((asset, idx) => {
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+        const catBadge = asset.category === 'DU'
+            ? '<span class="badge badge-new" style="padding:2px 6px; font-size:0.7rem;">DU</span>'
+            : '<span class="badge badge-used" style="padding:2px 6px; font-size:0.7rem;">STP</span>';
+        
+        tr.innerHTML = `
+            <td style="padding: 6px 10px; font-weight: 700; color: var(--text-muted);">${idx + 1}</td>
+            <td style="padding: 6px 10px;">${catBadge}</td>
+            <td style="padding: 6px 10px;"><code style="font-weight:700; color: var(--hpcl-orange); font-size:0.85rem;">${asset.serial_no}</code></td>
+            <td style="padding: 6px 10px; color: var(--text-primary); font-size: 0.8rem;">
+                <strong>${asset.make || 'Depot'}</strong> ${asset.model || ''}
+                <span style="color: var(--text-muted); font-size:0.75rem;">(${asset.variant || asset.hp_type || 'Standard'})</span>
+            </td>
+            <td style="padding: 6px 8px; text-align: center;">
+                <button type="button" class="btn-icon btn-delete gp-remove-asset-btn" data-serial="${asset.serial_no}" title="Remove this asset from EMR" style="padding: 3px 6px; font-size: 0.75rem; line-height: 1;">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function addAssetToEmr(category, serialNo) {
+    if (!serialNo) {
+        alert("Please select a Serial Number from the dropdown first.");
+        return;
+    }
+
+    const exists = currentEmrAssets.some(a => safeLower(a.serial_no) === safeLower(serialNo));
+    if (exists) {
+        alert(`Serial Number '${serialNo}' is already added to this EMR.`);
+        return;
+    }
+
+    let found = null;
+    if (category === 'DU') {
+        found = (db.inventory.pressure_dus || []).find(i => safeLower(i.serial_no) === safeLower(serialNo));
+    } else {
+        found = (db.inventory.stps || []).find(i => safeLower(i.serial_no) === safeLower(serialNo));
+    }
+
+    if (!found) {
+        alert(`Serial Number '${serialNo}' not found in active Store Inventory.`);
+        return;
+    }
+
+    currentEmrAssets.push({
+        category: category,
+        serial_no: found.serial_no,
+        make: found.make || '',
+        model: found.model || '',
+        variant: category === 'DU' ? (found.variant || 'MPD') : `${found.hp_type || '0.75'} HP`,
+        hp_type: found.hp_type || '',
+        receipt_date: found.receipt_date || ''
+    });
+
+    const serSelect = document.getElementById('gp-serial-select');
+    if (serSelect) serSelect.value = '';
+
+    const previewCard = document.getElementById('gp-item-preview-card');
+    if (previewCard) previewCard.style.display = 'none';
+
+    renderEmrSelectedAssetsTable();
+    populateGatePassSerialDropdown(category);
+}
+
+function removeAssetFromEmr(serialNo) {
+    currentEmrAssets = currentEmrAssets.filter(a => safeLower(a.serial_no) !== safeLower(serialNo));
+    renderEmrSelectedAssetsTable();
+    const catSelect = document.getElementById('gp-category');
+    if (catSelect) populateGatePassSerialDropdown(catSelect.value);
+}
+
 function renderGatePassView() {
     if (!db.gate_passes) db.gate_passes = [];
     
     const totalGPs = db.gate_passes.length;
-    const duDispatched = db.gate_passes.filter(g => g.category === 'DU').length;
-    const stpDispatched = db.gate_passes.filter(g => g.category === 'STP').length;
+    const duDispatched = db.gate_passes.reduce((sum, g) => sum + (g.items ? g.items.filter(i => i.category === 'DU').length : (g.category === 'DU' ? 1 : 0)), 0);
+    const stpDispatched = db.gate_passes.reduce((sum, g) => sum + (g.items ? g.items.filter(i => i.category === 'STP').length : (g.category === 'STP' ? 1 : 0)), 0);
     
     const statTotal = document.getElementById('gp-stat-total');
     const statDus = document.getElementById('gp-stat-dus');
@@ -16530,7 +16673,8 @@ function renderGatePassView() {
         if (totalGPs > 0) {
             const latest = db.gate_passes[totalGPs - 1];
             latestElem.textContent = latest.emr_no || latest.gate_pass_no;
-            latestSubElem.textContent = `${latest.category} - ${latest.serial_no} (${latest.out_date})`;
+            const assetCount = (latest.items && latest.items.length) ? latest.items.length : 1;
+            latestSubElem.textContent = `${assetCount} Asset${assetCount > 1 ? 's' : ''} (${latest.out_date})`;
         } else {
             latestElem.textContent = '-';
             latestSubElem.textContent = 'No recent dispatch';
@@ -16567,7 +16711,12 @@ function renderGatePassView() {
     let list = [...db.gate_passes];
 
     if (categoryFilter !== 'all') {
-        list = list.filter(g => g.category === categoryFilter);
+        list = list.filter(g => {
+            if (g.items && g.items.length > 0) {
+                return g.items.some(i => i.category === categoryFilter);
+            }
+            return g.category === categoryFilter;
+        });
     }
     if (vendorFilter !== 'all') {
         list = list.filter(g => g.vendor && g.vendor.trim() === vendorFilter);
@@ -16576,9 +16725,10 @@ function renderGatePassView() {
         list = list.filter(g => {
             const emrNum = g.emr_no || g.gate_pass_no || '';
             const gpNum = g.gate_pass_no || g.emr_no || '';
+            const allSerials = (g.items ? g.items.map(i => i.serial_no).join(' ') : (g.serial_no || '')).toLowerCase();
             return emrNum.toLowerCase().includes(searchVal) ||
                    gpNum.toLowerCase().includes(searchVal) ||
-                   (g.serial_no && g.serial_no.toLowerCase().includes(searchVal)) ||
+                   allSerials.includes(searchVal) ||
                    (g.destination && g.destination.toLowerCase().includes(searchVal)) ||
                    (g.vendor && g.vendor.toLowerCase().includes(searchVal)) ||
                    (g.make && g.make.toLowerCase().includes(searchVal)) ||
@@ -16608,9 +16758,31 @@ function renderGatePassView() {
 
     list.forEach(item => {
         const tr = document.createElement('tr');
-        const catBadge = item.category === 'DU' 
-            ? '<span class="badge badge-new" style="background: rgba(0, 72, 153, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3);">Dispenser DU</span>'
-            : '<span class="badge badge-used" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3);">STP Pump</span>';
+        const itemsList = (item.items && item.items.length > 0) ? item.items : [{
+            category: item.category,
+            serial_no: item.serial_no,
+            make: item.make,
+            model: item.model,
+            variant: item.variant
+        }];
+
+        let catBadge = '';
+        if (itemsList.length > 1) {
+            const duCount = itemsList.filter(i => i.category === 'DU' || (i.category && i.category.includes('DU'))).length;
+            const stpCount = itemsList.filter(i => i.category === 'STP' || (i.category && i.category.includes('STP'))).length;
+            const parts = [];
+            if (duCount > 0) parts.push(`${duCount} DU`);
+            if (stpCount > 0) parts.push(`${stpCount} STP`);
+            catBadge = `<span class="badge badge-primary" style="background: rgba(14, 165, 233, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); font-weight:700;">Multi (${parts.join(', ')})</span>`;
+        } else {
+            catBadge = itemsList[0].category === 'DU'
+                ? '<span class="badge badge-new" style="background: rgba(0, 72, 153, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3);">Dispenser DU</span>'
+                : '<span class="badge badge-used" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3);">STP Pump</span>';
+        }
+
+        const serialsHtml = itemsList.map(it => `<code style="font-weight:700; font-size:0.85rem; display:inline-block; margin: 1px 2px; padding: 2px 6px; background: rgba(234, 88, 12, 0.1); border: 1px solid rgba(234, 88, 12, 0.25); border-radius: 4px; color: var(--hpcl-orange);">${it.serial_no}</code>`).join(' ');
+
+        const makeModelHtml = itemsList.map(it => `${it.make || ''} ${it.model || ''}`).filter(Boolean).filter((v, i, a) => a.indexOf(v) === i).join(', ') || item.make || '-';
 
         const emrDisplay = item.emr_no || item.gate_pass_no || '-';
         const gpDisplay = item.gate_pass_no || item.gp_no || 'N/A';
@@ -16623,8 +16795,8 @@ function renderGatePassView() {
             </td>
             <td>${item.out_date || '-'}</td>
             <td>${catBadge}</td>
-            <td><code style="font-weight:700; font-size:0.9rem;">${item.serial_no}</code></td>
-            <td>${item.make || ''} ${item.model || ''}</td>
+            <td>${serialsHtml}</td>
+            <td>${makeModelHtml}</td>
             <td><strong>${item.vendor || '-'}</strong></td>
             <td>${item.destination || '-'}</td>
             <td><span class="text-muted" style="font-size:0.8rem;">Gate Pass: ${gpDisplay}<br>Veh: ${item.vehicle_no || 'N/A'}</span></td>
@@ -16661,6 +16833,8 @@ function setupGatePassHandlers() {
     
     const categorySelect = document.getElementById('gp-category');
     const serialSelect = document.getElementById('gp-serial-select');
+    const addAssetBtn = document.getElementById('gp-add-asset-btn');
+    const selectedTbody = document.getElementById('gp-selected-assets-tbody');
     
     if (createBtn) {
         createBtn.addEventListener('click', () => {
@@ -16689,6 +16863,24 @@ function setupGatePassHandlers() {
     if (serialSelect) {
         serialSelect.addEventListener('change', () => {
             updateGatePassPreviewCard();
+        });
+    }
+
+    if (addAssetBtn) {
+        addAssetBtn.addEventListener('click', () => {
+            const cat = categorySelect ? categorySelect.value : 'DU';
+            const ser = serialSelect ? serialSelect.value : '';
+            addAssetToEmr(cat, ser);
+        });
+    }
+
+    if (selectedTbody) {
+        selectedTbody.addEventListener('click', (e) => {
+            const removeBtn = e.target.closest('.gp-remove-asset-btn');
+            if (removeBtn) {
+                const serial = removeBtn.getAttribute('data-serial');
+                if (serial) removeAssetFromEmr(serial);
+            }
         });
     }
 
@@ -16725,10 +16917,34 @@ function openGatePassModal(category = 'DU', preselectSerial = null) {
     const modal = document.getElementById('gate-pass-modal');
     if (!modal) return;
 
+    currentEmrAssets = [];
+
     const catSelect = document.getElementById('gp-category');
     if (catSelect) catSelect.value = category;
 
-    populateGatePassSerialDropdown(category, preselectSerial);
+    // If preselectSerial is given from "Issue EMR" button, add directly to assets list
+    if (preselectSerial) {
+        let found = null;
+        if (category === 'DU') {
+            found = (db.inventory.pressure_dus || []).find(i => safeLower(i.serial_no) === safeLower(preselectSerial));
+        } else {
+            found = (db.inventory.stps || []).find(i => safeLower(i.serial_no) === safeLower(preselectSerial));
+        }
+        if (found) {
+            currentEmrAssets.push({
+                category: category,
+                serial_no: found.serial_no,
+                make: found.make || '',
+                model: found.model || '',
+                variant: category === 'DU' ? (found.variant || 'MPD') : `${found.hp_type || '0.75'} HP`,
+                hp_type: found.hp_type || '',
+                receipt_date: found.receipt_date || ''
+            });
+        }
+    }
+
+    populateGatePassSerialDropdown(category);
+    renderEmrSelectedAssetsTable();
 
     // Auto-generate strictly unique EMR Number
     const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
@@ -16773,6 +16989,10 @@ function populateGatePassSerialDropdown(category, preselectSerial = null) {
         }));
     }
 
+    // Filter out items already selected in currentEmrAssets
+    const alreadySelected = new Set(currentEmrAssets.map(a => safeLower(a.serial_no)));
+    availableItems = availableItems.filter(entry => !alreadySelected.has(safeLower(entry.serial_no)));
+
     availableItems.sort((a, b) => safeStr(a.serial_no).localeCompare(safeStr(b.serial_no)));
 
     availableItems.forEach(entry => {
@@ -16782,7 +17002,7 @@ function populateGatePassSerialDropdown(category, preselectSerial = null) {
         serialSelect.appendChild(opt);
     });
 
-    if (preselectSerial) {
+    if (preselectSerial && !alreadySelected.has(safeLower(preselectSerial))) {
         serialSelect.value = preselectSerial;
     }
 
@@ -16813,7 +17033,7 @@ function updateGatePassPreviewCard() {
     if (found) {
         previewCard.style.display = 'block';
         document.getElementById('gp-preview-title').textContent = `${found.make || 'HPCL'} - ${found.model || 'Standard Model'}`;
-        document.getElementById('gp-preview-details').textContent = `${category === 'DU' ? found.variant : found.hp_type + ' HP'} | Receipt Date: ${found.receipt_date || 'N/A'}`;
+        document.getElementById('gp-preview-details').textContent = `${category === 'DU' ? found.variant : found.hp_type + ' HP'} | Receipt: ${found.receipt_date || 'N/A'}`;
         document.getElementById('gp-preview-serial').textContent = found.serial_no;
     } else {
         previewCard.style.display = 'none';
@@ -16821,8 +17041,36 @@ function updateGatePassPreviewCard() {
 }
 
 function handleGatePassSubmit() {
-    const category = document.getElementById('gp-category').value;
-    const serialNo = safeStr(document.getElementById('gp-serial-select').value);
+    // If user has a selected item in dropdown not yet added to currentEmrAssets, auto-add it!
+    const pendingSerial = document.getElementById('gp-serial-select') ? safeStr(document.getElementById('gp-serial-select').value) : '';
+    const pendingCategory = document.getElementById('gp-category') ? document.getElementById('gp-category').value : 'DU';
+
+    if (pendingSerial && !currentEmrAssets.some(a => safeLower(a.serial_no) === safeLower(pendingSerial))) {
+        let found = null;
+        if (pendingCategory === 'DU') {
+            found = (db.inventory.pressure_dus || []).find(i => safeLower(i.serial_no) === safeLower(pendingSerial));
+        } else {
+            found = (db.inventory.stps || []).find(i => safeLower(i.serial_no) === safeLower(pendingSerial));
+        }
+        if (found) {
+            currentEmrAssets.push({
+                category: pendingCategory,
+                serial_no: found.serial_no,
+                make: found.make || '',
+                model: found.model || '',
+                variant: pendingCategory === 'DU' ? (found.variant || 'MPD') : `${found.hp_type || '0.75'} HP`,
+                hp_type: found.hp_type || '',
+                receipt_date: found.receipt_date || ''
+            });
+            renderEmrSelectedAssetsTable();
+        }
+    }
+
+    if (currentEmrAssets.length === 0) {
+        alert("Please select and add at least one Asset to this EMR before dispatching.");
+        return;
+    }
+
     const emrNumber = safeStr(document.getElementById('gp-number').value);
     const outDate = document.getElementById('gp-out-date').value;
     const vendor = safeStr(document.getElementById('gp-vendor').value);
@@ -16832,10 +17080,6 @@ function handleGatePassSubmit() {
     const driver = safeStr(document.getElementById('gp-driver').value);
     const remarks = safeStr(document.getElementById('gp-remarks').value);
 
-    if (!serialNo) {
-        alert("Please select a Serial Number from in-store inventory.");
-        return;
-    }
     if (!emrNumber || !outDate || !vendor || !destination) {
         alert("Please fill in all required fields (EMR No, Out Date, Vendor, Destination).");
         return;
@@ -16846,82 +17090,91 @@ function handleGatePassSubmit() {
         return;
     }
 
-    let itemIndex = -1;
-    let itemObj = null;
+    const processedItems = [];
+    currentEmrAssets.forEach(asset => {
+        if (asset.category === 'DU') {
+            const idx = (db.inventory.pressure_dus || []).findIndex(i => safeLower(i.serial_no) === safeLower(asset.serial_no));
+            if (idx !== -1) {
+                const itemObj = db.inventory.pressure_dus[idx];
+                db.inventory.pressure_dus.splice(idx, 1);
 
-    if (category === 'DU') {
-        itemIndex = (db.inventory.pressure_dus || []).findIndex(i => safeLower(i.serial_no) === safeLower(serialNo));
-        if (itemIndex !== -1) {
-            itemObj = db.inventory.pressure_dus[itemIndex];
-            db.inventory.pressure_dus.splice(itemIndex, 1);
-            
-            const nextSno = (db.du_outword || []).reduce((max, d) => Number(d.sno) > max ? Number(d.sno) : max, 0) + 1;
-            const outwardEntry = {
-                sno: nextSno,
-                type: itemObj.type || 'Pressure',
-                variant: itemObj.variant || 'MPD',
-                make: itemObj.make || '',
-                model: itemObj.model || '',
-                serial_no: serialNo,
-                gate_pass_date: outDate,
-                gate_pass_no: gpReference || emrNumber,
-                emr_date: outDate,
-                emr_no: emrNumber,
-                destination: destination,
-                vendor: vendor,
-                out_date: outDate
-            };
-            db.du_outword.push(outwardEntry);
+                const nextSno = (db.du_outword || []).reduce((max, d) => Number(d.sno) > max ? Number(d.sno) : max, 0) + 1;
+                const outwardEntry = {
+                    sno: nextSno,
+                    type: itemObj.type || 'Pressure',
+                    variant: itemObj.variant || 'MPD',
+                    make: itemObj.make || '',
+                    model: itemObj.model || '',
+                    serial_no: asset.serial_no,
+                    gate_pass_date: outDate,
+                    gate_pass_no: gpReference || emrNumber,
+                    emr_date: outDate,
+                    emr_no: emrNumber,
+                    destination: destination,
+                    vendor: vendor,
+                    out_date: outDate
+                };
+                db.du_outword.push(outwardEntry);
+                processedItems.push(asset);
+            }
+        } else {
+            const idx = (db.inventory.stps || []).findIndex(i => safeLower(i.serial_no) === safeLower(asset.serial_no));
+            if (idx !== -1) {
+                const itemObj = db.inventory.stps[idx];
+                db.inventory.stps.splice(idx, 1);
+
+                const nextSno = (db.stp_outword || []).reduce((max, s) => Number(s.sno) > max ? Number(s.sno) : max, 0) + 1;
+                const outwardEntry = {
+                    sno: nextSno,
+                    hp_type: itemObj.hp_type || '0.75',
+                    make: itemObj.make || '',
+                    serial_no: asset.serial_no,
+                    model: itemObj.model || '',
+                    gate_pass_date: outDate,
+                    gate_pass_no: gpReference || emrNumber,
+                    emr_date: outDate,
+                    emr_no: emrNumber,
+                    destination: destination,
+                    vendor: vendor,
+                    out_date: outDate
+                };
+                db.stp_outword.push(outwardEntry);
+                processedItems.push(asset);
+            }
         }
-    } else {
-        itemIndex = (db.inventory.stps || []).findIndex(i => safeLower(i.serial_no) === safeLower(serialNo));
-        if (itemIndex !== -1) {
-            itemObj = db.inventory.stps[itemIndex];
-            db.inventory.stps.splice(itemIndex, 1);
+    });
 
-            const nextSno = (db.stp_outword || []).reduce((max, s) => Number(s.sno) > max ? Number(s.sno) : max, 0) + 1;
-            const outwardEntry = {
-                sno: nextSno,
-                hp_type: itemObj.hp_type || '0.75',
-                make: itemObj.make || '',
-                serial_no: serialNo,
-                model: itemObj.model || '',
-                gate_pass_date: outDate,
-                gate_pass_no: gpReference || emrNumber,
-                emr_date: outDate,
-                emr_no: emrNumber,
-                destination: destination,
-                vendor: vendor,
-                out_date: outDate
-            };
-            db.stp_outword.push(outwardEntry);
-        }
-    }
-
-    if (!itemObj) {
-        alert(`Serial Number '${serialNo}' was not found in active Store Inventory.`);
+    if (processedItems.length === 0) {
+        alert("None of the selected assets were found in active Store Inventory.");
         return;
     }
+
+    const uniqueMakes = Array.from(new Set(processedItems.map(p => p.make).filter(Boolean))).join(', ');
+    const uniqueModels = Array.from(new Set(processedItems.map(p => p.model).filter(Boolean))).join(', ');
+    const categoriesSet = new Set(processedItems.map(p => p.category));
+    const categorySummary = categoriesSet.size === 1 ? processedItems[0].category : 'DU + STP';
 
     const emrRecord = {
         emr_no: emrNumber,
         gate_pass_no: gpReference || emrNumber,
-        category: category,
-        serial_no: serialNo,
-        make: itemObj.make || '',
-        model: itemObj.model || '',
-        variant: category === 'DU' ? itemObj.variant : `${itemObj.hp_type} HP`,
+        category: categorySummary,
+        serial_no: processedItems.map(p => p.serial_no).join(', '),
+        make: uniqueMakes || 'HPCL',
+        model: uniqueModels || '',
+        variant: processedItems.map(p => p.variant).join(', '),
         vendor: vendor,
         destination: destination,
         out_date: outDate,
         vehicle_no: vehicleNo,
         driver: driver,
         remarks: remarks,
-        created_at: new Date().toISOString()
+        created_at: new Date().toISOString(),
+        items: processedItems
     };
 
     db.gate_passes.push(emrRecord);
 
+    currentEmrAssets = [];
     saveState();
     refreshAllViews();
     populateFilterDropdowns();
@@ -16929,7 +17182,7 @@ function handleGatePassSubmit() {
     const modal = document.getElementById('gate-pass-modal');
     if (modal) modal.classList.remove('active');
 
-    showToast(`EMR ${emrNumber} issued! Item ${serialNo} removed from Store Inventory & added to Outward Ledger.`);
+    showToast(`EMR ${emrNumber} issued for ${processedItems.length} asset(s)! All items moved to Outward Ledger.`);
     openGatePassPrintModal(emrNumber);
 }
 
@@ -16943,52 +17196,65 @@ function revertGatePass(voucherNumber) {
     const gp = db.gate_passes[gpIndex];
     const displayNum = gp.emr_no || gp.gate_pass_no;
 
-    if (!confirm(`Are you sure you want to cancel EMR '${displayNum}'?\n\nThis will RETURN Serial Number '${gp.serial_no}' back to In-Store Inventory and REMOVE it from Outward Ledger.`)) {
+    const itemsToRevert = (gp.items && gp.items.length > 0) ? gp.items : [{
+        category: gp.category,
+        serial_no: gp.serial_no,
+        make: gp.make,
+        model: gp.model,
+        variant: gp.variant
+    }];
+
+    const serialListStr = itemsToRevert.map(i => i.serial_no).join(', ');
+
+    if (!confirm(`Are you sure you want to cancel EMR '${displayNum}' containing ${itemsToRevert.length} asset(s) (${serialListStr})?\n\nThis will RETURN all serial numbers back to In-Store Inventory and REMOVE them from Outward Ledger.`)) {
         return;
     }
 
     db.gate_passes.splice(gpIndex, 1);
 
-    if (gp.category === 'DU') {
-        const outIdx = (db.du_outword || []).findIndex(d => safeLower(d.serial_no) === safeLower(gp.serial_no));
-        if (outIdx !== -1) {
-            db.du_outword.splice(outIdx, 1);
+    itemsToRevert.forEach(item => {
+        const isDu = item.category === 'DU' || (item.category && item.category.includes('DU'));
+        if (isDu) {
+            const outIdx = (db.du_outword || []).findIndex(d => safeLower(d.serial_no) === safeLower(item.serial_no));
+            if (outIdx !== -1) {
+                db.du_outword.splice(outIdx, 1);
+            }
+            const nextSno = (db.inventory.pressure_dus || []).reduce((max, d) => Number(d.sno) > max ? Number(d.sno) : max, 0) + 1;
+            db.inventory.pressure_dus.push({
+                sno: nextSno,
+                type: 'Pressure',
+                variant: item.variant || 'MPD',
+                make: item.make || 'UNKNOWN',
+                model: item.model || '',
+                serial_no: item.serial_no,
+                receipt_date: new Date().toISOString().split('T')[0],
+                status: 'N',
+                remarks: `Returned to store from cancelled EMR ${displayNum}`
+            });
+        } else {
+            const outIdx = (db.stp_outword || []).findIndex(s => safeLower(s.serial_no) === safeLower(item.serial_no));
+            if (outIdx !== -1) {
+                db.stp_outword.splice(outIdx, 1);
+            }
+            const nextSno = (db.inventory.stps || []).reduce((max, s) => Number(s.sno) > max ? Number(s.sno) : max, 0) + 1;
+            db.inventory.stps.push({
+                sno: nextSno,
+                hp_type: item.variant ? item.variant.replace(' HP', '') : (item.hp_type || '0.75'),
+                make: item.make || 'UNKNOWN',
+                serial_no: item.serial_no,
+                model: item.model || '',
+                receipt_date: new Date().toISOString().split('T')[0],
+                status: 'N',
+                remarks: `Returned to store from cancelled EMR ${displayNum}`
+            });
         }
-        const nextSno = (db.inventory.pressure_dus || []).reduce((max, d) => Number(d.sno) > max ? Number(d.sno) : max, 0) + 1;
-        db.inventory.pressure_dus.push({
-            sno: nextSno,
-            type: 'Pressure',
-            variant: gp.variant || 'MPD',
-            make: gp.make || 'UNKNOWN',
-            model: gp.model || '',
-            serial_no: gp.serial_no,
-            receipt_date: new Date().toISOString().split('T')[0],
-            status: 'N',
-            remarks: `Returned to store from cancelled EMR ${displayNum}`
-        });
-    } else {
-        const outIdx = (db.stp_outword || []).findIndex(s => safeLower(s.serial_no) === safeLower(gp.serial_no));
-        if (outIdx !== -1) {
-            db.stp_outword.splice(outIdx, 1);
-        }
-        const nextSno = (db.inventory.stps || []).reduce((max, s) => Number(s.sno) > max ? Number(s.sno) : max, 0) + 1;
-        db.inventory.stps.push({
-            sno: nextSno,
-            hp_type: gp.variant ? gp.variant.replace(' HP', '') : '0.75',
-            make: gp.make || 'UNKNOWN',
-            serial_no: gp.serial_no,
-            model: gp.model || '',
-            receipt_date: new Date().toISOString().split('T')[0],
-            status: 'N',
-            remarks: `Returned to store from cancelled EMR ${displayNum}`
-        });
-    }
+    });
 
     saveState();
     refreshAllViews();
     populateFilterDropdowns();
 
-    showToast(`EMR ${displayNum} cancelled. Item ${gp.serial_no} returned to Store Inventory.`);
+    showToast(`EMR ${displayNum} cancelled. ${itemsToRevert.length} asset(s) returned to Store Inventory.`);
 }
 
 function openGatePassPrintModal(voucherNumber) {
@@ -17002,6 +17268,50 @@ function openGatePassPrintModal(voucherNumber) {
     const emrDisplay = gp.emr_no || gp.gate_pass_no;
     const gpDisplay = gp.gate_pass_no || gp.gp_no || 'N/A';
     const qrMockCode = `HPCL-DESUR-EMR-${emrDisplay.replace(/[^a-zA-Z0-9]/g, '')}`;
+
+    const itemsToPrint = (gp.items && gp.items.length > 0) ? gp.items : [{
+        category: gp.category,
+        serial_no: gp.serial_no,
+        make: gp.make,
+        model: gp.model,
+        variant: gp.variant
+    }];
+
+    const equipmentRowsHtml = itemsToPrint.map((it, idx) => {
+        const isDu = it.category === 'DU' || (it.category && it.category.includes('DU'));
+        const desc = isDu ? 'Pressure Dispensing Unit (DU)' : 'Submersible Turbine Pump (STP)';
+        const spec = it.variant || (it.hp_type ? `${it.hp_type} HP` : 'Standard');
+        return `
+            <tr>
+                <td style="padding: 10px 12px; border: 1px solid #cbd5e1; text-align:center; font-weight:700;">${idx + 1}</td>
+                <td style="padding: 10px 12px; border: 1px solid #cbd5e1;">
+                    <strong style="font-size: 0.95rem;">${desc}</strong>
+                    <div style="font-size: 0.8rem; color: #475569; margin-top: 2px;">Specification: ${spec}</div>
+                </td>
+                <td style="padding: 10px 12px; border: 1px solid #cbd5e1;">
+                    <strong>${it.make || 'HPCL Depot'}</strong><br>
+                    <span style="font-size: 0.8rem; color: #475569;">${it.model || 'Standard Model'}</span>
+                </td>
+                <td style="padding: 10px 12px; border: 1px solid #cbd5e1; font-family: monospace; font-weight: 800; font-size: 1.05rem; color: #ea580c;">
+                    ${it.serial_no}
+                </td>
+                <td style="padding: 10px 12px; border: 1px solid #cbd5e1; text-align:center; font-weight:800; font-size: 0.95rem;">
+                    1 Unit
+                </td>
+            </tr>
+        `;
+    }).join('');
+
+    const footerTotalHtml = `
+        <tr style="background: #f8fafc; font-weight: 700;">
+            <td colspan="4" style="padding: 10px 12px; border: 1px solid #cbd5e1; text-align: right; color: #334155; font-size: 0.9rem;">
+                Total Equipment Units on this EMR:
+            </td>
+            <td style="padding: 10px 12px; border: 1px solid #cbd5e1; text-align: center; color: #004899; font-size: 1.05rem; font-weight: 800;">
+                ${itemsToPrint.length} Unit${itemsToPrint.length === 1 ? '' : 's'}
+            </td>
+        </tr>
+    `;
 
     container.innerHTML = `
         <div class="printable-pass-sheet" style="font-family: 'Plus Jakarta Sans', Arial, sans-serif; color: #0f172a; line-height: 1.45;">
@@ -17048,23 +17358,8 @@ function openGatePassPrintModal(voucherNumber) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td style="padding: 12px; border: 1px solid #cbd5e1; text-align:center; font-weight:700;">1</td>
-                        <td style="padding: 12px; border: 1px solid #cbd5e1;">
-                            <strong style="font-size: 0.95rem;">${gp.category === 'DU' ? 'Pressure Dispensing Unit (DU)' : 'Submersible Turbine Pump (STP)'}</strong>
-                            <div style="font-size: 0.8rem; color: #475569; margin-top: 2px;">Specification: ${gp.variant || 'Standard'}</div>
-                        </td>
-                        <td style="padding: 12px; border: 1px solid #cbd5e1;">
-                            <strong>${gp.make || 'HPCL Depot'}</strong><br>
-                            <span style="font-size: 0.8rem; color: #475569;">${gp.model || 'Standard Model'}</span>
-                        </td>
-                        <td style="padding: 12px; border: 1px solid #cbd5e1; font-family: monospace; font-weight: 800; font-size: 1.05rem; color: #ea580c;">
-                            ${gp.serial_no}
-                        </td>
-                        <td style="padding: 12px; border: 1px solid #cbd5e1; text-align:center; font-weight:800; font-size: 0.95rem;">
-                            1 Unit
-                        </td>
-                    </tr>
+                    ${equipmentRowsHtml}
+                    ${footerTotalHtml}
                 </tbody>
             </table>
 
@@ -17111,6 +17406,8 @@ window.revertEMR = revertGatePass;
 window.revertGatePass = revertGatePass;
 window.renderEMRView = renderGatePassView;
 window.renderGatePassView = renderGatePassView;
+window.addAssetToEmr = addAssetToEmr;
+window.removeAssetFromEmr = removeAssetFromEmr;
 window.copyToClipboard = copyToClipboard;
 
 // ==========================================================================
