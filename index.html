@@ -7,20 +7,37 @@
     <meta name="theme-color" content="#0F2A4A">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="HPCL Stores">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" href="favicon.png">
     <title>HPCL Desur IRD · Stores Register</title>
     <script>
-        // Apply the saved theme before first paint
-        try { document.documentElement.setAttribute('data-theme', localStorage.getItem('hpcl_theme') || 'light'); } catch (e) {}
+        // Apply saved theme and iOS standalone safe-top fallback before first paint
+        try {
+            var root = document.documentElement;
+            root.setAttribute('data-theme', localStorage.getItem('hpcl_theme') || 'light');
+            var ua = navigator.userAgent || '';
+            var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            var isStandalone = window.navigator.standalone === true || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+            if (isIOS && isStandalone) {
+                var probe = document.createElement('div');
+                probe.style.cssText = 'position:fixed;top:0;padding-top:env(safe-area-inset-top,0px);visibility:hidden;pointer-events:none;';
+                root.appendChild(probe);
+                var inset = parseFloat(getComputedStyle(probe).paddingTop) || 0;
+                root.removeChild(probe);
+                if (inset < 12) {
+                    var sh = Math.max(window.screen ? window.screen.height : 0, window.screen ? window.screen.width : 0);
+                    root.style.setProperty('--safe-top-fallback', (sh >= 852 ? 59 : (sh >= 812 ? 48 : 20)) + 'px');
+                }
+            }
+        } catch (e) {}
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+Devanagari:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/app.css?v=20261127d">
 </head>
 <body>
 <div class="app">
@@ -1122,8 +1139,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="js/baseline-data.js"></script>
-<script src="js/app.js"></script>
-<script src="js/dispatch.js"></script>
+<script src="js/baseline-data.js?v=20261127d"></script>
+<script src="js/app.js?v=20261127d"></script>
+<script src="js/dispatch.js?v=20261127d"></script>
 </body>
 </html>

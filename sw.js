@@ -1,10 +1,10 @@
-const CACHE_NAME = 'hpcl-stores-v6';
+const CACHE_NAME = 'hpcl-stores-v7';
 const ASSETS_TO_CACHE = [
   './index.html',
-  './css/app.css',
-  './js/app.js',
-  './js/dispatch.js',
-  './js/baseline-data.js',
+  './css/app.css?v=20261127d',
+  './js/app.js?v=20261127d',
+  './js/dispatch.js?v=20261127d',
+  './js/baseline-data.js?v=20261127d',
   './manifest.json',
   './HPCL.png',
   './icon-192.png',
@@ -64,10 +64,10 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Own files (HTML/JS/CSS/data): network first so a new release is never mixed with old cached code
+  // Own files (HTML/JS/CSS/data): bypass HTTP cache so GitHub Pages updates activate right away
   if (new URL(url).origin === self.location.origin) {
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, { cache: 'no-cache' })
         .then((res) => {
           if (res && res.status === 200) {
             const copy = res.clone();

@@ -1291,6 +1291,23 @@ function setupMobileNavigation() {
             wrap.parentNode.insertBefore(hint, wrap);
         }
     });
+
+    // Keep mobile .main-content top offset synced cleanly to actual fixed .top-bar height
+    const topBarEl = document.querySelector('.top-bar');
+    const syncTopBarHeight = () => {
+        if (!topBarEl) return;
+        if (window.innerWidth <= 860) {
+            const h = Math.ceil(topBarEl.getBoundingClientRect().height);
+            if (h > 0) document.documentElement.style.setProperty('--mobile-topbar-h', `${h}px`);
+        } else {
+            document.documentElement.style.removeProperty('--mobile-topbar-h');
+        }
+    };
+    syncTopBarHeight();
+    window.addEventListener('resize', syncTopBarHeight);
+    if (typeof ResizeObserver !== 'undefined' && topBarEl) {
+        new ResizeObserver(syncTopBarHeight).observe(topBarEl);
+    }
 }
 
 function setupNavigation() {
@@ -5100,9 +5117,19 @@ window.copyToClipboard = copyToClipboard;
 // PWA Service Worker & Installation
 // ==========================================================================
 if ('serviceWorker' in navigator) {
+    const hadController = !!navigator.serviceWorker.controller;
+    let swRefreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!hadController || swRefreshing) return;
+        swRefreshing = true;
+        window.location.reload();
+    });
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-            .then((reg) => console.log('PWA Service Worker registered:', reg.scope))
+        navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
+            .then((reg) => {
+                console.log('PWA Service Worker registered:', reg.scope);
+                try { reg.update(); } catch (e) {}
+            })
             .catch((err) => console.warn('PWA Service Worker registration failed:', err));
     });
 }
