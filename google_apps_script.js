@@ -24,7 +24,7 @@
  * What changed in 2.1
  * - Multi-asset EMRs keep every asset: the full asset list is stored in the EMR sheet's
  *   "items_json" column and rebuilt on pull (previously only the first row survived a round-trip).
- * - Dates are returned as plain YYYY-MM-DD in the spreadsheet's time zone (previously they came back
+ * - Dates are returned as plain DD/MM/YYYY in the spreadsheet's time zone (previously they came back
  *   as UTC timestamps, which showed the previous day in India).
  * - All cells are written as plain text, so serial numbers such as "072163" or "202412000642" are
  *   not turned into numbers / scientific notation by Sheets.
@@ -198,7 +198,7 @@ function pullData() {
         if (!headers[j]) continue;
         var val = data[i][j];
         if (val instanceof Date) {
-          val = Utilities.formatDate(val, tz, "yyyy-MM-dd");
+          val = Utilities.formatDate(val, tz, "dd/MM/yyyy");
         }
         if (val !== "" && val !== null && val !== undefined) hasValue = true;
         rowObj[headers[j]] = val;

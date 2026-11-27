@@ -1,4 +1,4 @@
-/* Baseline inventory (Desur IRD, 01-01-2026). Loaded only when this device has no saved data. */
+/* Baseline inventory (Desur IRD, 01/01/2026). Loaded only when this device has no saved data. */
 window.baselineData = {
   "inventory": {
     "pressure_dus": [
@@ -9,7 +9,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2444SSPN-Q330",
         "serial_no": "M2408001",
-        "receipt_date": "2024-02-28",
+        "receipt_date": "28/02/2024",
         "status": "N",
         "remarks": "Depot"
       },
@@ -20,7 +20,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "LH2PMU2TNEA3E32",
         "serial_no": "202412001226",
-        "receipt_date": "2024-12-21",
+        "receipt_date": "21/12/2024",
         "status": "N",
         "remarks": "Depot"
       },
@@ -31,7 +31,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "LH2PMU2TNEA3E32",
         "serial_no": "202412001229",
-        "receipt_date": "2024-12-21",
+        "receipt_date": "21/12/2024",
         "status": "N",
         "remarks": "Depot"
       },
@@ -42,7 +42,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "LH2PMU2TNEA3E32",
         "serial_no": "202412001257",
-        "receipt_date": "2024-12-21",
+        "receipt_date": "21/12/2024",
         "status": "N",
         "remarks": "Depot"
       },
@@ -53,7 +53,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "LH2PMU2TNEA3E32",
         "serial_no": "202412001263",
-        "receipt_date": "2024-12-21",
+        "receipt_date": "21/12/2024",
         "status": "N",
         "remarks": "Depot"
       },
@@ -64,7 +64,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2444SSPN-Q330",
         "serial_no": "M2451159",
-        "receipt_date": "2024-12-25",
+        "receipt_date": "25/12/2024",
         "status": "N",
         "remarks": "Depot"
       },
@@ -75,7 +75,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "R1LA1XXA0B2A0Z1X0",
         "serial_no": "202412002052",
-        "receipt_date": "2024-12-26",
+        "receipt_date": "26/12/2024",
         "status": "N",
         "remarks": "Depot"
       },
@@ -86,7 +86,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "R1LA1XXA0B2A0Z1X0",
         "serial_no": "202412002046",
-        "receipt_date": "2024-12-26",
+        "receipt_date": "26/12/2024",
         "status": "N",
         "remarks": "Depot"
       },
@@ -97,7 +97,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "R1LA1XXA0B2A0Z1X0",
         "serial_no": "202412002053",
-        "receipt_date": "2024-12-26",
+        "receipt_date": "26/12/2024",
         "status": "N",
         "remarks": "Depot"
       },
@@ -108,7 +108,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "R1LA1XXA0B2A0Z1X0",
         "serial_no": "202412002058",
-        "receipt_date": "2024-12-26",
+        "receipt_date": "26/12/2024",
         "status": "N",
         "remarks": "Depot"
       },
@@ -119,7 +119,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "R1LA1XXA0B2A0Z1X0",
         "serial_no": "202412002061",
-        "receipt_date": "2024-12-26",
+        "receipt_date": "26/12/2024",
         "status": "N",
         "remarks": "Depot"
       },
@@ -130,7 +130,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "R1LA1XXA0B2A0Z1X0",
         "serial_no": "202412002054",
-        "receipt_date": "2024-12-26",
+        "receipt_date": "26/12/2024",
         "status": "N",
         "remarks": "Depot"
       },
@@ -141,7 +141,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "LH2PMU2TNEA3E32",
         "serial_no": "202412000626",
-        "receipt_date": "2025-02-17",
+        "receipt_date": "17/02/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -152,7 +152,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "LH2PMU2TNEA3E32",
         "serial_no": "202412000635",
-        "receipt_date": "2025-02-17",
+        "receipt_date": "17/02/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -163,7 +163,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "LH2PMU2TNEA3E32",
         "serial_no": "202412000653",
-        "receipt_date": "2025-02-17",
+        "receipt_date": "17/02/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -174,7 +174,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "LH2PMU2TNEA3E32",
         "serial_no": "202412001194",
-        "receipt_date": "2025-02-17",
+        "receipt_date": "17/02/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -185,7 +185,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "LH2PMU2TNEA3E32",
         "serial_no": "202412001204",
-        "receipt_date": "2025-02-17",
+        "receipt_date": "17/02/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -196,7 +196,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "LH2PMU2TNEA3E32",
         "serial_no": "202412001251",
-        "receipt_date": "2025-02-17",
+        "receipt_date": "17/02/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -207,7 +207,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "R1LA1XXA0B2A0Z1X0",
         "serial_no": "202503000067",
-        "receipt_date": "2025-03-17",
+        "receipt_date": "17/03/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -218,7 +218,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "R1LA1XXA0B2A0Z1X0",
         "serial_no": "202503000091",
-        "receipt_date": "2025-03-17",
+        "receipt_date": "17/03/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -229,7 +229,7 @@ window.baselineData = {
         "make": "GVR",
         "model": "R1LA1XXA0B2A0Z1X0",
         "serial_no": "202503000058",
-        "receipt_date": "2025-03-17",
+        "receipt_date": "17/03/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -240,7 +240,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2444SSPN-Q330",
         "serial_no": "M2510024",
-        "receipt_date": "2025-03-24",
+        "receipt_date": "24/03/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -251,7 +251,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2444SSPN-Q330",
         "serial_no": "M2510027",
-        "receipt_date": "2025-03-24",
+        "receipt_date": "24/03/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -262,7 +262,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2444SSPN-Q330",
         "serial_no": "M2510017",
-        "receipt_date": "2025-03-24",
+        "receipt_date": "24/03/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -273,7 +273,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2224HHPN-Q330",
         "serial_no": "M2517024",
-        "receipt_date": "2025-04-27",
+        "receipt_date": "27/04/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -284,7 +284,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2224HHPN-Q330",
         "serial_no": "M2517046",
-        "receipt_date": "2025-04-27",
+        "receipt_date": "27/04/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -295,7 +295,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2444SSPN-Q330",
         "serial_no": "M2511332",
-        "receipt_date": "2025-04-27",
+        "receipt_date": "27/04/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -306,7 +306,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2224HHPN-Q330",
         "serial_no": "M2539228",
-        "receipt_date": "2025-10-09",
+        "receipt_date": "09/10/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -317,7 +317,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2224HHPN-Q330",
         "serial_no": "M2539224",
-        "receipt_date": "2025-10-09",
+        "receipt_date": "09/10/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -328,7 +328,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2442SHPN-Q330",
         "serial_no": "M2539092",
-        "receipt_date": "2025-10-09",
+        "receipt_date": "09/10/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -339,7 +339,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2442SHPN-Q330",
         "serial_no": "M2539219",
-        "receipt_date": "2025-10-09",
+        "receipt_date": "09/10/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -350,7 +350,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2442SHPN-Q330",
         "serial_no": "M2540117",
-        "receipt_date": "2025-10-09",
+        "receipt_date": "09/10/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -361,7 +361,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2442SHPN-Q330",
         "serial_no": "M2540090",
-        "receipt_date": "2025-10-09",
+        "receipt_date": "09/10/2025",
         "status": "N",
         "remarks": "Depot"
       },
@@ -372,7 +372,7 @@ window.baselineData = {
         "make": "TOKHEIM",
         "model": "TIQ2442SHPN-Q330",
         "serial_no": "M2539099",
-        "receipt_date": "2025-10-09",
+        "receipt_date": "09/10/2025",
         "status": "N",
         "remarks": "Depot"
       }
@@ -384,7 +384,7 @@ window.baselineData = {
         "make": "FLORITE\u00a0ENGG",
         "serial_no": "25030329",
         "model": "NA",
-        "receipt_date": "2025-07-17",
+        "receipt_date": "17/07/2025",
         "status": "N",
         "remarks": "AT Depot"
       },
@@ -394,7 +394,7 @@ window.baselineData = {
         "make": "FLORITE\u00a0ENGG",
         "serial_no": "25030334",
         "model": "NA",
-        "receipt_date": "2025-07-17",
+        "receipt_date": "17/07/2025",
         "status": "N",
         "remarks": "AT Depot"
       },
@@ -404,7 +404,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ014892I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -414,7 +414,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ014893I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -424,7 +424,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ014894I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -434,7 +434,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ014896I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -444,7 +444,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ014897I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -454,7 +454,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ014898I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -464,7 +464,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ014900I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -474,7 +474,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ014901I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -484,7 +484,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ014902I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -494,7 +494,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ014903I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -504,7 +504,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ014904I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -514,7 +514,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ014348I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -524,7 +524,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ013475I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -534,7 +534,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ013477I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -544,7 +544,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ013478I",
         "model": "NA",
-        "receipt_date": "2025-07-25",
+        "receipt_date": "25/07/2025",
         "status": "N",
         "remarks": ""
       },
@@ -554,7 +554,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021675I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -564,7 +564,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021676I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -574,7 +574,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021677I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -584,7 +584,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021678I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -594,7 +594,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021778I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -604,7 +604,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021779I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -614,7 +614,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021780I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -624,7 +624,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021781I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -634,7 +634,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021782I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -644,7 +644,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021783I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -654,7 +654,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021784I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -664,7 +664,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021785I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -674,7 +674,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021786I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -684,7 +684,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021787I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -694,7 +694,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021788I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -704,7 +704,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021789I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -714,7 +714,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021790I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -724,7 +724,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021791I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -734,7 +734,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021793I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -744,7 +744,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ021454I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -754,7 +754,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ019116I",
         "model": "NA",
-        "receipt_date": "2025-08-28",
+        "receipt_date": "28/08/2025",
         "status": "N",
         "remarks": ""
       },
@@ -764,7 +764,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025928I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -774,7 +774,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025929I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -784,7 +784,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025930I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -794,7 +794,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025931I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -804,7 +804,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025932I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -814,7 +814,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025933I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -824,7 +824,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025934I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -834,7 +834,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025935I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -844,7 +844,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025936I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -854,7 +854,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025937I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -864,7 +864,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025938I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -874,7 +874,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025939I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -884,7 +884,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025940I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -894,7 +894,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025941I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -904,7 +904,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025942I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -914,7 +914,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025943I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -924,7 +924,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025944I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -934,7 +934,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025945I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -944,7 +944,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ025946I",
         "model": "AJ1071AP000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -954,7 +954,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ026060I",
         "model": "AJ2151AD000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -964,7 +964,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ026061I",
         "model": "AJ2151AD000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -974,7 +974,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ026062I",
         "model": "AJ2151AD000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -984,7 +984,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ026063I",
         "model": "AJ2151AD000",
-        "receipt_date": "2025-11-15",
+        "receipt_date": "15/11/2025",
         "status": "N",
         "remarks": ""
       },
@@ -994,7 +994,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ027057I",
         "model": "AJ2151AD000",
-        "receipt_date": "2025-12-19",
+        "receipt_date": "19/12/2025",
         "status": "N",
         "remarks": ""
       },
@@ -1004,7 +1004,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ027240I",
         "model": "AJ2151AD000",
-        "receipt_date": "2025-12-19",
+        "receipt_date": "19/12/2025",
         "status": "N",
         "remarks": ""
       },
@@ -1014,7 +1014,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ027243I",
         "model": "AJ2151AD000",
-        "receipt_date": "2025-12-19",
+        "receipt_date": "19/12/2025",
         "status": "N",
         "remarks": ""
       },
@@ -1024,7 +1024,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ027244I",
         "model": "AJ2151AD000",
-        "receipt_date": "2025-12-19",
+        "receipt_date": "19/12/2025",
         "status": "N",
         "remarks": ""
       },
@@ -1034,7 +1034,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ027245I",
         "model": "AJ2151AD000",
-        "receipt_date": "2025-12-19",
+        "receipt_date": "19/12/2025",
         "status": "N",
         "remarks": ""
       },
@@ -1044,7 +1044,7 @@ window.baselineData = {
         "make": "GVR",
         "serial_no": "RJ027248I",
         "model": "AJ2151AD000",
-        "receipt_date": "2025-12-19",
+        "receipt_date": "19/12/2025",
         "status": "N",
         "remarks": ""
       }
@@ -1054,673 +1054,673 @@ window.baselineData = {
     {
       "item": "SD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2022-09-23",
+      "received_date": "23/09/2022",
       "qty": 8
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2022-09-23",
+      "received_date": "23/09/2022",
       "qty": 4
     },
     {
       "item": "SD HD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2022-09-23",
+      "received_date": "23/09/2022",
       "qty": 5
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "GVR",
-      "received_date": "2022-09-26",
+      "received_date": "26/09/2022",
       "qty": 8
     },
     {
       "item": "SD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2022-10-31",
+      "received_date": "31/10/2022",
       "qty": 8
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2022-10-31",
+      "received_date": "31/10/2022",
       "qty": 5
     },
     {
       "item": "SD HD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2022-10-31",
+      "received_date": "31/10/2022",
       "qty": 5
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "GVR",
-      "received_date": "2022-11-05",
+      "received_date": "05/11/2022",
       "qty": 1
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2022-11-18",
+      "received_date": "18/11/2022",
       "qty": 9
     },
     {
       "item": "MPD \u2013 3P x 6H x 2D",
       "received_from": "GVR",
-      "received_date": "2022-11-30",
+      "received_date": "30/11/2022",
       "qty": 2
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "COCO ZALKI",
-      "received_date": "2022-11-30",
+      "received_date": "30/11/2022",
       "qty": 1
     },
     {
       "item": "SD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2022-12-12",
+      "received_date": "12/12/2022",
       "qty": 10
     },
     {
       "item": "SD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2022-12-16",
+      "received_date": "16/12/2022",
       "qty": 2
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2022-12-16",
+      "received_date": "16/12/2022",
       "qty": 16
     },
     {
       "item": "MPD \u2013 2P x 4H x 4D",
       "received_from": "GVR",
-      "received_date": "2022-12-16",
+      "received_date": "16/12/2022",
       "qty": 3
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2022-12-19",
+      "received_date": "19/12/2022",
       "qty": 15
     },
     {
       "item": "SD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2022-12-24",
+      "received_date": "24/12/2022",
       "qty": 6
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2022-12-24",
+      "received_date": "24/12/2022",
       "qty": 8
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "TOKHEIM",
-      "received_date": "2022-12-24",
+      "received_date": "24/12/2022",
       "qty": 1
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2022-12-29",
+      "received_date": "29/12/2022",
       "qty": 15
     },
     {
       "item": "SD HD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2023-02-20",
+      "received_date": "20/02/2023",
       "qty": 4
     },
     {
       "item": "MPD \u2013 2P x 4H x 4D",
       "received_from": "TOKHEIM",
-      "received_date": "2023-02-20",
+      "received_date": "20/02/2023",
       "qty": 2
     },
     {
       "item": "22KL SS TANK",
       "received_from": "HYDRABAD",
-      "received_date": "2023-03-22",
+      "received_date": "22/03/2023",
       "qty": 1
     },
     {
       "item": "22KL SS TANK",
       "received_from": "AURANGABAD",
-      "received_date": "2023-03-30",
+      "received_date": "30/03/2023",
       "qty": 1
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2023-06-29",
+      "received_date": "29/06/2023",
       "qty": 14
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2023-07-26",
+      "received_date": "26/07/2023",
       "qty": 7
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2023-07-26",
+      "received_date": "26/07/2023",
       "qty": 10
     },
     {
       "item": "35KL SS TANK",
       "received_from": "POPULER CONSTRUCTION",
-      "received_date": "2023-08-05",
+      "received_date": "05/08/2023",
       "qty": 1
     },
     {
       "item": "22KL SS TANK",
       "received_from": "POPULER CONSTRUCTION",
-      "received_date": "2023-08-05",
+      "received_date": "05/08/2023",
       "qty": 1
     },
     {
       "item": "SD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2024-01-22",
+      "received_date": "22/01/2024",
       "qty": 4
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "TOKHEIM",
-      "received_date": "2024-01-22",
+      "received_date": "22/01/2024",
       "qty": 15
     },
     {
       "item": "MPD \u2013 2P x 4H x 4D",
       "received_from": "TOKHEIM",
-      "received_date": "2024-01-22",
+      "received_date": "22/01/2024",
       "qty": 8
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2024-01-30",
+      "received_date": "30/01/2024",
       "qty": 9
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2024-01-30",
+      "received_date": "30/01/2024",
       "qty": 9
     },
     {
       "item": "22KL SS TANK",
       "received_from": "POPULER CONSTRUCTION",
-      "received_date": "2024-02-03",
+      "received_date": "03/02/2024",
       "qty": 1
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2024-03-25",
+      "received_date": "25/03/2024",
       "qty": 23
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2024-03-26",
+      "received_date": "26/03/2024",
       "qty": 14
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2024-03-26",
+      "received_date": "26/03/2024",
       "qty": 8
     },
     {
       "item": "MPD \u2013 3P x 6H x 2D",
       "received_from": "Mangalore terminal",
-      "received_date": "2024-04-24",
+      "received_date": "24/04/2024",
       "qty": 2
     },
     {
       "item": "35KL SS TANK",
       "received_from": "HYDRABAD",
-      "received_date": "2024-05-04",
+      "received_date": "04/05/2024",
       "qty": 1
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2024-08-08",
+      "received_date": "08/08/2024",
       "qty": 9
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "GVR",
-      "received_date": "2024-08-08",
+      "received_date": "08/08/2024",
       "qty": 13
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2024-09-13",
+      "received_date": "13/09/2024",
       "qty": 4
     },
     {
       "item": "MPD \u2013 2P x 4H x 4D",
       "received_from": "GVR",
-      "received_date": "2024-09-20",
+      "received_date": "20/09/2024",
       "qty": 2
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "GVR",
-      "received_date": "2024-09-20",
+      "received_date": "20/09/2024",
       "qty": 1
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2024-09-26",
+      "received_date": "26/09/2024",
       "qty": 18
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2024-09-26",
+      "received_date": "26/09/2024",
       "qty": 7
     },
     {
       "item": "SD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2024-09-26",
+      "received_date": "26/09/2024",
       "qty": 4
     },
     {
       "item": "SDHD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2024-09-26",
+      "received_date": "26/09/2024",
       "qty": 3
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2024-09-26",
+      "received_date": "26/09/2024",
       "qty": 3
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "GVR",
-      "received_date": "2024-09-26",
+      "received_date": "26/09/2024",
       "qty": 4
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2024-09-27",
+      "received_date": "27/09/2024",
       "qty": 6
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2024-09-28",
+      "received_date": "28/09/2024",
       "qty": 7
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "KIRLOSKAR",
-      "received_date": "2024-10-29",
+      "received_date": "29/10/2024",
       "qty": 4
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "KIRLOSKAR",
-      "received_date": "2024-10-29",
+      "received_date": "29/10/2024",
       "qty": 5
     },
     {
       "item": "SD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2024-11-20",
+      "received_date": "20/11/2024",
       "qty": 3
     },
     {
       "item": "SDHD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2024-11-20",
+      "received_date": "20/11/2024",
       "qty": 4
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2024-11-20",
+      "received_date": "20/11/2024",
       "qty": 5
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "GVR",
-      "received_date": "2024-11-20",
+      "received_date": "20/11/2024",
       "qty": 8
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2024-11-20",
+      "received_date": "20/11/2024",
       "qty": 15
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "KIRLOSKAR",
-      "received_date": "2024-12-03",
+      "received_date": "03/12/2024",
       "qty": 4
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2024-12-11",
+      "received_date": "11/12/2024",
       "qty": 5
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "GVR",
-      "received_date": "2024-12-19",
+      "received_date": "19/12/2024",
       "qty": 10
     },
     {
       "item": "SDHD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2024-12-21",
+      "received_date": "21/12/2024",
       "qty": 11
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "GVR",
-      "received_date": "2024-12-21",
+      "received_date": "21/12/2024",
       "qty": 15
     },
     {
       "item": "SD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2024-12-23",
+      "received_date": "23/12/2024",
       "qty": 12
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2024-12-23",
+      "received_date": "23/12/2024",
       "qty": 14
     },
     {
       "item": "SD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2024-12-25",
+      "received_date": "25/12/2024",
       "qty": 3
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2024-12-25",
+      "received_date": "25/12/2024",
       "qty": 4
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "TOKHEIM",
-      "received_date": "2024-12-25",
+      "received_date": "25/12/2024",
       "qty": 3
     },
     {
       "item": "MPD \u2013 2P x 4H x 4D",
       "received_from": "TOKHEIM",
-      "received_date": "2024-12-25",
+      "received_date": "25/12/2024",
       "qty": 2
     },
     {
       "item": "MPD \u2013 2P x 4H x 4D",
       "received_from": "GVR",
-      "received_date": "2024-12-26",
+      "received_date": "26/12/2024",
       "qty": 11
     },
     {
       "item": "35KL SS TANK",
       "received_from": "Belgaum Udyambagh",
-      "received_date": "2025-01-31",
+      "received_date": "31/01/2025",
       "qty": 1
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-02-03",
+      "received_date": "03/02/2025",
       "qty": 12
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-02-03",
+      "received_date": "03/02/2025",
       "qty": 5
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2025-02-17",
+      "received_date": "17/02/2025",
       "qty": 7
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "GVR",
-      "received_date": "2025-02-17",
+      "received_date": "17/02/2025",
       "qty": 8
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-02-19",
+      "received_date": "19/02/2025",
       "qty": 10
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-02-19",
+      "received_date": "19/02/2025",
       "qty": 5
     },
     {
       "item": "SDHD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2025-03-17",
+      "received_date": "17/03/2025",
       "qty": 10
     },
     {
       "item": "MPD \u2013 2P x 4H x 4D",
       "received_from": "GVR",
-      "received_date": "2025-03-17",
+      "received_date": "17/03/2025",
       "qty": 4
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-03-21",
+      "received_date": "21/03/2025",
       "qty": 3
     },
     {
       "item": "SD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2025-03-24",
+      "received_date": "24/03/2025",
       "qty": 3
     },
     {
       "item": "SDHD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2025-03-24",
+      "received_date": "24/03/2025",
       "qty": 3
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2025-03-24",
+      "received_date": "24/03/2025",
       "qty": 3
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "TOKHEIM",
-      "received_date": "2025-03-24",
+      "received_date": "24/03/2025",
       "qty": 2
     },
     {
       "item": "MPD \u2013 2P x 4H x 4D",
       "received_from": "TOKHEIM",
-      "received_date": "2025-03-24",
+      "received_date": "24/03/2025",
       "qty": 3
     },
     {
       "item": "SD Dual Dispenser",
       "received_from": "GVR",
-      "received_date": "2025-03-27",
+      "received_date": "27/03/2025",
       "qty": 10
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-03-27",
+      "received_date": "27/03/2025",
       "qty": 20
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-03-27",
+      "received_date": "27/03/2025",
       "qty": 10
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "KIRLOSKAR",
-      "received_date": "2025-04-03",
+      "received_date": "03/04/2025",
       "qty": 6
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "FLORITE ENGG",
-      "received_date": "2025-04-10",
+      "received_date": "10/04/2025",
       "qty": 7
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "FLORITE ENGG",
-      "received_date": "2025-04-10",
+      "received_date": "10/04/2025",
       "qty": 5
     },
     {
       "item": "SD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2025-04-27",
+      "received_date": "27/04/2025",
       "qty": 7
     },
     {
       "item": "SDHD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2025-04-27",
+      "received_date": "27/04/2025",
       "qty": 8
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2025-04-27",
+      "received_date": "27/04/2025",
       "qty": 9
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "TOKHEIM",
-      "received_date": "2025-04-27",
+      "received_date": "27/04/2025",
       "qty": 7
     },
     {
       "item": "MPD \u2013 2P x 4H x 4D",
       "received_from": "TOKHEIM",
-      "received_date": "2025-04-27",
+      "received_date": "27/04/2025",
       "qty": 2
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "TOKHEIM",
-      "received_date": "2025-05-28",
+      "received_date": "28/05/2025",
       "qty": 2
     },
     {
       "item": "MPD \u2013 2P x 4H x 4D",
       "received_from": "TOKHEIM",
-      "received_date": "2025-05-28",
+      "received_date": "28/05/2025",
       "qty": 1
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-07-16",
+      "received_date": "16/07/2025",
       "qty": 14
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "FLORITE ENGG",
-      "received_date": "2025-07-17",
+      "received_date": "17/07/2025",
       "qty": 5
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-07-19",
+      "received_date": "19/07/2025",
       "qty": 10
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-07-25",
+      "received_date": "25/07/2025",
       "qty": 15
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-07-25",
+      "received_date": "25/07/2025",
       "qty": 6
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-08-28",
+      "received_date": "28/08/2025",
       "qty": 20
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-08-28",
+      "received_date": "28/08/2025",
       "qty": 3
     },
     {
       "item": "HD Dual Dispenser",
       "received_from": "TOKHEIM",
-      "received_date": "2025-10-09",
+      "received_date": "09/10/2025",
       "qty": 3
     },
     {
       "item": "MPD \u2013 2P x 4H x 2D",
       "received_from": "TOKHEIM",
-      "received_date": "2025-10-09",
+      "received_date": "09/10/2025",
       "qty": 8
     },
     {
       "item": "0.75 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-11-15",
+      "received_date": "15/11/2025",
       "qty": 19
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-11-15",
+      "received_date": "15/11/2025",
       "qty": 4
     },
     {
       "item": "1.5 Hp STP",
       "received_from": "GVR",
-      "received_date": "2025-12-19",
+      "received_date": "19/12/2025",
       "qty": 10
     }
   ],
@@ -1730,7 +1730,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31915",
-      "emr_date": "2022-08-30",
+      "emr_date": "30/08/2022",
       "emr_no": "2017061086G",
       "destination": "BELLUNDAGI PETROLEUM",
       "vendor": "D.EMANUAL",
@@ -1741,7 +1741,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32822",
-      "emr_date": "2022-09-01",
+      "emr_date": "01/09/2022",
       "emr_no": "2017061096G",
       "destination": "B.R.MALI JAMAKHANDI",
       "vendor": "SPARK ENTERPRISES",
@@ -1752,7 +1752,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31912",
-      "emr_date": "2022-09-09",
+      "emr_date": "09/09/2022",
       "emr_no": "2017061098G",
       "destination": "Phattepur Petroleum",
       "vendor": "B.Sudhindra",
@@ -1763,7 +1763,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31918",
-      "emr_date": "2022-09-09",
+      "emr_date": "09/09/2022",
       "emr_no": "2017061099G",
       "destination": "Hashmi Petroleum",
       "vendor": "D.EMANUAL",
@@ -1774,7 +1774,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31906",
-      "emr_date": "2022-09-15",
+      "emr_date": "15/09/2022",
       "emr_no": "2017061102G",
       "destination": "NRO Nagthan, Bijapur",
       "vendor": "Spark Enterprises",
@@ -1785,7 +1785,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31911",
-      "emr_date": "2022-09-15",
+      "emr_date": "15/09/2022",
       "emr_no": "2017061102G",
       "destination": "NRO Nagthan, Bijapur",
       "vendor": "Spark Enterprises",
@@ -1796,7 +1796,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31913",
-      "emr_date": "2022-09-15",
+      "emr_date": "15/09/2022",
       "emr_no": "2017061102G",
       "destination": "NRO Nagthan, Bijapur",
       "vendor": "Spark Enterprises",
@@ -1807,7 +1807,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31919",
-      "emr_date": "2022-09-15",
+      "emr_date": "15/09/2022",
       "emr_no": "2017061103G",
       "destination": "NRO Mattihal Bijapur",
       "vendor": "Spark Enterprises",
@@ -1818,7 +1818,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31908",
-      "emr_date": "2022-09-15",
+      "emr_date": "15/09/2022",
       "emr_no": "2017061103G",
       "destination": "NRO Mattihal Bijapur",
       "vendor": "Spark Enterprises",
@@ -1829,7 +1829,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31903",
-      "emr_date": "2022-09-08",
+      "emr_date": "08/09/2022",
       "emr_no": "2017061097G",
       "destination": "Hundekar Petroleums",
       "vendor": "Jude Eng. Works",
@@ -1840,7 +1840,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32821",
-      "emr_date": "2022-09-22",
+      "emr_date": "22/09/2022",
       "emr_no": "2017061106G",
       "destination": "Hundekar Petroleums",
       "vendor": "B. SUDINDRA",
@@ -1851,7 +1851,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31920",
-      "emr_date": "2022-09-30",
+      "emr_date": "30/09/2022",
       "emr_no": "2017061112G",
       "destination": "Appaji Petroleum,Kaggod",
       "vendor": "LADWIN ENGG.WORKS",
@@ -1862,7 +1862,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32820",
-      "emr_date": "2022-09-30",
+      "emr_date": "30/09/2022",
       "emr_no": "2017061112G",
       "destination": "Appaji Petroleum,Kaggod",
       "vendor": "LADWIN ENGG.WORKS",
@@ -1873,7 +1873,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32825",
-      "emr_date": "2022-09-30",
+      "emr_date": "30/09/2022",
       "emr_no": "2017061112G",
       "destination": "Appaji Petroleum,Kaggod",
       "vendor": "LADWIN ENGG.WORKS",
@@ -1884,7 +1884,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31905",
-      "emr_date": "2022-10-07",
+      "emr_date": "07/10/2022",
       "emr_no": "2017061113G",
       "destination": "NRO DANDELI",
       "vendor": "Spark Enterprises",
@@ -1895,7 +1895,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32824",
-      "emr_date": "2022-09-29",
+      "emr_date": "29/09/2022",
       "emr_no": "2017061111G",
       "destination": "Prabhat Auto service",
       "vendor": "Param engineers",
@@ -1906,7 +1906,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32823",
-      "emr_date": "2022-10-13",
+      "emr_date": "13/10/2022",
       "emr_no": "2017061115G",
       "destination": "B R Mali",
       "vendor": "Spark Enterprises",
@@ -1917,7 +1917,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32798",
-      "emr_date": "2022-10-31",
+      "emr_date": "31/10/2022",
       "emr_no": "2017061125G",
       "destination": "VARAD PETROLEUM",
       "vendor": "D.D.Joshi & Asscociates",
@@ -1928,7 +1928,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32818",
-      "emr_date": "2022-11-08",
+      "emr_date": "08/11/2022",
       "emr_no": "2017061127G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO(PSV Hubli)",
@@ -1939,7 +1939,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32816",
-      "emr_date": "2022-11-08",
+      "emr_date": "08/11/2022",
       "emr_no": "2017061127G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO(PSV Hubli)",
@@ -1950,7 +1950,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32813",
-      "emr_date": "2022-11-08",
+      "emr_date": "08/11/2022",
       "emr_no": "2017061127G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO(PSV Hubli)",
@@ -1961,7 +1961,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32799",
-      "emr_date": "2022-11-08",
+      "emr_date": "08/11/2022",
       "emr_no": "2017061127G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO(PSV Hubli)",
@@ -1972,7 +1972,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32797",
-      "emr_date": "2022-11-08",
+      "emr_date": "08/11/2022",
       "emr_no": "2017061127G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO(PSV Hubli)",
@@ -1983,7 +1983,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32795",
-      "emr_date": "2022-11-08",
+      "emr_date": "08/11/2022",
       "emr_no": "2017061127G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO(PSV Hubli)",
@@ -1994,7 +1994,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32790",
-      "emr_date": "2022-11-08",
+      "emr_date": "08/11/2022",
       "emr_no": "2017061127G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO(PSV Hubli)",
@@ -2005,7 +2005,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32811",
-      "emr_date": "2022-11-07",
+      "emr_date": "07/11/2022",
       "emr_no": "2017061126G",
       "destination": "Highway Serv Stn. Ilkal",
       "vendor": "D.D.Joshi & Asscociates",
@@ -2016,7 +2016,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31917",
-      "emr_date": "2022-11-09",
+      "emr_date": "09/11/2022",
       "emr_no": "2017061128G",
       "destination": "OM SAI PETROLEUM Hukkeri",
       "vendor": "Jude Engg. Works",
@@ -2027,7 +2027,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32819",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2038,7 +2038,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32817",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2049,7 +2049,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32815",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2060,7 +2060,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32812",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2071,7 +2071,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32803",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2082,7 +2082,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32802",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2093,7 +2093,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32801",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2104,7 +2104,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32800",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2115,7 +2115,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32796",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2126,7 +2126,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32794",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2137,7 +2137,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32787",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2148,7 +2148,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32786",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2159,7 +2159,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32782",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2170,7 +2170,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32779",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2181,7 +2181,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32778",
-      "emr_date": "2022-11-19",
+      "emr_date": "19/11/2022",
       "emr_no": "2017061134G",
       "destination": "Pune RRO",
       "vendor": "Pune RRO",
@@ -2192,7 +2192,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31907",
-      "emr_date": "2022-11-28",
+      "emr_date": "28/11/2022",
       "emr_no": "2017061137G",
       "destination": "NRO BIJJARGI",
       "vendor": "MIR ENGINEERING",
@@ -2203,7 +2203,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32789",
-      "emr_date": "2022-12-20",
+      "emr_date": "20/12/2022",
       "emr_no": "2017061146G",
       "destination": "NRO Narayanpur",
       "vendor": "D.D.Joshi & Asscociates",
@@ -2214,7 +2214,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49832",
-      "emr_date": "2022-12-20",
+      "emr_date": "20/12/2022",
       "emr_no": "2017061146G",
       "destination": "NRO Narayanpur",
       "vendor": "D.D.Joshi & Asscociates",
@@ -2225,7 +2225,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49838",
-      "emr_date": "2022-12-20",
+      "emr_date": "20/12/2022",
       "emr_no": "2017061146G",
       "destination": "NRO Narayanpur",
       "vendor": "D.D.Joshi & Asscociates",
@@ -2236,7 +2236,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "31916",
-      "emr_date": "2022-12-23",
+      "emr_date": "23/12/2022",
       "emr_no": "2017061148G",
       "destination": "15620120 - SHRADDHA PETROLEUM - Benadi",
       "vendor": "D.D.Joshi & Asscociates",
@@ -2247,7 +2247,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32814",
-      "emr_date": "2023-01-02",
+      "emr_date": "02/01/2023",
       "emr_no": "2017061151G",
       "destination": "NRO Chadchan",
       "vendor": "LADWIN ENGG.WORKS",
@@ -2258,7 +2258,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49833",
-      "emr_date": "2023-01-02",
+      "emr_date": "02/01/2023",
       "emr_no": "2017061151G",
       "destination": "NRO Chadchan",
       "vendor": "LADWIN ENGG.WORKS",
@@ -2269,7 +2269,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49836",
-      "emr_date": "2023-01-02",
+      "emr_date": "02/01/2023",
       "emr_no": "2017061151G",
       "destination": "NRO Chadchan",
       "vendor": "LADWIN ENGG.WORKS",
@@ -2280,7 +2280,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49827",
-      "emr_date": "2023-01-10",
+      "emr_date": "10/01/2023",
       "emr_no": "2017061155G",
       "destination": "NRO Tabakanahalli",
       "vendor": "P.Venkateshwar",
@@ -2291,7 +2291,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49828",
-      "emr_date": "2023-01-10",
+      "emr_date": "10/01/2023",
       "emr_no": "2017061155G",
       "destination": "NRO Tabakanahalli",
       "vendor": "P.Venkateshwar",
@@ -2302,7 +2302,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49839",
-      "emr_date": "2023-01-10",
+      "emr_date": "10/01/2023",
       "emr_no": "2017061155G",
       "destination": "NRO Tabakanahalli",
       "vendor": "P.Venkateshwar",
@@ -2313,7 +2313,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49834",
-      "emr_date": "2023-01-06",
+      "emr_date": "06/01/2023",
       "emr_no": "2017061152G",
       "destination": "NRO HANAGAL",
       "vendor": "JUDE ENGG.WORKS",
@@ -2324,7 +2324,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49837",
-      "emr_date": "2023-01-06",
+      "emr_date": "06/01/2023",
       "emr_no": "2017061152G",
       "destination": "NRO HANAGAL",
       "vendor": "JUDE ENGG.WORKS",
@@ -2335,7 +2335,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49840",
-      "emr_date": "2023-01-06",
+      "emr_date": "06/01/2023",
       "emr_no": "2017061152G",
       "destination": "NRO HANAGAL",
       "vendor": "JUDE ENGG.WORKS",
@@ -2346,7 +2346,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32785",
-      "emr_date": "2023-01-06",
+      "emr_date": "06/01/2023",
       "emr_no": "2017061154G",
       "destination": "15888210 - Enkay Petroleums",
       "vendor": "JUDE ENGG.WORKS",
@@ -2357,7 +2357,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49835",
-      "emr_date": "2023-01-06",
+      "emr_date": "06/01/2023",
       "emr_no": "2017061153G",
       "destination": "15891910 - Yavagal  Petroleum",
       "vendor": "JUDE ENGG.WORKS",
@@ -2368,7 +2368,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32783",
-      "emr_date": "2023-02-08",
+      "emr_date": "08/02/2023",
       "emr_no": "2017061159G",
       "destination": "NRO Kittur",
       "vendor": "LADWIN ENGG. WORKS",
@@ -2379,7 +2379,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49831",
-      "emr_date": "2023-02-08",
+      "emr_date": "08/02/2023",
       "emr_no": "2017061159G",
       "destination": "NRO Kittur",
       "vendor": "LADWIN ENGG. WORKS",
@@ -2390,7 +2390,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49841",
-      "emr_date": "2023-02-08",
+      "emr_date": "08/02/2023",
       "emr_no": "2017061159G",
       "destination": "NRO Kittur",
       "vendor": "LADWIN ENGG. WORKS",
@@ -2401,7 +2401,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49830",
-      "emr_date": "2023-02-18",
+      "emr_date": "18/02/2023",
       "emr_no": "2017061160G",
       "destination": "15766520 - Shrinidhi Petroleum",
       "vendor": "Spark Enterprises",
@@ -2412,7 +2412,7 @@ window.baselineData = {
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "49829",
-      "emr_date": "2023-03-06",
+      "emr_date": "06/03/2023",
       "emr_no": "2017061168G",
       "destination": "15205610 - Highway Serv Stn.",
       "vendor": "D.D.Joshi & Asscociates",
@@ -2423,7 +2423,7 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32809",
-      "emr_date": "2023-04-13",
+      "emr_date": "13/04/2023",
       "emr_no": "2017061176G",
       "destination": "NRO Ramanagar",
       "vendor": "D.D.Joshi & Asscociates",
@@ -2434,95 +2434,95 @@ window.baselineData = {
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "50568",
-      "emr_date": "2023-04-17",
+      "emr_date": "17/04/2023",
       "emr_no": "2017061177G",
       "destination": "15891910 - Yavagal  Petroleum",
       "vendor": "JUDE ENGG.WORKS",
-      "out_date": "2023-04-17"
+      "out_date": "17/04/2023"
     },
     {
       "sno": 66,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "50566",
-      "emr_date": "2023-04-20",
+      "emr_date": "20/04/2023",
       "emr_no": "2017061180G",
       "destination": "Aditya Auto Service Centre(Resitement)",
       "vendor": "JUDE ENGG.WORKS",
-      "out_date": "2023-04-24"
+      "out_date": "24/04/2023"
     },
     {
       "sno": 67,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "50567",
-      "emr_date": "2023-04-20",
+      "emr_date": "20/04/2023",
       "emr_no": "2017061180G",
       "destination": "Aditya Auto Service Centre(Resitement)",
       "vendor": "JUDE ENGG.WORKS",
-      "out_date": "2023-04-24"
+      "out_date": "24/04/2023"
     },
     {
       "sno": 68,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "50569",
-      "emr_date": "2023-04-20",
+      "emr_date": "20/04/2023",
       "emr_no": "2017061180G",
       "destination": "Aditya Auto Service Centre(Resitement)",
       "vendor": "JUDE ENGG.WORKS",
-      "out_date": "2023-04-24"
+      "out_date": "24/04/2023"
     },
     {
       "sno": 69,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32770",
-      "emr_date": "2023-04-24",
+      "emr_date": "24/04/2023",
       "emr_no": "2017061181G",
       "destination": "NRO Ramanagar",
       "vendor": "D.D.Joshi & Asscociates",
-      "out_date": "2023-04-25"
+      "out_date": "25/04/2023"
     },
     {
       "sno": 70,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32769",
-      "emr_date": "2023-04-24",
+      "emr_date": "24/04/2023",
       "emr_no": "2017061181G",
       "destination": "NRO Ramanagar",
       "vendor": "D.D.Joshi & Asscociates",
-      "out_date": "2023-04-25"
+      "out_date": "25/04/2023"
     },
     {
       "sno": 71,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32771",
-      "emr_date": "2023-04-28",
+      "emr_date": "28/04/2023",
       "emr_no": "2017061183G",
       "destination": "15142810 - Aivalli & Co",
       "vendor": "SAHITYA ENGINEERS",
-      "out_date": "2023-04-28"
+      "out_date": "28/04/2023"
     },
     {
       "sno": 72,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32791",
-      "emr_date": "2023-04-28",
+      "emr_date": "28/04/2023",
       "emr_no": "2017061182G",
       "destination": "15143310 - Guru Mahant Petroleum",
       "vendor": "SAHITYA ENGINEERS",
-      "out_date": "2023-04-28"
+      "out_date": "28/04/2023"
     },
     {
       "sno": 73,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32777",
-      "emr_date": "2023-05-11",
+      "emr_date": "11/05/2023",
       "emr_no": "2017061186G",
       "destination": "15142610 - Om Shri Sai Associates",
       "vendor": "JUDE ENGG. WORKS",
@@ -2537,7 +2537,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BABLESHWAR",
       "vendor": "D.EMANUAL",
-      "out_date": "2023-05-03"
+      "out_date": "03/05/2023"
     },
     {
       "sno": 75,
@@ -2548,7 +2548,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BABLESHWAR",
       "vendor": "D.EMANUAL",
-      "out_date": "2023-05-03"
+      "out_date": "03/05/2023"
     },
     {
       "sno": 76,
@@ -2559,502 +2559,502 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BABLESHWAR",
       "vendor": "D.EMANUAL",
-      "out_date": "2023-05-03"
+      "out_date": "03/05/2023"
     },
     {
       "sno": 77,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "50573",
-      "emr_date": "2023-05-27",
+      "emr_date": "27/05/2023",
       "emr_no": "2017061189G",
       "destination": "15198310 - Mahalaxmi petroleum",
       "vendor": "D.EMANUAL",
-      "out_date": "2023-05-27"
+      "out_date": "27/05/2023"
     },
     {
       "sno": 78,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "50558",
-      "emr_date": "2023-05-19",
+      "emr_date": "19/05/2023",
       "emr_no": "2017061187G",
       "destination": "NRO HAVERI TWON",
       "vendor": "LADWIN ENGG.WORKS",
-      "out_date": "2023-06-01"
+      "out_date": "01/06/2023"
     },
     {
       "sno": 79,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "50561",
-      "emr_date": "2023-05-19",
+      "emr_date": "19/05/2023",
       "emr_no": "2017061187G",
       "destination": "NRO HAVERI TWON",
       "vendor": "LADWIN ENGG.WORKS",
-      "out_date": "2023-06-01"
+      "out_date": "01/06/2023"
     },
     {
       "sno": 80,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "50564",
-      "emr_date": "2023-05-19",
+      "emr_date": "19/05/2023",
       "emr_no": "2017061187G",
       "destination": "NRO HAVERI TWON",
       "vendor": "LADWIN ENGG.WORKS",
-      "out_date": "2023-06-01"
+      "out_date": "01/06/2023"
     },
     {
       "sno": 81,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "50570",
-      "emr_date": "2023-06-02",
+      "emr_date": "02/06/2023",
       "emr_no": "2017061191G",
       "destination": "11331010 - Prabhat Auto service",
       "vendor": "D.EMANUAL",
-      "out_date": "2023-06-02"
+      "out_date": "02/06/2023"
     },
     {
       "sno": 82,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "50560",
-      "emr_date": "2023-06-13",
+      "emr_date": "13/06/2023",
       "emr_no": "2017061194G",
       "destination": "NRO MANGUTTI",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2023-06-12"
+      "out_date": "12/06/2023"
     },
     {
       "sno": 83,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "50563",
-      "emr_date": "2023-06-12",
+      "emr_date": "12/06/2023",
       "emr_no": "2017061193G",
       "destination": "15198310 - Mahalaxmi petroleum",
       "vendor": "D.EMANUAL",
-      "out_date": "2023-06-14"
+      "out_date": "14/06/2023"
     },
     {
       "sno": 84,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "50572",
-      "emr_date": "2023-06-16",
+      "emr_date": "16/06/2023",
       "emr_no": "2017061196G",
       "destination": "NRO TAKKOD",
       "vendor": "D.D.JOSHI & ASSOCIATES",
-      "out_date": "2023-06-20"
+      "out_date": "20/06/2023"
     },
     {
       "sno": 85,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53700",
-      "emr_date": "2023-07-10",
+      "emr_date": "10/07/2023",
       "emr_no": "2017061202G",
       "destination": "Shradda petroleum",
       "vendor": "M.H.ENTERPRISES",
-      "out_date": "2023-07-11"
+      "out_date": "11/07/2023"
     },
     {
       "sno": 86,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53697",
-      "emr_date": "2023-07-21",
+      "emr_date": "21/07/2023",
       "emr_no": "2017061206G",
       "destination": "NRO Nigdi",
       "vendor": "SAI ENTERPRISES",
-      "out_date": "2023-07-22"
+      "out_date": "22/07/2023"
     },
     {
       "sno": 87,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53702",
-      "emr_date": "2023-07-21",
+      "emr_date": "21/07/2023",
       "emr_no": "2017061206G",
       "destination": "NRO Nigdi",
       "vendor": "SAI ENTERPRISES",
-      "out_date": "2023-07-22"
+      "out_date": "22/07/2023"
     },
     {
       "sno": 88,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53694",
-      "emr_date": "2023-07-21",
+      "emr_date": "21/07/2023",
       "emr_no": "2017061205G",
       "destination": "NRO TAKKOD",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2023-07-25"
+      "out_date": "25/07/2023"
     },
     {
       "sno": 89,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53707",
-      "emr_date": "2023-07-21",
+      "emr_date": "21/07/2023",
       "emr_no": "2017061205G",
       "destination": "NRO TAKKOD",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2023-07-25"
+      "out_date": "25/07/2023"
     },
     {
       "sno": 90,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32788",
-      "emr_date": "2023-07-25",
+      "emr_date": "25/07/2023",
       "emr_no": "2017061207G",
       "destination": "NRO Yadwad",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2023-07-25"
+      "out_date": "25/07/2023"
     },
     {
       "sno": 91,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53698",
-      "emr_date": "2023-07-25",
+      "emr_date": "25/07/2023",
       "emr_no": "2017061207G",
       "destination": "NRO Yadwad",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2023-07-25"
+      "out_date": "25/07/2023"
     },
     {
       "sno": 92,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53706",
-      "emr_date": "2023-07-25",
+      "emr_date": "25/07/2023",
       "emr_no": "2017061207G",
       "destination": "NRO Yadwad",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2023-07-25"
+      "out_date": "25/07/2023"
     },
     {
       "sno": 93,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32781",
-      "emr_date": "2023-07-25",
+      "emr_date": "25/07/2023",
       "emr_no": "2017061208G",
       "destination": "NRO Kagwad",
       "vendor": "A. MAJID",
-      "out_date": "2023-07-26"
+      "out_date": "26/07/2023"
     },
     {
       "sno": 94,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53695",
-      "emr_date": "2023-07-25",
+      "emr_date": "25/07/2023",
       "emr_no": "2017061208G",
       "destination": "NRO Kagwad",
       "vendor": "A. MAJID",
-      "out_date": "2023-07-26"
+      "out_date": "26/07/2023"
     },
     {
       "sno": 95,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53703",
-      "emr_date": "2023-07-25",
+      "emr_date": "25/07/2023",
       "emr_no": "2017061208G",
       "destination": "NRO Kagwad",
       "vendor": "A. MAJID",
-      "out_date": "2023-07-26"
+      "out_date": "26/07/2023"
     },
     {
       "sno": 96,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32780",
-      "emr_date": "2023-07-28",
+      "emr_date": "28/07/2023",
       "emr_no": "2017061209G",
       "destination": "NRO Honawad",
       "vendor": "MIR ENGINEERING",
-      "out_date": "2023-07-28"
+      "out_date": "28/07/2023"
     },
     {
       "sno": 97,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53701",
-      "emr_date": "2023-07-28",
+      "emr_date": "28/07/2023",
       "emr_no": "2017061209G",
       "destination": "NRO Honawad",
       "vendor": "MIR ENGINEERING",
-      "out_date": "2023-07-28"
+      "out_date": "28/07/2023"
     },
     {
       "sno": 98,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53704",
-      "emr_date": "2023-08-08",
+      "emr_date": "08/08/2023",
       "emr_no": "2017061211G",
       "destination": "Adhoc basavaganga petroleum",
       "vendor": "D.EMANUAL",
-      "out_date": "2023-08-08"
+      "out_date": "08/08/2023"
     },
     {
       "sno": 99,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32828",
-      "emr_date": "2023-08-07",
+      "emr_date": "07/08/2023",
       "emr_no": "2017061210G",
       "destination": "COMCO KOGNOLI",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2023-08-08"
+      "out_date": "08/08/2023"
     },
     {
       "sno": 100,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32827",
-      "emr_date": "2023-08-07",
+      "emr_date": "07/08/2023",
       "emr_no": "2017061210G",
       "destination": "COMCO KOGNOLI",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2023-08-08"
+      "out_date": "08/08/2023"
     },
     {
       "sno": 101,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53696",
-      "emr_date": "2023-08-07",
+      "emr_date": "07/08/2023",
       "emr_no": "2017061210G",
       "destination": "COMCO KOGNOLI",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2023-08-08"
+      "out_date": "08/08/2023"
     },
     {
       "sno": 102,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53699",
-      "emr_date": "2023-08-07",
+      "emr_date": "07/08/2023",
       "emr_no": "2017061210G",
       "destination": "COMCO KOGNOLI",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2023-08-08"
+      "out_date": "08/08/2023"
     },
     {
       "sno": 103,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "53705",
-      "emr_date": "2023-08-28",
+      "emr_date": "28/08/2023",
       "emr_no": "2017061213G",
       "destination": "NRO Mangutti",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2023-08-28"
+      "out_date": "28/08/2023"
     },
     {
       "sno": 104,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "54868",
-      "emr_date": "2023-09-01",
+      "emr_date": "01/09/2023",
       "emr_no": "2017061214G",
       "destination": "NRO Kurgund",
       "vendor": "Spark Enterprises",
-      "out_date": "2023-09-01"
+      "out_date": "01/09/2023"
     },
     {
       "sno": 105,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "54869",
-      "emr_date": "2023-09-01",
+      "emr_date": "01/09/2023",
       "emr_no": "2017061214G",
       "destination": "NRO Kurgund",
       "vendor": "Spark Enterprises",
-      "out_date": "2023-09-01"
+      "out_date": "01/09/2023"
     },
     {
       "sno": 106,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "54873",
-      "emr_date": "2023-09-05",
+      "emr_date": "05/09/2023",
       "emr_no": "2017061215G",
       "destination": "SEVALAL PETROLEUM",
       "vendor": "MIR ENGG.",
-      "out_date": "2023-09-05"
+      "out_date": "05/09/2023"
     },
     {
       "sno": 107,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "54874",
-      "emr_date": "2023-09-05",
+      "emr_date": "05/09/2023",
       "emr_no": "2017061215G",
       "destination": "SEVALAL PETROLEUM",
       "vendor": "MIR ENGG.",
-      "out_date": "2023-09-05"
+      "out_date": "05/09/2023"
     },
     {
       "sno": 108,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "54875",
-      "emr_date": "2023-09-06",
+      "emr_date": "06/09/2023",
       "emr_no": "2017061216G",
       "destination": "15165810 - HIGHWAY POINT",
       "vendor": "AARIDDHI",
-      "out_date": "2023-09-06"
+      "out_date": "06/09/2023"
     },
     {
       "sno": 109,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "54870",
-      "emr_date": "2023-09-06",
+      "emr_date": "06/09/2023",
       "emr_no": "2017061216G",
       "destination": "15620620 - SHIVAPARVATI PETROLEUM",
       "vendor": "AARIDDHI",
-      "out_date": "2023-09-06"
+      "out_date": "06/09/2023"
     },
     {
       "sno": 110,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "54876",
-      "emr_date": "2023-09-11",
+      "emr_date": "11/09/2023",
       "emr_no": "2017061217G",
       "destination": "15069510 - Sulekeri Petroleum",
       "vendor": "MAA CONSTRUCTIONS",
-      "out_date": "2023-09-11"
+      "out_date": "11/09/2023"
     },
     {
       "sno": 111,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "54867",
-      "emr_date": "2023-09-15",
+      "emr_date": "15/09/2023",
       "emr_no": "2017061218G",
       "destination": "NRO MANGUR",
       "vendor": "A. MAJID",
-      "out_date": "2023-09-15"
+      "out_date": "15/09/2023"
     },
     {
       "sno": 112,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "54872",
-      "emr_date": "2023-09-15",
+      "emr_date": "15/09/2023",
       "emr_no": "2017061218G",
       "destination": "NRO MANGUR",
       "vendor": "A. MAJID",
-      "out_date": "2023-09-15"
+      "out_date": "15/09/2023"
     },
     {
       "sno": 113,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "54970",
-      "emr_date": "2023-10-11",
+      "emr_date": "11/10/2023",
       "emr_no": "2017061220G",
       "destination": "NRO SAVANUR",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2023-10-12"
+      "out_date": "12/10/2023"
     },
     {
       "sno": 114,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "54971",
-      "emr_date": "2023-10-11",
+      "emr_date": "11/10/2023",
       "emr_no": "2017061220G",
       "destination": "NRO SAVANUR",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2023-10-12"
+      "out_date": "12/10/2023"
     },
     {
       "sno": 115,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "54975",
-      "emr_date": "2023-10-11",
+      "emr_date": "11/10/2023",
       "emr_no": "2017061220G",
       "destination": "NRO SAVANUR",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2023-10-12"
+      "out_date": "12/10/2023"
     },
     {
       "sno": 116,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "54969",
-      "emr_date": "2023-10-13",
+      "emr_date": "13/10/2023",
       "emr_no": "2017061222G",
       "destination": "NRO PATTADKAL",
       "vendor": "MIR ENGG.",
-      "out_date": "2023-10-13"
+      "out_date": "13/10/2023"
     },
     {
       "sno": 117,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "54972",
-      "emr_date": "2023-10-13",
+      "emr_date": "13/10/2023",
       "emr_no": "2017061222G",
       "destination": "NRO PATTADKAL",
       "vendor": "MIR ENGG.",
-      "out_date": "2023-10-13"
+      "out_date": "13/10/2023"
     },
     {
       "sno": 118,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "54973",
-      "emr_date": "2023-10-13",
+      "emr_date": "13/10/2023",
       "emr_no": "2017061223G",
       "destination": "HAROBELWADI",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2023-10-13"
+      "out_date": "13/10/2023"
     },
     {
       "sno": 119,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "54974",
-      "emr_date": "2023-10-13",
+      "emr_date": "13/10/2023",
       "emr_no": "2017061223G",
       "destination": "HAROBELWADI",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2023-10-13"
+      "out_date": "13/10/2023"
     },
     {
       "sno": 120,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32826",
-      "emr_date": "2023-10-17",
+      "emr_date": "17/10/2023",
       "emr_no": "2017061226G",
       "destination": "NRO BADRAPUR",
       "vendor": "BM Petromech",
-      "out_date": "2023-10-17"
+      "out_date": "17/10/2023"
     },
     {
       "sno": 121,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32831",
-      "emr_date": "2023-10-17",
+      "emr_date": "17/10/2023",
       "emr_no": "2017061226G",
       "destination": "NRO BADRAPUR",
       "vendor": "BM Petromech",
-      "out_date": "2023-10-17"
+      "out_date": "17/10/2023"
     },
     {
       "sno": 122,
@@ -3065,909 +3065,909 @@ window.baselineData = {
       "emr_no": "-",
       "destination": "Balaji traders Nippani",
       "vendor": "Collected by dealer",
-      "out_date": "2023-11-01"
+      "out_date": "01/11/2023"
     },
     {
       "sno": 123,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32830",
-      "emr_date": "2023-12-12",
+      "emr_date": "12/12/2023",
       "emr_no": "2017061233G",
       "destination": "41050959-Shivabasava Auto Oil Trading",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2023-12-12"
+      "out_date": "12/12/2023"
     },
     {
       "sno": 124,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "54871",
-      "emr_date": "2023-12-22",
+      "emr_date": "22/12/2023",
       "emr_no": "2017061235G",
       "destination": "41014924 - SHRI SAINATH PETROL PUMP",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2023-12-22"
+      "out_date": "22/12/2023"
     },
     {
       "sno": 125,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32832",
-      "emr_date": "2023-12-27",
+      "emr_date": "27/12/2023",
       "emr_no": "2017061237G",
       "destination": "41012799 - V K PETROLEUM, Alatga",
       "vendor": "PRATIRAJ BUILDER",
-      "out_date": "2023-12-27"
+      "out_date": "27/12/2023"
     },
     {
       "sno": 126,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32833",
-      "emr_date": "2023-12-22",
+      "emr_date": "22/12/2023",
       "emr_no": "2017061236G",
       "destination": "NRO Sattigeri",
       "vendor": "PSV Hubli",
-      "out_date": "2023-12-30"
+      "out_date": "30/12/2023"
     },
     {
       "sno": 127,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32834",
-      "emr_date": "2023-12-22",
+      "emr_date": "22/12/2023",
       "emr_no": "2017061236G",
       "destination": "41043033 - SHRI SAHIL FUEL STATION",
       "vendor": "PSV Hubli",
-      "out_date": "2023-12-30"
+      "out_date": "30/12/2023"
     },
     {
       "sno": 128,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32838",
-      "emr_date": "2024-01-27",
+      "emr_date": "27/01/2024",
       "emr_no": "2017061240G",
       "destination": "NRO KERUR",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-01-27"
+      "out_date": "27/01/2024"
     },
     {
       "sno": 129,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32836",
-      "emr_date": "2024-01-27",
+      "emr_date": "27/01/2024",
       "emr_no": "2017061240G",
       "destination": "NRO KERUR",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-01-27"
+      "out_date": "27/01/2024"
     },
     {
       "sno": 130,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32832",
-      "emr_date": "2024-01-27",
+      "emr_date": "27/01/2024",
       "emr_no": "2017061240G",
       "destination": "NRO KERUR",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-01-27"
+      "out_date": "27/01/2024"
     },
     {
       "sno": 131,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32774",
-      "emr_date": "2024-02-07",
+      "emr_date": "07/02/2024",
       "emr_no": "2017061242G",
       "destination": "NRO SATTIGERI",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-02-07"
+      "out_date": "07/02/2024"
     },
     {
       "sno": 132,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32773",
-      "emr_date": "2024-02-07",
+      "emr_date": "07/02/2024",
       "emr_no": "2017061243G",
       "destination": "NRO PARTHANHALLI",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-02-07"
+      "out_date": "07/02/2024"
     },
     {
       "sno": 133,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "67037",
-      "emr_date": "2024-02-07",
+      "emr_date": "07/02/2024",
       "emr_no": "2017061243G",
       "destination": "NRO PARTHANHALLI",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-02-07"
+      "out_date": "07/02/2024"
     },
     {
       "sno": 134,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "67039",
-      "emr_date": "2024-02-12",
+      "emr_date": "12/02/2024",
       "emr_no": "2017061244G",
       "destination": "NRO LAKHUNDI",
       "vendor": "A. Majid",
-      "out_date": "2024-02-12"
+      "out_date": "12/02/2024"
     },
     {
       "sno": 135,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32835",
-      "emr_date": "2024-02-12",
+      "emr_date": "12/02/2024",
       "emr_no": "2017061244G",
       "destination": "NRO LAKHUNDI",
       "vendor": "A. Majid",
-      "out_date": "2024-02-12"
+      "out_date": "12/02/2024"
     },
     {
       "sno": 136,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "67040",
-      "emr_date": "2024-02-16",
+      "emr_date": "16/02/2024",
       "emr_no": "2017061245G",
       "destination": "NRO KERUR",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-02-16"
+      "out_date": "16/02/2024"
     },
     {
       "sno": 137,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "67043",
-      "emr_date": "2024-02-16",
+      "emr_date": "16/02/2024",
       "emr_no": "2017061245G",
       "destination": "NRO KERUR",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-02-16"
+      "out_date": "16/02/2024"
     },
     {
       "sno": 138,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "67038",
-      "emr_date": "2024-02-19",
+      "emr_date": "19/02/2024",
       "emr_no": "2017061246G",
       "destination": "41012799-V K PETROLEUM",
       "vendor": "KC ELECTRICALS",
-      "out_date": "2024-02-21"
+      "out_date": "21/02/2024"
     },
     {
       "sno": 139,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "67036",
-      "emr_date": "2024-02-27",
+      "emr_date": "27/02/2024",
       "emr_no": "2017061248G",
       "destination": "NRO SATTIGERI",
       "vendor": "PSV Hubli",
-      "out_date": "2024-02-27"
+      "out_date": "27/02/2024"
     },
     {
       "sno": 140,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32832",
-      "emr_date": "2024-03-12",
+      "emr_date": "12/03/2024",
       "emr_no": "2017061250G",
       "destination": "NRO HALGA",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-03-12"
+      "out_date": "12/03/2024"
     },
     {
       "sno": 141,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "67041",
-      "emr_date": "2024-03-12",
+      "emr_date": "12/03/2024",
       "emr_no": "2017061250G",
       "destination": "NRO HALGA",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-03-12"
+      "out_date": "12/03/2024"
     },
     {
       "sno": 142,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "67042",
-      "emr_date": "2024-03-12",
+      "emr_date": "12/03/2024",
       "emr_no": "2017061250G",
       "destination": "NRO HALGA",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-03-12"
+      "out_date": "12/03/2024"
     },
     {
       "sno": 143,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "67044",
-      "emr_date": "2024-04-03",
+      "emr_date": "03/04/2024",
       "emr_no": "2017061252G",
       "destination": "NRO LACHYAN",
       "vendor": "P VENKATESHWAR RAO",
-      "out_date": "2024-04-03"
+      "out_date": "03/04/2024"
     },
     {
       "sno": 144,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71531",
-      "emr_date": "2024-04-03",
+      "emr_date": "03/04/2024",
       "emr_no": "2017061252G",
       "destination": "NRO LACHYAN",
       "vendor": "P VENKATESHWAR RAO",
-      "out_date": "2024-04-03"
+      "out_date": "03/04/2024"
     },
     {
       "sno": 145,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71529",
-      "emr_date": "2024-04-06",
+      "emr_date": "06/04/2024",
       "emr_no": "2017061253G",
       "destination": "AMIT PETROLEUM",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-04-06"
+      "out_date": "06/04/2024"
     },
     {
       "sno": 146,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71530",
-      "emr_date": "2024-04-06",
+      "emr_date": "06/04/2024",
       "emr_no": "2017061253G",
       "destination": "AMIT PETROLEUM",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-04-06"
+      "out_date": "06/04/2024"
     },
     {
       "sno": 147,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71528",
-      "emr_date": "2024-04-15",
+      "emr_date": "15/04/2024",
       "emr_no": "2017061254G",
       "destination": "41050966-Shri Mallikarjun SS",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-04-15"
+      "out_date": "15/04/2024"
     },
     {
       "sno": 148,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71526",
-      "emr_date": "2024-04-15",
+      "emr_date": "15/04/2024",
       "emr_no": "2017061255G",
       "destination": "41008459-DBR PETROLEUM",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-04-15"
+      "out_date": "15/04/2024"
     },
     {
       "sno": 149,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71527",
-      "emr_date": "2024-04-15",
+      "emr_date": "15/04/2024",
       "emr_no": "2017061255G",
       "destination": "41050959-SHIVABASAVA AUTO OIL TRADING",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-04-15"
+      "out_date": "15/04/2024"
     },
     {
       "sno": 150,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32836",
-      "emr_date": "2024-04-18",
+      "emr_date": "18/04/2024",
       "emr_no": "2017061257G",
       "destination": "NRO GOKAK",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2024-04-18"
+      "out_date": "18/04/2024"
     },
     {
       "sno": 151,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71536",
-      "emr_date": "2024-04-18",
+      "emr_date": "18/04/2024",
       "emr_no": "2017061257G",
       "destination": "NRO GOKAK",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2024-04-18"
+      "out_date": "18/04/2024"
     },
     {
       "sno": 152,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71538",
-      "emr_date": "2024-04-18",
+      "emr_date": "18/04/2024",
       "emr_no": "2017061257G",
       "destination": "NRO GOKAK",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2024-04-18"
+      "out_date": "18/04/2024"
     },
     {
       "sno": 153,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71535",
-      "emr_date": "2024-04-19",
+      "emr_date": "19/04/2024",
       "emr_no": "2017061258G",
       "destination": "41039640-SHREE GURUSHANTESHWAR PETROLE",
       "vendor": "D.EMANUAL",
-      "out_date": "2024-04-20"
+      "out_date": "20/04/2024"
     },
     {
       "sno": 154,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71540",
-      "emr_date": "2024-04-19",
+      "emr_date": "19/04/2024",
       "emr_no": "2017061258G",
       "destination": "41039640-SHREE GURUSHANTESHWAR PETROLE",
       "vendor": "D.EMANUAL",
-      "out_date": "2024-04-20"
+      "out_date": "20/04/2024"
     },
     {
       "sno": 155,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71541",
-      "emr_date": "2024-04-26",
+      "emr_date": "26/04/2024",
       "emr_no": "2017061261G",
       "destination": "41012814-RAMDEEP PETROLEUM",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2024-04-26"
+      "out_date": "26/04/2024"
     },
     {
       "sno": 156,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71533",
-      "emr_date": "2024-04-26",
+      "emr_date": "26/04/2024",
       "emr_no": "2017061262G",
       "destination": "41050966-SHREE MALLIKARJUN SERVICE STATION",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-04-26"
+      "out_date": "26/04/2024"
     },
     {
       "sno": 157,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71532",
-      "emr_date": "2024-04-29",
+      "emr_date": "29/04/2024",
       "emr_no": "2017061263G",
       "destination": "41014746-SHRI SHIVANAND PETROLEUMS",
       "vendor": "MM ENTERPRISES",
-      "out_date": "2024-04-30"
+      "out_date": "30/04/2024"
     },
     {
       "sno": 158,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71522",
-      "emr_date": "2024-05-02",
+      "emr_date": "02/05/2024",
       "emr_no": "2017061264G",
       "destination": "NRO NIPPANI",
       "vendor": "SPARK ENTERPRISE",
-      "out_date": "2024-05-02"
+      "out_date": "02/05/2024"
     },
     {
       "sno": 159,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71523",
-      "emr_date": "2024-05-02",
+      "emr_date": "02/05/2024",
       "emr_no": "2017061264G",
       "destination": "NRO NIPPANI",
       "vendor": "SPARK ENTERPRISE",
-      "out_date": "2024-05-02"
+      "out_date": "02/05/2024"
     },
     {
       "sno": 160,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "67455",
-      "emr_date": "2024-05-02",
+      "emr_date": "02/05/2024",
       "emr_no": "2017061264G",
       "destination": "NRO NIPPANI",
       "vendor": "SPARK ENTERPRISE",
-      "out_date": "2024-05-02"
+      "out_date": "02/05/2024"
     },
     {
       "sno": 161,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71521",
-      "emr_date": "2024-05-03",
+      "emr_date": "03/05/2024",
       "emr_no": "2017061265G",
       "destination": "41045557-T T N PETROLEUMS",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-05-04"
+      "out_date": "04/05/2024"
     },
     {
       "sno": 162,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32829",
-      "emr_date": "2024-05-04",
+      "emr_date": "04/05/2024",
       "emr_no": "2017061271G",
       "destination": "NRO Torvi",
       "vendor": "D.EMMANUEL",
-      "out_date": "2024-05-04"
+      "out_date": "04/05/2024"
     },
     {
       "sno": 163,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71520",
-      "emr_date": "2024-05-04",
+      "emr_date": "04/05/2024",
       "emr_no": "2017061271G",
       "destination": "NRO Torvi",
       "vendor": "D.EMMANUEL",
-      "out_date": "2024-05-04"
+      "out_date": "04/05/2024"
     },
     {
       "sno": 164,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71468",
-      "emr_date": "2024-05-03",
+      "emr_date": "03/05/2024",
       "emr_no": "2017061268G",
       "destination": "41006591 - MANE PETROLEUM",
       "vendor": "RAJARAM KADAM",
-      "out_date": "2024-05-09"
+      "out_date": "09/05/2024"
     },
     {
       "sno": 165,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71519",
-      "emr_date": "2024-05-09",
+      "emr_date": "09/05/2024",
       "emr_no": "2017061272G",
       "destination": "NRO Kittur",
       "vendor": "G K CONSTRUCTIONS",
-      "out_date": "2024-05-09"
+      "out_date": "09/05/2024"
     },
     {
       "sno": 166,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71539",
-      "emr_date": "2024-05-09",
+      "emr_date": "09/05/2024",
       "emr_no": "2017061272G",
       "destination": "NRO Kittur",
       "vendor": "G K CONSTRUCTIONS",
-      "out_date": "2024-05-09"
+      "out_date": "09/05/2024"
     },
     {
       "sno": 167,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "67454",
-      "emr_date": "2024-05-09",
+      "emr_date": "09/05/2024",
       "emr_no": "2017061272G",
       "destination": "NRO Kittur",
       "vendor": "G K CONSTRUCTIONS",
-      "out_date": "2024-05-09"
+      "out_date": "09/05/2024"
     },
     {
       "sno": 168,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32772",
-      "emr_date": "2024-05-15",
+      "emr_date": "15/05/2024",
       "emr_no": "2017061273G",
       "destination": "NRO ATHANI",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-05-16"
+      "out_date": "16/05/2024"
     },
     {
       "sno": 169,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71525",
-      "emr_date": "2024-05-15",
+      "emr_date": "15/05/2024",
       "emr_no": "2017061273G",
       "destination": "NRO ATHANI",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-05-16"
+      "out_date": "16/05/2024"
     },
     {
       "sno": 170,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71534",
-      "emr_date": "2024-05-15",
+      "emr_date": "15/05/2024",
       "emr_no": "2017061273G",
       "destination": "NRO ATHANI",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-05-16"
+      "out_date": "16/05/2024"
     },
     {
       "sno": 171,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "67452",
-      "emr_date": "2024-05-23",
+      "emr_date": "23/05/2024",
       "emr_no": "2017061274G",
       "destination": "NRO KOGNOLI",
       "vendor": "PARAM ENGINEERING",
-      "out_date": "2024-05-23"
+      "out_date": "23/05/2024"
     },
     {
       "sno": 172,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71524",
-      "emr_date": "2024-05-23",
+      "emr_date": "23/05/2024",
       "emr_no": "2017061274G",
       "destination": "NRO KOGNOLI",
       "vendor": "PARAM ENGINEERING",
-      "out_date": "2024-05-23"
+      "out_date": "23/05/2024"
     },
     {
       "sno": 173,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71688",
-      "emr_date": "2024-05-23",
+      "emr_date": "23/05/2024",
       "emr_no": "2017061274G",
       "destination": "NRO KOGNOLI",
       "vendor": "PARAM ENGINEERING",
-      "out_date": "2024-05-23"
+      "out_date": "23/05/2024"
     },
     {
       "sno": 174,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "67449",
-      "emr_date": "2024-05-23",
+      "emr_date": "23/05/2024",
       "emr_no": "2017061275G",
       "destination": "41012814-RAMDEEP PETROLEUM",
       "vendor": "PARAM ENGINEERING",
-      "out_date": "2024-05-23"
+      "out_date": "23/05/2024"
     },
     {
       "sno": 175,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71651",
-      "emr_date": "2024-05-27",
+      "emr_date": "27/05/2024",
       "emr_no": "2017061277G",
       "destination": "NRO BUDARAKATTI",
       "vendor": "MIR ENGINEERING",
-      "out_date": "2024-05-27"
+      "out_date": "27/05/2024"
     },
     {
       "sno": 176,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71652",
-      "emr_date": "2024-05-27",
+      "emr_date": "27/05/2024",
       "emr_no": "2017061277G",
       "destination": "NRO BUDARAKATTI",
       "vendor": "MIR ENGINEERING",
-      "out_date": "2024-05-27"
+      "out_date": "27/05/2024"
     },
     {
       "sno": 177,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71686",
-      "emr_date": "2024-05-27",
+      "emr_date": "27/05/2024",
       "emr_no": "2017061276G",
       "destination": "NRO LAXMESHWAR",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2024-05-29"
+      "out_date": "29/05/2024"
     },
     {
       "sno": 178,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "67458",
-      "emr_date": "2024-05-27",
+      "emr_date": "27/05/2024",
       "emr_no": "2017061276G",
       "destination": "NRO LAXMESHWAR",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2024-05-29"
+      "out_date": "29/05/2024"
     },
     {
       "sno": 179,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71682",
-      "emr_date": "2024-06-11",
+      "emr_date": "11/06/2024",
       "emr_no": "2017061280G",
       "destination": "NRO Mulgund",
       "vendor": "A.Majid",
-      "out_date": "2024-06-11"
+      "out_date": "11/06/2024"
     },
     {
       "sno": 180,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71683",
-      "emr_date": "2024-06-11",
+      "emr_date": "11/06/2024",
       "emr_no": "2017061280G",
       "destination": "NRO Mulgund",
       "vendor": "A.Majid",
-      "out_date": "2024-06-11"
+      "out_date": "11/06/2024"
     },
     {
       "sno": 181,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71685",
-      "emr_date": "2024-06-11",
+      "emr_date": "11/06/2024",
       "emr_no": "2017061280G",
       "destination": "NRO Mulgund",
       "vendor": "A.Majid",
-      "out_date": "2024-06-11"
+      "out_date": "11/06/2024"
     },
     {
       "sno": 182,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71681",
-      "emr_date": "2024-06-13",
+      "emr_date": "13/06/2024",
       "emr_no": "2017061281G",
       "destination": "NRO COCO Arabhavi",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-06-17"
+      "out_date": "17/06/2024"
     },
     {
       "sno": 183,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71684",
-      "emr_date": "2024-06-13",
+      "emr_date": "13/06/2024",
       "emr_no": "2017061281G",
       "destination": "NRO COCO Arabhavi",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-06-17"
+      "out_date": "17/06/2024"
     },
     {
       "sno": 184,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71653",
-      "emr_date": "2024-06-07",
+      "emr_date": "07/06/2024",
       "emr_no": "2017061279G",
       "destination": "NRO Kamatnur",
       "vendor": "M.B. HUGAR",
-      "out_date": "2024-06-19"
+      "out_date": "19/06/2024"
     },
     {
       "sno": 185,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "67457",
-      "emr_date": "2024-06-07",
+      "emr_date": "07/06/2024",
       "emr_no": "2017061279G",
       "destination": "NRO Kamatnur",
       "vendor": "M.B. HUGAR",
-      "out_date": "2024-06-19"
+      "out_date": "19/06/2024"
     },
     {
       "sno": 186,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "67459",
-      "emr_date": "2024-06-20",
+      "emr_date": "20/06/2024",
       "emr_no": "2017061283G",
       "destination": "NRO BADACHI",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-06-20"
+      "out_date": "20/06/2024"
     },
     {
       "sno": 187,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71654",
-      "emr_date": "2024-06-20",
+      "emr_date": "20/06/2024",
       "emr_no": "2017061283G",
       "destination": "NRO BADACHI",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-06-20"
+      "out_date": "20/06/2024"
     },
     {
       "sno": 188,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71687",
-      "emr_date": "2024-06-20",
+      "emr_date": "20/06/2024",
       "emr_no": "2017061283G",
       "destination": "NRO BADACHI",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-06-20"
+      "out_date": "20/06/2024"
     },
     {
       "sno": 189,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "67453",
-      "emr_date": "2024-06-21",
+      "emr_date": "21/06/2024",
       "emr_no": "2017061286G",
       "destination": "NRO Devagiri",
       "vendor": "HID Constructions",
-      "out_date": "2024-06-21"
+      "out_date": "21/06/2024"
     },
     {
       "sno": 190,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "67456",
-      "emr_date": "2024-06-21",
+      "emr_date": "21/06/2024",
       "emr_no": "2017061286G",
       "destination": "NRO Devagiri",
       "vendor": "HID Constructions",
-      "out_date": "2024-06-21"
+      "out_date": "21/06/2024"
     },
     {
       "sno": 191,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71650",
-      "emr_date": "2024-06-21",
+      "emr_date": "21/06/2024",
       "emr_no": "2017061286G",
       "destination": "NRO Devagiri",
       "vendor": "HID Constructions",
-      "out_date": "2024-06-21"
+      "out_date": "21/06/2024"
     },
     {
       "sno": 192,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "71655",
-      "emr_date": "2024-07-06",
+      "emr_date": "06/07/2024",
       "emr_no": "2017061288G",
       "destination": "41050970 - Sanmati Diesel",
       "vendor": "A.Majid",
-      "out_date": "2024-07-06"
+      "out_date": "06/07/2024"
     },
     {
       "sno": 193,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "71984",
-      "emr_date": "2024-07-06",
+      "emr_date": "06/07/2024",
       "emr_no": "2017061288G",
       "destination": "41050970 - Sanmati Diesel",
       "vendor": "A.Majid",
-      "out_date": "2024-07-06"
+      "out_date": "06/07/2024"
     },
     {
       "sno": 194,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "71987",
-      "emr_date": "2024-07-06",
+      "emr_date": "06/07/2024",
       "emr_no": "2017061288G",
       "destination": "41050970 - Sanmati Diesel",
       "vendor": "A.Majid",
-      "out_date": "2024-07-06"
+      "out_date": "06/07/2024"
     },
     {
       "sno": 195,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "71982",
-      "emr_date": "2024-07-09",
+      "emr_date": "09/07/2024",
       "emr_no": "2017061289G",
       "destination": "41050546 - B R MALI",
       "vendor": "P.Venkateshwar",
-      "out_date": "2024-07-09"
+      "out_date": "09/07/2024"
     },
     {
       "sno": 196,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "71988",
-      "emr_date": "2024-07-11",
+      "emr_date": "11/07/2024",
       "emr_no": "2017061290G",
       "destination": "41051033-DURGA AUTO SERVICE",
       "vendor": "KC ELECTRICALS",
-      "out_date": "2024-07-11"
+      "out_date": "11/07/2024"
     },
     {
       "sno": 197,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "71985",
-      "emr_date": "2024-07-30",
+      "emr_date": "30/07/2024",
       "emr_no": "2017061293G",
       "destination": "NRO BATAKURKI",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-07-31"
+      "out_date": "31/07/2024"
     },
     {
       "sno": 198,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "71983",
-      "emr_date": "2024-08-05",
+      "emr_date": "05/08/2024",
       "emr_no": "2017061294G",
       "destination": "NRO HUKKERI",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2024-08-05"
+      "out_date": "05/08/2024"
     },
     {
       "sno": 199,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "71986",
-      "emr_date": "2024-08-16",
+      "emr_date": "16/08/2024",
       "emr_no": "2017061297G",
       "destination": "NRO Harugeri",
       "vendor": "Spark Enterprises",
-      "out_date": "2024-08-17"
+      "out_date": "17/08/2024"
     },
     {
       "sno": 200,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "71989",
-      "emr_date": "2024-09-03",
+      "emr_date": "03/09/2024",
       "emr_no": "2017061301G",
       "destination": "Sairam Petroleum Yadwad",
       "vendor": "PRATIRAJ BUILDCON",
-      "out_date": "2024-09-06"
+      "out_date": "06/09/2024"
     },
     {
       "sno": 201,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "72280",
-      "emr_date": "2024-09-17",
+      "emr_date": "17/09/2024",
       "emr_no": "2017061304G",
       "destination": "NRO HUKKERI",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2024-09-18"
+      "out_date": "18/09/2024"
     },
     {
       "sno": 202,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "72282",
-      "emr_date": "2024-09-17",
+      "emr_date": "17/09/2024",
       "emr_no": "2017061304G",
       "destination": "NRO HUKKERI",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2024-09-18"
+      "out_date": "18/09/2024"
     },
     {
       "sno": 203,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "72205",
-      "emr_date": "2024-09-20",
+      "emr_date": "20/09/2024",
       "emr_no": "2017061306G",
       "destination": "NRO BILGI",
       "vendor": "BHAGYA & COMPANY",
-      "out_date": "2024-09-24"
+      "out_date": "24/09/2024"
     },
     {
       "sno": 204,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "72288",
-      "emr_date": "2024-09-20",
+      "emr_date": "20/09/2024",
       "emr_no": "2017061305G",
       "destination": "NRO MALLAPUR",
       "vendor": "BHAGYA & COMPANY",
-      "out_date": "2024-09-24"
+      "out_date": "24/09/2024"
     },
     {
       "sno": 205,
@@ -3978,7 +3978,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BILGI",
       "vendor": "",
-      "out_date": "2024-10-03"
+      "out_date": "03/10/2024"
     },
     {
       "sno": 206,
@@ -3989,7 +3989,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BILGI",
       "vendor": "",
-      "out_date": "2024-10-03"
+      "out_date": "03/10/2024"
     },
     {
       "sno": 207,
@@ -4000,7 +4000,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO MALLAPUR",
       "vendor": "",
-      "out_date": "2024-10-03"
+      "out_date": "03/10/2024"
     },
     {
       "sno": 208,
@@ -4011,7 +4011,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO MALLAPUR",
       "vendor": "",
-      "out_date": "2024-10-03"
+      "out_date": "03/10/2024"
     },
     {
       "sno": 209,
@@ -4022,7 +4022,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO Shabhandar",
       "vendor": "",
-      "out_date": "2024-10-05"
+      "out_date": "05/10/2024"
     },
     {
       "sno": 210,
@@ -4033,7 +4033,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO Shabhandar",
       "vendor": "",
-      "out_date": "2024-10-05"
+      "out_date": "05/10/2024"
     },
     {
       "sno": 211,
@@ -4044,7 +4044,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO Shabhandar",
       "vendor": "",
-      "out_date": "2024-10-05"
+      "out_date": "05/10/2024"
     },
     {
       "sno": 212,
@@ -4055,7 +4055,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BATAKURKI",
       "vendor": "",
-      "out_date": "2024-10-05"
+      "out_date": "05/10/2024"
     },
     {
       "sno": 213,
@@ -4066,7 +4066,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO YAMAGURNI(AP PETRO)",
       "vendor": "",
-      "out_date": "2024-10-09"
+      "out_date": "09/10/2024"
     },
     {
       "sno": 214,
@@ -4077,7 +4077,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO YAMAGURNI(AP PETRO)",
       "vendor": "",
-      "out_date": "2024-10-09"
+      "out_date": "09/10/2024"
     },
     {
       "sno": 215,
@@ -4088,7 +4088,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO YAMAGURNI(AP PETRO)",
       "vendor": "",
-      "out_date": "2024-10-09"
+      "out_date": "09/10/2024"
     },
     {
       "sno": 216,
@@ -4099,7 +4099,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO YAMAGURNI(AP PETRO)",
       "vendor": "",
-      "out_date": "2024-10-09"
+      "out_date": "09/10/2024"
     },
     {
       "sno": 217,
@@ -4110,7 +4110,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "YANKANCHI",
       "vendor": "",
-      "out_date": "2024-10-09"
+      "out_date": "09/10/2024"
     },
     {
       "sno": 218,
@@ -4121,7 +4121,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "TALIKOTI",
       "vendor": "",
-      "out_date": "2024-10-09"
+      "out_date": "09/10/2024"
     },
     {
       "sno": 219,
@@ -4132,7 +4132,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO Devagiri",
       "vendor": "",
-      "out_date": "2024-10-14"
+      "out_date": "14/10/2024"
     },
     {
       "sno": 220,
@@ -4143,7 +4143,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO GOKAK",
       "vendor": "",
-      "out_date": "2024-10-14"
+      "out_date": "14/10/2024"
     },
     {
       "sno": 221,
@@ -4154,7 +4154,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO GOKAK",
       "vendor": "",
-      "out_date": "2024-10-14"
+      "out_date": "14/10/2024"
     },
     {
       "sno": 222,
@@ -4165,7 +4165,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO GOKAK",
       "vendor": "",
-      "out_date": "2024-10-14"
+      "out_date": "14/10/2024"
     },
     {
       "sno": 223,
@@ -4176,7 +4176,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO Makaravalli",
       "vendor": "",
-      "out_date": "2024-10-15"
+      "out_date": "15/10/2024"
     },
     {
       "sno": 224,
@@ -4187,7 +4187,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO Makaravalli",
       "vendor": "",
-      "out_date": "2024-10-15"
+      "out_date": "15/10/2024"
     },
     {
       "sno": 225,
@@ -4198,7 +4198,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO Makaravalli",
       "vendor": "",
-      "out_date": "2024-10-15"
+      "out_date": "15/10/2024"
     },
     {
       "sno": 226,
@@ -4209,7 +4209,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BADACHI",
       "vendor": "",
-      "out_date": "2024-10-15"
+      "out_date": "15/10/2024"
     },
     {
       "sno": 227,
@@ -4220,7 +4220,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO Kamatnur",
       "vendor": "",
-      "out_date": "2024-10-16"
+      "out_date": "16/10/2024"
     },
     {
       "sno": 228,
@@ -4231,7 +4231,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BASARKOD",
       "vendor": "",
-      "out_date": "2024-10-17"
+      "out_date": "17/10/2024"
     },
     {
       "sno": 229,
@@ -4242,7 +4242,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BASARKOD",
       "vendor": "",
-      "out_date": "2024-10-17"
+      "out_date": "17/10/2024"
     },
     {
       "sno": 230,
@@ -4253,7 +4253,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BASARKOD",
       "vendor": "",
-      "out_date": "2024-10-17"
+      "out_date": "17/10/2024"
     },
     {
       "sno": 231,
@@ -4264,7 +4264,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO ALMEL",
       "vendor": "",
-      "out_date": "2024-10-17"
+      "out_date": "17/10/2024"
     },
     {
       "sno": 232,
@@ -4275,7 +4275,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO ALMEL",
       "vendor": "",
-      "out_date": "2024-10-17"
+      "out_date": "17/10/2024"
     },
     {
       "sno": 233,
@@ -4286,7 +4286,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO ALMEL",
       "vendor": "",
-      "out_date": "2024-10-17"
+      "out_date": "17/10/2024"
     },
     {
       "sno": 234,
@@ -4297,7 +4297,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "BASAVAGANGA PETROLEUM",
       "vendor": "",
-      "out_date": "2024-10-21"
+      "out_date": "21/10/2024"
     },
     {
       "sno": 235,
@@ -4308,7 +4308,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO KALGUDRI",
       "vendor": "",
-      "out_date": "2024-10-23"
+      "out_date": "23/10/2024"
     },
     {
       "sno": 236,
@@ -4319,7 +4319,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO KALGUDRI",
       "vendor": "",
-      "out_date": "2024-10-23"
+      "out_date": "23/10/2024"
     },
     {
       "sno": 237,
@@ -4330,7 +4330,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "YADWAD PETROLEUM",
       "vendor": "",
-      "out_date": "2024-10-25"
+      "out_date": "25/10/2024"
     },
     {
       "sno": 238,
@@ -4341,205 +4341,205 @@ window.baselineData = {
       "emr_no": "",
       "destination": "Kulkarni hydrocarbons",
       "vendor": "",
-      "out_date": "2024-11-09"
+      "out_date": "09/11/2024"
     },
     {
       "sno": 239,
       "hp_type": "1.5",
       "make": "KIRLOSKAR",
       "serial_no": "J00152",
-      "emr_date": "2024-11-21",
+      "emr_date": "21/11/2024",
       "emr_no": "2017061327G",
       "destination": "Kasghatteshwar Res",
       "vendor": "VRL INFRA",
-      "out_date": "2024-11-21"
+      "out_date": "21/11/2024"
     },
     {
       "sno": 240,
       "hp_type": "0.75",
       "make": "KIRLOSKAR",
       "serial_no": "J00150",
-      "emr_date": "2024-11-21",
+      "emr_date": "21/11/2024",
       "emr_no": "2017061327G",
       "destination": "Kasghatteshwar Res",
       "vendor": "VRL INFRA",
-      "out_date": "2024-11-21"
+      "out_date": "21/11/2024"
     },
     {
       "sno": 241,
       "hp_type": "0.75",
       "make": "KIRLOSKAR",
       "serial_no": "J00168",
-      "emr_date": "2024-11-21",
+      "emr_date": "21/11/2024",
       "emr_no": "2017061327G",
       "destination": "Kasghatteshwar Res",
       "vendor": "VRL INFRA",
-      "out_date": "2024-11-21"
+      "out_date": "21/11/2024"
     },
     {
       "sno": 242,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ002762I",
-      "emr_date": "2024-11-22",
+      "emr_date": "22/11/2024",
       "emr_no": "2017061329G",
       "destination": "NRO Kalgudri",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2024-11-22"
+      "out_date": "22/11/2024"
     },
     {
       "sno": 243,
       "hp_type": "0.75",
       "make": "KIRLOSKAR",
       "serial_no": "J00162",
-      "emr_date": "2024-11-21",
+      "emr_date": "21/11/2024",
       "emr_no": "2017061328G",
       "destination": "Om Advita petroleum",
       "vendor": "RAJARAM KADAM",
-      "out_date": "2024-11-22"
+      "out_date": "22/11/2024"
     },
     {
       "sno": 244,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ000854I",
-      "emr_date": "2024-12-11",
+      "emr_date": "11/12/2024",
       "emr_no": "2017061331G",
       "destination": "NRO SOPADLA",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-12-12"
+      "out_date": "12/12/2024"
     },
     {
       "sno": 245,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ002765I",
-      "emr_date": "2024-12-11",
+      "emr_date": "11/12/2024",
       "emr_no": "2017061331G",
       "destination": "NRO SOPADLA",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-12-12"
+      "out_date": "12/12/2024"
     },
     {
       "sno": 246,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ002766I",
-      "emr_date": "2024-12-11",
+      "emr_date": "11/12/2024",
       "emr_no": "2017061331G",
       "destination": "NRO SOPADLA",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-12-12"
+      "out_date": "12/12/2024"
     },
     {
       "sno": 247,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "76044",
-      "emr_date": "2024-12-16",
+      "emr_date": "16/12/2024",
       "emr_no": "2017061333G",
       "destination": "NRO MUSIGERI",
       "vendor": "Kartikeya & Co",
-      "out_date": "2024-12-16"
+      "out_date": "16/12/2024"
     },
     {
       "sno": 248,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ002768I",
-      "emr_date": "2024-12-16",
+      "emr_date": "16/12/2024",
       "emr_no": "2017061333G",
       "destination": "NRO MUSIGERI",
       "vendor": "Kartikeya & Co",
-      "out_date": "2024-12-16"
+      "out_date": "16/12/2024"
     },
     {
       "sno": 249,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "76046",
-      "emr_date": "2024-12-17",
+      "emr_date": "17/12/2024",
       "emr_no": "2017061334G",
       "destination": "NRO Ranebennur",
       "vendor": "A. Majid",
-      "out_date": "2024-12-17"
+      "out_date": "17/12/2024"
     },
     {
       "sno": 250,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ002764I",
-      "emr_date": "2024-12-17",
+      "emr_date": "17/12/2024",
       "emr_no": "2017061334G",
       "destination": "NRO Ranebennur",
       "vendor": "A. Majid",
-      "out_date": "2024-12-17"
+      "out_date": "17/12/2024"
     },
     {
       "sno": 251,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ002774I",
-      "emr_date": "2024-12-17",
+      "emr_date": "17/12/2024",
       "emr_no": "2017061334G",
       "destination": "NRO Ranebennur",
       "vendor": "A. Majid",
-      "out_date": "2024-12-17"
+      "out_date": "17/12/2024"
     },
     {
       "sno": 252,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "76045",
-      "emr_date": "2024-12-09",
+      "emr_date": "09/12/2024",
       "emr_no": "2017061330G",
       "destination": "Hubli RTC",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2024-12-17"
+      "out_date": "17/12/2024"
     },
     {
       "sno": 253,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ002769I",
-      "emr_date": "2024-12-09",
+      "emr_date": "09/12/2024",
       "emr_no": "2017061330G",
       "destination": "Hubli RTC",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2024-12-17"
+      "out_date": "17/12/2024"
     },
     {
       "sno": 254,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ002772I",
-      "emr_date": "2024-12-09",
+      "emr_date": "09/12/2024",
       "emr_no": "2017061330G",
       "destination": "Hubli RTC",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2024-12-17"
+      "out_date": "17/12/2024"
     },
     {
       "sno": 255,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ002761I",
-      "emr_date": "2024-12-19",
+      "emr_date": "19/12/2024",
       "emr_no": "2017061335G",
       "destination": "NRO Kanasageri",
       "vendor": "MIR ENGG.",
-      "out_date": "2024-12-19"
+      "out_date": "19/12/2024"
     },
     {
       "sno": 256,
       "hp_type": "1.5",
       "make": "KIRLOSKAR",
       "serial_no": "J00156",
-      "emr_date": "2024-12-19",
+      "emr_date": "19/12/2024",
       "emr_no": "2017061335G",
       "destination": "NRO Kanasageri",
       "vendor": "MIR ENGG.",
-      "out_date": "2024-12-19"
+      "out_date": "19/12/2024"
     },
     {
       "sno": 257,
@@ -4550,7 +4550,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BIJAPUR SERVICE ROAD",
       "vendor": "",
-      "out_date": "2024-12-23"
+      "out_date": "23/12/2024"
     },
     {
       "sno": 258,
@@ -4561,7 +4561,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BIJAPUR SERVICE ROAD",
       "vendor": "",
-      "out_date": "2024-12-23"
+      "out_date": "23/12/2024"
     },
     {
       "sno": 259,
@@ -4572,7 +4572,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BIJAPUR SERVICE ROAD",
       "vendor": "",
-      "out_date": "2024-12-23"
+      "out_date": "23/12/2024"
     },
     {
       "sno": 260,
@@ -4583,7 +4583,7 @@ window.baselineData = {
       "emr_no": "2017061342G",
       "destination": "Prakash petroleum kadrolli",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2024-12-26"
+      "out_date": "26/12/2024"
     },
     {
       "sno": 261,
@@ -4594,7 +4594,7 @@ window.baselineData = {
       "emr_no": "2017061342G",
       "destination": "Prakash petroleum kadrolli",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2024-12-26"
+      "out_date": "26/12/2024"
     },
     {
       "sno": 262,
@@ -4605,7 +4605,7 @@ window.baselineData = {
       "emr_no": "2017061343G",
       "destination": "Sulikeri petroleum",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2024-12-27"
+      "out_date": "27/12/2024"
     },
     {
       "sno": 263,
@@ -4616,7 +4616,7 @@ window.baselineData = {
       "emr_no": "2017061343G",
       "destination": "Sulikeri petroleum",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2024-12-27"
+      "out_date": "27/12/2024"
     },
     {
       "sno": 264,
@@ -4627,7 +4627,7 @@ window.baselineData = {
       "emr_no": "2017061341G",
       "destination": "Sardar narainshing",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 265,
@@ -4638,7 +4638,7 @@ window.baselineData = {
       "emr_no": "2017061341G",
       "destination": "Sardar narainshing",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 266,
@@ -4649,7 +4649,7 @@ window.baselineData = {
       "emr_no": "2017061338G",
       "destination": "Gajanana petrol pump",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 267,
@@ -4660,7 +4660,7 @@ window.baselineData = {
       "emr_no": "2017061338G",
       "destination": "Gajanana petrol pump",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 268,
@@ -4671,7 +4671,7 @@ window.baselineData = {
       "emr_no": "2017061337G",
       "destination": "S.P Petroleum",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 269,
@@ -4682,7 +4682,7 @@ window.baselineData = {
       "emr_no": "2017061337G",
       "destination": "Bhagyalaxmi petroleum",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 270,
@@ -4693,7 +4693,7 @@ window.baselineData = {
       "emr_no": "2017061337G",
       "destination": "Bhagyalaxmi petroleum",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 271,
@@ -4704,7 +4704,7 @@ window.baselineData = {
       "emr_no": "2017061340G",
       "destination": "S.P Petroleum",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 272,
@@ -4715,887 +4715,887 @@ window.baselineData = {
       "emr_no": "2017061340G",
       "destination": "S.P Petroleum",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 273,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "76047",
-      "emr_date": "2025-01-03",
+      "emr_date": "03/01/2025",
       "emr_no": "2017061344G",
       "destination": "NRO Mundagod",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2025-01-03"
+      "out_date": "03/01/2025"
     },
     {
       "sno": 274,
       "hp_type": "1.5",
       "make": "KIRLOSKAR",
       "serial_no": "J00133",
-      "emr_date": "2025-01-06",
+      "emr_date": "06/01/2025",
       "emr_no": "2017061346G",
       "destination": "Huddar petroleum",
       "vendor": "M M ENTERPRISES",
-      "out_date": "2025-01-06"
+      "out_date": "06/01/2025"
     },
     {
       "sno": 275,
       "hp_type": "1.5",
       "make": "KIRLOSKAR",
       "serial_no": "J00138",
-      "emr_date": "2025-01-06",
+      "emr_date": "06/01/2025",
       "emr_no": "2017061348G",
       "destination": "Balaji Fuels Navanagar",
       "vendor": "SAHITYA ENGG",
-      "out_date": "2025-01-06"
+      "out_date": "06/01/2025"
     },
     {
       "sno": 276,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ004653I",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061354G",
       "destination": "RTC GADAG",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2025-02-05"
+      "out_date": "05/02/2025"
     },
     {
       "sno": 277,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006386I",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061353G",
       "destination": "NRO CHABBI",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2025-02-05"
+      "out_date": "05/02/2025"
     },
     {
       "sno": 278,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006205I",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061357G",
       "destination": "NRO TIDAGUNDI",
       "vendor": "D.EMMANUEL",
-      "out_date": "2025-02-05"
+      "out_date": "05/02/2025"
     },
     {
       "sno": 279,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006265I",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061357G",
       "destination": "NRO TIDAGUNDI",
       "vendor": "D.EMMANUEL",
-      "out_date": "2025-02-05"
+      "out_date": "05/02/2025"
     },
     {
       "sno": 280,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ004656I",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061357G",
       "destination": "NRO TIDAGUNDI",
       "vendor": "D.EMMANUEL",
-      "out_date": "2025-02-05"
+      "out_date": "05/02/2025"
     },
     {
       "sno": 281,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ006165I",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061355G",
       "destination": "NRO SHINDAGI",
       "vendor": "MIR ENGG.",
-      "out_date": "2025-02-06"
+      "out_date": "06/02/2025"
     },
     {
       "sno": 282,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006384I",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061355G",
       "destination": "NRO SHINDAGI",
       "vendor": "MIR ENGG.",
-      "out_date": "2025-02-06"
+      "out_date": "06/02/2025"
     },
     {
       "sno": 283,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006385I",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061355G",
       "destination": "NRO SHINDAGI",
       "vendor": "MIR ENGG.",
-      "out_date": "2025-02-06"
+      "out_date": "06/02/2025"
     },
     {
       "sno": 284,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ004662I",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061356G",
       "destination": "NRO TEVARAMALLIHALLI",
       "vendor": "A. MAJID",
-      "out_date": "2025-02-06"
+      "out_date": "06/02/2025"
     },
     {
       "sno": 285,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ006163I",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061358G",
       "destination": "NRO BHUTNAL",
       "vendor": "RAJMIN CONSTRUCTIONS",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 286,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ006167I",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061359G",
       "destination": "NRO YETNAL",
       "vendor": "RAJMIN CONSTRUCTIONS",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 287,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ006164I",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061362G",
       "destination": "NRO SEDBAL",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 288,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ004657I",
-      "emr_date": "2025-02-07",
+      "emr_date": "07/02/2025",
       "emr_no": "2017061365G",
       "destination": "NRO Kaginale",
       "vendor": "D EMMANUEL",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 289,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006189I",
-      "emr_date": "2025-02-07",
+      "emr_date": "07/02/2025",
       "emr_no": "2017061366G",
       "destination": "NRO Agadi",
       "vendor": "D EMMANUEL",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 290,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006188I",
-      "emr_date": "2025-02-07",
+      "emr_date": "07/02/2025",
       "emr_no": "2017061367G",
       "destination": "NRO  KUNDGOL",
       "vendor": "LADWIN ENGG. WORKS",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 291,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ006166I",
-      "emr_date": "2025-02-07",
+      "emr_date": "07/02/2025",
       "emr_no": "2017061363G",
       "destination": "NRO MUDDEBIHAL",
       "vendor": "DD JOSHI ASSOCIATES",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 292,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ004659I",
-      "emr_date": "2025-02-07",
+      "emr_date": "07/02/2025",
       "emr_no": "2017061368G",
       "destination": "41045557 - TTN PETROLEUM",
       "vendor": "SAHITY ENGG",
-      "out_date": "2025-02-08"
+      "out_date": "08/02/2025"
     },
     {
       "sno": 293,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ007068I",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061360G",
       "destination": "NRO BABANAGAR",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-02-19"
+      "out_date": "19/02/2025"
     },
     {
       "sno": 294,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ007070I",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061361G",
       "destination": "NRO KATARKI",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-02-19"
+      "out_date": "19/02/2025"
     },
     {
       "sno": 295,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006456I",
-      "emr_date": "2025-02-21",
+      "emr_date": "21/02/2025",
       "emr_no": "2017061370G",
       "destination": "41044774-A Y IJANTAKAR PETROLEUM",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2025-02-21"
+      "out_date": "21/02/2025"
     },
     {
       "sno": 296,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006457I",
-      "emr_date": "2025-02-21",
+      "emr_date": "21/02/2025",
       "emr_no": "2017061370G",
       "destination": "41044774-A Y IJANTAKAR PETROLEUM",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2025-02-21"
+      "out_date": "21/02/2025"
     },
     {
       "sno": 297,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ007059I",
-      "emr_date": "2025-02-21",
+      "emr_date": "21/02/2025",
       "emr_no": "2017061370G",
       "destination": "41044774-A Y IJANTAKAR PETROLEUM",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2025-02-21"
+      "out_date": "21/02/2025"
     },
     {
       "sno": 298,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006453I",
-      "emr_date": "2025-02-25",
+      "emr_date": "25/02/2025",
       "emr_no": "2017061374G",
       "destination": "NRO KUNDGOL",
       "vendor": "LADWIN ENGG. WORKS",
-      "out_date": "2025-02-25"
+      "out_date": "25/02/2025"
     },
     {
       "sno": 299,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ007069I",
-      "emr_date": "2025-02-25",
+      "emr_date": "25/02/2025",
       "emr_no": "2017061374G",
       "destination": "NRO KUNDGOL",
       "vendor": "LADWIN ENGG. WORKS",
-      "out_date": "2025-02-25"
+      "out_date": "25/02/2025"
     },
     {
       "sno": 300,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ007061I",
-      "emr_date": "2025-02-25",
+      "emr_date": "25/02/2025",
       "emr_no": "2017061373G",
       "destination": "NRO KSRTC GADAG",
       "vendor": "JUDE ENGG",
-      "out_date": "2025-02-25"
+      "out_date": "25/02/2025"
     },
     {
       "sno": 301,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "32774",
-      "emr_date": "2025-03-07",
+      "emr_date": "07/03/2025",
       "emr_no": "2017061378G",
       "destination": "41044774-A Y IJANTAKAR PETROLEUM",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2025-03-07"
+      "out_date": "07/03/2025"
     },
     {
       "sno": 302,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006454I",
-      "emr_date": "2025-03-17",
+      "emr_date": "17/03/2025",
       "emr_no": "2017061379G",
       "destination": "NRO SHEDBAL",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-03-17"
+      "out_date": "17/03/2025"
     },
     {
       "sno": 303,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006459I",
-      "emr_date": "2025-03-17",
+      "emr_date": "17/03/2025",
       "emr_no": "2017061379G",
       "destination": "NRO SHEDBAL",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-03-17"
+      "out_date": "17/03/2025"
     },
     {
       "sno": 304,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006455I",
-      "emr_date": "2025-03-19",
+      "emr_date": "19/03/2025",
       "emr_no": "2017061380G",
       "destination": "NRO Kaginale",
       "vendor": "D EMMANUEL",
-      "out_date": "2025-03-19"
+      "out_date": "19/03/2025"
     },
     {
       "sno": 305,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006458I",
-      "emr_date": "2025-03-19",
+      "emr_date": "19/03/2025",
       "emr_no": "2017061380G",
       "destination": "NRO Kaginale",
       "vendor": "D EMMANUEL",
-      "out_date": "2025-03-19"
+      "out_date": "19/03/2025"
     },
     {
       "sno": 306,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006461I",
-      "emr_date": "2025-03-27",
+      "emr_date": "27/03/2025",
       "emr_no": "2017061383G",
       "destination": "NRO BHUTNAL",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-03-31"
+      "out_date": "31/03/2025"
     },
     {
       "sno": 307,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009183I",
-      "emr_date": "2025-03-27",
+      "emr_date": "27/03/2025",
       "emr_no": "2017061383G",
       "destination": "NRO BHUTNAL",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-03-31"
+      "out_date": "31/03/2025"
     },
     {
       "sno": 308,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006460I",
-      "emr_date": "2025-03-27",
+      "emr_date": "27/03/2025",
       "emr_no": "2017061384G",
       "destination": "NRO YETNAL",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-03-31"
+      "out_date": "31/03/2025"
     },
     {
       "sno": 309,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ006462I",
-      "emr_date": "2025-03-27",
+      "emr_date": "27/03/2025",
       "emr_no": "2017061384G",
       "destination": "NRO YETNAL",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-03-31"
+      "out_date": "31/03/2025"
     },
     {
       "sno": 310,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009182I",
-      "emr_date": "2025-03-27",
+      "emr_date": "27/03/2025",
       "emr_no": "2017061382G",
       "destination": "NRO MAKKALAGERI",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-04-01"
+      "out_date": "01/04/2025"
     },
     {
       "sno": 311,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008483I",
-      "emr_date": "2025-03-27",
+      "emr_date": "27/03/2025",
       "emr_no": "2017061382G",
       "destination": "NRO MAKKALAGERI",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-04-01"
+      "out_date": "01/04/2025"
     },
     {
       "sno": 312,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009181I",
-      "emr_date": "2025-04-02",
+      "emr_date": "02/04/2025",
       "emr_no": "2017061386G",
       "destination": "NRO CHIBBI",
       "vendor": "Jude Engg",
-      "out_date": "2025-04-02"
+      "out_date": "02/04/2025"
     },
     {
       "sno": 313,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008472I",
-      "emr_date": "2025-04-02",
+      "emr_date": "02/04/2025",
       "emr_no": "2017061386G",
       "destination": "NRO CHIBBI",
       "vendor": "Jude Engg",
-      "out_date": "2025-04-02"
+      "out_date": "02/04/2025"
     },
     {
       "sno": 314,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008473I",
-      "emr_date": "2025-04-03",
+      "emr_date": "03/04/2025",
       "emr_no": "2017061389G",
       "destination": "41004888 - Sri Daneshwari Petroleums",
       "vendor": "MJ CONSTRUCTION",
-      "out_date": "2025-04-03"
+      "out_date": "03/04/2025"
     },
     {
       "sno": 315,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008486I",
-      "emr_date": "2025-04-04",
+      "emr_date": "04/04/2025",
       "emr_no": "2017061392G",
       "destination": "NRO BABANAGAR",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-04-04"
+      "out_date": "04/04/2025"
     },
     {
       "sno": 316,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008487I",
-      "emr_date": "2025-04-04",
+      "emr_date": "04/04/2025",
       "emr_no": "2017061392G",
       "destination": "NRO BABANAGAR",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-04-04"
+      "out_date": "04/04/2025"
     },
     {
       "sno": 317,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008474I",
-      "emr_date": "2025-04-04",
+      "emr_date": "04/04/2025",
       "emr_no": "2017061393G",
       "destination": "NRO KATARKI",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-04-04"
+      "out_date": "04/04/2025"
     },
     {
       "sno": 318,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008484I",
-      "emr_date": "2025-04-04",
+      "emr_date": "04/04/2025",
       "emr_no": "2017061393G",
       "destination": "NRO KATARKI",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-04-04"
+      "out_date": "04/04/2025"
     },
     {
       "sno": 319,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008470I",
-      "emr_date": "2025-04-07",
+      "emr_date": "07/04/2025",
       "emr_no": "2017061395G",
       "destination": "Jamakhandi",
       "vendor": "AMRUT ELECTRICALS",
-      "out_date": "2025-04-07"
+      "out_date": "07/04/2025"
     },
     {
       "sno": 320,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008471I",
-      "emr_date": "2025-04-07",
+      "emr_date": "07/04/2025",
       "emr_no": "2017061395G",
       "destination": "Jamakhandi",
       "vendor": "AMRUT ELECTRICALS",
-      "out_date": "2025-04-07"
+      "out_date": "07/04/2025"
     },
     {
       "sno": 321,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009230I",
-      "emr_date": "2025-04-07",
+      "emr_date": "07/04/2025",
       "emr_no": "2017061395G",
       "destination": "Jamakhandi",
       "vendor": "AMRUT ELECTRICALS",
-      "out_date": "2025-04-07"
+      "out_date": "07/04/2025"
     },
     {
       "sno": 322,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008482I",
-      "emr_date": "2025-04-07",
+      "emr_date": "07/04/2025",
       "emr_no": "2017061394G",
       "destination": "NRO MUDDEBHIHAL",
       "vendor": "AMRUT ELECTRICALS",
-      "out_date": "2025-04-07"
+      "out_date": "07/04/2025"
     },
     {
       "sno": 323,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009236I",
-      "emr_date": "2025-04-07",
+      "emr_date": "07/04/2025",
       "emr_no": "2017061394G",
       "destination": "NRO MUDDEBHIHAL",
       "vendor": "AMRUT ELECTRICALS",
-      "out_date": "2025-04-07"
+      "out_date": "07/04/2025"
     },
     {
       "sno": 324,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008477I",
-      "emr_date": "2025-04-02",
+      "emr_date": "02/04/2025",
       "emr_no": "2017061388G",
       "destination": "NRO Kelwadi",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-04-09"
+      "out_date": "09/04/2025"
     },
     {
       "sno": 325,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009232I",
-      "emr_date": "2025-04-02",
+      "emr_date": "02/04/2025",
       "emr_no": "2017061388G",
       "destination": "NRO Kelwadi",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-04-09"
+      "out_date": "09/04/2025"
     },
     {
       "sno": 326,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008479I",
-      "emr_date": "2025-04-09",
+      "emr_date": "09/04/2025",
       "emr_no": "2017061397G",
       "destination": "NRO Mudhol Bypass",
       "vendor": "DD JOSHI AND ASSOCIATES",
-      "out_date": "2025-04-09"
+      "out_date": "09/04/2025"
     },
     {
       "sno": 327,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008481I",
-      "emr_date": "2025-04-09",
+      "emr_date": "09/04/2025",
       "emr_no": "2017061397G",
       "destination": "NRO Mudhol Bypass",
       "vendor": "DD JOSHI AND ASSOCIATES",
-      "out_date": "2025-04-09"
+      "out_date": "09/04/2025"
     },
     {
       "sno": 328,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008485I",
-      "emr_date": "2025-04-09",
+      "emr_date": "09/04/2025",
       "emr_no": "2017061397G",
       "destination": "NRO Mudhol Bypass",
       "vendor": "DD JOSHI AND ASSOCIATES",
-      "out_date": "2025-04-09"
+      "out_date": "09/04/2025"
     },
     {
       "sno": 329,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008480I",
-      "emr_date": "2025-04-19",
+      "emr_date": "19/04/2025",
       "emr_no": "2017061398G",
       "destination": "NRO DEVARAGUL",
       "vendor": "D.EMMANUEL",
-      "out_date": "2025-04-19"
+      "out_date": "19/04/2025"
     },
     {
       "sno": 330,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008488I",
-      "emr_date": "2025-04-19",
+      "emr_date": "19/04/2025",
       "emr_no": "2017061398G",
       "destination": "NRO DEVARAGUL",
       "vendor": "D.EMMANUEL",
-      "out_date": "2025-04-19"
+      "out_date": "19/04/2025"
     },
     {
       "sno": 331,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009238I",
-      "emr_date": "2025-04-19",
+      "emr_date": "19/04/2025",
       "emr_no": "2017061398G",
       "destination": "NRO DEVARAGUL",
       "vendor": "D.EMMANUEL",
-      "out_date": "2025-04-19"
+      "out_date": "19/04/2025"
     },
     {
       "sno": 332,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008475I",
-      "emr_date": "2025-04-22",
+      "emr_date": "22/04/2025",
       "emr_no": "2017061399G",
       "destination": "NRO TEVARAMALLIHALLI",
       "vendor": "A. MAJID",
-      "out_date": "2025-04-22"
+      "out_date": "22/04/2025"
     },
     {
       "sno": 333,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009233I",
-      "emr_date": "2025-04-22",
+      "emr_date": "22/04/2025",
       "emr_no": "2017061399G",
       "destination": "NRO TEVARAMALLIHALLI",
       "vendor": "A. MAJID",
-      "out_date": "2025-04-22"
+      "out_date": "22/04/2025"
     },
     {
       "sno": 334,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008476I",
-      "emr_date": "2025-05-02",
+      "emr_date": "02/05/2025",
       "emr_no": "2017061400G",
       "destination": "NRO Zalki",
       "vendor": "LADWIN ENGG",
-      "out_date": "2025-05-06"
+      "out_date": "06/05/2025"
     },
     {
       "sno": 335,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008478I",
-      "emr_date": "2025-05-02",
+      "emr_date": "02/05/2025",
       "emr_no": "2017061400G",
       "destination": "NRO Zalki",
       "vendor": "LADWIN ENGG",
-      "out_date": "2025-05-06"
+      "out_date": "06/05/2025"
     },
     {
       "sno": 336,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009235I",
-      "emr_date": "2025-05-02",
+      "emr_date": "02/05/2025",
       "emr_no": "2017061400G",
       "destination": "NRO Zalki",
       "vendor": "LADWIN ENGG",
-      "out_date": "2025-05-06"
+      "out_date": "06/05/2025"
     },
     {
       "sno": 337,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009237I",
-      "emr_date": "2025-05-02",
+      "emr_date": "02/05/2025",
       "emr_no": "2017061400G",
       "destination": "NRO Zalki",
       "vendor": "LADWIN ENGG",
-      "out_date": "2025-05-06"
+      "out_date": "06/05/2025"
     },
     {
       "sno": 338,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009231I",
-      "emr_date": "2025-04-02",
+      "emr_date": "02/04/2025",
       "emr_no": "2017061387G",
       "destination": "NRO Nerli",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-05-09"
+      "out_date": "09/05/2025"
     },
     {
       "sno": 339,
       "hp_type": "0.75",
       "make": "KIRLOSKAR",
       "serial_no": "VL1-25/C01566",
-      "emr_date": "2025-04-02",
+      "emr_date": "02/04/2025",
       "emr_no": "2017061387G",
       "destination": "NRO Nerli",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-05-09"
+      "out_date": "09/05/2025"
     },
     {
       "sno": 340,
       "hp_type": "0.75",
       "make": "KIRLOSKAR",
       "serial_no": "VL1-25/C01569",
-      "emr_date": "2025-04-02",
+      "emr_date": "02/04/2025",
       "emr_no": "2017061387G",
       "destination": "NRO Nerli",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-05-09"
+      "out_date": "09/05/2025"
     },
     {
       "sno": 341,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009234I",
-      "emr_date": "2025-05-12",
+      "emr_date": "12/05/2025",
       "emr_no": "2017061403G",
       "destination": "NRO Haranagiri",
       "vendor": "A.Majid",
-      "out_date": "2025-05-12"
+      "out_date": "12/05/2025"
     },
     {
       "sno": 342,
       "hp_type": "0.75",
       "make": "KIRLOSKAR",
       "serial_no": "VL1-25/C01567",
-      "emr_date": "2025-05-12",
+      "emr_date": "12/05/2025",
       "emr_no": "2017061403G",
       "destination": "NRO Haranagiri",
       "vendor": "A.Majid",
-      "out_date": "2025-05-12"
+      "out_date": "12/05/2025"
     },
     {
       "sno": 343,
       "hp_type": "0.75",
       "make": "KIRLOSKAR",
       "serial_no": "VL1-25/C01570",
-      "emr_date": "2025-05-12",
+      "emr_date": "12/05/2025",
       "emr_no": "2017061403G",
       "destination": "NRO Haranagiri",
       "vendor": "A.Majid",
-      "out_date": "2025-05-12"
+      "out_date": "12/05/2025"
     },
     {
       "sno": 344,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ009239I",
-      "emr_date": "2025-05-26",
+      "emr_date": "26/05/2025",
       "emr_no": "2017061413G",
       "destination": "NRO RANEBENNUR(Haveri)",
       "vendor": "A.Majid",
-      "out_date": "2025-05-26"
+      "out_date": "26/05/2025"
     },
     {
       "sno": 345,
       "hp_type": "0.75",
       "make": "KIRLOSKAR",
       "serial_no": "VL1-25/C01565",
-      "emr_date": "2025-05-26",
+      "emr_date": "26/05/2025",
       "emr_no": "2017061413G",
       "destination": "NRO RANEBENNUR(Haveri)",
       "vendor": "A.Majid",
-      "out_date": "2025-05-26"
+      "out_date": "26/05/2025"
     },
     {
       "sno": 346,
       "hp_type": "0.75",
       "make": "KIRLOSKAR",
       "serial_no": "VL1-25/C01568",
-      "emr_date": "2025-05-26",
+      "emr_date": "26/05/2025",
       "emr_no": "2017061413G",
       "destination": "NRO RANEBENNUR(Haveri)",
       "vendor": "A.Majid",
-      "out_date": "2025-05-26"
+      "out_date": "26/05/2025"
     },
     {
       "sno": 347,
       "hp_type": "0.75",
       "make": "FLORITE ENGG",
       "serial_no": "25030315",
-      "emr_date": "2025-05-28",
+      "emr_date": "28/05/2025",
       "emr_no": "2017061414G",
       "destination": "NRO Shigaon",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2025-05-28"
+      "out_date": "28/05/2025"
     },
     {
       "sno": 348,
       "hp_type": "0.75",
       "make": "FLORITE ENGG",
       "serial_no": "25030316",
-      "emr_date": "2025-05-28",
+      "emr_date": "28/05/2025",
       "emr_no": "2017061414G",
       "destination": "NRO Shigaon",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2025-05-28"
+      "out_date": "28/05/2025"
     },
     {
       "sno": 349,
       "hp_type": "1.5",
       "make": "FLORITE ENGG",
       "serial_no": "25025196",
-      "emr_date": "2025-05-28",
+      "emr_date": "28/05/2025",
       "emr_no": "2017061414G",
       "destination": "NRO Shigaon",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2025-05-28"
+      "out_date": "28/05/2025"
     },
     {
       "sno": 350,
       "hp_type": "0.75",
       "make": "FLORITE ENGG",
       "serial_no": "25030320",
-      "emr_date": "2025-05-28",
+      "emr_date": "28/05/2025",
       "emr_no": "2017061416G",
       "destination": "NRO Shirol",
       "vendor": "DD JOSHI AND ASSOCIATES",
-      "out_date": "2025-06-02"
+      "out_date": "02/06/2025"
     },
     {
       "sno": 351,
       "hp_type": "0.75",
       "make": "FLORITE ENGG",
       "serial_no": "25030321",
-      "emr_date": "2025-05-28",
+      "emr_date": "28/05/2025",
       "emr_no": "2017061416G",
       "destination": "NRO Shirol",
       "vendor": "DD JOSHI AND ASSOCIATES",
-      "out_date": "2025-06-02"
+      "out_date": "02/06/2025"
     },
     {
       "sno": 352,
       "hp_type": "1.5",
       "make": "FLORITE ENGG",
       "serial_no": "25025198",
-      "emr_date": "2025-05-28",
+      "emr_date": "28/05/2025",
       "emr_no": "2017061416G",
       "destination": "NRO Shirol",
       "vendor": "DD JOSHI AND ASSOCIATES",
-      "out_date": "2025-06-02"
+      "out_date": "02/06/2025"
     },
     {
       "sno": 353,
@@ -5606,95 +5606,95 @@ window.baselineData = {
       "emr_no": "",
       "destination": "Gajanana petrol pump",
       "vendor": "B.H.MANE",
-      "out_date": "2025-06-06"
+      "out_date": "06/06/2025"
     },
     {
       "sno": 354,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ002767I",
-      "emr_date": "2025-06-11",
+      "emr_date": "11/06/2025",
       "emr_no": "2017061418G",
       "destination": "NRO Ratnapur",
       "vendor": "SAHITYA ENGG",
-      "out_date": "2025-06-11"
+      "out_date": "11/06/2025"
     },
     {
       "sno": 355,
       "hp_type": "0.75",
       "make": "GVR",
       "serial_no": "RJ008489I",
-      "emr_date": "2025-06-11",
+      "emr_date": "11/06/2025",
       "emr_no": "2017061418G",
       "destination": "NRO Ratnapur",
       "vendor": "SAHITYA ENGG",
-      "out_date": "2025-06-11"
+      "out_date": "11/06/2025"
     },
     {
       "sno": 356,
       "hp_type": "0.75",
       "make": "FLORITE ENGG",
       "serial_no": "25030318",
-      "emr_date": "2025-06-11",
+      "emr_date": "11/06/2025",
       "emr_no": "2017061419G",
       "destination": "NRO Yaragoppa",
       "vendor": "MIR ENGG",
-      "out_date": "2025-06-12"
+      "out_date": "12/06/2025"
     },
     {
       "sno": 357,
       "hp_type": "1.5",
       "make": "FLORITE ENGG",
       "serial_no": "25025199",
-      "emr_date": "2025-06-11",
+      "emr_date": "11/06/2025",
       "emr_no": "2017061419G",
       "destination": "NRO Yaragoppa",
       "vendor": "MIR ENGG",
-      "out_date": "2025-06-12"
+      "out_date": "12/06/2025"
     },
     {
       "sno": 358,
       "hp_type": "0.75",
       "make": "FLORITE ENGG",
       "serial_no": "25030317",
-      "emr_date": "2025-05-28",
+      "emr_date": "28/05/2025",
       "emr_no": "2017061415G",
       "destination": "NRO Hattimatur",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2025-05-28"
+      "out_date": "28/05/2025"
     },
     {
       "sno": 359,
       "hp_type": "1.5",
       "make": "FLORITE ENGG",
       "serial_no": "25025197",
-      "emr_date": "2025-05-28",
+      "emr_date": "28/05/2025",
       "emr_no": "2017061415G",
       "destination": "NRO Hattimatur",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2025-05-28"
+      "out_date": "28/05/2025"
     },
     {
       "sno": 360,
       "hp_type": "0.75",
       "make": "FLORITE ENGG",
       "serial_no": "25030319",
-      "emr_date": "2025-06-16",
+      "emr_date": "16/06/2025",
       "emr_no": "2017061422G",
       "destination": "41014745-NANDAKESHWAR SERVICE CENTER",
       "vendor": "A.MAJID",
-      "out_date": "2025-06-16"
+      "out_date": "16/06/2025"
     },
     {
       "sno": 361,
       "hp_type": "1.5",
       "make": "GVR",
       "serial_no": "RJ019118I",
-      "emr_date": "2026-07-22",
+      "emr_date": "22/07/2026",
       "emr_no": "EMR02",
       "destination": "Comco udyabagh",
       "vendor": "Spark enterprise",
-      "out_date": "2026-07-22"
+      "out_date": "22/07/2026"
     }
   ],
   "du_outword": [
@@ -5705,7 +5705,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E40",
       "serial_no": "202204000528",
-      "emr_date": "2022-07-25",
+      "emr_date": "25/07/2022",
       "emr_no": "2017061082G",
       "destination": "GADAG MAHALAXMI PETROLEUM",
       "vendor": "D.D Joshi and Associates",
@@ -5718,7 +5718,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E40",
       "serial_no": "202203001882",
-      "emr_date": "2022-08-03",
+      "emr_date": "03/08/2022",
       "emr_no": "2017061088G",
       "destination": "L K S SHROFF",
       "vendor": "D. Emmanuel",
@@ -5731,7 +5731,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E40",
       "serial_no": "202205002298",
-      "emr_date": "2022-08-13",
+      "emr_date": "13/08/2022",
       "emr_no": "2017061091G",
       "destination": "Sardar Narainsingh &Sons",
       "vendor": "D. Emmanuel",
@@ -5744,7 +5744,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E40",
       "serial_no": "202205002272",
-      "emr_date": "2022-08-17",
+      "emr_date": "17/08/2022",
       "emr_no": "2017061092G",
       "destination": "NRO Al Ameen",
       "vendor": "SPARK ENTERPRISES",
@@ -5757,7 +5757,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E40",
       "serial_no": "202203001158",
-      "emr_date": "2022-08-17",
+      "emr_date": "17/08/2022",
       "emr_no": "2017061092G",
       "destination": "NRO Al Ameen",
       "vendor": "SPARK ENTERPRISES",
@@ -5770,7 +5770,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E40",
       "serial_no": "202205002294",
-      "emr_date": "2022-08-19",
+      "emr_date": "19/08/2022",
       "emr_no": "2017061093G",
       "destination": "MAHALAXMI PETROLEUM DWD",
       "vendor": "D. Emmanuel",
@@ -5783,7 +5783,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E40",
       "serial_no": "202203001164",
-      "emr_date": "2022-09-20",
+      "emr_date": "20/09/2022",
       "emr_no": "2017061105G",
       "destination": "PRAKASH FUEL STATION",
       "vendor": "Jude Eng. Works",
@@ -5796,7 +5796,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E40",
       "serial_no": "202203001138",
-      "emr_date": "2022-09-23",
+      "emr_date": "23/09/2022",
       "emr_no": "2017061107G",
       "destination": "NRO  Nagaral",
       "vendor": "BOSS CONSTRUCTION",
@@ -5809,7 +5809,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E40",
       "serial_no": "202205002289",
-      "emr_date": "2022-09-23",
+      "emr_date": "23/09/2022",
       "emr_no": "2017061107G",
       "destination": "NRO  Nagaral",
       "vendor": "BOSS CONSTRUCTION",
@@ -5822,7 +5822,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E40",
       "serial_no": "202203000991",
-      "emr_date": "2022-09-19",
+      "emr_date": "19/09/2022",
       "emr_no": "2017061104G",
       "destination": "Hundekar Petroleums,Bijapur",
       "vendor": "Jude Eng. Works",
@@ -5835,7 +5835,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E42",
       "serial_no": "202209000674",
-      "emr_date": "2022-09-30",
+      "emr_date": "30/09/2022",
       "emr_no": "2017061112G",
       "destination": "Appaji Petroleum,Kaggod",
       "vendor": "LADWIN ENGG.WORKS",
@@ -5848,7 +5848,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E40",
       "serial_no": "202205002300",
-      "emr_date": "2022-09-30",
+      "emr_date": "30/09/2022",
       "emr_no": "2017061112G",
       "destination": "Appaji Petroleum,Kaggod",
       "vendor": "LADWIN ENGG.WORKS",
@@ -5861,7 +5861,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E40",
       "serial_no": "202204000527",
-      "emr_date": "2022-10-13",
+      "emr_date": "13/10/2022",
       "emr_no": "2017061115G",
       "destination": "B R Mali",
       "vendor": "SPARK ENTERPRISES",
@@ -5874,7 +5874,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E42",
       "serial_no": "202209000527",
-      "emr_date": "2022-10-20",
+      "emr_date": "20/10/2022",
       "emr_no": "2017061117G",
       "destination": "NRO DEVARGUDDA",
       "vendor": "D.D.Joshi & Asscociates",
@@ -5887,7 +5887,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E40",
       "serial_no": "202205002293",
-      "emr_date": "2022-10-20",
+      "emr_date": "20/10/2022",
       "emr_no": "2017061117G",
       "destination": "NRO DEVARGUDDA",
       "vendor": "D.D.Joshi & Asscociates",
@@ -5900,7 +5900,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E40",
       "serial_no": "202205002287",
-      "emr_date": "2022-10-27",
+      "emr_date": "27/10/2022",
       "emr_no": "2017061120G",
       "destination": "NRO Mattihal",
       "vendor": "SPARK ENTERPRISES",
@@ -5913,7 +5913,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E40",
       "serial_no": "202205002288",
-      "emr_date": "2022-10-27",
+      "emr_date": "27/10/2022",
       "emr_no": "2017061120G",
       "destination": "NRO Mattihal",
       "vendor": "SPARK ENTERPRISES",
@@ -5926,7 +5926,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E40",
       "serial_no": "202205002291",
-      "emr_date": "2022-10-27",
+      "emr_date": "27/10/2022",
       "emr_no": "2017061121G",
       "destination": "NRO Nagathan",
       "vendor": "SPARK ENTERPRISES",
@@ -5939,7 +5939,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E40",
       "serial_no": "202205002296",
-      "emr_date": "2022-10-27",
+      "emr_date": "27/10/2022",
       "emr_no": "2017061121G",
       "destination": "NRO Nagathan",
       "vendor": "SPARK ENTERPRISES",
@@ -5952,7 +5952,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E40",
       "serial_no": "202205002299",
-      "emr_date": "2022-10-27",
+      "emr_date": "27/10/2022",
       "emr_no": "2017061122G",
       "destination": "NRO Dandeli",
       "vendor": "SPARK ENTERPRISES",
@@ -5965,7 +5965,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E42",
       "serial_no": "202209000529",
-      "emr_date": "2022-10-27",
+      "emr_date": "27/10/2022",
       "emr_no": "2017061122G",
       "destination": "NRO Dandeli",
       "vendor": "SPARK ENTERPRISES",
@@ -5978,7 +5978,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202209000577",
-      "emr_date": "2022-10-28",
+      "emr_date": "28/10/2022",
       "emr_no": "2017061123G",
       "destination": "RAGHURAM PETROLEUM",
       "vendor": "D.D.Joshi & Asscociates",
@@ -5991,7 +5991,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202209000572",
-      "emr_date": "2022-10-28",
+      "emr_date": "28/10/2022",
       "emr_no": "2017061124G",
       "destination": "DEEPTI PETROLEUM",
       "vendor": "D.D.Joshi & Asscociates",
@@ -6004,7 +6004,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202209000478",
-      "emr_date": "2022-11-10",
+      "emr_date": "10/11/2022",
       "emr_no": "2017061130G",
       "destination": "Highway Serv Stn. Ilkal",
       "vendor": "D.D.Joshi & Asscociates",
@@ -6017,7 +6017,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E42",
       "serial_no": "202209000678",
-      "emr_date": "2022-11-11",
+      "emr_date": "11/11/2022",
       "emr_no": "2017061132G",
       "destination": "COCO ZALKI",
       "vendor": "G.K.RAVI",
@@ -6030,7 +6030,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E42",
       "serial_no": "202209000679",
-      "emr_date": "2022-11-11",
+      "emr_date": "11/11/2022",
       "emr_no": "2017061132G",
       "destination": "COCO ZALKI",
       "vendor": "G.K.RAVI",
@@ -6043,7 +6043,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E40",
       "serial_no": "202204000526",
-      "emr_date": "2022-11-11",
+      "emr_date": "11/11/2022",
       "emr_no": "2017061132G",
       "destination": "COCO ZALKI",
       "vendor": "G.K.RAVI",
@@ -6056,7 +6056,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202209000576",
-      "emr_date": "2022-11-17",
+      "emr_date": "17/11/2022",
       "emr_no": "2017061133G",
       "destination": "NRO Shippur",
       "vendor": "KC ELECTRICALS",
@@ -6069,7 +6069,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E42",
       "serial_no": "202209000526",
-      "emr_date": "2022-11-29",
+      "emr_date": "29/11/2022",
       "emr_no": "2017061138G",
       "destination": "Huddar petroleum",
       "vendor": "MJ Constructor",
@@ -6082,7 +6082,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202210000068",
-      "emr_date": "2022-11-30",
+      "emr_date": "30/11/2022",
       "emr_no": "2017061140G",
       "destination": "COCO ZALKI",
       "vendor": "G.K.RAVI",
@@ -6095,7 +6095,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E42",
       "serial_no": "202209000528",
-      "emr_date": "2022-12-15",
+      "emr_date": "15/12/2022",
       "emr_no": "2017061143G",
       "destination": "15527410 - VARAD PETROLEUM - Athani",
       "vendor": "D.D.Joshi & Asscociates",
@@ -6108,7 +6108,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E42",
       "serial_no": "202209000680",
-      "emr_date": "2022-12-20",
+      "emr_date": "20/12/2022",
       "emr_no": "2017061146G",
       "destination": "NRO Narayanpur",
       "vendor": "D.D.Joshi & Asscociates",
@@ -6121,7 +6121,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E42",
       "serial_no": "202209000743",
-      "emr_date": "2022-12-20",
+      "emr_date": "20/12/2022",
       "emr_no": "2017061146G",
       "destination": "NRO Narayanpur",
       "vendor": "D.D.Joshi & Asscociates",
@@ -6134,7 +6134,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202209000575",
-      "emr_date": "2022-12-21",
+      "emr_date": "21/12/2022",
       "emr_no": "2017061147G",
       "destination": "15206610 - Shri Sahil Fuel Station - Hukkeri",
       "vendor": "D.D.Joshi & Asscociates",
@@ -6147,7 +6147,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202209000578",
-      "emr_date": "2023-01-02",
+      "emr_date": "02/01/2023",
       "emr_no": "2017061151G",
       "destination": "NRO Chadchan",
       "vendor": "LADWIN ENGG.WORKS",
@@ -6160,7 +6160,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E42",
       "serial_no": "202209000676",
-      "emr_date": "2023-01-02",
+      "emr_date": "02/01/2023",
       "emr_no": "2017061151G",
       "destination": "NRO Chadchan",
       "vendor": "LADWIN ENGG.WORKS",
@@ -6173,7 +6173,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202209000574",
-      "emr_date": "2023-01-10",
+      "emr_date": "10/01/2023",
       "emr_no": "2017061155G",
       "destination": "NRO Tabakanahalli",
       "vendor": "P.Venkateshwar",
@@ -6186,7 +6186,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E42",
       "serial_no": "202209000675",
-      "emr_date": "2023-01-10",
+      "emr_date": "10/01/2023",
       "emr_no": "2017061155G",
       "destination": "NRO Tabakanahalli",
       "vendor": "P.Venkateshwar",
@@ -6199,7 +6199,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202209000571",
-      "emr_date": "2023-02-03",
+      "emr_date": "03/02/2023",
       "emr_no": "2017061158G",
       "destination": "NRO Hangal",
       "vendor": "JUDE ENGG.WORKS",
@@ -6212,7 +6212,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202209000573",
-      "emr_date": "2023-02-03",
+      "emr_date": "03/02/2023",
       "emr_no": "2017061158G",
       "destination": "NRO Hangal",
       "vendor": "JUDE ENGG.WORKS",
@@ -6225,7 +6225,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E42",
       "serial_no": "202210000047",
-      "emr_date": "2023-02-23",
+      "emr_date": "23/02/2023",
       "emr_no": "2017061164G",
       "destination": "NRO Muchandi",
       "vendor": "JUDE ENGG.WORKS",
@@ -6238,7 +6238,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E42",
       "serial_no": "202210000233",
-      "emr_date": "2023-02-23",
+      "emr_date": "23/02/2023",
       "emr_no": "2017061164G",
       "destination": "NRO Muchandi",
       "vendor": "JUDE ENGG.WORKS",
@@ -6251,7 +6251,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202210000063",
-      "emr_date": "2023-03-06",
+      "emr_date": "06/03/2023",
       "emr_no": "2017061167G",
       "destination": "15526410 - SHRI BASAVESHWAR PETROL",
       "vendor": "MAA CONSTRUCTIONS",
@@ -6264,7 +6264,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202210000065",
-      "emr_date": "2023-03-06",
+      "emr_date": "06/03/2023",
       "emr_no": "2017061168G",
       "destination": "15205610 - Highway Serv Stn.",
       "vendor": "D.D.Joshi & Asscociates",
@@ -6277,7 +6277,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202210000064",
-      "emr_date": "2023-03-21",
+      "emr_date": "21/03/2023",
       "emr_no": "2017061170G",
       "destination": "15050910 - Neminath Petroleum",
       "vendor": "A. Majid",
@@ -6290,11 +6290,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E42",
       "serial_no": "202209000681",
-      "emr_date": "2023-03-21",
+      "emr_date": "21/03/2023",
       "emr_no": "2017061169G",
       "destination": "15891910 - Yavagal  Petroleum",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2023-04-03"
+      "out_date": "03/04/2023"
     },
     {
       "sno": 47,
@@ -6303,11 +6303,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202210000062",
-      "emr_date": "2023-04-18",
+      "emr_date": "18/04/2023",
       "emr_no": "2017061179G",
       "destination": "NRO K.K PETROLEUM",
       "vendor": "MAA CONSTRUCTIONS",
-      "out_date": "2023-04-18"
+      "out_date": "18/04/2023"
     },
     {
       "sno": 48,
@@ -6316,11 +6316,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202210000066",
-      "emr_date": "2023-04-18",
+      "emr_date": "18/04/2023",
       "emr_no": "2017061178G",
       "destination": "Shri Laxmi petroleum",
       "vendor": "MAA CONSTRUCTIONS",
-      "out_date": "2023-04-18"
+      "out_date": "18/04/2023"
     },
     {
       "sno": 49,
@@ -6329,11 +6329,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202210000069",
-      "emr_date": "2023-04-28",
+      "emr_date": "28/04/2023",
       "emr_no": "2017061183G",
       "destination": "15142810 - Aivalli & Co",
       "vendor": "SAHITYA ENGINEERS",
-      "out_date": "2023-04-28"
+      "out_date": "28/04/2023"
     },
     {
       "sno": 50,
@@ -6342,11 +6342,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202210000067",
-      "emr_date": "2023-04-28",
+      "emr_date": "28/04/2023",
       "emr_no": "2017061182G",
       "destination": "15143310 - Guru Mahant Petroleum",
       "vendor": "SAHITYA ENGINEERS",
-      "out_date": "2023-04-28"
+      "out_date": "28/04/2023"
     },
     {
       "sno": 51,
@@ -6355,7 +6355,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E42",
       "serial_no": "202209000677",
-      "emr_date": "2023-05-02",
+      "emr_date": "02/05/2023",
       "emr_no": "2017061185G",
       "destination": "NRO Kittur",
       "vendor": "LADWIN ENGG.WORKS",
@@ -6368,7 +6368,7 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202212000220",
-      "emr_date": "2023-05-02",
+      "emr_date": "02/05/2023",
       "emr_no": "2017061185G",
       "destination": "NRO Kittur",
       "vendor": "LADWIN ENGG.WORKS",
@@ -6381,11 +6381,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E42",
       "serial_no": "202209000679",
-      "emr_date": "2023-05-27",
+      "emr_date": "27/05/2023",
       "emr_no": "2017061188G",
       "destination": "Adhoc shanti enterprises",
       "vendor": "B.H MANE",
-      "out_date": "2023-05-27"
+      "out_date": "27/05/2023"
     },
     {
       "sno": 54,
@@ -6394,11 +6394,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E42",
       "serial_no": "202209000525",
-      "emr_date": "2023-05-27",
+      "emr_date": "27/05/2023",
       "emr_no": "2017061189G",
       "destination": "15198310 - Mahalaxmi petroleum",
       "vendor": "D.EMANUAL",
-      "out_date": "2023-05-27"
+      "out_date": "27/05/2023"
     },
     {
       "sno": 55,
@@ -6407,11 +6407,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E42",
       "serial_no": "202212000221",
-      "emr_date": "2023-05-29",
+      "emr_date": "29/05/2023",
       "emr_no": "2017061190G",
       "destination": "15247610 -Shri Appayyaswamy petroleum",
       "vendor": "MAA CONSTRUCTIONS",
-      "out_date": "2023-05-30"
+      "out_date": "30/05/2023"
     },
     {
       "sno": 56,
@@ -6420,11 +6420,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2247128",
-      "emr_date": "2023-05-19",
+      "emr_date": "19/05/2023",
       "emr_no": "2017061187G",
       "destination": "NRO HAVERI TWON",
       "vendor": "LADWIN ENGG.WORKS",
-      "out_date": "2023-06-01"
+      "out_date": "01/06/2023"
     },
     {
       "sno": 57,
@@ -6433,11 +6433,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SHPN-Q330",
       "serial_no": "M2306135",
-      "emr_date": "2023-05-19",
+      "emr_date": "19/05/2023",
       "emr_no": "2017061187G",
       "destination": "NRO HAVERI TWON",
       "vendor": "LADWIN ENGG.WORKS",
-      "out_date": "2023-06-01"
+      "out_date": "01/06/2023"
     },
     {
       "sno": 58,
@@ -6446,11 +6446,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2444SSPN-Q330",
       "serial_no": "M2306291",
-      "emr_date": "2023-05-19",
+      "emr_date": "19/05/2023",
       "emr_no": "2017061187G",
       "destination": "NRO HAVERI TWON",
       "vendor": "LADWIN ENGG.WORKS",
-      "out_date": "2023-06-01"
+      "out_date": "01/06/2023"
     },
     {
       "sno": 59,
@@ -6459,11 +6459,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2247130",
-      "emr_date": "2023-06-02",
+      "emr_date": "02/06/2023",
       "emr_no": "2017061191G",
       "destination": "11331010 - Prabhat Auto service",
       "vendor": "D.EMANUAL",
-      "out_date": "2023-06-02"
+      "out_date": "02/06/2023"
     },
     {
       "sno": 60,
@@ -6472,11 +6472,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2250112",
-      "emr_date": "2023-06-02",
+      "emr_date": "02/06/2023",
       "emr_no": "2017061192G",
       "destination": "15198310 - Mahalaxmi petroleum",
       "vendor": "D.EMANUAL",
-      "out_date": "2023-06-02"
+      "out_date": "02/06/2023"
     },
     {
       "sno": 61,
@@ -6485,11 +6485,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2251038",
-      "emr_date": "2023-06-20",
+      "emr_date": "20/06/2023",
       "emr_no": "2017061197G",
       "destination": "ADITYA RESITEMENT DHARWAD",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2023-06-20"
+      "out_date": "20/06/2023"
     },
     {
       "sno": 62,
@@ -6498,11 +6498,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2250200",
-      "emr_date": "2023-06-20",
+      "emr_date": "20/06/2023",
       "emr_no": "2017061197G",
       "destination": "ADITYA RESITEMENT DHARWAD",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2023-06-20"
+      "out_date": "20/06/2023"
     },
     {
       "sno": 63,
@@ -6511,11 +6511,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224HHPN-Q330",
       "serial_no": "M2251030",
-      "emr_date": "2023-06-20",
+      "emr_date": "20/06/2023",
       "emr_no": "2017061197G",
       "destination": "ADITYA RESITEMENT DHARWAD",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2023-06-20"
+      "out_date": "20/06/2023"
     },
     {
       "sno": 64,
@@ -6524,11 +6524,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2247153",
-      "emr_date": "2023-06-26",
+      "emr_date": "26/06/2023",
       "emr_no": "2017061198G",
       "destination": "15479410-MS PETROLEUM",
       "vendor": "M.H.ENTERPRISES",
-      "out_date": "2023-07-02"
+      "out_date": "02/07/2023"
     },
     {
       "sno": 65,
@@ -6537,11 +6537,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2247155",
-      "emr_date": "2023-07-03",
+      "emr_date": "03/07/2023",
       "emr_no": "2017061201G",
       "destination": "Sai Petrol pump-1",
       "vendor": "KC ELECTRICALS",
-      "out_date": "2023-07-03"
+      "out_date": "03/07/2023"
     },
     {
       "sno": 66,
@@ -6550,11 +6550,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2248103",
-      "emr_date": "2023-07-10",
+      "emr_date": "10/07/2023",
       "emr_no": "2017061202G",
       "destination": "Shradda petroleum",
       "vendor": "M.H.ENTERPRISES",
-      "out_date": "2023-07-11"
+      "out_date": "11/07/2023"
     },
     {
       "sno": 67,
@@ -6563,11 +6563,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2248304",
-      "emr_date": "2023-07-21",
+      "emr_date": "21/07/2023",
       "emr_no": "2017061206G",
       "destination": "NRO Nigdi",
       "vendor": "SAI ENTERPRISES",
-      "out_date": "2023-07-22"
+      "out_date": "22/07/2023"
     },
     {
       "sno": 68,
@@ -6576,11 +6576,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2248306",
-      "emr_date": "2023-07-21",
+      "emr_date": "21/07/2023",
       "emr_no": "2017061206G",
       "destination": "NRO Nigdi",
       "vendor": "SAI ENTERPRISES",
-      "out_date": "2023-07-22"
+      "out_date": "22/07/2023"
     },
     {
       "sno": 69,
@@ -6589,11 +6589,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E40",
       "serial_no": "202204000115",
-      "emr_date": "2023-07-21",
+      "emr_date": "21/07/2023",
       "emr_no": "2017061205G",
       "destination": "NRO TAKKOD",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2023-07-25"
+      "out_date": "25/07/2023"
     },
     {
       "sno": 70,
@@ -6602,11 +6602,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2248312",
-      "emr_date": "2023-07-21",
+      "emr_date": "21/07/2023",
       "emr_no": "2017061205G",
       "destination": "NRO TAKKOD",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2023-07-25"
+      "out_date": "25/07/2023"
     },
     {
       "sno": 71,
@@ -6615,11 +6615,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E40",
       "serial_no": "202204000109",
-      "emr_date": "2023-07-25",
+      "emr_date": "25/07/2023",
       "emr_no": "2017061207G",
       "destination": "NRO Yadwad",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2023-07-25"
+      "out_date": "25/07/2023"
     },
     {
       "sno": 72,
@@ -6628,11 +6628,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2248317",
-      "emr_date": "2023-07-25",
+      "emr_date": "25/07/2023",
       "emr_no": "2017061207G",
       "destination": "NRO Yadwad",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2023-07-25"
+      "out_date": "25/07/2023"
     },
     {
       "sno": 73,
@@ -6641,11 +6641,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E42",
       "serial_no": "202210000231",
-      "emr_date": "2023-07-25",
+      "emr_date": "25/07/2023",
       "emr_no": "2017061208G",
       "destination": "NRO Kagwad",
       "vendor": "A. MAJID",
-      "out_date": "2023-07-26"
+      "out_date": "26/07/2023"
     },
     {
       "sno": 74,
@@ -6654,11 +6654,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E42",
       "serial_no": "202210000232",
-      "emr_date": "2023-07-25",
+      "emr_date": "25/07/2023",
       "emr_no": "2017061208G",
       "destination": "NRO Kagwad",
       "vendor": "A. MAJID",
-      "out_date": "2023-07-26"
+      "out_date": "26/07/2023"
     },
     {
       "sno": 75,
@@ -6667,11 +6667,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SHPN-Q330",
       "serial_no": "M2306136",
-      "emr_date": "2023-07-28",
+      "emr_date": "28/07/2023",
       "emr_no": "2017061209G",
       "destination": "NRO Honawad",
       "vendor": "MIR ENGINEERING",
-      "out_date": "2023-07-28"
+      "out_date": "28/07/2023"
     },
     {
       "sno": 76,
@@ -6680,11 +6680,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SHPN-Q330",
       "serial_no": "M2306192",
-      "emr_date": "2023-07-28",
+      "emr_date": "28/07/2023",
       "emr_no": "2017061209G",
       "destination": "NRO Honawad",
       "vendor": "MIR ENGINEERING",
-      "out_date": "2023-07-28"
+      "out_date": "28/07/2023"
     },
     {
       "sno": 77,
@@ -6693,11 +6693,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E40",
       "serial_no": "202204000105",
-      "emr_date": "2023-07-21",
+      "emr_date": "21/07/2023",
       "emr_no": "2017061204G",
       "destination": "NRO Ramnagar",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2023-08-08"
+      "out_date": "08/08/2023"
     },
     {
       "sno": 78,
@@ -6706,11 +6706,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2248330",
-      "emr_date": "2023-07-21",
+      "emr_date": "21/07/2023",
       "emr_no": "2017061204G",
       "destination": "NRO Ramnagar",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2023-08-08"
+      "out_date": "08/08/2023"
     },
     {
       "sno": 79,
@@ -6719,11 +6719,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH3PMU2TNEC3E40",
       "serial_no": "202211000650",
-      "emr_date": "2023-08-07",
+      "emr_date": "07/08/2023",
       "emr_no": "2017061210G",
       "destination": "COMCO KOGNOLI",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2023-08-08"
+      "out_date": "08/08/2023"
     },
     {
       "sno": 80,
@@ -6732,11 +6732,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH3PMU2TNEC3E40",
       "serial_no": "202211000651",
-      "emr_date": "2023-08-07",
+      "emr_date": "07/08/2023",
       "emr_no": "2017061210G",
       "destination": "COMCO KOGNOLI",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2023-08-08"
+      "out_date": "08/08/2023"
     },
     {
       "sno": 81,
@@ -6745,11 +6745,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHQPSU2TNEC3E42",
       "serial_no": "202212000387",
-      "emr_date": "2023-08-07",
+      "emr_date": "07/08/2023",
       "emr_no": "2017061210G",
       "destination": "COMCO KOGNOLI",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2023-08-08"
+      "out_date": "08/08/2023"
     },
     {
       "sno": 82,
@@ -6758,11 +6758,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202209000476",
-      "emr_date": "2023-08-14",
+      "emr_date": "14/08/2023",
       "emr_no": "2017061212G",
       "destination": "NRO Bableshwar",
       "vendor": "D.EMANUAL",
-      "out_date": "2023-08-14"
+      "out_date": "14/08/2023"
     },
     {
       "sno": 83,
@@ -6771,11 +6771,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2251041",
-      "emr_date": "2023-08-14",
+      "emr_date": "14/08/2023",
       "emr_no": "2017061212G",
       "destination": "NRO Bableshwar",
       "vendor": "D.EMANUAL",
-      "out_date": "2023-08-14"
+      "out_date": "14/08/2023"
     },
     {
       "sno": 84,
@@ -6784,11 +6784,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224HHPN-Q330",
       "serial_no": "M2250325",
-      "emr_date": "2023-08-28",
+      "emr_date": "28/08/2023",
       "emr_no": "2017061213G",
       "destination": "NRO Mangutti",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2023-08-28"
+      "out_date": "28/08/2023"
     },
     {
       "sno": 85,
@@ -6797,11 +6797,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224HHPN-Q330",
       "serial_no": "M2250327",
-      "emr_date": "2023-08-28",
+      "emr_date": "28/08/2023",
       "emr_no": "2017061213G",
       "destination": "NRO Mangutti",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2023-08-28"
+      "out_date": "28/08/2023"
     },
     {
       "sno": 86,
@@ -6810,11 +6810,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2251046",
-      "emr_date": "2023-09-11",
+      "emr_date": "11/09/2023",
       "emr_no": "2017061217G",
       "destination": "15069510 - Sulekeri Petroleum",
       "vendor": "MAA CONSTRUCTIONS",
-      "out_date": "2023-09-11"
+      "out_date": "11/09/2023"
     },
     {
       "sno": 87,
@@ -6823,11 +6823,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E42",
       "serial_no": "202210000234",
-      "emr_date": "2023-09-15",
+      "emr_date": "15/09/2023",
       "emr_no": "2017061218G",
       "destination": "NRO MANGUR",
       "vendor": "A. MAJID",
-      "out_date": "2023-09-15"
+      "out_date": "15/09/2023"
     },
     {
       "sno": 88,
@@ -6836,11 +6836,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202210000274",
-      "emr_date": "2023-09-15",
+      "emr_date": "15/09/2023",
       "emr_no": "2017061218G",
       "destination": "NRO MANGUR",
       "vendor": "A. MAJID",
-      "out_date": "2023-09-15"
+      "out_date": "15/09/2023"
     },
     {
       "sno": 89,
@@ -6849,11 +6849,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202211000726",
-      "emr_date": "2023-10-11",
+      "emr_date": "11/10/2023",
       "emr_no": "2017061220G",
       "destination": "NRO SAVANUR",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2023-10-12"
+      "out_date": "12/10/2023"
     },
     {
       "sno": 90,
@@ -6862,11 +6862,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202211000727",
-      "emr_date": "2023-10-11",
+      "emr_date": "11/10/2023",
       "emr_no": "2017061220G",
       "destination": "NRO SAVANUR",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2023-10-12"
+      "out_date": "12/10/2023"
     },
     {
       "sno": 91,
@@ -6875,11 +6875,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202211000728",
-      "emr_date": "2023-10-13",
+      "emr_date": "13/10/2023",
       "emr_no": "2017061222G",
       "destination": "NRO PATTADKAL",
       "vendor": "MIR ENGG.",
-      "out_date": "2023-10-13"
+      "out_date": "13/10/2023"
     },
     {
       "sno": 92,
@@ -6888,11 +6888,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202211000729",
-      "emr_date": "2023-10-13",
+      "emr_date": "13/10/2023",
       "emr_no": "2017061222G",
       "destination": "NRO PATTADKAL",
       "vendor": "MIR ENGG.",
-      "out_date": "2023-10-13"
+      "out_date": "13/10/2023"
     },
     {
       "sno": 93,
@@ -6901,11 +6901,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202211000725",
-      "emr_date": "2023-10-13",
+      "emr_date": "13/10/2023",
       "emr_no": "2017061223G",
       "destination": "HAROBELWADI",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2023-10-13"
+      "out_date": "13/10/2023"
     },
     {
       "sno": 94,
@@ -6914,11 +6914,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202211000732",
-      "emr_date": "2023-10-13",
+      "emr_date": "13/10/2023",
       "emr_no": "2017061223G",
       "destination": "HAROBELWADI",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2023-10-13"
+      "out_date": "13/10/2023"
     },
     {
       "sno": 95,
@@ -6927,11 +6927,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202211000730",
-      "emr_date": "2023-10-12",
+      "emr_date": "12/10/2023",
       "emr_no": "2017061221G",
       "destination": "NRO KURGUND",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2023-10-13"
+      "out_date": "13/10/2023"
     },
     {
       "sno": 96,
@@ -6940,11 +6940,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202211000731",
-      "emr_date": "2023-10-12",
+      "emr_date": "12/10/2023",
       "emr_no": "2017061221G",
       "destination": "NRO KURGUND",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2023-10-13"
+      "out_date": "13/10/2023"
     },
     {
       "sno": 97,
@@ -6953,11 +6953,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202210000272",
-      "emr_date": "2023-10-17",
+      "emr_date": "17/10/2023",
       "emr_no": "2017061226G",
       "destination": "NRO BADRAPUR",
       "vendor": "BM Petromech",
-      "out_date": "2023-10-17"
+      "out_date": "17/10/2023"
     },
     {
       "sno": 98,
@@ -6966,11 +6966,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202211000733",
-      "emr_date": "2023-10-17",
+      "emr_date": "17/10/2023",
       "emr_no": "2017061226G",
       "destination": "NRO BADRAPUR",
       "vendor": "BM Petromech",
-      "out_date": "2023-10-17"
+      "out_date": "17/10/2023"
     },
     {
       "sno": 99,
@@ -6979,11 +6979,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202209000477",
-      "emr_date": "2023-10-20",
+      "emr_date": "20/10/2023",
       "emr_no": "2017061227G",
       "destination": "NRO Yadwad",
       "vendor": "M.M Enterprises",
-      "out_date": "2023-10-23"
+      "out_date": "23/10/2023"
     },
     {
       "sno": 100,
@@ -6992,11 +6992,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202209000479",
-      "emr_date": "2023-10-20",
+      "emr_date": "20/10/2023",
       "emr_no": "2017061228G",
       "destination": "Enkay Petroleum",
       "vendor": "M.H Enterprises",
-      "out_date": "2023-10-23"
+      "out_date": "23/10/2023"
     },
     {
       "sno": 101,
@@ -7005,11 +7005,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2250309",
-      "emr_date": "2023-11-18",
+      "emr_date": "18/11/2023",
       "emr_no": "2017061230G",
       "destination": "Ambika filling station-NRO managutti",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2023-11-20"
+      "out_date": "20/11/2023"
     },
     {
       "sno": 102,
@@ -7018,11 +7018,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202210000266",
-      "emr_date": "2023-12-12",
+      "emr_date": "12/12/2023",
       "emr_no": "2017061233G",
       "destination": "41044792-Harshita petroleum",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2023-12-12"
+      "out_date": "12/12/2023"
     },
     {
       "sno": 103,
@@ -7031,11 +7031,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2251044",
-      "emr_date": "2023-12-12",
+      "emr_date": "12/12/2023",
       "emr_no": "2017061233G",
       "destination": "41050959-Shivabasava Auto Oil Trading",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2023-12-12"
+      "out_date": "12/12/2023"
     },
     {
       "sno": 104,
@@ -7044,11 +7044,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202210000273",
-      "emr_date": "2024-01-06",
+      "emr_date": "06/01/2024",
       "emr_no": "2017061238G",
       "destination": "41045962-MS AIVALLI AND CO",
       "vendor": "KC ELECTRICALS",
-      "out_date": "2024-01-08"
+      "out_date": "08/01/2024"
     },
     {
       "sno": 105,
@@ -7057,11 +7057,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2350557",
-      "emr_date": "2024-01-27",
+      "emr_date": "27/01/2024",
       "emr_no": "2017061240G",
       "destination": "NRO KERUR",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-01-27"
+      "out_date": "27/01/2024"
     },
     {
       "sno": 106,
@@ -7070,11 +7070,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000300",
-      "emr_date": "2024-01-27",
+      "emr_date": "27/01/2024",
       "emr_no": "2017061240G",
       "destination": "NRO KERUR",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-01-27"
+      "out_date": "27/01/2024"
     },
     {
       "sno": 107,
@@ -7083,11 +7083,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000304",
-      "emr_date": "2024-01-27",
+      "emr_date": "27/01/2024",
       "emr_no": "2017061240G",
       "destination": "NRO KERUR",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-01-27"
+      "out_date": "27/01/2024"
     },
     {
       "sno": 108,
@@ -7096,11 +7096,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224HHPN-Q330",
       "serial_no": "M2251032",
-      "emr_date": "2024-02-07",
+      "emr_date": "07/02/2024",
       "emr_no": "2017061242G",
       "destination": "NRO SATTIGERI",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-02-07"
+      "out_date": "07/02/2024"
     },
     {
       "sno": 109,
@@ -7109,11 +7109,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SHPN-Q330",
       "serial_no": "M2306132",
-      "emr_date": "2024-02-07",
+      "emr_date": "07/02/2024",
       "emr_no": "2017061242G",
       "destination": "NRO SATTIGERI",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-02-07"
+      "out_date": "07/02/2024"
     },
     {
       "sno": 110,
@@ -7122,11 +7122,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224HHPN-Q330",
       "serial_no": "M2251031",
-      "emr_date": "2024-02-07",
+      "emr_date": "07/02/2024",
       "emr_no": "2017061243G",
       "destination": "NRO PARTHANHALLI",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-02-07"
+      "out_date": "07/02/2024"
     },
     {
       "sno": 111,
@@ -7135,11 +7135,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2351341",
-      "emr_date": "2024-02-07",
+      "emr_date": "07/02/2024",
       "emr_no": "2017061243G",
       "destination": "NRO PARTHANHALLI",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-02-07"
+      "out_date": "07/02/2024"
     },
     {
       "sno": 112,
@@ -7148,11 +7148,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202210000275",
-      "emr_date": "2024-02-12",
+      "emr_date": "12/02/2024",
       "emr_no": "2017061244G",
       "destination": "NRO LAKHUNDI",
       "vendor": "A. Majid",
-      "out_date": "2024-02-12"
+      "out_date": "12/02/2024"
     },
     {
       "sno": 113,
@@ -7161,11 +7161,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000301",
-      "emr_date": "2024-02-12",
+      "emr_date": "12/02/2024",
       "emr_no": "2017061244G",
       "destination": "NRO LAKHUNDI",
       "vendor": "A. Majid",
-      "out_date": "2024-02-12"
+      "out_date": "12/02/2024"
     },
     {
       "sno": 114,
@@ -7174,11 +7174,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000303",
-      "emr_date": "2024-03-29",
+      "emr_date": "29/03/2024",
       "emr_no": "2017061251G",
       "destination": "NRO Ramnagar",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-03-29"
+      "out_date": "29/03/2024"
     },
     {
       "sno": 115,
@@ -7187,11 +7187,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2351343",
-      "emr_date": "2024-04-03",
+      "emr_date": "03/04/2024",
       "emr_no": "2017061252G",
       "destination": "NRO LACHYAN",
       "vendor": "P VENKATESHWAR RAO",
-      "out_date": "2024-04-03"
+      "out_date": "03/04/2024"
     },
     {
       "sno": 116,
@@ -7200,11 +7200,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2401247",
-      "emr_date": "2024-04-03",
+      "emr_date": "03/04/2024",
       "emr_no": "2017061252G",
       "destination": "NRO LACHYAN",
       "vendor": "P VENKATESHWAR RAO",
-      "out_date": "2024-04-03"
+      "out_date": "03/04/2024"
     },
     {
       "sno": 117,
@@ -7213,11 +7213,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000294",
-      "emr_date": "2024-04-06",
+      "emr_date": "06/04/2024",
       "emr_no": "2017061253G",
       "destination": "ADHOC MAMDAPUR PETROLEUM",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-04-06"
+      "out_date": "06/04/2024"
     },
     {
       "sno": 118,
@@ -7226,11 +7226,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2248330",
-      "emr_date": "2024-04-15",
+      "emr_date": "15/04/2024",
       "emr_no": "2017061254G",
       "destination": "41050966-Shri Mallikarjun SS",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-04-15"
+      "out_date": "15/04/2024"
     },
     {
       "sno": 119,
@@ -7239,11 +7239,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHQPSU2TNEC3E42",
       "serial_no": "202212000388",
-      "emr_date": "2024-04-15",
+      "emr_date": "15/04/2024",
       "emr_no": "2017061256G",
       "destination": "PADMAVATI PETROLEUM - KAGWAD",
       "vendor": "RAJARAM KADAM",
-      "out_date": "2024-04-16"
+      "out_date": "16/04/2024"
     },
     {
       "sno": 120,
@@ -7252,11 +7252,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2351281",
-      "emr_date": "2024-04-18",
+      "emr_date": "18/04/2024",
       "emr_no": "2017061257G",
       "destination": "NRO GOKAK",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2024-04-18"
+      "out_date": "18/04/2024"
     },
     {
       "sno": 121,
@@ -7265,11 +7265,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2401230",
-      "emr_date": "2024-04-18",
+      "emr_date": "18/04/2024",
       "emr_no": "2017061257G",
       "destination": "NRO GOKAK",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2024-04-18"
+      "out_date": "18/04/2024"
     },
     {
       "sno": 122,
@@ -7278,11 +7278,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2401240",
-      "emr_date": "2024-04-19",
+      "emr_date": "19/04/2024",
       "emr_no": "2017061258G",
       "destination": "41039640-SHREE GURUSHANTESHWAR PETROLE",
       "vendor": "D.EMANUAL",
-      "out_date": "2024-04-20"
+      "out_date": "20/04/2024"
     },
     {
       "sno": 123,
@@ -7291,11 +7291,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHQPSU2TNEC3E42",
       "serial_no": "202212000389",
-      "emr_date": "2024-04-22",
+      "emr_date": "22/04/2024",
       "emr_no": "2017061259G",
       "destination": "NRO HALAGA",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-04-22"
+      "out_date": "22/04/2024"
     },
     {
       "sno": 124,
@@ -7304,11 +7304,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2351432",
-      "emr_date": "2024-04-22",
+      "emr_date": "22/04/2024",
       "emr_no": "2017061259G",
       "destination": "NRO HALAGA",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-04-22"
+      "out_date": "22/04/2024"
     },
     {
       "sno": 125,
@@ -7317,11 +7317,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000295",
-      "emr_date": "2024-04-22",
+      "emr_date": "22/04/2024",
       "emr_no": "2017061260G",
       "destination": "MANGALORE TERMINAL",
       "vendor": "P.S.V Hubli",
-      "out_date": "2024-04-22"
+      "out_date": "22/04/2024"
     },
     {
       "sno": 126,
@@ -7330,11 +7330,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2444SSPN-Q330",
       "serial_no": "M2306300",
-      "emr_date": "2024-04-22",
+      "emr_date": "22/04/2024",
       "emr_no": "2017061260G",
       "destination": "MANGALORE TERMINAL",
       "vendor": "P.S.V Hubli",
-      "out_date": "2024-04-22"
+      "out_date": "22/04/2024"
     },
     {
       "sno": 127,
@@ -7343,11 +7343,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2444SSPN-Q330",
       "serial_no": "M2344550",
-      "emr_date": "2024-04-22",
+      "emr_date": "22/04/2024",
       "emr_no": "2017061260G",
       "destination": "MANGALORE TERMINAL",
       "vendor": "P.S.V Hubli",
-      "out_date": "2024-04-22"
+      "out_date": "22/04/2024"
     },
     {
       "sno": 128,
@@ -7356,11 +7356,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000296",
-      "emr_date": "2024-04-26",
+      "emr_date": "26/04/2024",
       "emr_no": "2017061261G",
       "destination": "41012814-RAMDEEP PETROLEUM",
       "vendor": "PARAM ENGINEERS",
-      "out_date": "2024-04-26"
+      "out_date": "26/04/2024"
     },
     {
       "sno": 129,
@@ -7369,11 +7369,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH3PMU2TNEC3E40",
       "serial_no": "202211000655",
-      "emr_date": "2024-05-03",
+      "emr_date": "03/05/2024",
       "emr_no": "2017061269G",
       "destination": "NRO HALAGA",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-05-03"
+      "out_date": "03/05/2024"
     },
     {
       "sno": 130,
@@ -7382,11 +7382,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000297",
-      "emr_date": "2024-05-03",
+      "emr_date": "03/05/2024",
       "emr_no": "2017061266G",
       "destination": "41008700 - NARAYAN SHINDE PETROLEUMS",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-05-04"
+      "out_date": "04/05/2024"
     },
     {
       "sno": 131,
@@ -7395,11 +7395,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000298",
-      "emr_date": "2024-05-03",
+      "emr_date": "03/05/2024",
       "emr_no": "2017061267G",
       "destination": "41030162 - SAI TONDINAVAR FUEL STATION",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-05-04"
+      "out_date": "04/05/2024"
     },
     {
       "sno": 132,
@@ -7408,11 +7408,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2401245",
-      "emr_date": "2024-05-03",
+      "emr_date": "03/05/2024",
       "emr_no": "2017061265G",
       "destination": "41045557-T T N PETROLEUMS",
       "vendor": "M J CONSTRUCTION",
-      "out_date": "2024-05-04"
+      "out_date": "04/05/2024"
     },
     {
       "sno": 133,
@@ -7421,11 +7421,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000299",
-      "emr_date": "2024-05-04",
+      "emr_date": "04/05/2024",
       "emr_no": "2017061271G",
       "destination": "NRO Torvi",
       "vendor": "D.EMMANUEL",
-      "out_date": "2024-05-04"
+      "out_date": "04/05/2024"
     },
     {
       "sno": 134,
@@ -7434,11 +7434,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000306",
-      "emr_date": "2024-05-04",
+      "emr_date": "04/05/2024",
       "emr_no": "2017061271G",
       "destination": "NRO Torvi",
       "vendor": "D.EMMANUEL",
-      "out_date": "2024-05-04"
+      "out_date": "04/05/2024"
     },
     {
       "sno": 135,
@@ -7447,11 +7447,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ3662SHPN-Q430",
       "serial_no": "M2307408",
-      "emr_date": "2024-05-03",
+      "emr_date": "03/05/2024",
       "emr_no": "2017061270G",
       "destination": "NRO GOKAK",
       "vendor": "JUDE ENGG WORKS",
-      "out_date": "2024-05-09"
+      "out_date": "09/05/2024"
     },
     {
       "sno": 136,
@@ -7460,11 +7460,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2351435",
-      "emr_date": "2024-05-23",
+      "emr_date": "23/05/2024",
       "emr_no": "2017061274G",
       "destination": "NRO KOGNOLI",
       "vendor": "PARAM ENGINEERING",
-      "out_date": "2024-05-23"
+      "out_date": "23/05/2024"
     },
     {
       "sno": 137,
@@ -7473,11 +7473,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2351438",
-      "emr_date": "2024-05-23",
+      "emr_date": "23/05/2024",
       "emr_no": "2017061274G",
       "destination": "NRO KOGNOLI",
       "vendor": "PARAM ENGINEERING",
-      "out_date": "2024-05-23"
+      "out_date": "23/05/2024"
     },
     {
       "sno": 138,
@@ -7486,11 +7486,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2351471",
-      "emr_date": "2024-05-23",
+      "emr_date": "23/05/2024",
       "emr_no": "2017061274G",
       "destination": "NRO KOGNOLI",
       "vendor": "PARAM ENGINEERING",
-      "out_date": "2024-05-23"
+      "out_date": "23/05/2024"
     },
     {
       "sno": 139,
@@ -7499,11 +7499,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000302",
-      "emr_date": "2024-05-27",
+      "emr_date": "27/05/2024",
       "emr_no": "2017061276G",
       "destination": "NRO LAXMESHWAR",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2024-05-29"
+      "out_date": "29/05/2024"
     },
     {
       "sno": 140,
@@ -7512,11 +7512,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000307",
-      "emr_date": "2024-05-27",
+      "emr_date": "27/05/2024",
       "emr_no": "2017061276G",
       "destination": "NRO LAXMESHWAR",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2024-05-29"
+      "out_date": "29/05/2024"
     },
     {
       "sno": 141,
@@ -7525,11 +7525,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000305",
-      "emr_date": "2024-06-11",
+      "emr_date": "11/06/2024",
       "emr_no": "2017061280G",
       "destination": "NRO Mulgund",
       "vendor": "A.Majid",
-      "out_date": "2024-06-11"
+      "out_date": "11/06/2024"
     },
     {
       "sno": 142,
@@ -7538,11 +7538,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000308",
-      "emr_date": "2024-06-11",
+      "emr_date": "11/06/2024",
       "emr_no": "2017061280G",
       "destination": "NRO Mulgund",
       "vendor": "A.Majid",
-      "out_date": "2024-06-11"
+      "out_date": "11/06/2024"
     },
     {
       "sno": 143,
@@ -7551,11 +7551,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224HHPN-Q330",
       "serial_no": "M2250328",
-      "emr_date": "2024-06-13",
+      "emr_date": "13/06/2024",
       "emr_no": "2017061281G",
       "destination": "NRO COCO Arabhavi",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-06-17"
+      "out_date": "17/06/2024"
     },
     {
       "sno": 144,
@@ -7564,11 +7564,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224HHPN-Q330",
       "serial_no": "M2251019",
-      "emr_date": "2024-06-13",
+      "emr_date": "13/06/2024",
       "emr_no": "2017061281G",
       "destination": "NRO COCO Arabhavi",
       "vendor": "D D Joshi & Associates",
-      "out_date": "2024-06-17"
+      "out_date": "17/06/2024"
     },
     {
       "sno": 145,
@@ -7577,11 +7577,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2351431",
-      "emr_date": "2024-06-20",
+      "emr_date": "20/06/2024",
       "emr_no": "2017061282G",
       "destination": "NRO NIPPANI",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-06-20"
+      "out_date": "20/06/2024"
     },
     {
       "sno": 146,
@@ -7590,11 +7590,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2407381",
-      "emr_date": "2024-06-20",
+      "emr_date": "20/06/2024",
       "emr_no": "2017061282G",
       "destination": "NRO NIPPANI",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-06-20"
+      "out_date": "20/06/2024"
     },
     {
       "sno": 147,
@@ -7603,11 +7603,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224HHPN-Q330",
       "serial_no": "M2408196",
-      "emr_date": "2024-06-21",
+      "emr_date": "21/06/2024",
       "emr_no": "2017061286G",
       "destination": "NRO Devagiri",
       "vendor": "HID Constructions",
-      "out_date": "2024-06-21"
+      "out_date": "21/06/2024"
     },
     {
       "sno": 148,
@@ -7616,11 +7616,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224HHPN-Q330",
       "serial_no": "M2408190",
-      "emr_date": "2024-06-21",
+      "emr_date": "21/06/2024",
       "emr_no": "2017061286G",
       "destination": "NRO Devagiri",
       "vendor": "HID Constructions",
-      "out_date": "2024-06-21"
+      "out_date": "21/06/2024"
     },
     {
       "sno": 149,
@@ -7629,11 +7629,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2444SSPN-Q330",
       "serial_no": "M2402108",
-      "emr_date": "2024-06-25",
+      "emr_date": "25/06/2024",
       "emr_no": "2017061287G",
       "destination": "NRO Kittur - CC",
       "vendor": "G.K.CONSTRUCTIONS",
-      "out_date": "2024-06-26"
+      "out_date": "26/06/2024"
     },
     {
       "sno": 150,
@@ -7642,11 +7642,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2444SSPN-Q330",
       "serial_no": "M2402112",
-      "emr_date": "2024-06-25",
+      "emr_date": "25/06/2024",
       "emr_no": "2017061287G",
       "destination": "NRO Kittur - CC",
       "vendor": "G.K.CONSTRUCTIONS",
-      "out_date": "2024-06-26"
+      "out_date": "26/06/2024"
     },
     {
       "sno": 151,
@@ -7655,11 +7655,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2444SSPN-Q330",
       "serial_no": "M2402117",
-      "emr_date": "2024-06-25",
+      "emr_date": "25/06/2024",
       "emr_no": "2017061287G",
       "destination": "NRO Kittur - CC",
       "vendor": "G.K.CONSTRUCTIONS",
-      "out_date": "2024-06-26"
+      "out_date": "26/06/2024"
     },
     {
       "sno": 152,
@@ -7668,11 +7668,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224HHPN-Q330",
       "serial_no": "M2251024",
-      "emr_date": "2024-07-06",
+      "emr_date": "06/07/2024",
       "emr_no": "2017061288G",
       "destination": "41050970 - Sanmati Diesel",
       "vendor": "A.Majid",
-      "out_date": "2024-07-06"
+      "out_date": "06/07/2024"
     },
     {
       "sno": 153,
@@ -7681,11 +7681,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2350433",
-      "emr_date": "2024-07-06",
+      "emr_date": "06/07/2024",
       "emr_no": "2017061288G",
       "destination": "41050970 - Sanmati Diesel",
       "vendor": "A.Majid",
-      "out_date": "2024-07-06"
+      "out_date": "06/07/2024"
     },
     {
       "sno": 154,
@@ -7694,11 +7694,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224HHPN-Q330",
       "serial_no": "M2408201",
-      "emr_date": "2024-07-06",
+      "emr_date": "06/07/2024",
       "emr_no": "2017061288G",
       "destination": "41050970 - Sanmati Diesel",
       "vendor": "A.Majid",
-      "out_date": "2024-07-06"
+      "out_date": "06/07/2024"
     },
     {
       "sno": 155,
@@ -7707,11 +7707,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2402144",
-      "emr_date": "2024-07-09",
+      "emr_date": "09/07/2024",
       "emr_no": "2017061289G",
       "destination": "41050546 - B R MALI",
       "vendor": "P.Venkateshwar",
-      "out_date": "2024-07-09"
+      "out_date": "09/07/2024"
     },
     {
       "sno": 156,
@@ -7720,11 +7720,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E42",
       "serial_no": "202212000309",
-      "emr_date": "2024-07-23",
+      "emr_date": "23/07/2024",
       "emr_no": "2017061284G",
       "destination": "NRO ATHANI",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-07-24"
+      "out_date": "24/07/2024"
     },
     {
       "sno": 157,
@@ -7733,11 +7733,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2402149",
-      "emr_date": "2024-07-23",
+      "emr_date": "23/07/2024",
       "emr_no": "2017061284G",
       "destination": "NRO ATHANI",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2024-07-24"
+      "out_date": "24/07/2024"
     },
     {
       "sno": 158,
@@ -7746,11 +7746,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2402152",
-      "emr_date": "2024-07-26",
+      "emr_date": "26/07/2024",
       "emr_no": "2017061291G",
       "destination": "NRO Badrakatti",
       "vendor": "MIR ENGG.",
-      "out_date": "2024-07-27"
+      "out_date": "27/07/2024"
     },
     {
       "sno": 159,
@@ -7759,11 +7759,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2402154",
-      "emr_date": "2024-07-26",
+      "emr_date": "26/07/2024",
       "emr_no": "2017061291G",
       "destination": "NRO Badrakatti",
       "vendor": "MIR ENGG.",
-      "out_date": "2024-07-27"
+      "out_date": "27/07/2024"
     },
     {
       "sno": 160,
@@ -7772,11 +7772,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2444SSPN-Q330",
       "serial_no": "M2402123",
-      "emr_date": "2024-07-26",
+      "emr_date": "26/07/2024",
       "emr_no": "2017061292G",
       "destination": "41050970 - Sanmati Diesel",
       "vendor": "A.Majid",
-      "out_date": "2024-07-28"
+      "out_date": "28/07/2024"
     },
     {
       "sno": 161,
@@ -7785,11 +7785,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202407000818",
-      "emr_date": "2024-08-12",
+      "emr_date": "12/08/2024",
       "emr_no": "2017061295G",
       "destination": "COMCO KOGNOLI",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2024-08-12"
+      "out_date": "12/08/2024"
     },
     {
       "sno": 162,
@@ -7798,11 +7798,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202407000821",
-      "emr_date": "2024-08-12",
+      "emr_date": "12/08/2024",
       "emr_no": "2017061295G",
       "destination": "COMCO KOGNOLI",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2024-08-12"
+      "out_date": "12/08/2024"
     },
     {
       "sno": 163,
@@ -7811,11 +7811,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202407000832",
-      "emr_date": "2024-08-16",
+      "emr_date": "16/08/2024",
       "emr_no": "2017061297G",
       "destination": "NRO BADACHI",
       "vendor": "SPARK ENTERPPRISES",
-      "out_date": "2024-08-17"
+      "out_date": "17/08/2024"
     },
     {
       "sno": 164,
@@ -7824,11 +7824,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202407000835",
-      "emr_date": "2024-08-16",
+      "emr_date": "16/08/2024",
       "emr_no": "2017061297G",
       "destination": "NRO HARUGERI",
       "vendor": "SPARK ENTERPPRISES",
-      "out_date": "2024-08-17"
+      "out_date": "17/08/2024"
     },
     {
       "sno": 165,
@@ -7837,11 +7837,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202407000830",
-      "emr_date": "2024-08-16",
+      "emr_date": "16/08/2024",
       "emr_no": "2017061296G",
       "destination": "NRO BADACHI",
       "vendor": "SPARK ENTERPPRISES",
-      "out_date": "2024-08-17"
+      "out_date": "17/08/2024"
     },
     {
       "sno": 166,
@@ -7850,11 +7850,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202407000833",
-      "emr_date": "2024-08-16",
+      "emr_date": "16/08/2024",
       "emr_no": "2017061296G",
       "destination": "NRO BADACHI",
       "vendor": "SPARK ENTERPPRISES",
-      "out_date": "2024-08-17"
+      "out_date": "17/08/2024"
     },
     {
       "sno": 167,
@@ -7863,11 +7863,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202407000874",
-      "emr_date": "2024-08-16",
+      "emr_date": "16/08/2024",
       "emr_no": "2017061296G",
       "destination": "NRO HARUGERI",
       "vendor": "SPARK ENTERPPRISES",
-      "out_date": "2024-08-17"
+      "out_date": "17/08/2024"
     },
     {
       "sno": 168,
@@ -7876,11 +7876,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202407000875",
-      "emr_date": "2024-08-21",
+      "emr_date": "21/08/2024",
       "emr_no": "2017061298G",
       "destination": "NRO HUKKERI",
       "vendor": "JUDE ENGG",
-      "out_date": "2024-08-22"
+      "out_date": "22/08/2024"
     },
     {
       "sno": 169,
@@ -7889,11 +7889,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202407000823",
-      "emr_date": "2024-08-21",
+      "emr_date": "21/08/2024",
       "emr_no": "2017061298G",
       "destination": "NRO HUKKERI",
       "vendor": "JUDE ENGG",
-      "out_date": "2024-08-22"
+      "out_date": "22/08/2024"
     },
     {
       "sno": 170,
@@ -7902,11 +7902,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202407000876",
-      "emr_date": "2024-08-26",
+      "emr_date": "26/08/2024",
       "emr_no": "2017061300G",
       "destination": "NRO KAMATNUR",
       "vendor": "M.B.HUGAR",
-      "out_date": "2024-08-27"
+      "out_date": "27/08/2024"
     },
     {
       "sno": 171,
@@ -7915,11 +7915,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202407000824",
-      "emr_date": "2024-08-26",
+      "emr_date": "26/08/2024",
       "emr_no": "2017061300G",
       "destination": "NRO KAMATNUR",
       "vendor": "M.B.HUGAR",
-      "out_date": "2024-08-27"
+      "out_date": "27/08/2024"
     },
     {
       "sno": 172,
@@ -7928,11 +7928,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202407000873",
-      "emr_date": "2024-08-26",
+      "emr_date": "26/08/2024",
       "emr_no": "2017061299G",
       "destination": "NRO BATKURKI",
       "vendor": "D.D.JOSHI & ASSOCIATES",
-      "out_date": "2024-08-29"
+      "out_date": "29/08/2024"
     },
     {
       "sno": 173,
@@ -7941,11 +7941,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202407000834",
-      "emr_date": "2024-08-26",
+      "emr_date": "26/08/2024",
       "emr_no": "2017061299G",
       "destination": "NRO BATKURKI",
       "vendor": "D.D.JOSHI & ASSOCIATES",
-      "out_date": "2024-08-29"
+      "out_date": "29/08/2024"
     },
     {
       "sno": 174,
@@ -7954,11 +7954,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202407000863",
-      "emr_date": "2024-09-09",
+      "emr_date": "09/09/2024",
       "emr_no": "2017061302G",
       "destination": "Cochin Retail RRO",
       "vendor": "P.S.V.HUBLI",
-      "out_date": "2024-09-09"
+      "out_date": "09/09/2024"
     },
     {
       "sno": 175,
@@ -7967,11 +7967,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202407000868",
-      "emr_date": "2024-09-09",
+      "emr_date": "09/09/2024",
       "emr_no": "2017061302G",
       "destination": "Cochin Retail RRO",
       "vendor": "P.S.V.HUBLI",
-      "out_date": "2024-09-09"
+      "out_date": "09/09/2024"
     },
     {
       "sno": 176,
@@ -7980,11 +7980,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202407000872",
-      "emr_date": "2024-09-20",
+      "emr_date": "20/09/2024",
       "emr_no": "2017061306G",
       "destination": "NRO BILGI",
       "vendor": "BHAGYA & COMPANY",
-      "out_date": "2024-09-24"
+      "out_date": "24/09/2024"
     },
     {
       "sno": 177,
@@ -7993,11 +7993,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202407000871",
-      "emr_date": "2024-09-20",
+      "emr_date": "20/09/2024",
       "emr_no": "2017061305G",
       "destination": "NRO MALLAPUR",
       "vendor": "BHAGYA & COMPANY",
-      "out_date": "2024-09-24"
+      "out_date": "24/09/2024"
     },
     {
       "sno": 178,
@@ -8010,7 +8010,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BILGI",
       "vendor": "",
-      "out_date": "2024-10-03"
+      "out_date": "03/10/2024"
     },
     {
       "sno": 179,
@@ -8023,7 +8023,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO MALLAPUR",
       "vendor": "",
-      "out_date": "2024-10-03"
+      "out_date": "03/10/2024"
     },
     {
       "sno": 180,
@@ -8036,7 +8036,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO Shabhandar",
       "vendor": "",
-      "out_date": "2024-10-05"
+      "out_date": "05/10/2024"
     },
     {
       "sno": 181,
@@ -8049,7 +8049,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO Shabhandar",
       "vendor": "",
-      "out_date": "2024-10-05"
+      "out_date": "05/10/2024"
     },
     {
       "sno": 182,
@@ -8062,7 +8062,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO YAMAGURNI(AP PETRO)",
       "vendor": "",
-      "out_date": "2024-10-09"
+      "out_date": "09/10/2024"
     },
     {
       "sno": 183,
@@ -8075,7 +8075,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO YAMAGURNI(AP PETRO)",
       "vendor": "",
-      "out_date": "2024-10-09"
+      "out_date": "09/10/2024"
     },
     {
       "sno": 184,
@@ -8088,7 +8088,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO YAMAGURNI(AP PETRO)",
       "vendor": "",
-      "out_date": "2024-10-09"
+      "out_date": "09/10/2024"
     },
     {
       "sno": 185,
@@ -8101,7 +8101,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO Makaravalli",
       "vendor": "",
-      "out_date": "2024-10-15"
+      "out_date": "15/10/2024"
     },
     {
       "sno": 186,
@@ -8114,7 +8114,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO Makaravalli",
       "vendor": "",
-      "out_date": "2024-10-15"
+      "out_date": "15/10/2024"
     },
     {
       "sno": 187,
@@ -8127,7 +8127,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO GOKAK",
       "vendor": "",
-      "out_date": "2024-10-15"
+      "out_date": "15/10/2024"
     },
     {
       "sno": 188,
@@ -8140,7 +8140,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO GOKAK",
       "vendor": "",
-      "out_date": "2024-10-15"
+      "out_date": "15/10/2024"
     },
     {
       "sno": 189,
@@ -8153,7 +8153,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "KARTIKEYA FUELS NARAYANPUR",
       "vendor": "",
-      "out_date": "2024-10-16"
+      "out_date": "16/10/2024"
     },
     {
       "sno": 190,
@@ -8166,7 +8166,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BASARKOD",
       "vendor": "",
-      "out_date": "2024-10-17"
+      "out_date": "17/10/2024"
     },
     {
       "sno": 191,
@@ -8179,7 +8179,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO BASARKOD",
       "vendor": "",
-      "out_date": "2024-10-17"
+      "out_date": "17/10/2024"
     },
     {
       "sno": 192,
@@ -8192,7 +8192,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO ALMEL",
       "vendor": "",
-      "out_date": "2024-10-17"
+      "out_date": "17/10/2024"
     },
     {
       "sno": 193,
@@ -8205,7 +8205,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO ALMEL",
       "vendor": "",
-      "out_date": "2024-10-17"
+      "out_date": "17/10/2024"
     },
     {
       "sno": 194,
@@ -8218,7 +8218,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "BASAVAGANGA PETROLEUM",
       "vendor": "",
-      "out_date": "2024-10-21"
+      "out_date": "21/10/2024"
     },
     {
       "sno": 195,
@@ -8231,7 +8231,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO KALGUDRI",
       "vendor": "",
-      "out_date": "2024-10-23"
+      "out_date": "23/10/2024"
     },
     {
       "sno": 196,
@@ -8244,7 +8244,7 @@ window.baselineData = {
       "emr_no": "",
       "destination": "NRO KALGUDRI",
       "vendor": "",
-      "out_date": "2024-10-23"
+      "out_date": "23/10/2024"
     },
     {
       "sno": 197,
@@ -8253,11 +8253,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202407000864",
-      "emr_date": "2024-11-13",
+      "emr_date": "13/11/2024",
       "emr_no": "2017061326G",
       "destination": "NRO TORVI",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2024-11-13"
+      "out_date": "13/11/2024"
     },
     {
       "sno": 198,
@@ -8266,11 +8266,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202407000865",
-      "emr_date": "2024-11-21",
+      "emr_date": "21/11/2024",
       "emr_no": "2017061327G",
       "destination": "Kasghatteshwar Res",
       "vendor": "VRL INFRA",
-      "out_date": "2024-11-21"
+      "out_date": "21/11/2024"
     },
     {
       "sno": 199,
@@ -8279,11 +8279,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202409000419",
-      "emr_date": "2024-11-21",
+      "emr_date": "21/11/2024",
       "emr_no": "2017061327G",
       "destination": "Kasghatteshwar Res",
       "vendor": "VRL INFRA",
-      "out_date": "2024-11-21"
+      "out_date": "21/11/2024"
     },
     {
       "sno": 200,
@@ -8292,11 +8292,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E33",
       "serial_no": "202411001050",
-      "emr_date": "2024-12-11",
+      "emr_date": "11/12/2024",
       "emr_no": "2017061332G",
       "destination": "OM ADVITA PETROLEUM",
       "vendor": "D.EMMANUEL",
-      "out_date": "2024-12-11"
+      "out_date": "11/12/2024"
     },
     {
       "sno": 201,
@@ -8305,11 +8305,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2444SSPN-Q330",
       "serial_no": "M2402124",
-      "emr_date": "2024-12-17",
+      "emr_date": "17/12/2024",
       "emr_no": "2017061334G",
       "destination": "NRO Ranebennur",
       "vendor": "A. Majid",
-      "out_date": "2024-12-17"
+      "out_date": "17/12/2024"
     },
     {
       "sno": 202,
@@ -8318,11 +8318,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2444SSPN-Q330",
       "serial_no": "M2402111",
-      "emr_date": "2024-12-17",
+      "emr_date": "17/12/2024",
       "emr_no": "2017061334G",
       "destination": "NRO Ranebennur",
       "vendor": "A. Majid",
-      "out_date": "2024-12-17"
+      "out_date": "17/12/2024"
     },
     {
       "sno": 203,
@@ -8331,11 +8331,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E33",
       "serial_no": "202411001031",
-      "emr_date": "2024-12-16",
+      "emr_date": "16/12/2024",
       "emr_no": "2017061333G",
       "destination": "NRO MUSIGERI",
       "vendor": "Kartikeya & Co",
-      "out_date": "2024-12-16"
+      "out_date": "16/12/2024"
     },
     {
       "sno": 204,
@@ -8344,11 +8344,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202410001782",
-      "emr_date": "2024-12-16",
+      "emr_date": "16/12/2024",
       "emr_no": "2017061333G",
       "destination": "NRO MUSIGERI",
       "vendor": "Kartikeya & Co",
-      "out_date": "2024-12-16"
+      "out_date": "16/12/2024"
     },
     {
       "sno": 205,
@@ -8357,11 +8357,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202410001710",
-      "emr_date": "2024-12-19",
+      "emr_date": "19/12/2024",
       "emr_no": "2017061335G",
       "destination": "NRO Kanasageri",
       "vendor": "MIR ENGG.",
-      "out_date": "2024-12-19"
+      "out_date": "19/12/2024"
     },
     {
       "sno": 206,
@@ -8370,11 +8370,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202411000844",
-      "emr_date": "2024-12-19",
+      "emr_date": "19/12/2024",
       "emr_no": "2017061335G",
       "destination": "NRO Kanasageri",
       "vendor": "MIR ENGG.",
-      "out_date": "2024-12-19"
+      "out_date": "19/12/2024"
     },
     {
       "sno": 207,
@@ -8383,11 +8383,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202411000910",
-      "emr_date": "2024-12-09",
+      "emr_date": "09/12/2024",
       "emr_no": "2017061330G",
       "destination": "Hubli RTC",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2024-12-17"
+      "out_date": "17/12/2024"
     },
     {
       "sno": 208,
@@ -8396,11 +8396,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202409000338",
-      "emr_date": "2024-12-09",
+      "emr_date": "09/12/2024",
       "emr_no": "2017061330G",
       "destination": "Hubli RTC",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2024-12-17"
+      "out_date": "17/12/2024"
     },
     {
       "sno": 209,
@@ -8409,11 +8409,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202411000786",
-      "emr_date": "2024-12-09",
+      "emr_date": "09/12/2024",
       "emr_no": "2017061330G",
       "destination": "Hubli RTC",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2024-12-17"
+      "out_date": "17/12/2024"
     },
     {
       "sno": 210,
@@ -8422,11 +8422,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202411000761",
-      "emr_date": "2024-12-09",
+      "emr_date": "09/12/2024",
       "emr_no": "2017061330G",
       "destination": "Hubli RTC",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2024-12-17"
+      "out_date": "17/12/2024"
     },
     {
       "sno": 211,
@@ -8439,7 +8439,7 @@ window.baselineData = {
       "emr_no": "2017061342G",
       "destination": "Prakash petroleum kadrolli",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2024-12-26"
+      "out_date": "26/12/2024"
     },
     {
       "sno": 212,
@@ -8452,7 +8452,7 @@ window.baselineData = {
       "emr_no": "2017061342G",
       "destination": "Prakash petroleum kadrolli",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2024-12-26"
+      "out_date": "26/12/2024"
     },
     {
       "sno": 213,
@@ -8465,7 +8465,7 @@ window.baselineData = {
       "emr_no": "2017061343G",
       "destination": "Sulikeri petroleum",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2024-12-27"
+      "out_date": "27/12/2024"
     },
     {
       "sno": 214,
@@ -8478,7 +8478,7 @@ window.baselineData = {
       "emr_no": "2017061341G",
       "destination": "Sardar narainshing",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 215,
@@ -8491,7 +8491,7 @@ window.baselineData = {
       "emr_no": "2017061341G",
       "destination": "Sardar narainshing",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 216,
@@ -8504,7 +8504,7 @@ window.baselineData = {
       "emr_no": "2017061338G",
       "destination": "Gajanana petrol pump",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 217,
@@ -8517,7 +8517,7 @@ window.baselineData = {
       "emr_no": "2017061338G",
       "destination": "Gajanana petrol pump",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 218,
@@ -8530,7 +8530,7 @@ window.baselineData = {
       "emr_no": "2017061337G",
       "destination": "Bhagyalaxmi petroleum",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 219,
@@ -8543,7 +8543,7 @@ window.baselineData = {
       "emr_no": "2017061337G",
       "destination": "Bhagyalaxmi petroleum",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 220,
@@ -8556,7 +8556,7 @@ window.baselineData = {
       "emr_no": "2017061337G",
       "destination": "Bhagyalaxmi petroleum",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 221,
@@ -8569,7 +8569,7 @@ window.baselineData = {
       "emr_no": "2017061337G",
       "destination": "Bhagyalaxmi petroleum",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 222,
@@ -8582,7 +8582,7 @@ window.baselineData = {
       "emr_no": "2017061340G",
       "destination": "S.P Petroleum",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 223,
@@ -8595,7 +8595,7 @@ window.baselineData = {
       "emr_no": "2017061340G",
       "destination": "S.P Petroleum",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 224,
@@ -8608,7 +8608,7 @@ window.baselineData = {
       "emr_no": "2017061339G",
       "destination": "Kadlaskar petroleum",
       "vendor": "B.H.MANE",
-      "out_date": "2024-12-29"
+      "out_date": "29/12/2024"
     },
     {
       "sno": 225,
@@ -8617,11 +8617,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202412000828",
-      "emr_date": "2025-01-03",
+      "emr_date": "03/01/2025",
       "emr_no": "2017061344G",
       "destination": "NRO Mundagod",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2025-01-03"
+      "out_date": "03/01/2025"
     },
     {
       "sno": 226,
@@ -8630,11 +8630,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202412000830",
-      "emr_date": "2025-01-03",
+      "emr_date": "03/01/2025",
       "emr_no": "2017061344G",
       "destination": "NRO Mundagod",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2025-01-03"
+      "out_date": "03/01/2025"
     },
     {
       "sno": 227,
@@ -8643,11 +8643,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202412000817",
-      "emr_date": "2025-01-06",
+      "emr_date": "06/01/2025",
       "emr_no": "2017061347G",
       "destination": "41050546-B R Mali",
       "vendor": "SAHITYA ENGG",
-      "out_date": "2025-01-06"
+      "out_date": "06/01/2025"
     },
     {
       "sno": 228,
@@ -8656,11 +8656,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202412000818",
-      "emr_date": "2025-01-06",
+      "emr_date": "06/01/2025",
       "emr_no": "2017061348G",
       "destination": "41043010-Balaji Fuels",
       "vendor": "SAHITYA ENGG",
-      "out_date": "2025-01-06"
+      "out_date": "06/01/2025"
     },
     {
       "sno": 229,
@@ -8669,11 +8669,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E33",
       "serial_no": "202412001472",
-      "emr_date": "2025-01-06",
+      "emr_date": "06/01/2025",
       "emr_no": "2017061348G",
       "destination": "41043010-Balaji Fuels",
       "vendor": "SAHITYA ENGG",
-      "out_date": "2025-01-06"
+      "out_date": "06/01/2025"
     },
     {
       "sno": 230,
@@ -8682,11 +8682,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202409000339",
-      "emr_date": "2025-01-18",
+      "emr_date": "18/01/2025",
       "emr_no": "2017061349G",
       "destination": "NRO Soppadla",
       "vendor": "Spark Enterprises",
-      "out_date": "2025-01-18"
+      "out_date": "18/01/2025"
     },
     {
       "sno": 231,
@@ -8695,11 +8695,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E33",
       "serial_no": "202412001473",
-      "emr_date": "2025-01-18",
+      "emr_date": "18/01/2025",
       "emr_no": "2017061349G",
       "destination": "NRO Soppadla",
       "vendor": "Spark Enterprises",
-      "out_date": "2025-01-18"
+      "out_date": "18/01/2025"
     },
     {
       "sno": 232,
@@ -8708,11 +8708,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202409000319",
-      "emr_date": "2025-01-23",
+      "emr_date": "23/01/2025",
       "emr_no": "2017061350G",
       "destination": "NRO Sindagi",
       "vendor": "MIR ENGG.",
-      "out_date": "2025-01-23"
+      "out_date": "23/01/2025"
     },
     {
       "sno": 233,
@@ -8721,11 +8721,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E32",
       "serial_no": "202412001396",
-      "emr_date": "2025-01-23",
+      "emr_date": "23/01/2025",
       "emr_no": "2017061350G",
       "destination": "NRO Sindagi",
       "vendor": "MIR ENGG.",
-      "out_date": "2025-01-23"
+      "out_date": "23/01/2025"
     },
     {
       "sno": 234,
@@ -8734,11 +8734,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202411001098",
-      "emr_date": "2025-01-29",
+      "emr_date": "29/01/2025",
       "emr_no": "2017061345G",
       "destination": "NRO KUNDGOL",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2025-01-06"
+      "out_date": "06/01/2025"
     },
     {
       "sno": 235,
@@ -8747,11 +8747,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E32",
       "serial_no": "202412001436",
-      "emr_date": "2025-01-29",
+      "emr_date": "29/01/2025",
       "emr_no": "2017061345G",
       "destination": "NRO KUNDGOL",
       "vendor": "LADWIN ENGG.",
-      "out_date": "2025-01-06"
+      "out_date": "06/01/2025"
     },
     {
       "sno": 236,
@@ -8760,11 +8760,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E32",
       "serial_no": "202412001443",
-      "emr_date": "2025-01-30",
+      "emr_date": "30/01/2025",
       "emr_no": "2017061351G",
       "destination": "41045962-AIVALLI & CO",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2025-01-30"
+      "out_date": "30/01/2025"
     },
     {
       "sno": 237,
@@ -8773,11 +8773,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E32",
       "serial_no": "202412001397",
-      "emr_date": "2025-02-01",
+      "emr_date": "01/02/2025",
       "emr_no": "2017061352G",
       "destination": "41044794-KEYSTONE PROJECTS",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2025-02-01"
+      "out_date": "01/02/2025"
     },
     {
       "sno": 238,
@@ -8786,11 +8786,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2451302",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061354G",
       "destination": "RTC GADAG",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2025-02-05"
+      "out_date": "05/02/2025"
     },
     {
       "sno": 239,
@@ -8799,11 +8799,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2451305",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061354G",
       "destination": "RTC GADAG",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2025-02-05"
+      "out_date": "05/02/2025"
     },
     {
       "sno": 240,
@@ -8812,11 +8812,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHQPSU2TNEC3E44",
       "serial_no": "202406000009",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061353G",
       "destination": "NRO CHABBI",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2025-02-05"
+      "out_date": "05/02/2025"
     },
     {
       "sno": 241,
@@ -8825,11 +8825,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202411000909",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061353G",
       "destination": "NRO CHABBI",
       "vendor": "JUDE ENGG. WORKS",
-      "out_date": "2025-02-05"
+      "out_date": "05/02/2025"
     },
     {
       "sno": 242,
@@ -8838,11 +8838,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202411000861",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061357G",
       "destination": "NRO TIDAGUNDI",
       "vendor": "D.EMMANUEL",
-      "out_date": "2025-02-05"
+      "out_date": "05/02/2025"
     },
     {
       "sno": 243,
@@ -8851,11 +8851,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202412000819",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061357G",
       "destination": "NRO TIDAGUNDI",
       "vendor": "D.EMMANUEL",
-      "out_date": "2025-02-05"
+      "out_date": "05/02/2025"
     },
     {
       "sno": 244,
@@ -8864,11 +8864,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202411000736",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061356G",
       "destination": "NRO TEVARAMALLIHALLI",
       "vendor": "A. MAJID",
-      "out_date": "2025-02-06"
+      "out_date": "06/02/2025"
     },
     {
       "sno": 245,
@@ -8877,11 +8877,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202412000824",
-      "emr_date": "2025-02-05",
+      "emr_date": "05/02/2025",
       "emr_no": "2017061356G",
       "destination": "NRO TEVARAMALLIHALLI",
       "vendor": "A. MAJID",
-      "out_date": "2025-02-06"
+      "out_date": "06/02/2025"
     },
     {
       "sno": 246,
@@ -8890,11 +8890,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E32",
       "serial_no": "202412001404",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061358G",
       "destination": "NRO YETNAL",
       "vendor": "RAJMIN CONSTRUCTIONS",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 247,
@@ -8903,11 +8903,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001739",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061358G",
       "destination": "NRO YETNAL",
       "vendor": "RAJMIN CONSTRUCTIONS",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 248,
@@ -8916,11 +8916,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E32",
       "serial_no": "202412001402",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061359G",
       "destination": "NRO BHUTNAL",
       "vendor": "RAJMIN CONSTRUCTIONS",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 249,
@@ -8929,11 +8929,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001182",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061359G",
       "destination": "NRO BHUTNAL",
       "vendor": "RAJMIN CONSTRUCTIONS",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 250,
@@ -8942,11 +8942,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202412000082",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061362G",
       "destination": "NRO SEDBAL",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 251,
@@ -8955,11 +8955,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202412000826",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061362G",
       "destination": "NRO SEDBAL",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 252,
@@ -8968,11 +8968,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202412000827",
-      "emr_date": "2025-02-07",
+      "emr_date": "07/02/2025",
       "emr_no": "2017061365G",
       "destination": "NRO Kaginale",
       "vendor": "D EMMANUEL",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 253,
@@ -8981,11 +8981,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202412001230",
-      "emr_date": "2025-02-07",
+      "emr_date": "07/02/2025",
       "emr_no": "2017061365G",
       "destination": "NRO Kaginale",
       "vendor": "D EMMANUEL",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 254,
@@ -8994,11 +8994,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202412001265",
-      "emr_date": "2025-02-07",
+      "emr_date": "07/02/2025",
       "emr_no": "2017061363G",
       "destination": "NRO MUDDEBIHAL",
       "vendor": "DD JOSHI ASSOCIATES",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 255,
@@ -9007,11 +9007,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001724",
-      "emr_date": "2025-02-07",
+      "emr_date": "07/02/2025",
       "emr_no": "2017061363G",
       "destination": "NRO MUDDEBIHAL",
       "vendor": "DD JOSHI ASSOCIATES",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 256,
@@ -9020,11 +9020,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202412001239",
-      "emr_date": "2025-02-07",
+      "emr_date": "07/02/2025",
       "emr_no": "2017061364G",
       "destination": "NRO BIJAPUR SER. ROAD",
       "vendor": "DD JOSHI ASSOCIATES",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 257,
@@ -9033,11 +9033,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001192",
-      "emr_date": "2025-02-07",
+      "emr_date": "07/02/2025",
       "emr_no": "2017061364G",
       "destination": "NRO BIJAPUR SER. ROAD",
       "vendor": "DD JOSHI ASSOCIATES",
-      "out_date": "2025-02-07"
+      "out_date": "07/02/2025"
     },
     {
       "sno": 258,
@@ -9046,11 +9046,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001179",
-      "emr_date": "2025-02-07",
+      "emr_date": "07/02/2025",
       "emr_no": "2017061368G",
       "destination": "41045557 - TTN PETROLEUM",
       "vendor": "SAHITY ENGG",
-      "out_date": "2025-02-08"
+      "out_date": "08/02/2025"
     },
     {
       "sno": 259,
@@ -9059,11 +9059,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001184",
-      "emr_date": "2025-02-11",
+      "emr_date": "11/02/2025",
       "emr_no": "2017061369G",
       "destination": "41045967-Gati Limited",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2025-02-11"
+      "out_date": "11/02/2025"
     },
     {
       "sno": 260,
@@ -9072,11 +9072,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202412000610",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061360G",
       "destination": "NRO BABANAGAR",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-02-19"
+      "out_date": "19/02/2025"
     },
     {
       "sno": 261,
@@ -9085,11 +9085,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001181",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061360G",
       "destination": "NRO BABANAGAR",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-02-19"
+      "out_date": "19/02/2025"
     },
     {
       "sno": 262,
@@ -9098,11 +9098,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202412000632",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061361G",
       "destination": "NRO KATARKI",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-02-19"
+      "out_date": "19/02/2025"
     },
     {
       "sno": 263,
@@ -9111,11 +9111,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001769",
-      "emr_date": "2025-02-06",
+      "emr_date": "06/02/2025",
       "emr_no": "2017061361G",
       "destination": "NRO KATARKI",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-02-19"
+      "out_date": "19/02/2025"
     },
     {
       "sno": 264,
@@ -9124,11 +9124,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001784",
-      "emr_date": "2025-02-21",
+      "emr_date": "21/02/2025",
       "emr_no": "2017061370G",
       "destination": "41044774-A Y IJANTAKAR PETROLEUM",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2025-02-21"
+      "out_date": "21/02/2025"
     },
     {
       "sno": 265,
@@ -9137,11 +9137,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "R1LA1XXA0B2A0Z1X0",
       "serial_no": "202412002333",
-      "emr_date": "2025-02-21",
+      "emr_date": "21/02/2025",
       "emr_no": "2017061370G",
       "destination": "41044774-A Y IJANTAKAR PETROLEUM",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2025-02-21"
+      "out_date": "21/02/2025"
     },
     {
       "sno": 266,
@@ -9150,11 +9150,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001770",
-      "emr_date": "2025-02-21",
+      "emr_date": "21/02/2025",
       "emr_no": "2017061371G",
       "destination": "41050724-S B HAMPANNAVAR & SONS",
       "vendor": "MAA CONSTRUCTION",
-      "out_date": "2025-02-21"
+      "out_date": "21/02/2025"
     },
     {
       "sno": 267,
@@ -9163,11 +9163,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2451178",
-      "emr_date": "2025-02-27",
+      "emr_date": "27/02/2025",
       "emr_no": "2017061376G",
       "destination": "41045953-OM SHRI SAI ASSOCIATES",
       "vendor": "D.EMMANUEL",
-      "out_date": "2025-02-27"
+      "out_date": "27/02/2025"
     },
     {
       "sno": 268,
@@ -9176,11 +9176,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SHPN-Q330",
       "serial_no": "M2451244",
-      "emr_date": "2025-02-27",
+      "emr_date": "27/02/2025",
       "emr_no": "2017061376G",
       "destination": "41045953-OM SHRI SAI ASSOCIATES",
       "vendor": "D.EMMANUEL",
-      "out_date": "2025-02-27"
+      "out_date": "27/02/2025"
     },
     {
       "sno": 269,
@@ -9189,11 +9189,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001171",
-      "emr_date": "2025-02-22",
+      "emr_date": "22/02/2025",
       "emr_no": "2017061372G",
       "destination": "41006632-SHREE EKADANT PETROLEUM",
       "vendor": "KC ELECTRICALS",
-      "out_date": "2025-03-03"
+      "out_date": "03/03/2025"
     },
     {
       "sno": 270,
@@ -9202,11 +9202,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202412000618",
-      "emr_date": "2025-03-27",
+      "emr_date": "27/03/2025",
       "emr_no": "2017061381G",
       "destination": "41018535-Shree Hanuman Petroleum",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-03-31"
+      "out_date": "31/03/2025"
     },
     {
       "sno": 271,
@@ -9215,11 +9215,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202412000633",
-      "emr_date": "2025-03-27",
+      "emr_date": "27/03/2025",
       "emr_no": "2017061382G",
       "destination": "NRO MAKKALAGERI",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-04-01"
+      "out_date": "01/04/2025"
     },
     {
       "sno": 272,
@@ -9228,11 +9228,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001188",
-      "emr_date": "2025-03-27",
+      "emr_date": "27/03/2025",
       "emr_no": "2017061382G",
       "destination": "NRO MAKKALAGERI",
       "vendor": "PSV HUBLI",
-      "out_date": "2025-04-01"
+      "out_date": "01/04/2025"
     },
     {
       "sno": 273,
@@ -9241,11 +9241,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHQPSU2TNEC3E30",
       "serial_no": "202407001030",
-      "emr_date": "2025-04-03",
+      "emr_date": "03/04/2025",
       "emr_no": "2017061391G",
       "destination": "RTC HUBLI",
       "vendor": "LADWIN ENGG",
-      "out_date": "2025-04-04"
+      "out_date": "04/04/2025"
     },
     {
       "sno": 274,
@@ -9254,11 +9254,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHQPSU2TNEC3E30",
       "serial_no": "202409000046",
-      "emr_date": "2025-04-03",
+      "emr_date": "03/04/2025",
       "emr_no": "2017061391G",
       "destination": "RTC HUBLI",
       "vendor": "LADWIN ENGG",
-      "out_date": "2025-04-04"
+      "out_date": "04/04/2025"
     },
     {
       "sno": 275,
@@ -9267,11 +9267,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "R1LA1XXA0B2A0Z1X0",
       "serial_no": "202412002122",
-      "emr_date": "2025-04-03",
+      "emr_date": "03/04/2025",
       "emr_no": "2017061391G",
       "destination": "RTC HUBLI",
       "vendor": "LADWIN ENGG",
-      "out_date": "2025-04-04"
+      "out_date": "04/04/2025"
     },
     {
       "sno": 276,
@@ -9280,11 +9280,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202412000634",
-      "emr_date": "2025-04-19",
+      "emr_date": "19/04/2025",
       "emr_no": "2017061398G",
       "destination": "NRO DEVARAGUL",
       "vendor": "D.EMMANUEL",
-      "out_date": "2025-04-19"
+      "out_date": "19/04/2025"
     },
     {
       "sno": 277,
@@ -9293,11 +9293,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202412000640",
-      "emr_date": "2025-04-19",
+      "emr_date": "19/04/2025",
       "emr_no": "2017061398G",
       "destination": "NRO DEVARAGUL",
       "vendor": "D.EMMANUEL",
-      "out_date": "2025-04-19"
+      "out_date": "19/04/2025"
     },
     {
       "sno": 278,
@@ -9306,11 +9306,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202409000338",
-      "emr_date": "2025-05-16",
+      "emr_date": "16/05/2025",
       "emr_no": "2017061407G",
       "destination": "NRO Huliyalli Ranebennur",
       "vendor": "JUDE ENGG",
-      "out_date": "2025-05-15"
+      "out_date": "15/05/2025"
     },
     {
       "sno": 279,
@@ -9319,11 +9319,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202411000786",
-      "emr_date": "2025-05-16",
+      "emr_date": "16/05/2025",
       "emr_no": "2017061407G",
       "destination": "NRO Huliyalli Ranebennur",
       "vendor": "JUDE ENGG",
-      "out_date": "2025-05-15"
+      "out_date": "15/05/2025"
     },
     {
       "sno": 280,
@@ -9332,11 +9332,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202411000761",
-      "emr_date": "2025-05-16",
+      "emr_date": "16/05/2025",
       "emr_no": "2017061407G",
       "destination": "NRO Huliyalli Ranebennur",
       "vendor": "JUDE ENGG",
-      "out_date": "2025-05-15"
+      "out_date": "15/05/2025"
     },
     {
       "sno": 281,
@@ -9345,11 +9345,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202503000593",
-      "emr_date": "2025-05-02",
+      "emr_date": "02/05/2025",
       "emr_no": "2017061400G",
       "destination": "NRO Zalki",
       "vendor": "LADWIN ENGG",
-      "out_date": "2025-05-06"
+      "out_date": "06/05/2025"
     },
     {
       "sno": 282,
@@ -9358,11 +9358,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202503000587",
-      "emr_date": "2025-05-02",
+      "emr_date": "02/05/2025",
       "emr_no": "2017061400G",
       "destination": "NRO Zalki",
       "vendor": "LADWIN ENGG",
-      "out_date": "2025-05-06"
+      "out_date": "06/05/2025"
     },
     {
       "sno": 283,
@@ -9371,11 +9371,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPMU2TNEC3E34",
       "serial_no": "202503000570",
-      "emr_date": "2025-05-02",
+      "emr_date": "02/05/2025",
       "emr_no": "2017061400G",
       "destination": "NRO Zalki",
       "vendor": "LADWIN ENGG",
-      "out_date": "2025-05-06"
+      "out_date": "06/05/2025"
     },
     {
       "sno": 284,
@@ -9384,11 +9384,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E33",
       "serial_no": "202503001545",
-      "emr_date": "2025-05-02",
+      "emr_date": "02/05/2025",
       "emr_no": "2017061400G",
       "destination": "NRO Zalki",
       "vendor": "LADWIN ENGG",
-      "out_date": "2025-05-06"
+      "out_date": "06/05/2025"
     },
     {
       "sno": 285,
@@ -9397,11 +9397,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2509143",
-      "emr_date": "2025-05-08",
+      "emr_date": "08/05/2025",
       "emr_no": "2017061401G",
       "destination": "NRO Kelvadi",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-05-08"
+      "out_date": "08/05/2025"
     },
     {
       "sno": 286,
@@ -9410,11 +9410,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2506375",
-      "emr_date": "2025-05-08",
+      "emr_date": "08/05/2025",
       "emr_no": "2017061401G",
       "destination": "NRO Kelvadi",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-05-08"
+      "out_date": "08/05/2025"
     },
     {
       "sno": 287,
@@ -9423,11 +9423,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPHU2TNEC3E44",
       "serial_no": "202412001741",
-      "emr_date": "2025-05-12",
+      "emr_date": "12/05/2025",
       "emr_no": "2017061403G",
       "destination": "NRO Haranagiri",
       "vendor": "A.Majid",
-      "out_date": "2025-05-12"
+      "out_date": "12/05/2025"
     },
     {
       "sno": 288,
@@ -9436,11 +9436,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E33",
       "serial_no": "202503001547",
-      "emr_date": "2025-05-12",
+      "emr_date": "12/05/2025",
       "emr_no": "2017061403G",
       "destination": "NRO Haranagiri",
       "vendor": "A.Majid",
-      "out_date": "2025-05-12"
+      "out_date": "12/05/2025"
     },
     {
       "sno": 289,
@@ -9449,11 +9449,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2224SSPN-Q330",
       "serial_no": "M2509146",
-      "emr_date": "2025-05-14",
+      "emr_date": "14/05/2025",
       "emr_no": "2017061404G",
       "destination": "NRO Mudhol Bypass",
       "vendor": "DD JOSHI ASSOCIATES",
-      "out_date": "2025-05-14"
+      "out_date": "14/05/2025"
     },
     {
       "sno": 290,
@@ -9462,11 +9462,11 @@ window.baselineData = {
       "make": "TOKHEIM",
       "model": "TIQ2442SHPN-Q330",
       "serial_no": "M2507190",
-      "emr_date": "2025-05-14",
+      "emr_date": "14/05/2025",
       "emr_no": "2017061404G",
       "destination": "NRO Mudhol Bypass",
       "vendor": "DD JOSHI ASSOCIATES",
-      "out_date": "2025-05-14"
+      "out_date": "14/05/2025"
     },
     {
       "sno": 291,
@@ -9475,11 +9475,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E33",
       "serial_no": "202503001562",
-      "emr_date": "2025-05-16",
+      "emr_date": "16/05/2025",
       "emr_no": "2017061406G",
       "destination": "Shivananad petroleum",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-05-16"
+      "out_date": "16/05/2025"
     },
     {
       "sno": 292,
@@ -9488,11 +9488,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LHDPSU2TNEC3E33",
       "serial_no": "202503001558",
-      "emr_date": "2025-05-16",
+      "emr_date": "16/05/2025",
       "emr_no": "2017061405G",
       "destination": "NRO Sopadla",
       "vendor": "SPARK ENTERPRISES",
-      "out_date": "2025-05-16"
+      "out_date": "16/05/2025"
     },
     {
       "sno": 293,
@@ -10658,11 +10658,11 @@ window.baselineData = {
       "make": "GVR",
       "model": "LH2PMU2TNEA3E32",
       "serial_no": "202412000611",
-      "emr_date": "2026-07-22",
+      "emr_date": "22/07/2026",
       "emr_no": "EMR01",
       "destination": "COMCO Udyambagh",
       "vendor": "Spark enterprises",
-      "out_date": "2026-07-22"
+      "out_date": "22/07/2026"
     }
   ],
   "tank_outword": [],
@@ -10678,7 +10678,7 @@ window.baselineData = {
       "model": "LH2PMU2TNEA3E32",
       "vendor": "Spark enterprises",
       "destination": "COMCO Udyambagh",
-      "out_date": "2026-07-22",
+      "out_date": "22/07/2026",
       "vehicle_no": "KA22AB1122",
       "driver": "ramesh",
       "remarks": "Provide DU"
@@ -10692,7 +10692,7 @@ window.baselineData = {
       "model": "NA",
       "vendor": "Spark enterprise",
       "destination": "Comco udyabagh",
-      "out_date": "2026-07-22",
+      "out_date": "22/07/2026",
       "vehicle_no": "KA22C1234",
       "driver": "Vasu",
       "remarks": "This is test EMR"

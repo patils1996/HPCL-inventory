@@ -78,7 +78,7 @@ flowchart TD
 ├── css/app.css                # Design system: colours, type, layout, print
 ├── js/app.js                  # Stock, ledgers, EMR, import/export, Google Sheets sync
 ├── js/dispatch.js             # Dispatch letters, depot dispatch, photo capture/storage/upload
-├── js/baseline-data.js        # 01-01-2026 baseline inventory (used only on first run)
+├── js/baseline-data.js        # 01/01/2026 baseline inventory (used only on first run)
 ├── google_apps_script.js      # Apps Script for Google Sheets push/pull + Drive photo upload
 ├── manifest.json              # PWA manifest
 ├── sw.js                      # Service worker (offline support)
@@ -166,7 +166,7 @@ To link your Google Sheet with the portal for real-time cloud sync:
 - Chart.js pinned to 4.4.1; service-worker cache bumped to `v3` so devices pick up the new version.
 
 **Apps Script (`google_apps_script.js`) — redeploy required**
-- Writes every cell as plain text (keeps leading zeros / long serials intact), returns dates as `YYYY-MM-DD`, adds a script lock against simultaneous pushes, and rejects malformed requests.
+- Writes every cell as plain text (keeps leading zeros / long serials intact), returns dates as `DD/MM/YYYY`, adds a script lock against simultaneous pushes, and rejects malformed requests.
 - To update an existing deployment without changing its URL: **Deploy → Manage deployments → ✏️ Edit → Version: New version → Deploy**.
 
 ---

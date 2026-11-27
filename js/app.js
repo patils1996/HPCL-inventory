@@ -42,12 +42,21 @@ function escapeHtml(val) {
         .replace(/'/g, '&#39;');
 }
 
-// Local (IST) calendar date as YYYY-MM-DD. toISOString() uses UTC, which gives
-// yesterday's date in India between 00:00 and 05:30.
+// Local (IST) calendar date as DD/MM/YYYY.
 function formatLocalDate(d) {
     if (!(d instanceof Date) || isNaN(d.getTime())) return '';
     // SheetJS date cells can land a few seconds before local midnight (e.g. 23:59:59.999);
     // round to the nearest minute so they don't fall on the previous day.
+    d = new Date(Math.round(d.getTime() / 60000) * 60000);
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${day}/${m}/${y}`;
+}
+
+// Local (IST) calendar date as YYYY-MM-DD (for HTML <input type="date"> values and prefixes).
+function formatIsoDate(d) {
+    if (!(d instanceof Date) || isNaN(d.getTime())) return '';
     d = new Date(Math.round(d.getTime() / 60000) * 60000);
     const y = d.getFullYear();
     const m = String(d.getMonth() + 1).padStart(2, '0');
@@ -69,47 +78,67 @@ function todayLocal() {
     return formatLocalDate(new Date());
 }
 
-// Normalise any date-ish value (Date object, Excel serial, ISO timestamp, DD/MM/YYYY) to YYYY-MM-DD.
-// Non-date text such as "Returned" / "NA" is kept as-is.
+function todayIso() {
+    return formatIsoDate(new Date());
+}
+
+// Normalise any date-ish value (Date object, Excel serial, ISO timestamp, YYYY-MM-DD, DD/MM/YYYY, Date.toString) to DD/MM/YYYY.
+// Non-date text such as "Return to depot" / "NA" is kept as-is.
 function normalizeDateValue(val) {
     if (val === null || val === undefined || val === '') return '';
     if (val instanceof Date) return formatLocalDate(val);
     if (typeof val === 'number') {
         if (val > 20000 && val < 80000) {
-            const d = new Date(Math.round((val - 25569) * 86400 * 1000));
-            return isNaN(d.getTime()) ? String(val) : d.toISOString().split('T')[0];
+            const d = new Date(Math.round((val - 25569) * 86400) * 1000);
+            if (!isNaN(d.getTime())) {
+                return `${String(d.getUTCDate()).padStart(2, '0')}/${String(d.getUTCMonth() + 1).padStart(2, '0')}/${d.getUTCFullYear()}`;
+            }
         }
         return String(val);
     }
     const str = String(val).trim();
-    // Full ISO timestamp (e.g. "2024-02-27T18:30:00.000Z" from Apps Script) -> local calendar date
+    // Full ISO timestamp (e.g. "2024-02-27T18:30:00.000Z" from Apps Script) -> local calendar DD/MM/YYYY
     if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(str)) {
         const d = new Date(str);
-        return isNaN(d.getTime()) ? str.slice(0, 10) : formatLocalDate(d);
+        if (!isNaN(d.getTime())) return formatLocalDate(d);
     }
-    let m = str.match(/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/);
-    if (m) return `${m[1]}-${m[2].padStart(2, '0')}-${m[3].padStart(2, '0')}`;
-    m = str.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/);
-    if (m) return `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`;
-    // JS Date.toString() output, e.g. "Wed Feb 28 2024 00:00:00 GMT+0530"
-    if (/^[A-Z][a-z]{2} [A-Z][a-z]{2} \d{1,2} \d{4}/.test(str)) {
+    let m = str.match(/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})(?:\s.*)?$/);
+    if (m) return `${m[3].padStart(2, '0')}/${m[2].padStart(2, '0')}/${m[1]}`;
+    m = str.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})(?:\s.*)?$/);
+    if (m) {
+        const p1 = Number(m[1]), p2 = Number(m[2]);
+        if (p2 > 12 && p1 <= 12) return `${m[2].padStart(2, '0')}/${m[1].padStart(2, '0')}/${m[3]}`;
+        return `${m[1].padStart(2, '0')}/${m[2].padStart(2, '0')}/${m[3]}`;
+    }
+    // JS Date.toString() / toUTCString() output, e.g. "Wed Jul 22 2026 00:00:00 GMT+0530 (India Standard Time)"
+    if (/^[A-Za-z]{3},?\s+(?:[A-Za-z]{3}\s+\d{1,2}|\d{1,2}\s+[A-Za-z]{3})\s+\d{4}/.test(str)) {
         const d = new Date(str);
         if (!isNaN(d.getTime())) return formatLocalDate(d);
     }
     return str;
 }
 
+function formatDisplayDate(val) {
+    return normalizeDateValue(val);
+}
+
+function toIsoDate(val) {
+    const norm = normalizeDateValue(val);
+    const m = safeStr(norm).match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    return m ? `${m[3]}-${m[2]}-${m[1]}` : '';
+}
+
 function safeDateTimestamp(val) {
-    if (val instanceof Date) return isNaN(val.getTime()) ? 0 : val.getTime();
+    if (val instanceof Date) return isNaN(val.getTime()) ? 0 : new Date(val.getFullYear(), val.getMonth(), val.getDate()).getTime();
     if (!val || typeof val !== 'string') return 0;
     val = val.trim();
     if (!val || val === '—' || val === '-' || val.toLowerCase().includes('return') || val.toLowerCase() === 'nil' || val.toLowerCase() === 'na') {
         return 0;
     }
-    // Handle DD/MM/YYYY or DD-MM-YYYY
-    if (/^\d{2}[\/\-]\d{2}[\/\-]\d{4}$/.test(val)) {
-        const parts = val.split(/[\/\-]/);
-        return new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).getTime() || 0;
+    const iso = toIsoDate(val);
+    if (iso) {
+        const parts = iso.split('-').map(Number);
+        return new Date(parts[0], parts[1] - 1, parts[2]).getTime() || 0;
     }
     const t = new Date(val).getTime();
     return isNaN(t) ? 0 : t;
@@ -170,19 +199,21 @@ function normalizeRecord(item) {
         make: safeStr(getVal('make', 'Make')).toUpperCase(),
         model: safeStr(getVal('model', 'Model')),
         serial_no: safeStr(getVal('serial_no', 'Serial No', 'SerialNo', 'serial_number')),
-        receipt_date: safeStr(getVal('receipt_date', 'Receipt Date', 'received_date', 'Received Date')),
+        receipt_date: normalizeDateValue(getVal('receipt_date', 'Receipt Date', 'received_date', 'Received Date')),
         received_from: safeStr(getVal('received_from', 'Received From')),
-        received_date: safeStr(getVal('received_date', 'Received Date', 'receipt_date')),
+        received_date: normalizeDateValue(getVal('received_date', 'Received Date', 'receipt_date')),
         qty: getVal('qty', 'Qty', 'quantity') || 0,
         status: safeStr(getVal('status', 'Status')) || 'N',
         remarks: safeStr(getVal('remarks', 'Remarks')),
         emr_no: safeStr(getVal('emr_no', 'EMR No', 'emr_number', 'gate_pass_no', 'Gate Pass No')),
-        emr_date: safeStr(getVal('emr_date', 'EMR Date', 'gate_pass_date', 'Gate Pass Date')),
+        emr_date: normalizeDateValue(getVal('emr_date', 'EMR Date', 'gate_pass_date', 'Gate Pass Date')),
         destination: safeStr(getVal('destination', 'Destination')),
         vendor: safeStr(getVal('vendor', 'Vendor')),
-        out_date: safeStr(getVal('out_date', 'Out Date')),
+        out_date: normalizeDateValue(getVal('out_date', 'Out Date')),
         gate_pass_no: safeStr(getVal('gate_pass_no', 'Gate Pass No', 'emr_no', 'EMR No')),
-        gate_pass_date: safeStr(getVal('gate_pass_date', 'Gate Pass Date', 'emr_date', 'EMR Date')),
+        gate_pass_date: normalizeDateValue(getVal('gate_pass_date', 'Gate Pass Date', 'emr_date', 'EMR Date')),
+        dl_date: normalizeDateValue(getVal('dl_date', 'Letter Date')),
+        dispatched_on: normalizeDateValue(getVal('dispatched_on', 'Dispatched On')),
         item: safeStr(getVal('item', 'Item', 'material', 'Material')),
         tank_capacity: safeStr(getVal('tank_capacity', 'Tank Capacity', 'capacity', 'Capacity')),
         material: safeStr(getVal('material', 'Material', 'item', 'Item'))
@@ -202,16 +233,10 @@ function formatStatusBadge(statusVal) {
 // Initialization & Global Event Listeners
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', async () => {
-    // Current date
-    const dateObj = new Date();
+    // Current date in DD/MM/YYYY
     const currentDateElem = document.getElementById('current-date');
     if (currentDateElem) {
-        currentDateElem.textContent = dateObj.toLocaleDateString('en-IN', {
-            weekday: 'short',
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric'
-        });
+        currentDateElem.textContent = todayLocal();
     }
 
     // Set theme text & icons
@@ -265,8 +290,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupGatePassHandlers();
     setupTableSorting();
     
-    // Set initial date values in forms
-    const todayStr = todayLocal();
+    // Set initial date values in forms (HTML <input type="date"> requires YYYY-MM-DD)
+    const todayStr = todayIso();
     const formDateIds = ['inv-receipt-date', 'in-date', 'out-emr-date', 'out-date', 'gp-out-date'];
     formDateIds.forEach(id => {
         const el = document.getElementById(id);
@@ -415,6 +440,12 @@ function standardizeDatabase() {
         DATE_FIELDS.forEach(f => {
             if (rec[f] !== undefined && rec[f] !== null && rec[f] !== '') rec[f] = normalizeDateValue(rec[f]);
         });
+        // Also normalize any alternate-cased date keys pulled from Sheets / older backups
+        Object.keys(rec).forEach(k => {
+            if ((/(?:_date|\bdate\b|dispatched_on)$/i.test(k)) && rec[k] !== undefined && rec[k] !== null && rec[k] !== '') {
+                rec[k] = normalizeDateValue(rec[k]);
+            }
+        });
         TEXT_FIELDS.forEach(f => {
             if (rec[f] !== undefined && rec[f] !== null && typeof rec[f] !== 'string') rec[f] = String(rec[f]);
         });
@@ -443,6 +474,7 @@ function standardizeDatabase() {
         parseJsonField(l, 'other_items_json', 'other_items');
         if (!Array.isArray(l.items)) l.items = [];
         if (!Array.isArray(l.other_items)) l.other_items = [];
+        l.items.forEach(cleanRecord);
         l.status = safeLower(l.status) || 'issued';
     });
     allLists.forEach(list => list.forEach(cleanRecord));
@@ -686,7 +718,7 @@ async function pullFromSpreadsheetCsvEndpoints(spreadsheetId) {
                 if (res.ok) {
                     const csvText = await res.text();
                     if (csvText && csvText.trim().length > 0 && typeof XLSX !== 'undefined') {
-                        const workbook = XLSX.read(csvText, { type: 'string' });
+                        const workbook = XLSX.read(csvText, { type: 'string', raw: true });
                         const firstSheetName = workbook.SheetNames[0];
                         const rows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheetName]);
                         if (rows && rows.length > 0) {
@@ -1236,7 +1268,7 @@ function updateDashboardMetrics() {
             topRecent.map(escapeRecord).forEach(act => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td style="white-space:nowrap;">${act.date}</td>
+                    <td style="white-space:nowrap;">${formatDisplayDate(act.date) || '—'}</td>
                     <td><span class="tag ${act.badgeClass}">${act.type}</span></td>
                     <td>${act.material}</td>
                     <td><span class="serial">${act.serialMake}</span></td>
@@ -1658,7 +1690,7 @@ function renderInventoryList() {
                 ${reservedOn ? `<div style="margin-top:3px;"><span class="tag tag-reserved" title="Reserved on dispatch letter">Reserved · ${e(reservedOn)}</span></div>` : ''}
             </td>
             <td>${e(item.variant) || '—'}</td>
-            <td style="white-space:nowrap;" data-label="Received">${e(item.receipt_date) || '—'}</td>
+            <td style="white-space:nowrap;" data-label="Received">${e(formatDisplayDate(item.receipt_date)) || '—'}</td>
             <td>${statusBadge}</td>
             <td style="max-width:220px; font-size:0.86rem; color:var(--ink-2);" title="${e(item.remarks)}">${e(item.remarks) || ''}</td>
             <td>
@@ -1843,7 +1875,7 @@ function renderInwardLedger() {
     items.map(escapeRecord).forEach(item => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td style="white-space:nowrap;">${item.received_date || '—'}</td>
+            <td style="white-space:nowrap;">${formatDisplayDate(item.received_date) || '—'}</td>
             <td>${item.item || '—'}</td>
             <td>${item.received_from || '—'}</td>
             <td class="text-right serial">${item.qty || 1}</td>
@@ -1873,14 +1905,14 @@ function renderOutwardLedger() {
             dus.map(escapeRecord).forEach(d => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td style="white-space:nowrap;">${d.emr_date || '—'}</td>
+                    <td style="white-space:nowrap;">${formatDisplayDate(d.emr_date) || '—'}</td>
                     <td>${d.emr_no || '—'}</td>
                     <td><span class="serial">${d.serial_no || '—'}</span></td>
                     <td>${d.variant || d.type || 'DU'}</td>
                     <td><strong>${d.make || '—'}</strong> ${d.model || ''}</td>
                     <td>${d.destination || '—'}</td>
                     <td>${d.vendor || '—'}</td>
-                    <td>${d.out_date || d.emr_date || '—'}</td>
+                    <td>${formatDisplayDate(d.out_date || d.emr_date) || '—'}</td>
                 `;
                 duBody.appendChild(tr);
             });
@@ -1903,14 +1935,14 @@ function renderOutwardLedger() {
             stps.map(escapeRecord).forEach(s => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td style="white-space:nowrap;">${s.emr_date || '—'}</td>
+                    <td style="white-space:nowrap;">${formatDisplayDate(s.emr_date) || '—'}</td>
                     <td>${s.emr_no || '—'}</td>
                     <td><span class="serial">${s.serial_no || '—'}</span></td>
                     <td><span>${safeStr(s.hp_type || s.variant || 'STP').replace(/\s*HP$/i, '')} HP</span></td>
                     <td><strong>${s.make || '—'}</strong></td>
                     <td>${s.destination || '—'}</td>
                     <td>${s.vendor || '—'}</td>
-                    <td>${s.out_date || s.emr_date || '—'}</td>
+                    <td>${formatDisplayDate(s.out_date || s.emr_date) || '—'}</td>
                 `;
                 stpBody.appendChild(tr);
             });
@@ -1934,7 +1966,7 @@ function renderOutwardLedger() {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td class="text-muted">${t.sno || (idx + 1)}</td>
-                    <td>${t.emr_date || '—'}</td>
+                    <td>${formatDisplayDate(t.emr_date) || '—'}</td>
                     <td>${t.emr_no || '—'}</td>
                     <td><strong>${t.tank_capacity || t.variant || '—'}</strong></td>
                     <td>${t.destination || '—'}</td>
@@ -1962,7 +1994,7 @@ function renderOutwardLedger() {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td class="text-muted">${o.sno || (idx + 1)}</td>
-                    <td>${o.emr_date || '—'}</td>
+                    <td>${formatDisplayDate(o.emr_date) || '—'}</td>
                     <td>${o.emr_no || '—'}</td>
                     <td>${o.material || o.item || '—'}</td>
                     <td class="serial">${o.qty || 1}</td>
@@ -2038,7 +2070,7 @@ function setupModals() {
                 outCategory.dispatchEvent(new Event('change'));
             }
             
-            const today = todayLocal();
+            const today = todayIso();
             const invRec = document.getElementById('inv-receipt-date');
             const inDate = document.getElementById('in-date');
             const outEmr = document.getElementById('out-emr-date');
@@ -2233,7 +2265,7 @@ function handleNewRecord(e) {
         const serial = safeStr(document.getElementById('inv-serial').value);
         const variant = safeStr(document.getElementById('inv-variant').value);
         const status = document.getElementById('inv-status').value;
-        const receiptDate = document.getElementById('inv-receipt-date').value;
+        const receiptDate = formatDisplayDate(document.getElementById('inv-receipt-date').value);
         const remarks = safeStr(document.getElementById('inv-remarks').value);
 
         const allInStore = [...(db.inventory.pressure_dus || []), ...(db.inventory.stps || [])];
@@ -2264,7 +2296,7 @@ function handleNewRecord(e) {
         const item = safeStr(document.getElementById('in-item').value);
         const receivedFrom = safeStr(document.getElementById('in-from').value);
         const qty = parseInt(document.getElementById('in-qty').value, 10) || 1;
-        const receivedDate = document.getElementById('in-date').value;
+        const receivedDate = formatDisplayDate(document.getElementById('in-date').value);
 
         db.inword.push({
             item, received_from: receivedFrom, received_date: receivedDate, qty
@@ -2275,11 +2307,11 @@ function handleNewRecord(e) {
     } else if (transactionType === 'outward') {
         const cat = document.getElementById('out-category').value;
         const gpNo = safeStr(document.getElementById('out-emr-no').value);
-        const gpDate = document.getElementById('out-emr-date').value;
+        const gpDate = formatDisplayDate(document.getElementById('out-emr-date').value);
         const destination = safeStr(document.getElementById('out-destination').value);
         const vendor = safeStr(document.getElementById('out-vendor').value);
         const qty = parseInt(document.getElementById('out-qty').value, 10) || 1;
-        const outDate = document.getElementById('out-date').value || gpDate;
+        const outDate = formatDisplayDate(document.getElementById('out-date').value) || gpDate;
 
         if (cat === 'du' || cat === 'stp') {
             const ser = safeStr(document.getElementById('out-serial').value);
@@ -2381,7 +2413,7 @@ function setupDataActions() {
     if (btnExportJson) {
         btnExportJson.addEventListener('click', async () => {
             const photoCount = (db.gate_passes || []).reduce((n, g) => n + (Array.isArray(g.photos) ? g.photos.length : 0), 0);
-            const fileName = `hpcl_stores_backup_${todayLocal()}.json`;
+            const fileName = `hpcl_stores_backup_${todayLocal().replace(/\//g, '-')}.json`;
             if (photoCount > 0 && typeof exportPhotosForBackup === 'function' &&
                 confirm(`Include the ${photoCount} dispatch photo(s) stored on this device?\n\nOK = include photos (bigger file)\nCancel = data only`)) {
                 const photoData = await exportPhotosForBackup();
@@ -2532,7 +2564,7 @@ function stpHp(rec) {
 }
 
 function exportCollectionToCsv(type) {
-    const today = todayLocal();
+    const today = todayLocal().replace(/\//g, '-');
     let fileName = `hpcl_export_${today}.csv`;
     let csv = '';
 
@@ -2558,40 +2590,40 @@ function exportCollectionToCsv(type) {
             });
         }
         items.forEach((d, idx) => {
-            csv += csvRow([idx + 1, d.cat, d.make, d.model, d.serial, d.variant, d.date, d.status, d.remarks]);
+            csv += csvRow([idx + 1, d.cat, d.make, d.model, d.serial, d.variant, formatDisplayDate(d.date), d.status, d.remarks]);
         });
 
     } else if (type === 'inward') {
         fileName = `hpcl_inward_ledger_${today}.csv`;
         csv += csvRow(['Received Date', 'Material / Item', 'Received From', 'Quantity']);
         (db.inword || []).forEach(i => {
-            csv += csvRow([i.received_date, i.item, i.received_from, i.qty || 1]);
+            csv += csvRow([formatDisplayDate(i.received_date), i.item, i.received_from, i.qty || 1]);
         });
 
     } else if (type === 'outward') {
         fileName = `hpcl_outward_ledger_${today}.csv`;
         csv += csvRow(['Category', 'EMR Date', 'EMR No', 'Gate Pass No', 'Serial / Capacity', 'Make / Specs', 'Destination', 'Vendor', 'Out Date']);
         (db.du_outword || []).forEach(d => {
-            csv += csvRow(['DU', d.emr_date || d.gate_pass_date, d.emr_no || d.gate_pass_no, d.gate_pass_no, d.serial_no, `${safeStr(d.make)} ${safeStr(d.model)}`.trim(), d.destination, d.vendor, d.out_date]);
+            csv += csvRow(['DU', formatDisplayDate(d.emr_date || d.gate_pass_date), d.emr_no || d.gate_pass_no, d.gate_pass_no, d.serial_no, `${safeStr(d.make)} ${safeStr(d.model)}`.trim(), d.destination, d.vendor, formatDisplayDate(d.out_date)]);
         });
         (db.stp_outword || []).forEach(st => {
-            csv += csvRow(['STP', st.emr_date || st.gate_pass_date, st.emr_no || st.gate_pass_no, st.gate_pass_no, st.serial_no, `${safeStr(st.make)} ${stpHp(st) ? '(' + stpHp(st) + ')' : ''}`.trim(), st.destination, st.vendor, st.out_date]);
+            csv += csvRow(['STP', formatDisplayDate(st.emr_date || st.gate_pass_date), st.emr_no || st.gate_pass_no, st.gate_pass_no, st.serial_no, `${safeStr(st.make)} ${stpHp(st) ? '(' + stpHp(st) + ')' : ''}`.trim(), st.destination, st.vendor, formatDisplayDate(st.out_date)]);
         });
         (db.tank_outword || []).forEach(t => {
-            csv += csvRow(['Tank', t.emr_date || t.gate_pass_date, t.emr_no || t.gate_pass_no, t.gate_pass_no, t.tank_capacity, 'Storage Tank', t.destination, t.vendor, t.out_date]);
+            csv += csvRow(['Tank', formatDisplayDate(t.emr_date || t.gate_pass_date), t.emr_no || t.gate_pass_no, t.gate_pass_no, t.tank_capacity, 'Storage Tank', t.destination, t.vendor, formatDisplayDate(t.out_date)]);
         });
         (db.others_outword || []).forEach(o => {
-            csv += csvRow(['Others', o.emr_date || o.gate_pass_date, o.emr_no || o.gate_pass_no, o.gate_pass_no, `Qty: ${o.qty || 1}`, o.material, o.destination, o.vendor, o.out_date]);
+            csv += csvRow(['Others', formatDisplayDate(o.emr_date || o.gate_pass_date), o.emr_no || o.gate_pass_no, o.gate_pass_no, `Qty: ${o.qty || 1}`, o.material, o.destination, o.vendor, formatDisplayDate(o.out_date)]);
         });
 
     } else if (type === 'letters') {
         fileName = `hpcl_dispatch_letters_${today}.csv`;
         csv += csvRow(['Letter No', 'Letter Date', 'Status', 'Destination', 'Vendor', 'Purpose', 'Serial No(s)', 'Other Material', 'Issued By', 'Designation', 'Office Ref', 'EMR No', 'Dispatched On', 'Vehicle No', 'Dispatched By']);
         (db.dispatch_letters || []).forEach(l => {
-            csv += csvRow([l.dl_no, l.dl_date, l.status, l.destination, l.vendor, l.purpose,
+            csv += csvRow([l.dl_no, formatDisplayDate(l.dl_date), l.status, l.destination, l.vendor, l.purpose,
                 (l.items || []).map(i => `${i.category} ${i.serial_no}`).join(', '),
                 (l.other_items || []).map(o => `${o.material} x${o.qty}`).join(', '),
-                l.issued_by, l.designation, l.ref, l.emr_no, l.dispatched_on, l.vehicle_no, l.dispatched_by]);
+                l.issued_by, l.designation, l.ref, l.emr_no, formatDisplayDate(l.dispatched_on), l.vehicle_no, l.dispatched_by]);
         });
 
     } else if (type === 'gate_passes' || type === 'emr' || type === 'emrs') {
@@ -2602,7 +2634,7 @@ function exportCollectionToCsv(type) {
             const serials = items ? items.map(i => i.serial_no).join(', ') : g.serial_no;
             const photos = Array.isArray(g.photos) ? g.photos : [];
             const photoLinks = photos.map(p => p.drive_url).filter(Boolean).join(' ');
-            csv += csvRow([g.emr_no || g.gate_pass_no, g.out_date, g.dl_no, g.category, items ? items.length : 1, serials, g.make, g.model, g.vendor, g.destination, g.gate_pass_no, g.vehicle_no, g.driver, g.dispatched_by, photoLinks || (photos.length ? `${photos.length} (on device)` : ''), g.remarks]);
+            csv += csvRow([g.emr_no || g.gate_pass_no, formatDisplayDate(g.out_date), g.dl_no, g.category, items ? items.length : 1, serials, g.make, g.model, g.vendor, g.destination, g.gate_pass_no, g.vehicle_no, g.driver, g.dispatched_by, photoLinks || (photos.length ? `${photos.length} (on device)` : ''), g.remarks]);
         });
     }
 
@@ -2686,9 +2718,9 @@ function setupExcelImport() {
                 "-NEW(N)/USED(U)/ UNSERVICEBLE(S)",
                 "REMARKS"
             ],
-            [1, "Pressure", "MPD - 2P4N2D", "TOKHEIM", "TIQ2442SHPN-Q330", "M2350433", "2024-01-22", "U", "Sample used dispenser remarks"],
-            [2, "Pressure", "MPD - 2P4N4D", "GVR", "LH2PMU2TNEA3E32", "202412000642", "2024-12-19", "N", "Sample new dispenser remarks"],
-            [3, "Pressure", "MPD - 2P4N4D", "MIDCO", "MIDCO-2024-MPD", "MD24001928", "2024-11-15", "N", "Sample new Midco dispenser remarks"]
+            [1, "Pressure", "MPD - 2P4N2D", "TOKHEIM", "TIQ2442SHPN-Q330", "M2350433", "22/01/2024", "U", "Sample used dispenser remarks"],
+            [2, "Pressure", "MPD - 2P4N4D", "GVR", "LH2PMU2TNEA3E32", "202412000642", "19/12/2024", "N", "Sample new dispenser remarks"],
+            [3, "Pressure", "MPD - 2P4N4D", "MIDCO", "MIDCO-2024-MPD", "MD24001928", "15/11/2024", "N", "Sample new Midco dispenser remarks"]
         ];
 
         const ws = XLSX.utils.aoa_to_sheet(rows);
@@ -2725,9 +2757,9 @@ function setupExcelImport() {
                 "NEW(N)/USED(U)/ UNSERVICEBLE(S)",
                 "REMARKS"
             ],
-            [1, 0.75, "GVR", "RJ013261I", "NA", "2025-07-16", "N", "Sample STP remarks"],
-            [2, 1.5, "GVR", "072163I", "NA", "2025-07-19", "N", "Another sample STP remarks"],
-            [3, 0.75, "FLORITE", "FL2025-0091", "NA", "2025-08-01", "U", "Sample used Florite pump"]
+            [1, 0.75, "GVR", "RJ013261I", "NA", "16/07/2025", "N", "Sample STP remarks"],
+            [2, 1.5, "GVR", "072163I", "NA", "19/07/2025", "N", "Another sample STP remarks"],
+            [3, 0.75, "FLORITE", "FL2025-0091", "NA", "01/08/2025", "U", "Sample used Florite pump"]
         ];
 
         const ws = XLSX.utils.aoa_to_sheet(rows);
@@ -2792,33 +2824,13 @@ function setupExcelImport() {
     }
 
     function parseDateValue(rawDate) {
-        if (!rawDate) return null;
-        if (rawDate instanceof Date) {
-            // SheetJS builds Date cells at local midnight; toISOString() would roll IST dates back a day
-            return isNaN(rawDate.getTime()) ? null : formatLocalDate(rawDate);
+        if (rawDate === null || rawDate === undefined || rawDate === '') return null;
+        if (typeof rawDate === 'string') {
+            const low = rawDate.trim().toLowerCase();
+            if (!low || ['nil', 'na', '-', 'none', 'null'].includes(low)) return null;
         }
-        if (typeof rawDate === 'number') {
-            const d = new Date(Math.round((rawDate - 25569) * 86400) * 1000);
-            return isNaN(d.getTime()) ? null : d.toISOString().split('T')[0];
-        }
-        const str = String(rawDate).trim();
-        if (!str || ['nil', 'na', '-', 'none', 'null'].includes(str.toLowerCase())) return null;
-
-        const dmy = str.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
-        if (dmy) {
-            const day = dmy[1].padStart(2, '0');
-            const mon = dmy[2].padStart(2, '0');
-            const yr = dmy[3];
-            return `${yr}-${mon}-${day}`;
-        }
-        const ymd = str.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/);
-        if (ymd) {
-            const yr = ymd[1];
-            const mon = ymd[2].padStart(2, '0');
-            const day = ymd[3].padStart(2, '0');
-            return `${yr}-${mon}-${day}`;
-        }
-        return str.split(' ')[0];
+        const norm = normalizeDateValue(rawDate);
+        return norm || null;
     }
 
     function normalizeStatusValue(val) {
@@ -3663,7 +3675,7 @@ function renderGatePassView() {
             const latest = db.gate_passes[totalGPs - 1];
             latestElem.textContent = safeStr(latest.emr_no || latest.gate_pass_no) || '-';
             const assetCount = (latest.items && latest.items.length) ? latest.items.length : 1;
-            latestSubElem.textContent = `${assetCount} Asset${assetCount > 1 ? 's' : ''} (${safeStr(latest.out_date) || 'date n/a'})`;
+            latestSubElem.textContent = `${assetCount} Asset${assetCount > 1 ? 's' : ''} (${formatDisplayDate(latest.out_date) || 'date n/a'})`;
         } else {
             latestElem.textContent = '-';
             latestSubElem.textContent = 'No dispatch yet';
@@ -3781,7 +3793,7 @@ function renderGatePassView() {
                 <span class="copyable-serial" data-copy="${emrDisplay}" title="Copy EMR no">${emrDisplay}<i class="fa-regular fa-copy"></i></span>
                 ${letterLine}
             </td>
-            <td style="white-space:nowrap;">${item.out_date || '—'}</td>
+            <td style="white-space:nowrap;">${formatDisplayDate(item.out_date) || '—'}</td>
             <td>${catBadge}</td>
             <td style="max-width:280px;">${serialsHtml}</td>
             <td style="font-size:.88rem;">${makeModelHtml}</td>
@@ -3951,7 +3963,7 @@ function openGatePassModal(category = 'DU', preselectSerial = null) {
     renderEmrSelectedAssetsTable();
 
     // Auto-generate strictly unique EMR Number
-    const todayStr = todayLocal().replace(/-/g, '');
+    const todayStr = todayIso().replace(/-/g, '');
     // Next running number for today, e.g. EMR-20261127-002
     const prefix = `EMR-${todayStr}-`;
     let seq = 1;
@@ -3965,7 +3977,7 @@ function openGatePassModal(category = 'DU', preselectSerial = null) {
     if (numInput) numInput.value = autoNumber;
 
     const outDateInput = document.getElementById('gp-out-date');
-    if (outDateInput) outDateInput.value = todayLocal();
+    if (outDateInput) outDateInput.value = todayIso();
 
     const gpEmrInput = document.getElementById('gp-emr-no');
     if (gpEmrInput) gpEmrInput.value = '';
@@ -4053,7 +4065,7 @@ function updateGatePassPreviewCard() {
     if (found) {
         previewCard.style.display = 'block';
         document.getElementById('gp-preview-title').textContent = `${found.make || 'HPCL'} - ${found.model || 'Standard Model'}`;
-        document.getElementById('gp-preview-details').textContent = `${category === 'DU' ? found.variant : found.hp_type + ' HP'} | Receipt: ${found.receipt_date || 'N/A'}`;
+        document.getElementById('gp-preview-details').textContent = `${category === 'DU' ? found.variant : found.hp_type + ' HP'} | Receipt: ${formatDisplayDate(found.receipt_date) || 'N/A'}`;
         document.getElementById('gp-preview-serial').textContent = found.serial_no;
     } else {
         previewCard.style.display = 'none';
@@ -4071,7 +4083,7 @@ function createEmr(opts) {
     if ((db.gate_passes || []).some(g => safeUpper(g.emr_no || g.gate_pass_no) === safeUpper(emrNumber))) {
         throw new Error(`EMR no '${emrNumber}' is already used. Enter a different number.`);
     }
-    const outDate = opts.outDate;
+    const outDate = formatDisplayDate(opts.outDate);
     const gpReference = safeStr(opts.gatePassNo);
     const processedItems = [];
     const skipped = [];
@@ -4410,7 +4422,7 @@ function openGatePassPrintModal(voucherNumber) {
             <!-- Dispatch Transport Details Grid -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; font-size: 0.85rem; background: #f8fafc; padding: 1.15rem; border-radius: 6px; border: 1px solid #cbd5e1;">
                 <div>
-                    <p style="margin: 0 0 6px 0;"><strong>Out Date:</strong> <span style="font-weight:700;">${gp.out_date || '-'}</span></p>
+                    <p style="margin: 0 0 6px 0;"><strong>Out Date:</strong> <span style="font-weight:700;">${formatDisplayDate(gp.out_date) || '-'}</span></p>
                     ${gp.dl_no ? `<p style="margin: 0 0 6px 0;"><strong>Against Dispatch Letter:</strong> <span style="font-weight:700;">${gp.dl_no}</span></p>` : ''}
                     <p style="margin: 0 0 6px 0;"><strong>Authorized Transporter / Vendor:</strong> <br><span style="color: #004899; font-weight:800; font-size: 0.95rem;">${gp.vendor || '-'}</span></p>
                     <p style="margin: 0;"><strong>Destination (RO Outlet / Site):</strong> <br><span style="font-weight:700;">${gp.destination || '-'}</span></p>

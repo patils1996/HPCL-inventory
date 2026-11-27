@@ -130,7 +130,7 @@ function loadImageFromFile(file) {
 
 function formatStampTime(d) {
     const pad = n => String(n).padStart(2, '0');
-    return `${pad(d.getDate())}-${pad(d.getMonth() + 1)}-${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    return `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
 }
 
 async function processPhoto(file) {
@@ -382,7 +382,8 @@ let letterFilter = 'issued';
 let letterAssets = [];
 
 function financialYear(dateStr) {
-    const d = dateStr ? new Date(dateStr + 'T00:00:00') : new Date();
+    const iso = dateStr ? (typeof toIsoDate === 'function' ? toIsoDate(dateStr) : dateStr) : '';
+    const d = iso ? new Date(iso + 'T00:00:00') : new Date();
     const y = d.getMonth() >= 3 ? d.getFullYear() : d.getFullYear() - 1;
     return `${y}-${String((y + 1) % 100).padStart(2, '0')}`;
 }
@@ -420,7 +421,7 @@ function findEmr(emrNo) {
 function daysSince(dateStr) {
     const t = safeDateTimestamp(dateStr);
     if (!t) return null;
-    const today = new Date(todayLocal() + 'T00:00:00').getTime();
+    const today = new Date(todayIso() + 'T00:00:00').getTime();
     return Math.max(0, Math.round((today - t) / 86400000));
 }
 
@@ -457,8 +458,8 @@ function renderDispatchLine() {
     }
 
     set('dl-count-done', done.length);
-    const monthKey = todayLocal().slice(0, 7);
-    const thisMonth = done.filter(l => safeStr(l.dispatched_on).startsWith(monthKey)).length;
+    const monthKey = todayIso().slice(0, 7);
+    const thisMonth = done.filter(l => toIsoDate(l.dispatched_on).startsWith(monthKey)).length;
     const noPhoto = done.filter(l => { const e = findEmr(l.emr_no); return !(e && e.photos && e.photos.length); }).length;
     set('dl-note-done', noPhoto ? `${noPhoto} still need a photo` : `${thisMonth} this month`);
 
@@ -524,7 +525,7 @@ function renderLetters() {
         } else if (l.status === 'dispatched') {
             const emr = findEmr(l.emr_no);
             const photos = emr && Array.isArray(emr.photos) ? emr.photos : [];
-            statusTag = `<span class="tag tag-new">Dispatched ${e(l.dispatched_on)}</span>` + (photos.length ? '' : ' <span class="tag tag-waiting">Photo missing</span>');
+            statusTag = `<span class="tag tag-new">Dispatched ${e(formatDisplayDate(l.dispatched_on))}</span>` + (photos.length ? '' : ' <span class="tag tag-waiting">Photo missing</span>');
             proof = `<div class="letter-meta">EMR <strong>${e(l.emr_no)}</strong> · vehicle ${e(l.vehicle_no) || '—'} · by ${e(l.dispatched_by) || '—'}</div>
                 <div class="letter-proof" data-proof-emr="${e(l.emr_no)}">${photos.slice(0, 6).map(p => `<img class="photo-thumb" data-photo-id="${e(p.id)}" alt="Dispatch photo">`).join('')}</div>`;
             side = `
@@ -542,7 +543,7 @@ function renderLetters() {
             <div class="body">
                 <div class="letter-top"><span class="letter-no">${e(l.dl_no)}</span>${statusTag}</div>
                 <div class="letter-dest">${e(l.destination)}</div>
-                <div class="letter-meta">${e(l.dl_date)} · collect: ${e(l.vendor)}${l.purpose ? ` · ${e(l.purpose)}` : ''} · issued by ${e(l.issued_by)}</div>
+                <div class="letter-meta">${e(formatDisplayDate(l.dl_date))} · collect: ${e(l.vendor)}${l.purpose ? ` · ${e(l.purpose)}` : ''} · issued by ${e(l.issued_by)}</div>
                 <div class="letter-items">${letterItemsHtml(l)}</div>
                 ${l.remarks ? `<div class="letter-meta" style="margin-top:6px;">Instructions: ${e(l.remarks)}</div>` : ''}
                 ${proof}
@@ -574,7 +575,7 @@ function openLetterModal() {
     letterAssets = [];
     const form = document.getElementById('letter-form');
     if (form) form.reset();
-    const date = todayLocal();
+    const date = todayIso();
     document.getElementById('letter-date').value = date;
     document.getElementById('letter-no').value = nextLetterNo(date);
     let issuer = {};
@@ -678,7 +679,7 @@ function handleLetterSubmit(e) {
     }
     const letter = {
         dl_no: dlNo,
-        dl_date: document.getElementById('letter-date').value,
+        dl_date: formatDisplayDate(document.getElementById('letter-date').value),
         destination: safeStr(document.getElementById('letter-destination').value),
         vendor: safeStr(document.getElementById('letter-vendor').value),
         purpose: safeStr(document.getElementById('letter-purpose').value),
@@ -722,7 +723,8 @@ function cancelLetter(dlNo) {
 let dispatchingLetter = null;
 
 function nextEmrNo(dateStr) {
-    const prefix = `EMR-${safeStr(dateStr || todayLocal()).replace(/-/g, '')}-`;
+    const iso = (dateStr && typeof toIsoDate === 'function' ? toIsoDate(dateStr) : '') || todayIso();
+    const prefix = `EMR-${iso.replace(/-/g, '')}-`;
     let seq = 1;
     (db.gate_passes || []).forEach(g => {
         const n = safeStr(g.emr_no);
@@ -758,7 +760,7 @@ function openDispatchModal(dlNo) {
             <tbody>${rows}</tbody>
         </table></div>`;
 
-    const date = todayLocal();
+    const date = todayIso();
     document.getElementById('dispatch-out-date').value = date;
     document.getElementById('dispatch-emr-no').value = nextEmrNo(date);
     ['dispatch-vehicle', 'dispatch-driver', 'dispatch-gp-no', 'dispatch-remarks'].forEach(id => { document.getElementById(id).value = ''; });
@@ -777,7 +779,7 @@ async function handleDispatchSubmit(e) {
         alert('Take at least one photo of the loaded vehicle before confirming the dispatch.');
         return;
     }
-    const outDate = document.getElementById('dispatch-out-date').value;
+    const outDate = formatDisplayDate(document.getElementById('dispatch-out-date').value);
     const dispatchedBy = safeStr(document.getElementById('dispatch-by').value);
     let result;
     try {
@@ -830,7 +832,7 @@ async function openPhotosModal(emrNo) {
     photosModalEmr = emr;
     if (!Array.isArray(emr.photos)) emr.photos = [];
     document.getElementById('photos-modal-title').textContent = `Dispatch photos · ${emr.emr_no}`;
-    document.getElementById('photos-modal-sub').textContent = `${emr.destination || ''}${emr.vehicle_no ? ' · ' + emr.vehicle_no : ''}${emr.out_date ? ' · ' + emr.out_date : ''}`;
+    document.getElementById('photos-modal-sub').textContent = `${emr.destination || ''}${emr.vehicle_no ? ' · ' + emr.vehicle_no : ''}${emr.out_date ? ' · ' + formatDisplayDate(emr.out_date) : ''}`;
     resetPhotoCapture('extra');
     await renderPhotosGallery();
     document.getElementById('photos-modal').classList.add('active');
@@ -927,7 +929,7 @@ function printLetter(dlNo) {
             <div style="text-align:right; font-size:13px;">
                 <div><strong>Ref:</strong> ${e(l.dl_no)}</div>
                 ${l.ref ? `<div><strong>File:</strong> ${e(l.ref)}</div>` : ''}
-                <div><strong>Date:</strong> ${e(l.dl_date)}</div>
+                <div><strong>Date:</strong> ${e(formatDisplayDate(l.dl_date))}</div>
                 ${l.status === 'cancelled' ? '<div style="color:#D2232A; font-weight:700; margin-top:4px;">CANCELLED</div>' : ''}
             </div>
         </div>
@@ -961,7 +963,7 @@ function printLetter(dlNo) {
         <div style="margin-top:28px; border:1.5px dashed #6B7F96; padding:12px 14px; font-size:13px;">
             <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:16px; margin-bottom:6px;">Depot endorsement</div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 20px;">
-                <div>Dispatched on: <strong>${disp ? e(l.dispatched_on) : '____________'}</strong></div>
+                <div>Dispatched on: <strong>${disp ? e(formatDisplayDate(l.dispatched_on)) : '____________'}</strong></div>
                 <div>EMR no: <strong>${disp ? e(l.emr_no) : '____________'}</strong></div>
                 <div>Vehicle no: <strong>${disp ? e(l.vehicle_no) : '____________'}</strong></div>
                 <div>Dispatched by: <strong>${disp ? e(l.dispatched_by) : '____________'}</strong></div>
