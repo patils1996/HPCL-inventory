@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hpcl-stores-v5';
+const CACHE_NAME = 'hpcl-stores-v6';
 const ASSETS_TO_CACHE = [
   './index.html',
   './css/app.css',
