@@ -1,7 +1,11 @@
+const DEFAULT_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/1Rlyd-8qgXJwu6vaCgRBoQFTZtv9UjgmOMXG_29JJQEw/edit?gid=990657005#gid=990657005';
 let db = {};
 
 let backendActive = false;
 let backendConfig = null;
+let cloudSyncInFlight = null;
+let lastCloudCheckAt = 0;
+let pendingCloudUpdate = null;
 
 // Pagination & Sorting variables
 let invCurrentPage = 1;
@@ -288,8 +292,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupDataActions();
     setupExcelImport();
     setupBackendControls();
+    setupAutoCloudSyncListeners();
     setupGatePassHandlers();
     setupTableSorting();
+    syncWithCloud({ reason: 'startup' });
     
     // Set initial date values in forms (HTML <input type="date"> requires YYYY-MM-DD)
     const todayStr = todayIso();
@@ -304,12 +310,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Backend Detection & State Management
 // ==========================================================================
 async function detectBackend() {
-    let savedUrl = localStorage.getItem('hpcl_sheets_url') || 'https://docs.google.com/spreadsheets/d/1Rlyd-8qgXJwu6vaCgRBoQFTZtv9UjgmOMXG_29JJQEw/edit?gid=990657005#gid=990657005';
+    let urlSyncApplied = false;
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const syncParam = safeStr(params.get('sync'));
+        if (syncParam && (syncParam.includes('docs.google.com/spreadsheets') || isAppsScriptUrl(syncParam))) {
+            localStorage.setItem('hpcl_sheets_url', syncParam);
+            urlSyncApplied = true;
+            params.delete('sync');
+            const cleanQuery = params.toString();
+            const cleanUrl = `${window.location.pathname}${cleanQuery ? '?' + cleanQuery : ''}${window.location.hash || ''}`;
+            window.history.replaceState({}, '', cleanUrl);
+        }
+    } catch (e) { /* ignore malformed URL params */ }
+
+    let savedUrl = localStorage.getItem('hpcl_sheets_url') || DEFAULT_SHEETS_URL;
     if (savedUrl.includes('/macros/library/')) {
-        savedUrl = 'https://docs.google.com/spreadsheets/d/1bI3FN3QprFsXRV5qx0xaW5Xk2zbJsusrJVYpYerO3BY/edit?usp=sharing';
+        savedUrl = DEFAULT_SHEETS_URL;
         localStorage.setItem('hpcl_sheets_url', savedUrl);
     }
-    // Remember the default link so the status shown matches the link in the box
     if (!localStorage.getItem('hpcl_sheets_url')) localStorage.setItem('hpcl_sheets_url', savedUrl);
     const savedAutoSync = localStorage.getItem('hpcl_sheets_auto_sync') !== 'false';
 
@@ -317,11 +336,12 @@ async function detectBackend() {
     const autoSyncElem = document.getElementById('sheets-auto-sync');
     if (urlElem) urlElem.value = savedUrl;
     if (autoSyncElem) autoSyncElem.checked = savedAutoSync;
+    if (urlSyncApplied) showToast("Team sync link applied!");
 
     window.addEventListener('online', () => {
-        showToast("Internet connected! Auto-syncing to Google Sheets...");
+        showToast("Internet connected! Syncing with Google Sheets...");
         updateSheetsStatusBadge();
-        autoPushGoogleSheets();
+        syncWithCloud({ reason: 'online' });
     });
     window.addEventListener('offline', () => {
         showToast("Working Offline (Saved in Browser Local Storage)");
@@ -364,6 +384,7 @@ async function loadDatabase() {
                 if (response.ok) {
                     db = await response.json();
                     localStorage.setItem('hpcl_inventory_db', JSON.stringify(db));
+                    localStorage.setItem('hpcl_local_dirty', 'false');
                 }
             } catch (err) {
                 console.warn("Failed loading from backend API. Loading baseline JSON.");
@@ -415,19 +436,21 @@ async function loadLocalDatabaseFallback() {
     refreshAllViews();
 }
 
-function standardizeDatabase() {
-    if (!db) db = {};
-    if (!db.inventory) db.inventory = {};
-    if (!Array.isArray(db.inventory.pressure_dus)) db.inventory.pressure_dus = [];
-    if (!Array.isArray(db.inventory.stps)) db.inventory.stps = [];
-    if (!Array.isArray(db.inword)) db.inword = [];
-    if (!Array.isArray(db.stp_outword)) db.stp_outword = [];
-    if (!Array.isArray(db.du_outword)) db.du_outword = [];
-    if (!Array.isArray(db.tank_outword)) db.tank_outword = [];
-    if (!Array.isArray(db.others_outword)) db.others_outword = [];
-    if (!Array.isArray(db.hanging_hardware)) db.hanging_hardware = [];
-    if (!Array.isArray(db.gate_passes)) db.gate_passes = [];
-    if (!Array.isArray(db.dispatch_letters)) db.dispatch_letters = [];
+function standardizeDatabase(targetDb = db) {
+    if (!targetDb || typeof targetDb !== 'object') targetDb = {};
+    delete targetDb._meta;
+    delete targetDb._sync;
+    if (!targetDb.inventory) targetDb.inventory = {};
+    if (!Array.isArray(targetDb.inventory.pressure_dus)) targetDb.inventory.pressure_dus = [];
+    if (!Array.isArray(targetDb.inventory.stps)) targetDb.inventory.stps = [];
+    if (!Array.isArray(targetDb.inword)) targetDb.inword = [];
+    if (!Array.isArray(targetDb.stp_outword)) targetDb.stp_outword = [];
+    if (!Array.isArray(targetDb.du_outword)) targetDb.du_outword = [];
+    if (!Array.isArray(targetDb.tank_outword)) targetDb.tank_outword = [];
+    if (!Array.isArray(targetDb.others_outword)) targetDb.others_outword = [];
+    if (!Array.isArray(targetDb.hanging_hardware)) targetDb.hanging_hardware = [];
+    if (!Array.isArray(targetDb.gate_passes)) targetDb.gate_passes = [];
+    if (!Array.isArray(targetDb.dispatch_letters)) targetDb.dispatch_letters = [];
 
     const DATE_FIELDS = ['receipt_date', 'received_date', 'gate_pass_date', 'emr_date', 'out_date', 'dl_date', 'dispatched_on'];
     const TEXT_FIELDS = ['serial_no', 'emr_no', 'gate_pass_no', 'vendor', 'destination', 'make', 'model',
@@ -454,8 +477,8 @@ function standardizeDatabase() {
         return rec;
     };
 
-    const allLists = [db.inventory.pressure_dus, db.inventory.stps, db.inword, db.stp_outword,
-        db.du_outword, db.tank_outword, db.others_outword, db.gate_passes, db.dispatch_letters];
+    const allLists = [targetDb.inventory.pressure_dus, targetDb.inventory.stps, targetDb.inword, targetDb.stp_outword,
+        targetDb.du_outword, targetDb.tank_outword, targetDb.others_outword, targetDb.gate_passes, targetDb.dispatch_letters];
 
     // JSON columns that come back from Google Sheets as text
     const parseJsonField = (rec, field, target) => {
@@ -464,13 +487,13 @@ function standardizeDatabase() {
         }
         if (field !== target) delete rec[field];
     };
-    db.gate_passes.forEach(g => {
+    targetDb.gate_passes.forEach(g => {
         parseJsonField(g, 'photos_json', 'photos');
         parseJsonField(g, 'other_items_json', 'other_items');
         if (typeof g.photos === 'string') parseJsonField(g, 'photos', 'photos');
         if (!Array.isArray(g.photos)) g.photos = [];
     });
-    db.dispatch_letters.forEach(l => {
+    targetDb.dispatch_letters.forEach(l => {
         parseJsonField(l, 'items_json', 'items');
         parseJsonField(l, 'other_items_json', 'other_items');
         if (!Array.isArray(l.items)) l.items = [];
@@ -481,11 +504,11 @@ function standardizeDatabase() {
     allLists.forEach(list => list.forEach(cleanRecord));
 
     // Remove fully blank rows that can come back from a sheet
-    db.inventory.pressure_dus = db.inventory.pressure_dus.filter(r => r && safeStr(r.serial_no));
-    db.inventory.stps = db.inventory.stps.filter(r => r && safeStr(r.serial_no));
+    targetDb.inventory.pressure_dus = targetDb.inventory.pressure_dus.filter(r => r && safeStr(r.serial_no));
+    targetDb.inventory.stps = targetDb.inventory.stps.filter(r => r && safeStr(r.serial_no));
 
     // Guarantee every in-store asset has a unique numeric S.No (edit buttons rely on it)
-    [db.inventory.pressure_dus, db.inventory.stps].forEach(list => {
+    [targetDb.inventory.pressure_dus, targetDb.inventory.stps].forEach(list => {
         const seen = new Set();
         let maxSno = list.reduce((m, r) => Math.max(m, Number(r.sno) || 0), 0);
         list.forEach(r => {
@@ -500,7 +523,7 @@ function standardizeDatabase() {
     });
 
     // EMR vouchers: rebuild the multi-asset "items" array if it was flattened by a sheet round-trip
-    db.gate_passes.forEach(g => {
+    targetDb.gate_passes.forEach(g => {
         if (typeof g.items === 'string') {
             try { g.items = JSON.parse(g.items); } catch (e) { g.items = null; }
         }
@@ -512,8 +535,8 @@ function standardizeDatabase() {
             const serials = safeStr(g.serial_no).split(',').map(s => s.trim()).filter(Boolean);
             const rebuilt = [];
             serials.forEach(ser => {
-                const du = db.du_outword.find(d => safeLower(d.serial_no) === safeLower(ser) && (!emr || safeLower(d.emr_no || d.gate_pass_no) === emr));
-                const stp = du ? null : db.stp_outword.find(s => safeLower(s.serial_no) === safeLower(ser) && (!emr || safeLower(s.emr_no || s.gate_pass_no) === emr));
+                const du = targetDb.du_outword.find(d => safeLower(d.serial_no) === safeLower(ser) && (!emr || safeLower(d.emr_no || d.gate_pass_no) === emr));
+                const stp = du ? null : targetDb.stp_outword.find(s => safeLower(s.serial_no) === safeLower(ser) && (!emr || safeLower(s.emr_no || s.gate_pass_no) === emr));
                 if (du) {
                     rebuilt.push({ category: 'DU', serial_no: du.serial_no, make: du.make || '', model: du.model || '', variant: du.variant || 'MPD', type: du.type || 'Pressure' });
                 } else if (stp) {
@@ -528,21 +551,40 @@ function standardizeDatabase() {
         delete g.items_json;
         if (!g.items) delete g.items;
     });
+    return targetDb;
 }
 
-function saveState() {
+function computeDbSignature(targetDb) {
+    if (!targetDb || !targetDb.inventory) return '';
+    return JSON.stringify({
+        pressure_dus: targetDb.inventory.pressure_dus || [],
+        stps: targetDb.inventory.stps || [],
+        inword: targetDb.inword || [],
+        stp_outword: targetDb.stp_outword || [],
+        du_outword: targetDb.du_outword || [],
+        tank_outword: targetDb.tank_outword || [],
+        others_outword: targetDb.others_outword || [],
+        gate_passes: targetDb.gate_passes || [],
+        dispatch_letters: targetDb.dispatch_letters || []
+    });
+}
+
+function saveState(opts = {}) {
+    const { dirty = true, skipPush = false, forcePush = false } = opts;
     try {
         localStorage.setItem('hpcl_inventory_db', JSON.stringify(db));
+        localStorage.setItem('hpcl_local_dirty', dirty ? 'true' : 'false');
     } catch (err) {
         console.error('Local save failed:', err);
         alert('Could not save to browser storage (storage may be full). Please export a JSON backup from Backup & Sync.');
     }
-    scheduleAutoPush();
+    if (!skipPush) scheduleAutoPush(forcePush);
     if (backendActive) {
         saveStateToBackend();
     }
     updateDatabaseDiagnostics();
     updateSidebarBadges();
+    updateSheetsStatusBadge();
 }
 
 function isAppsScriptUrl(url) {
@@ -552,15 +594,15 @@ function isAppsScriptUrl(url) {
 
 // Several saves in quick succession (e.g. an Excel import) are pushed once.
 let autoPushTimer = null;
-function scheduleAutoPush() {
+function scheduleAutoPush(forcePush = false) {
     if (autoPushTimer) clearTimeout(autoPushTimer);
     autoPushTimer = setTimeout(() => {
         autoPushTimer = null;
-        autoPushGoogleSheets();
+        autoPushGoogleSheets(forcePush);
     }, 1500);
 }
 
-async function autoPushGoogleSheets() {
+async function autoPushGoogleSheets(forcePush = false) {
     const sheetsUrl = localStorage.getItem('hpcl_sheets_url');
     const autoSync = localStorage.getItem('hpcl_sheets_auto_sync') !== 'false';
 
@@ -575,13 +617,43 @@ async function autoPushGoogleSheets() {
     }
 
     try {
-        await pushToGoogleSheets(sheetsUrl, db);
+        const res = await pushToGoogleSheets(sheetsUrl, db, { force: forcePush, silent: true });
+        if (res && res.status === 'conflict') {
+            await handleSyncConflict(res);
+        }
     } catch (err) {
         console.warn("Auto-sync to Google Sheets failed:", err);
     }
 }
 
-async function pullFromGoogleSheets(url) {
+function extractSyncMetaRows(rows) {
+    const meta = { exec_url: '', updated_at: '', revision: '' };
+    if (!Array.isArray(rows)) return meta;
+    rows.forEach(r => {
+        if (!r || typeof r !== 'object') return;
+        const k = safeLower(r.key || r.Key);
+        const v = safeStr(r.value !== undefined ? r.value : r.Value);
+        if (k && Object.prototype.hasOwnProperty.call(meta, k)) meta[k] = v;
+    });
+    return meta;
+}
+
+function storeCloudMeta(meta) {
+    if (!meta || typeof meta !== 'object') return;
+    if (meta.revision) localStorage.setItem('hpcl_cloud_revision', String(meta.revision));
+    if (meta.updated_at) localStorage.setItem('hpcl_cloud_updated_at', String(meta.updated_at));
+    localStorage.setItem('hpcl_last_synced_at', new Date().toISOString());
+
+    const currentUrl = localStorage.getItem('hpcl_sheets_url') || '';
+    if (isAppsScriptUrl(meta.exec_url) && !isAppsScriptUrl(currentUrl)) {
+        localStorage.setItem('hpcl_sheets_url', meta.exec_url);
+        const urlInput = document.getElementById('sheets-spreadsheet-id');
+        if (urlInput) urlInput.value = meta.exec_url;
+        updateSheetsStatusBadge();
+    }
+}
+
+async function pullCloudSnapshot(url) {
     if (!url) {
         throw new Error("Please enter your Google Sheet URL or Web App Link first.");
     }
@@ -600,7 +672,12 @@ async function pullFromGoogleSheets(url) {
             });
             if (response.ok) {
                 const result = await response.json();
-                if (result && result.data) return result.data;
+                if (result && result.data) {
+                    return {
+                        db: result.data,
+                        meta: { exec_url: result.exec_url || '', updated_at: result.updated_at || '', revision: result.revision || '' }
+                    };
+                }
             }
         } catch (e) {
             console.warn("Backend pull failed, falling back to direct browser fetch:", e);
@@ -617,7 +694,11 @@ async function pullFromGoogleSheets(url) {
 
     if (spreadsheetId) {
         const dataObj = await pullFromSpreadsheetCsvEndpoints(spreadsheetId);
-        if (dataObj) return dataObj;
+        if (dataObj) {
+            const meta = dataObj._meta || { exec_url: '', updated_at: '', revision: '' };
+            delete dataObj._meta;
+            return { db: dataObj, meta };
+        }
     }
 
     if (url.includes('script.google.com')) {
@@ -626,11 +707,8 @@ async function pullFromGoogleSheets(url) {
         }
 
         let pullUrl = url;
-        if (!pullUrl.includes('?')) {
-            pullUrl += '?action=pull';
-        } else if (!pullUrl.includes('action=pull')) {
-            pullUrl += '&action=pull';
-        }
+        pullUrl += pullUrl.includes('?') ? (pullUrl.includes('action=pull') ? '' : '&action=pull') : '?action=pull';
+        pullUrl += `&_t=${Date.now()}`;
 
         try {
             const response = await fetch(pullUrl, {
@@ -644,7 +722,10 @@ async function pullFromGoogleSheets(url) {
                 if (parsed) {
                     const dataObj = parsed.data || parsed;
                     if (dataObj.inventory || dataObj.inword || dataObj.pressure_dus || dataObj.stps) {
-                        return dataObj;
+                        return {
+                            db: dataObj,
+                            meta: { exec_url: parsed.exec_url || url, updated_at: parsed.updated_at || '', revision: parsed.revision || '' }
+                        };
                     }
                 }
             }
@@ -663,7 +744,10 @@ async function pullFromGoogleSheets(url) {
                 let parsed = JSON.parse(text);
                 const dataObj = parsed.data || parsed;
                 if (dataObj.inventory || dataObj.inword || dataObj.pressure_dus || dataObj.stps) {
-                    return dataObj;
+                    return {
+                        db: dataObj,
+                        meta: { exec_url: parsed.exec_url || url, updated_at: parsed.updated_at || '', revision: parsed.revision || '' }
+                    };
                 }
             }
         } catch (err) {
@@ -674,8 +758,14 @@ async function pullFromGoogleSheets(url) {
     throw new Error("Unable to pull data from the provided URL.\n\nQuick Fix:\n1. If using Google Sheet URL: Set link sharing to 'Anyone with the link can view'.\n2. If using Apps Script: Deploy as Web App with access set to 'Anyone', and copy the /exec link.");
 }
 
+async function pullFromGoogleSheets(url) {
+    const snap = await pullCloudSnapshot(url);
+    if (snap && snap.meta) storeCloudMeta(snap.meta);
+    return snap ? snap.db : null;
+}
+
 async function pullFromSpreadsheetCsvEndpoints(spreadsheetId) {
-    const exportUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=xlsx`;
+    const exportUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=xlsx&_cb=${Date.now()}`;
     try {
         const response = await fetch(exportUrl);
         if (response.ok) {
@@ -692,16 +782,19 @@ async function pullFromSpreadsheetCsvEndpoints(spreadsheetId) {
         console.warn("Direct XLSX export pull failed, attempting CSV tabs:", e);
     }
 
+    // Header checks prevent Google gviz's silent first-tab fallback from polluting other collections
+    const hasCol = (cols, name) => cols.includes(name);
     const sheetsToFetch = [
-        { names: ["Pressure_DUs", "Inventory", "Pressure DUs", "DUs"], target: ["inventory", "pressure_dus"] },
-        { names: ["STPs", "STP"], target: ["inventory", "stps"] },
-        { names: ["Inward", "Inword"], target: ["inword"] },
-        { names: ["STP_Outward", "STP_Outword", "STP OUTWORD"], target: ["stp_outword"] },
-        { names: ["DU_Outward", "DU_Outword", "DU OUTWORD"], target: ["du_outword"] },
-        { names: ["Tank_Outward", "Tank_Outword", "TANK OUTWORD"], target: ["tank_outword"] },
-        { names: ["Others_Outward", "Others_Outword", "OTHERS OUTWORD"], target: ["others_outword"] },
-        { names: ["EMR", "EMRs", "EMR_Records", "Gate_Passes", "Gate Passes"], target: ["gate_passes"] },
-        { names: ["Dispatch_Letters", "Dispatch Letters", "Letters"], target: ["dispatch_letters"] }
+        { names: ["Pressure_DUs", "Inventory", "Pressure DUs", "DUs"], target: ["inventory", "pressure_dus"], matchHeaders: cols => hasCol(cols, 'serial_no') && (hasCol(cols, 'variant') || hasCol(cols, 'type')) && !hasCol(cols, 'out_date') && !hasCol(cols, 'emr_no') && !hasCol(cols, 'hp_type') },
+        { names: ["STPs", "STP"], target: ["inventory", "stps"], matchHeaders: cols => hasCol(cols, 'serial_no') && hasCol(cols, 'hp_type') && !hasCol(cols, 'out_date') && !hasCol(cols, 'emr_no') },
+        { names: ["Inward", "Inword"], target: ["inword"], matchHeaders: cols => hasCol(cols, 'item') && (hasCol(cols, 'received_date') || hasCol(cols, 'received_from')) },
+        { names: ["STP_Outward", "STP_Outword", "STP OUTWORD"], target: ["stp_outword"], matchHeaders: cols => hasCol(cols, 'hp_type') && (hasCol(cols, 'out_date') || hasCol(cols, 'emr_no') || hasCol(cols, 'gate_pass_no')) },
+        { names: ["DU_Outward", "DU_Outword", "DU OUTWORD"], target: ["du_outword"], matchHeaders: cols => hasCol(cols, 'serial_no') && (hasCol(cols, 'out_date') || hasCol(cols, 'emr_no') || hasCol(cols, 'gate_pass_no')) && !hasCol(cols, 'hp_type') },
+        { names: ["Tank_Outward", "Tank_Outword", "TANK OUTWORD"], target: ["tank_outword"], matchHeaders: cols => hasCol(cols, 'tank_capacity') },
+        { names: ["Others_Outward", "Others_Outword", "OTHERS OUTWORD"], target: ["others_outword"], matchHeaders: cols => hasCol(cols, 'material') },
+        { names: ["EMR", "EMRs", "EMR_Records", "Gate_Passes", "Gate Passes"], target: ["gate_passes"], matchHeaders: cols => (hasCol(cols, 'emr_no') || hasCol(cols, 'gate_pass_no')) && !hasCol(cols, 'dl_date') },
+        { names: ["Dispatch_Letters", "Dispatch Letters", "Letters"], target: ["dispatch_letters"], matchHeaders: cols => hasCol(cols, 'dl_no') && hasCol(cols, 'dl_date') },
+        { names: ["_Sync_Meta"], target: ["_metaRows"], matchHeaders: cols => hasCol(cols, 'key') && hasCol(cols, 'value') }
     ];
 
     let pulledDb = {
@@ -713,24 +806,29 @@ async function pullFromSpreadsheetCsvEndpoints(spreadsheetId) {
 
     for (const sheetDef of sheetsToFetch) {
         for (const sheetName of sheetDef.names) {
-            const csvUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}`;
+            const csvUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}&_cb=${Date.now()}`;
             try {
                 const res = await fetch(csvUrl);
                 if (res.ok) {
                     const csvText = await res.text();
                     if (csvText && csvText.trim().length > 0 && typeof XLSX !== 'undefined') {
                         const workbook = XLSX.read(csvText, { type: 'string', raw: true });
-                        const firstSheetName = workbook.SheetNames[0];
-                        const rows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheetName]);
-                        if (rows && rows.length > 0) {
-                            if (sheetDef.target.length === 2) {
-                                pulledDb[sheetDef.target[0]][sheetDef.target[1]] = rows;
-                            } else {
-                                pulledDb[sheetDef.target[0]] = rows;
-                            }
-                            fetchedCount++;
-                            break;
+                        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                        const headerRows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                        const headerCols = Array.isArray(headerRows[0]) ? headerRows[0].map(c => safeLower(c)) : [];
+                        if (!headerCols.length || (sheetDef.matchHeaders && !sheetDef.matchHeaders(headerCols))) {
+                            continue;
                         }
+                        const rows = XLSX.utils.sheet_to_json(sheet);
+                        if (sheetDef.target[0] === '_metaRows') {
+                            pulledDb._meta = extractSyncMetaRows(rows);
+                        } else if (sheetDef.target.length === 2) {
+                            pulledDb[sheetDef.target[0]][sheetDef.target[1]] = rows;
+                        } else {
+                            pulledDb[sheetDef.target[0]] = rows;
+                        }
+                        fetchedCount++;
+                        break;
                     }
                 }
             } catch (e) {
@@ -745,7 +843,7 @@ async function pullFromSpreadsheetCsvEndpoints(spreadsheetId) {
 function parseWorkbookToDb(workbook) {
     let newDb = {
         inventory: { pressure_dus: [], stps: [] },
-        inword: [], stp_outword: [], du_outword: [], tank_outword: [], others_outword: [], gate_passes: [], hanging_hardware: []
+        inword: [], stp_outword: [], du_outword: [], tank_outword: [], others_outword: [], gate_passes: [], dispatch_letters: [], hanging_hardware: []
     };
 
     let foundAny = false;
@@ -754,6 +852,7 @@ function parseWorkbookToDb(workbook) {
         for (const name of possibleNames) {
             for (const sname of workbook.SheetNames) {
                 if (sname.toLowerCase().trim() === name.toLowerCase().trim()) {
+                    foundAny = true;
                     return XLSX.utils.sheet_to_json(workbook.Sheets[sname]);
                 }
             }
@@ -761,59 +860,23 @@ function parseWorkbookToDb(workbook) {
         return [];
     }
 
-    const pdus = getSheetRows(["Pressure_DUs", "Inventory", "Pressure DUs", "DUs"]);
-    if (pdus.length > 0) {
-        newDb.inventory.pressure_dus = pdus;
-        foundAny = true;
-    }
-
-    const stps = getSheetRows(["STPs", "STP"]);
-    if (stps.length > 0) {
-        newDb.inventory.stps = stps;
-        foundAny = true;
-    }
-
-    const inwords = getSheetRows(["Inward", "Inword"]);
-    if (inwords.length > 0) {
-        newDb.inword = inwords;
-        foundAny = true;
-    }
-
-    const stpOut = getSheetRows(["STP_Outward", "STP_Outword", "STP OUTWORD"]);
-    if (stpOut.length > 0) {
-        newDb.stp_outword = stpOut;
-        foundAny = true;
-    }
-
-    const duOut = getSheetRows(["DU_Outward", "DU_Outword", "DU OUTWORD"]);
-    if (duOut.length > 0) {
-        newDb.du_outword = duOut;
-        foundAny = true;
-    }
-
-    const tankOut = getSheetRows(["Tank_Outward", "Tank_Outword", "TANK OUTWORD"]);
-    if (tankOut.length > 0) {
-        newDb.tank_outword = tankOut;
-        foundAny = true;
-    }
-
-    const othOut = getSheetRows(["Others_Outward", "Others_Outword", "OTHERS OUTWORD"]);
-    if (othOut.length > 0) {
-        newDb.others_outword = othOut;
-        foundAny = true;
-    }
-
-    const gps = getSheetRows(["EMR", "EMRs", "EMR_Records", "Gate_Passes", "Gate Passes"]);
-    if (gps.length > 0) {
-        newDb.gate_passes = gps;
-        foundAny = true;
-    }
+    newDb.inventory.pressure_dus = getSheetRows(["Pressure_DUs", "Inventory", "Pressure DUs", "DUs"]);
+    newDb.inventory.stps = getSheetRows(["STPs", "STP"]);
+    newDb.inword = getSheetRows(["Inward", "Inword"]);
+    newDb.stp_outword = getSheetRows(["STP_Outward", "STP_Outword", "STP OUTWORD"]);
+    newDb.du_outword = getSheetRows(["DU_Outward", "DU_Outword", "DU OUTWORD"]);
+    newDb.tank_outword = getSheetRows(["Tank_Outward", "Tank_Outword", "TANK OUTWORD"]);
+    newDb.others_outword = getSheetRows(["Others_Outward", "Others_Outword", "OTHERS OUTWORD"]);
+    newDb.gate_passes = getSheetRows(["EMR", "EMRs", "EMR_Records", "Gate_Passes", "Gate Passes"]);
     newDb.dispatch_letters = getSheetRows(["Dispatch_Letters", "Dispatch Letters", "Letters"]);
+
+    const metaRows = getSheetRows(["_Sync_Meta"]);
+    if (metaRows.length > 0) newDb._meta = extractSyncMetaRows(metaRows);
 
     return foundAny ? newDb : null;
 }
 
-async function pushToGoogleSheets(url, dataPayload) {
+async function pushToGoogleSheets(url, dataPayload, opts = {}) {
     if (!url) {
         throw new Error("Please enter an Apps Script Web App URL (ending in /exec) first.");
     }
@@ -831,32 +894,206 @@ async function pushToGoogleSheets(url, dataPayload) {
         throw new Error("To push to Google Sheets, paste a deployed Apps Script Web App URL (e.g. https://script.google.com/macros/s/.../exec).\n\nClick 'Setup steps' or 'Copy Apps Script' to set it up.");
     }
 
+    setTopSyncState(true);
     updateSheetsStatusBadge(true, "Syncing...");
 
     try {
+        const bodyPayload = {
+            ...dataPayload,
+            _exec_url: url,
+            _base_revision: localStorage.getItem('hpcl_cloud_revision') || '',
+            _force: !!opts.force
+        };
         const res = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'text/plain' },
-            body: JSON.stringify(dataPayload)
+            body: JSON.stringify(bodyPayload)
         });
         const text = await res.text();
         let parsed = null;
         try { parsed = JSON.parse(text); } catch (e) { parsed = null; }
         if (!res.ok || !parsed || parsed.status === 'error') {
-            const msg = (parsed && parsed.message) ? parsed.message : `Unexpected response from Apps Script (HTTP ${res.status}). Check that Web App is deployed with 'Who has access: Anyone' and 'google_apps_script.js' v3.0.`;
+            const msg = (parsed && parsed.message) ? parsed.message : `Unexpected response from Apps Script (HTTP ${res.status}). Check that Web App is deployed with 'Who has access: Anyone' and 'google_apps_script.js' v3.1.`;
             throw new Error(msg);
         }
-        showToast("Synced to Google Sheets!");
-        updateSheetsStatusBadge();
+        if (parsed.status === 'conflict') {
+            return parsed;
+        }
+        localStorage.setItem('hpcl_local_dirty', 'false');
+        storeCloudMeta({
+            revision: parsed.revision,
+            updated_at: parsed.updated_at || parsed.synced_at,
+            exec_url: parsed.exec_url || url
+        });
+        if (!opts.silent) showToast("Synced to Google Sheets!");
         return parsed;
     } catch (err) {
         console.error("Error pushing to Google Sheets:", err);
-        updateSheetsStatusBadge();
         if (err && err.name === 'TypeError') {
             throw new Error("Could not reach the Apps Script Web App (network/CORS block). Ensure you deployed it as a Web App with 'Execute as: Me' and 'Who has access: Anyone', and pasted the /exec URL.");
         }
         throw err;
+    } finally {
+        setTopSyncState(false);
+        updateSheetsStatusBadge();
     }
+}
+
+function setTopSyncState(isSyncing) {
+    const pill = document.getElementById('top-sync-pill');
+    if (pill) pill.classList.toggle('syncing', !!isSyncing);
+}
+
+function applyPulledCloudData(pulledDb, meta, opts = {}) {
+    if (!pulledDb) return false;
+    const normalized = standardizeDatabase(JSON.parse(JSON.stringify(pulledDb)));
+    const nextSig = computeDbSignature(normalized);
+    const currSig = computeDbSignature(db);
+    if (meta) storeCloudMeta(meta);
+    if (nextSig === currSig) {
+        localStorage.setItem('hpcl_local_dirty', 'false');
+        updateSheetsStatusBadge();
+        return false;
+    }
+    if (opts.deferIfModalOpen && document.querySelector('.modal-overlay.active')) {
+        pendingCloudUpdate = { db: normalized, meta };
+        return true;
+    }
+    pendingCloudUpdate = null;
+    db = normalized;
+    saveState({ dirty: false, skipPush: true });
+    refreshAllViews();
+    if (!opts.silent) showToast(opts.toastMsg || "Synced latest data from Google Sheets");
+    return true;
+}
+
+async function handleSyncConflict(conflictRes) {
+    const inv = conflictRes.data && conflictRes.data.inventory ? conflictRes.data.inventory : {};
+    const cDus = (inv.pressure_dus || []).length;
+    const cStps = (inv.stps || []).length;
+    const msg = `Another user updated Google Sheets while this device had unpushed changes.\n\nShared Sheet currently has ${cDus} DUs and ${cStps} STPs.\n\nPress OK to load the shared register (recommended), or Cancel to keep this device's copy (use 'Push now' if you intend to overwrite).`;
+    if (confirm(msg)) {
+        applyPulledCloudData(conflictRes.data, {
+            revision: conflictRes.revision,
+            updated_at: conflictRes.updated_at,
+            exec_url: conflictRes.exec_url
+        }, { toastMsg: "Loaded latest shared register from Google Sheets" });
+    }
+}
+
+async function syncWithCloud(opts = {}) {
+    if (cloudSyncInFlight) return cloudSyncInFlight;
+    const { reason = 'auto', manual = false } = opts;
+    const sheetsUrl = localStorage.getItem('hpcl_sheets_url');
+    if (!sheetsUrl) return false;
+    if (!navigator.onLine) {
+        if (manual) showToast("Offline — will sync when back online");
+        updateSheetsStatusBadge();
+        return false;
+    }
+
+    cloudSyncInFlight = (async () => {
+        setTopSyncState(true);
+        lastCloudCheckAt = Date.now();
+        try {
+            const snap = await pullCloudSnapshot(sheetsUrl);
+            if (!snap || !snap.db) return false;
+
+            const activeUrl = localStorage.getItem('hpcl_sheets_url') || sheetsUrl;
+            const prevLocalSig = computeDbSignature(db);
+            const normalizedCloud = standardizeDatabase(JSON.parse(JSON.stringify(snap.db)));
+            const cloudSig = computeDbSignature(normalizedCloud);
+            const isDirty = localStorage.getItem('hpcl_local_dirty') === 'true';
+
+            if (!isDirty) {
+                const changed = cloudSig !== prevLocalSig;
+                applyPulledCloudData(normalizedCloud, snap.meta, {
+                    deferIfModalOpen: reason === 'poll',
+                    silent: reason === 'startup' && !changed,
+                    toastMsg: "Synced latest register from Google Sheets"
+                });
+                return changed;
+            }
+
+            if (snap.meta) storeCloudMeta(snap.meta);
+            if (cloudSig === prevLocalSig) {
+                localStorage.setItem('hpcl_local_dirty', 'false');
+                updateSheetsStatusBadge();
+                if (manual) showToast("Already up to date with Google Sheets");
+                return false;
+            }
+
+            const resolvedUrl = localStorage.getItem('hpcl_sheets_url') || activeUrl;
+            if (isAppsScriptUrl(resolvedUrl) && navigator.onLine && localStorage.getItem('hpcl_sheets_auto_sync') !== 'false') {
+                const pushRes = await pushToGoogleSheets(resolvedUrl, db, { force: false, silent: !manual });
+                if (pushRes && pushRes.status === 'conflict') {
+                    await handleSyncConflict(pushRes);
+                }
+            } else if (manual) {
+                const inv = normalizedCloud.inventory || {};
+                const ok = confirm(`Google Sheets has ${inv.pressure_dus.length} DUs and ${inv.stps.length} STPs, while this device has unpushed local changes.\n\nPress OK to load Google Sheets data (replaces local changes), or Cancel to keep your local copy.`);
+                if (ok) {
+                    applyPulledCloudData(normalizedCloud, snap.meta, { toastMsg: "Loaded latest register from Google Sheets" });
+                }
+            }
+            return false;
+        } catch (err) {
+            console.warn(`Cloud sync (${reason}) failed:`, err);
+            if (manual) showToast("Sync check failed — see Backup & sync");
+            return false;
+        } finally {
+            setTopSyncState(false);
+            updateSheetsStatusBadge();
+            cloudSyncInFlight = null;
+        }
+    })();
+
+    return cloudSyncInFlight;
+}
+
+function setupAutoCloudSyncListeners() {
+    const syncPill = document.getElementById('top-sync-pill');
+    if (syncPill) {
+        syncPill.addEventListener('click', () => {
+            const url = localStorage.getItem('hpcl_sheets_url');
+            if (!url) {
+                const nav = document.querySelector('.nav-item[data-tab="data-mgmt"]');
+                if (nav) nav.click();
+                return;
+            }
+            syncWithCloud({ reason: 'manual', manual: true });
+        });
+    }
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden || !navigator.onLine) return;
+        if (pendingCloudUpdate && !document.querySelector('.modal-overlay.active')) {
+            applyPulledCloudData(pendingCloudUpdate.db, pendingCloudUpdate.meta);
+            return;
+        }
+        if (Date.now() - lastCloudCheckAt > 20000) {
+            syncWithCloud({ reason: 'resume' });
+        }
+    });
+
+    // Apply any deferred background sync cleanly once the active modal is closed
+    const flushDeferredOnClose = () => {
+        if (pendingCloudUpdate && !document.querySelector('.modal-overlay.active')) {
+            applyPulledCloudData(pendingCloudUpdate.db, pendingCloudUpdate.meta);
+        }
+    };
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('[data-close-modal]') || e.target.classList.contains('modal-overlay')) {
+            setTimeout(flushDeferredOnClose, 80);
+        }
+    });
+
+    setInterval(() => {
+        if (document.hidden || !navigator.onLine) return;
+        if (Date.now() - lastCloudCheckAt > 40000) {
+            syncWithCloud({ reason: 'poll' });
+        }
+    }, 45000);
 }
 
 async function saveStateToBackend() {
@@ -2825,10 +3062,13 @@ function setupDataActions() {
     const btnResetData = document.getElementById('btn-reset-data');
     if (btnResetData) {
         btnResetData.addEventListener('click', () => {
-            if (confirm("Are you sure you want to restore the inventory baseline? This will delete all your local entries and modifications!")) {
+            if (confirm("Are you sure you want to restore the 01/01/2026 baseline locally? This deletes local changes on this device until you push or pull from Google Sheets.")) {
                 localStorage.removeItem('hpcl_inventory_db');
+                localStorage.removeItem('hpcl_cloud_revision');
+                localStorage.setItem('hpcl_local_dirty', 'true');
                 loadDatabase();
-                showToast("Database restored to baseline!");
+                saveState({ dirty: true, skipPush: true });
+                showToast("Restored 01/01/2026 baseline on this device. Click 'Push now' if you want to overwrite Google Sheets.");
             }
         });
     }
@@ -3622,7 +3862,7 @@ function setupBackendControls() {
             btnPush.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Pushing...';
 
             try {
-                await pushToGoogleSheets(url, db);
+                await pushToGoogleSheets(url, db, { force: true });
                 showToast("Pushed local data to Google Sheets!");
             } catch (err) {
                 alert("Push to Sheets error:\n" + err.message);
@@ -3674,6 +3914,22 @@ function setupBackendControls() {
         });
     }
 
+    const btnCopyTeamLink = document.getElementById('btn-copy-team-link');
+    if (btnCopyTeamLink) {
+        btnCopyTeamLink.addEventListener('click', () => {
+            const url = (sheetIdInput.value || localStorage.getItem('hpcl_sheets_url') || '').trim();
+            if (!url) {
+                alert("Please paste your Google Sheet URL or Apps Script /exec link first.");
+                return;
+            }
+            const shareUrl = `${window.location.origin}${window.location.pathname}?sync=${encodeURIComponent(url)}`;
+            copyToClipboard(shareUrl, 'Team Sync Link');
+            if (!isAppsScriptUrl(url)) {
+                showToast("Copied pull-only link — paste your /exec URL first so mobile can push updates too.");
+            }
+        });
+    }
+
     const btnCopyScript = document.getElementById('btn-copy-script');
     if (btnCopyScript) {
         btnCopyScript.addEventListener('click', async () => {
@@ -3681,7 +3937,7 @@ function setupBackendControls() {
                 const res = await fetch('./google_apps_script.js');
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const code = await res.text();
-                copyToClipboard(code, 'Google Apps Script v3.0');
+                copyToClipboard(code, 'Google Apps Script v3.1');
             } catch (err) {
                 alert('Could not load google_apps_script.js automatically. You can copy it directly from google_apps_script.js in the repository.');
             }
@@ -3691,7 +3947,7 @@ function setupBackendControls() {
     const btnViewScript = document.getElementById('btn-view-script');
     if (btnViewScript) {
         btnViewScript.addEventListener('click', () => {
-            const scriptInstructions = `Google Apps Script v3.0 Setup (Enables Push + Pull + Photo Upload):
+            const scriptInstructions = `Google Apps Script v3.1 Setup (Shared Multi-Device Push + Pull + Photo Upload):
 
 1. Open your Google Sheet -> Extensions -> Apps Script.
 2. Delete existing code, click "Copy Apps Script" in this app, and paste it in.
@@ -3700,7 +3956,8 @@ function setupBackendControls() {
 5. Execute as: Me
 6. Who has access: Anyone  (Required for Push & Pull from any device)
 7. Click Deploy, grant permissions (including Google Drive for photos), and copy the URL ending in /exec.
-8. Paste that /exec URL into the "Apps Script Web App URL" box and click "Push now".`;
+8. Paste that /exec URL into "Apps Script Web App URL" and click "Push now".
+9. Share "Copy Team Link" (or wait for auto-discovery) so phones and office PCs all share one live register.`;
             alert(scriptInstructions);
         });
     }
@@ -3719,7 +3976,8 @@ function setupBackendControls() {
             btnPull.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Pulling...';
             
             try {
-                const pulledData = await pullFromGoogleSheets(sheetUrl);
+                const snap = await pullCloudSnapshot(sheetUrl);
+                const pulledData = snap ? snap.db : null;
                 if (pulledData) {
                     const inv = pulledData.inventory || {};
                     const pDus = (inv.pressure_dus || pulledData.pressure_dus || []).length;
@@ -3736,7 +3994,8 @@ function setupBackendControls() {
                     }
                     db = pulledData;
                     standardizeDatabase();
-                    saveState();
+                    if (snap && snap.meta) storeCloudMeta(snap.meta);
+                    saveState({ dirty: false, skipPush: true });
                     refreshAllViews();
                     showToast("Database pulled from Google Sheets successfully!");
                     alert("Pull Successful! Inventory database updated with latest data from Google Sheets.");
@@ -3817,6 +4076,7 @@ function updateSheetsStatusBadge(isSyncing = false, customStatus = null) {
 
     const url = localStorage.getItem('hpcl_sheets_url');
     const isOnline = navigator.onLine;
+    const isDirty = localStorage.getItem('hpcl_local_dirty') === 'true';
 
     if (customStatus) {
         badge.textContent = customStatus;
@@ -3834,27 +4094,37 @@ function updateSheetsStatusBadge(isSyncing = false, customStatus = null) {
         if (topPillText) topPillText.textContent = "Offline, saving on this device";
         if (topPillDot) topPillDot.style.backgroundColor = "var(--color-warning)";
         if (textElem) {
-            textElem.innerHTML = `<strong>You are offline.</strong> Everything is saved on this device and will be pushed to Google Sheets when the connection is back.`;
+            textElem.innerHTML = `<strong>You are offline.</strong> Everything is saved on this device and will sync with Google Sheets when the connection is back.`;
+        }
+    } else if (url && !isAppsScriptUrl(url) && isDirty) {
+        badge.textContent = "Unsynced (Pull only)";
+        badge.className = "status-badge status-warning";
+        badge.style.backgroundColor = "var(--color-warning-bg)";
+        badge.style.color = "var(--color-warning)";
+        if (topPillText) topPillText.textContent = "Local changes not pushed";
+        if (topPillDot) topPillDot.style.backgroundColor = "var(--color-warning)";
+        if (textElem) {
+            textElem.innerHTML = `<strong>Local edits are not in Google Sheets yet.</strong> A plain Sheet link can only pull data. Paste your Apps Script <code>/exec</code> URL (or open via <strong>Copy Team Link</strong>) to push updates to all devices.`;
         }
     } else if (url && !isAppsScriptUrl(url)) {
-        badge.textContent = "Pull only";
+        badge.textContent = "Auto-pulling";
         badge.className = "status-badge status-info";
         badge.style.backgroundColor = "rgba(59, 130, 246, 0.15)";
         badge.style.color = "#60a5fa";
-        if (topPillText) topPillText.textContent = "Sheet linked (pull only)";
+        if (topPillText) topPillText.textContent = "Shared sheet (pull only)";
         if (topPillDot) topPillDot.style.backgroundColor = "var(--color-info)";
         if (textElem) {
-            textElem.innerHTML = `<strong>Spreadsheet link saved.</strong> You can pull data from it. To push changes and upload dispatch photos, deploy <code>google_apps_script.js</code> as a Web App and paste its <code>/exec</code> URL here.`;
+            textElem.innerHTML = `<strong>Shared Google Sheet linked (auto-pull active).</strong> Everyone receives updates automatically. To also push changes and photos from this device, paste your Apps Script <code>/exec</code> URL (or open via <strong>Copy Team Link</strong>).`;
         }
     } else if (url) {
-        badge.textContent = "Connected";
-        badge.className = "status-badge status-success";
-        badge.style.backgroundColor = "var(--color-success-bg)";
-        badge.style.color = "var(--color-success)";
-        if (topPillText) topPillText.textContent = "Syncing to Google Sheets";
-        if (topPillDot) topPillDot.style.backgroundColor = "var(--color-success)";
+        badge.textContent = isDirty ? "Sync pending" : "Synced";
+        badge.className = isDirty ? "status-badge status-warning" : "status-badge status-success";
+        badge.style.backgroundColor = isDirty ? "var(--color-warning-bg)" : "var(--color-success-bg)";
+        badge.style.color = isDirty ? "var(--color-warning)" : "var(--color-success)";
+        if (topPillText) topPillText.textContent = isDirty ? "Pushing changes..." : "Live shared sync";
+        if (topPillDot) topPillDot.style.backgroundColor = isDirty ? "var(--color-warning)" : "var(--color-success)";
         if (textElem) {
-            textElem.innerHTML = `<strong>Connected.</strong> Changes, dispatch letters and EMRs are pushed to your Google Sheet; dispatch photos are uploaded to Google Drive.`;
+            textElem.innerHTML = `<strong>Two-way live sync active.</strong> All updates push to Google Sheets automatically, and every device pulls the latest register on open &amp; refresh. Use <strong>Copy Team Link</strong> to connect new phones in one tap.`;
         }
     } else {
         badge.textContent = "Not linked";

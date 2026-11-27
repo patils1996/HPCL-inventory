@@ -1,6 +1,6 @@
 /**
  * HPCL Active Inventory Portal - Google Apps Script (Push & Pull Sync)
- * Version 3.0
+ * Version 3.1
  *
  * Instructions:
  * 1. Open your Google Sheet -> Extensions -> Apps Script
@@ -71,6 +71,42 @@ var SHEETS = {
 };
 
 var PHOTO_ROOT_NAME = "HPCL Dispatch Photos";
+var META_SHEET_NAME = "_Sync_Meta";
+
+function isValidExecUrl(u) {
+  var s = String(u || "");
+  return s.indexOf("https://script.google.com/") === 0 && s.indexOf("/exec") !== -1;
+}
+
+function readSyncMeta(ss) {
+  var sh = ss.getSheetByName(META_SHEET_NAME);
+  var meta = { revision: "0", updated_at: "", exec_url: "" };
+  if (!sh) return meta;
+  var vals = sh.getDataRange().getValues();
+  for (var i = 1; i < vals.length; i++) {
+    var k = String(vals[i][0] || "").trim();
+    var v = String(vals[i][1] || "").trim();
+    if (k) meta[k] = v;
+  }
+  return meta;
+}
+
+function writeSyncMeta(ss, meta) {
+  var sh = ss.getSheetByName(META_SHEET_NAME);
+  if (!sh) sh = ss.insertSheet(META_SHEET_NAME);
+  var rows = [
+    ["key", "value"],
+    ["revision", String(meta.revision || "1")],
+    ["updated_at", String(meta.updated_at || new Date().toISOString())],
+    ["exec_url", String(meta.exec_url || "")]
+  ];
+  sh.clear();
+  var range = sh.getRange(1, 1, rows.length, 2);
+  range.setNumberFormat("@");
+  range.setValues(rows);
+  sh.getRange(1, 1, 1, 2).setFontWeight("bold");
+  sh.setFrozenRows(1);
+}
 
 function getPhotoFolder(emrNo) {
   var props = PropertiesService.getScriptProperties();
@@ -143,13 +179,34 @@ function doPost(e) {
     if (!lock.tryLock(30000)) {
       return jsonResponse({ status: "error", message: "Another device is syncing right now. Please retry in a few seconds." });
     }
+    var savedMeta;
     try {
-      pushData(data);
+      var ss = SpreadsheetApp.getActiveSpreadsheet();
+      var currMeta = readSyncMeta(ss);
+      if (!data._force && data._base_revision && currMeta.revision && currMeta.revision !== "0" &&
+          String(data._base_revision) !== String(currMeta.revision)) {
+        return jsonResponse({
+          status: "conflict",
+          message: "Another user updated Google Sheets while your copy was older.",
+          revision: currMeta.revision,
+          updated_at: currMeta.updated_at,
+          exec_url: currMeta.exec_url || "",
+          data: buildPullResult(ss)
+        });
+      }
+      savedMeta = pushData(data, currMeta);
     } finally {
       lock.releaseLock();
     }
 
-    return jsonResponse({ status: "success", message: "Data successfully synced to Google Sheets!", synced_at: new Date().toISOString() });
+    return jsonResponse({
+      status: "success",
+      message: "Data successfully synced to Google Sheets!",
+      synced_at: savedMeta.updated_at,
+      updated_at: savedMeta.updated_at,
+      revision: savedMeta.revision,
+      exec_url: savedMeta.exec_url || ""
+    });
   } catch (err) {
     return jsonResponse({ status: "error", message: err.toString() });
   }
@@ -180,8 +237,7 @@ function findSheet(ss, names) {
   return null;
 }
 
-function pullData() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+function buildPullResult(ss) {
   var tz = ss.getSpreadsheetTimeZone() || "Asia/Kolkata";
 
   function readSheet(def) {
@@ -225,7 +281,7 @@ function pullData() {
   var gatePasses = unpackJson(readSheet(SHEETS.gate_passes));
   var letters = unpackJson(readSheet(SHEETS.dispatch_letters));
 
-  var result = {
+  return {
     inventory: {
       pressure_dus: readSheet(SHEETS.pressure_dus),
       stps: readSheet(SHEETS.stps)
@@ -238,12 +294,24 @@ function pullData() {
     gate_passes: gatePasses,
     dispatch_letters: letters
   };
-
-  return jsonResponse({ status: "success", data: result });
 }
 
-function pushData(data) {
+function pullData() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var result = buildPullResult(ss);
+  var meta = readSyncMeta(ss);
+  return jsonResponse({
+    status: "success",
+    revision: meta.revision || "",
+    updated_at: meta.updated_at || "",
+    exec_url: meta.exec_url || "",
+    data: result
+  });
+}
+
+function pushData(data, currMeta) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  currMeta = currMeta || readSyncMeta(ss);
 
   function cellValue(row, key) {
     var val = row[key];
@@ -289,4 +357,22 @@ function pushData(data) {
   if (data.others_outword) writeSheet(SHEETS.others_outword, data.others_outword);
   if (data.gate_passes) writeSheet(SHEETS.gate_passes, data.gate_passes);
   if (data.dispatch_letters) writeSheet(SHEETS.dispatch_letters, data.dispatch_letters);
+
+  var resolvedExec = "";
+  if (isValidExecUrl(data._exec_url)) resolvedExec = String(data._exec_url).trim();
+  else {
+    try {
+      var svcUrl = ScriptApp.getService().getUrl();
+      if (isValidExecUrl(svcUrl)) resolvedExec = svcUrl;
+    } catch (err) {}
+  }
+  if (!resolvedExec && isValidExecUrl(currMeta.exec_url)) resolvedExec = currMeta.exec_url;
+
+  var nextMeta = {
+    revision: String((parseInt(currMeta.revision || "0", 10) || 0) + 1),
+    updated_at: new Date().toISOString(),
+    exec_url: resolvedExec
+  };
+  writeSyncMeta(ss, nextMeta);
+  return nextMeta;
 }

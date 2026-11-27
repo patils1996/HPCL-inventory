@@ -275,12 +275,18 @@ code { font-family: var(--font-cond); font-size: 0.95em; font-weight: 600; }
 }
 .top-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 .top-sync-pill {
-    display: flex; align-items: center; gap: 7px;
-    font-size: 0.85rem; color: var(--ink-2);
-    padding: 0 4px;
+    display: inline-flex; align-items: center; gap: 7px;
+    font: inherit; font-size: 0.85rem; color: var(--ink-2);
+    background: transparent; border: 1px solid transparent; border-radius: 16px;
+    padding: 5px 10px;
+    cursor: pointer;
     white-space: nowrap;
+    transition: background-color 0.12s, border-color 0.12s;
 }
-.sync-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-3); }
+.top-sync-pill:hover { background: var(--surface-2); border-color: var(--rule); color: var(--ink); }
+.top-sync-pill .sync-refresh-icon { font-size: 0.78rem; color: var(--ink-3); }
+.top-sync-pill.syncing .sync-refresh-icon { animation: fa-spin 1s infinite linear; color: var(--blue); }
+.sync-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-3); flex: none; }
 .date-badge { font-size: 0.85rem; color: var(--ink-3); white-space: nowrap; }
 
 /* ---------- Buttons ---------- */

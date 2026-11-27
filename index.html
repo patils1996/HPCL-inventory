@@ -76,9 +76,9 @@
                 <kbd class="search-kbd">Ctrl K</kbd>
             </div>
             <div class="top-actions">
-                <div class="top-sync-pill" id="top-sync-pill" title="Google Sheets sync status">
-                    <span class="sync-dot"></span><span class="sync-text" id="top-sync-text">Local only</span>
-                </div>
+                <button type="button" class="top-sync-pill" id="top-sync-pill" title="Sync status — click to refresh from Google Sheets">
+                    <span class="sync-dot"></span><span class="sync-text" id="top-sync-text">Local only</span><i class="fa-solid fa-rotate sync-refresh-icon" aria-hidden="true"></i>
+                </button>
                 <span class="date-badge" id="current-date"></span>
                 <button class="btn btn-outline" id="import-data-btn" title="Import Excel"><i class="fa-solid fa-file-excel"></i><span>Import Excel</span></button>
                 <button class="btn btn-primary" id="add-entry-btn" title="Add record"><i class="fa-solid fa-plus"></i><span>Add record</span></button>
@@ -442,6 +442,7 @@
                                 <button id="btn-pull-sheets" class="btn btn-outline"><i class="fa-solid fa-cloud-arrow-down"></i> Pull from Sheets</button>
                                 <button id="btn-sync-photos" class="btn btn-outline"><i class="fa-solid fa-images"></i> Upload pending photos <span class="sub-count" id="pending-photo-count">0</span></button>
                                 <button id="btn-test-sheets" class="btn btn-ghost"><i class="fa-solid fa-bolt"></i> Test connection</button>
+                                <button id="btn-copy-team-link" class="btn btn-ghost" title="Copy link that auto-configures other phones &amp; laptops"><i class="fa-solid fa-share-nodes"></i> Copy Team Link</button>
                                 <button id="btn-copy-script" class="btn btn-ghost"><i class="fa-regular fa-copy"></i> Copy Apps Script</button>
                                 <button id="btn-view-script" class="btn btn-ghost"><i class="fa-solid fa-code"></i> Setup steps</button>
                             </div>

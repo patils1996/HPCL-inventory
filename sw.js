@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hpcl-stores-v4';
+const CACHE_NAME = 'hpcl-stores-v5';
 const ASSETS_TO_CACHE = [
   './index.html',
   './css/app.css',
@@ -50,8 +50,8 @@ self.addEventListener('fetch', (event) => {
   if (!url.startsWith('http://') && !url.startsWith('https://')) {
     return;
   }
-  // Live data: Google Sheets / Apps Script / Drive photos are always fetched fresh
-  if (url.includes('script.google.com') || url.includes('script.googleusercontent.com') ||
+  // Live data: Google Sheets / Apps Script / Drive photos / export redirects are always fetched fresh
+  if (url.includes('script.google.com') || url.includes('googleusercontent.com') ||
       url.includes('docs.google.com') || url.includes('drive.google.com') || url.includes('/api/')) {
     return;
   }
