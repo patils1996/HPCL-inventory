@@ -782,30 +782,46 @@ function parseWorkbookToDb(workbook) {
 
 async function pushToGoogleSheets(url, dataPayload) {
     if (!url) {
-        throw new Error("Please enter a Google Sheet URL or Web App Link first.");
+        throw new Error("Please enter an Apps Script Web App URL (ending in /exec) first.");
     }
     url = url.trim();
 
+    if (url.includes('/macros/library/')) {
+        throw new Error("You pasted an Apps Script Library link (/macros/library/). Deploy as a Web App (click 'Setup steps') and paste the /exec URL instead.");
+    }
+
     if (url.includes('docs.google.com/spreadsheets')) {
-        throw new Error("To push data back to Google Sheets, you must deploy the Google Apps Script Web App (click '1-Click Setup' in Backup & Sync) and paste the Web App URL (ending in /exec).\n\nSpreadsheet URLs only support pulling/viewing.");
+        throw new Error("A Google Sheet link can only pull (read) data.\n\nTo push data and upload photos:\n1. Open your Google Sheet -> Extensions -> Apps Script.\n2. Click 'Copy Apps Script' here and paste it into Apps Script.\n3. Click Deploy -> New deployment -> Web app (Execute as: Me, Who has access: Anyone).\n4. Paste the /exec Web App URL above and click 'Push now'.");
+    }
+
+    if (!isAppsScriptUrl(url)) {
+        throw new Error("To push to Google Sheets, paste a deployed Apps Script Web App URL (e.g. https://script.google.com/macros/s/.../exec).\n\nClick 'Setup steps' or 'Copy Apps Script' to set it up.");
     }
 
     updateSheetsStatusBadge(true, "Syncing...");
 
     try {
-        if (url.includes('script.google.com') || url.startsWith('http')) {
-            await fetch(url, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'text/plain' },
-                body: JSON.stringify(dataPayload)
-            });
-            showToast("Auto-synced to Google Sheets!");
-            updateSheetsStatusBadge();
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify(dataPayload)
+        });
+        const text = await res.text();
+        let parsed = null;
+        try { parsed = JSON.parse(text); } catch (e) { parsed = null; }
+        if (!res.ok || !parsed || parsed.status === 'error') {
+            const msg = (parsed && parsed.message) ? parsed.message : `Unexpected response from Apps Script (HTTP ${res.status}). Check that Web App is deployed with 'Who has access: Anyone' and 'google_apps_script.js' v3.0.`;
+            throw new Error(msg);
         }
+        showToast("Synced to Google Sheets!");
+        updateSheetsStatusBadge();
+        return parsed;
     } catch (err) {
         console.error("Error pushing to Google Sheets:", err);
         updateSheetsStatusBadge();
+        if (err && err.name === 'TypeError') {
+            throw new Error("Could not reach the Apps Script Web App (network/CORS block). Ensure you deployed it as a Web App with 'Execute as: Me' and 'Who has access: Anyone', and pasted the /exec URL.");
+        }
         throw err;
     }
 }
@@ -3250,28 +3266,35 @@ function setupBackendControls() {
     [sheetIdInput, scanDirInput].forEach(elem => {
         if (elem) elem.addEventListener('blur', btnSaveConfig);
     });
+    sheetIdInput.addEventListener('change', btnSaveConfig);
     [autoSyncCheckbox, mergeModeCheckbox].forEach(elem => {
         if (elem) elem.addEventListener('change', btnSaveConfig);
     });
+
+    const persistUrlOnly = (val) => {
+        localStorage.setItem('hpcl_sheets_url', val);
+        updateSheetsStatusBadge();
+    };
 
     const btnPush = document.getElementById('btn-push-sheets');
     if (btnPush) {
         btnPush.addEventListener('click', async () => {
             const url = sheetIdInput.value.trim();
             if (!url) {
-                alert("Please paste your Google Sheet Web App Link first.");
+                alert("Please paste your Google Apps Script /exec Web App URL first.");
                 return;
             }
-            
+            persistUrlOnly(url);
+
             btnPush.disabled = true;
             const originalText = btnPush.innerHTML;
             btnPush.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Pushing...';
-            
+
             try {
                 await pushToGoogleSheets(url, db);
                 showToast("Pushed local data to Google Sheets!");
             } catch (err) {
-                alert("Push to Sheets error: " + err.message);
+                alert("Push to Sheets error:\n" + err.message);
             } finally {
                 btnPush.disabled = false;
                 btnPush.innerHTML = originalText;
@@ -3284,22 +3307,52 @@ function setupBackendControls() {
         btnTestSheets.addEventListener('click', async () => {
             const url = sheetIdInput.value.trim();
             if (!url) {
-                alert("Please enter a Google Sheet URL or Web App Link first.");
+                alert("Please enter a Google Sheet URL or Apps Script /exec Web App link first.");
                 return;
             }
+            persistUrlOnly(url);
             btnTestSheets.disabled = true;
+            const originalHtml = btnTestSheets.innerHTML;
             btnTestSheets.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Testing...';
             const startTime = Date.now();
             try {
-                const res = await fetch(url, { method: 'HEAD', mode: 'no-cors' });
-                const pingTime = Date.now() - startTime;
-                showToast(`Connection Successful (${pingTime}ms latency)`);
-                alert(`Connection Test Passed!\nEndpoint responded in ${pingTime}ms.\nGoogle Sheets link is reachable from your browser.`);
+                if (isAppsScriptUrl(url)) {
+                    const testUrl = url + (url.includes('?') ? '&' : '?') + 'action=pull';
+                    const res = await fetch(testUrl, { method: 'GET', redirect: 'follow' });
+                    const txt = await res.text();
+                    let parsed = null;
+                    try { parsed = JSON.parse(txt); } catch (e) {}
+                    const pingTime = Date.now() - startTime;
+                    if (!res.ok || !parsed || parsed.status === 'error') {
+                        throw new Error((parsed && parsed.message) || `Invalid response from Apps Script (HTTP ${res.status}). Check 'Who has access: Anyone' in Deploy -> Manage deployments.`);
+                    }
+                    showToast(`Apps Script connected (${pingTime}ms)`);
+                    alert(`Connection Test Passed!\nApps Script /exec Web App responded with valid JSON in ${pingTime}ms.\nBoth Push and Pull are ready.`);
+                } else {
+                    await fetch(url, { method: 'HEAD', mode: 'no-cors' });
+                    const pingTime = Date.now() - startTime;
+                    showToast(`Sheet URL reachable (${pingTime}ms) — pull only`);
+                    alert(`Spreadsheet Link Reachable (${pingTime}ms) — Pull Only.\n\nNote: A google.com/spreadsheets link can only Pull data. To enable 'Push now' and Drive photo uploads, deploy google_apps_script.js as a Web App and paste the /exec URL.`);
+                }
             } catch (e) {
-                alert(`Connection Test Warning: Endpoint could not be reached directly (may be blocked by browser CORS or offline). Make sure Web App is deployed with 'Anyone' access.`);
+                alert(`Connection Test Failed:\n${e.message || e}\n\nMake sure the Web App is deployed with 'Execute as: Me' and 'Who has access: Anyone'.`);
             } finally {
                 btnTestSheets.disabled = false;
-                btnTestSheets.innerHTML = '<i class="fa-solid fa-bolt"></i> Test Connection';
+                btnTestSheets.innerHTML = originalHtml;
+            }
+        });
+    }
+
+    const btnCopyScript = document.getElementById('btn-copy-script');
+    if (btnCopyScript) {
+        btnCopyScript.addEventListener('click', async () => {
+            try {
+                const res = await fetch('./google_apps_script.js');
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const code = await res.text();
+                copyToClipboard(code, 'Google Apps Script v3.0');
+            } catch (err) {
+                alert('Could not load google_apps_script.js automatically. You can copy it directly from google_apps_script.js in the repository.');
             }
         });
     }
@@ -3307,18 +3360,16 @@ function setupBackendControls() {
     const btnViewScript = document.getElementById('btn-view-script');
     if (btnViewScript) {
         btnViewScript.addEventListener('click', () => {
-            const scriptInstructions = `📋 1-Click Google Apps Script Setup (For Both Push & Pull):
+            const scriptInstructions = `Google Apps Script v3.0 Setup (Enables Push + Pull + Photo Upload):
 
-1. Open your Google Sheet -> Click Extensions -> Apps Script
-2. Clear any existing code and paste the code from 'google_apps_script.js'.
-3. Click "Deploy" -> "New Deployment".
-4. Choose type "Web App".
-5. Set "Execute as": "Me".
-6. Set "Who has access": "Anyone" (Crucial for Push & Pull from mobile/web app).
-7. Click "Deploy", authorize access, and copy the Web App URL!
-8. Paste the Web App URL into the box above and click "Push to Sheets" or "Pull from Sheets".
-
-Both Push and Pull will now work 100% directly from your browser & mobile devices!`;
+1. Open your Google Sheet -> Extensions -> Apps Script.
+2. Delete existing code, click "Copy Apps Script" in this app, and paste it in.
+3. Click Deploy -> New deployment (or Manage deployments -> Edit -> New version).
+4. Type: Web app
+5. Execute as: Me
+6. Who has access: Anyone  (Required for Push & Pull from any device)
+7. Click Deploy, grant permissions (including Google Drive for photos), and copy the URL ending in /exec.
+8. Paste that /exec URL into the "Apps Script Web App URL" box and click "Push now".`;
             alert(scriptInstructions);
         });
     }
@@ -3331,6 +3382,7 @@ Both Push and Pull will now work 100% directly from your browser & mobile device
                 alert("Please paste your Google Sheet URL or Apps Script Link first.");
                 return;
             }
+            persistUrlOnly(sheetUrl);
             btnPull.disabled = true;
             const originalText = btnPull.innerHTML;
             btnPull.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Pulling...';
