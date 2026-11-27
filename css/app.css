@@ -832,7 +832,7 @@ textarea.form-control { height: auto; padding: 8px 10px; resize: vertical; }
 .mobile-bottom-nav { display: none; }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 1100px) {
+@media screen and (max-width: 1100px) {
     .charts-grid { grid-template-columns: minmax(0, 1fr); }
     .sync-grid { grid-template-columns: minmax(0, 1fr); }
     .stock-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -840,7 +840,7 @@ textarea.form-control { height: auto; padding: 8px 10px; resize: vertical; }
     .stock-cell:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
 }
 
-@media (max-width: 860px) {
+@media screen and (max-width: 860px) {
     html, body { font-size: 15px; overflow-x: clip; }
     .app { grid-template-columns: minmax(0, 1fr); }
     .sidebar {
@@ -956,17 +956,84 @@ textarea.form-control { height: auto; padding: 8px 10px; resize: vertical; }
 #gate-pass-print-modal .modal-content { max-width: 860px; background: #fff; color: #111; }
 #gate-pass-print-modal .modal-header { background: #F6F8FA; }
 #gate-pass-print-modal .modal-header h4 { color: #0F2A4A; }
-#printable-voucher-body { background: #fff; color: #111; padding: 32px; }
+#printable-voucher-body { background: #fff; color: #111; padding: 28px; overflow-x: auto; }
+.printable-pass-sheet, .printable-letter-sheet { min-width: 620px; }
 
 @media print {
-    @page { size: A4 portrait; margin: 12mm; }
-    body * { visibility: hidden !important; }
-    #gate-pass-print-modal, #gate-pass-print-modal * { visibility: visible !important; }
-    #gate-pass-print-modal {
-        position: absolute !important; inset: 0 auto auto 0 !important;
-        width: 100% !important; display: block !important; padding: 0 !important; background: #fff !important;
+    @page { size: A4 portrait; margin: 10mm; }
+    html, body {
+        background: #fff !important;
+        color: #0F2A4A !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        font-size: 13px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
-    #gate-pass-print-modal .modal-header { display: none !important; }
-    #gate-pass-print-modal .modal-content { box-shadow: none !important; border: 0 !important; max-width: 100% !important; animation: none !important; }
-    #printable-voucher-body { padding: 0 !important; }
+    .app,
+    .mobile-bottom-nav,
+    .toast-notification,
+    .lightbox,
+    .modal-overlay:not(#gate-pass-print-modal),
+    #gate-pass-print-modal .modal-header {
+        display: none !important;
+    }
+    #gate-pass-print-modal {
+        position: static !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #fff !important;
+        overflow: visible !important;
+    }
+    #gate-pass-print-modal .modal-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: none !important;
+        min-height: 0 !important;
+        box-shadow: none !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: #fff !important;
+        animation: none !important;
+        margin: 0 !important;
+        overflow: visible !important;
+    }
+    #printable-voucher-body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #fff !important;
+        overflow: visible !important;
+    }
+    .printable-pass-sheet,
+    .printable-letter-sheet {
+        min-width: 0 !important;
+        width: 100% !important;
+        min-height: 260mm !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        background: #fff !important;
+        border: 1.5px solid #cbd5e1 !important;
+        border-radius: 4px !important;
+        padding: 14px 16px !important;
+    }
+    .print-avoid-break,
+    .printable-pass-sheet tr,
+    .printable-letter-sheet tr,
+    .print-bottom-block {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+    .print-bottom-block {
+        margin-top: auto !important;
+        padding-top: 16px !important;
+    }
 }

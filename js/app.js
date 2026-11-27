@@ -4344,7 +4344,8 @@ function openGatePassPrintModal(voucherNumber) {
     if (printTitle) printTitle.textContent = 'EMR voucher';
 
     const rawEmr = safeStr(gp.emr_no || gp.gate_pass_no);
-    const qrMockCode = `HPCL-DESUR-EMR-${rawEmr.replace(/[^a-zA-Z0-9]/g, '')}`;
+    const codeClean = rawEmr.replace(/[^a-zA-Z0-9]/g, '');
+    const qrMockCode = codeClean.startsWith('EMR') ? `HPCL-DESUR-${codeClean}` : `HPCL-DESUR-EMR-${codeClean}`;
     const rawItems = (gp.items && gp.items.length > 0) ? gp.items : null;
     gp = escapeRecord(gp);
     const emrDisplay = gp.emr_no || gp.gate_pass_no;
@@ -4401,9 +4402,9 @@ function openGatePassPrintModal(voucherNumber) {
     `;
 
     container.innerHTML = `
-        <div class="printable-pass-sheet" style="font-family: 'Barlow', Arial, sans-serif; color: #0f172a; line-height: 1.45;">
+        <div class="printable-pass-sheet" style="font-family: 'Barlow', Arial, sans-serif; color: #0f172a; line-height: 1.45; display: flex; flex-direction: column;">
             <!-- Header with Official Crest & Dual Language -->
-            <div style="border-bottom: 2.5px solid #004899; padding-bottom: 1.25rem; margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center;">
+            <div class="print-avoid-break" style="border-bottom: 2.5px solid #004899; padding-bottom: 1rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
                 <div style="display:flex; align-items:center; gap: 14px;">
                     <img src="HPCL.png" alt="HPCL Crest" style="height: 52px; width: auto; object-fit: contain;">
                     <div>
@@ -4420,7 +4421,7 @@ function openGatePassPrintModal(voucherNumber) {
             </div>
 
             <!-- Dispatch Transport Details Grid -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; font-size: 0.85rem; background: #f8fafc; padding: 1.15rem; border-radius: 6px; border: 1px solid #cbd5e1;">
+            <div class="print-avoid-break" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1rem; font-size: 0.85rem; background: #f8fafc; padding: 1rem 1.15rem; border-radius: 6px; border: 1px solid #cbd5e1;">
                 <div>
                     <p style="margin: 0 0 6px 0;"><strong>Out Date:</strong> <span style="font-weight:700;">${formatDisplayDate(gp.out_date) || '-'}</span></p>
                     ${gp.dl_no ? `<p style="margin: 0 0 6px 0;"><strong>Against Dispatch Letter:</strong> <span style="font-weight:700;">${gp.dl_no}</span></p>` : ''}
@@ -4436,7 +4437,7 @@ function openGatePassPrintModal(voucherNumber) {
             </div>
 
             <!-- Stores & Equipment Table -->
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; font-size: 0.85rem; border: 1.5px solid #0f172a;">
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.85rem; border: 1.5px solid #0f172a;">
                 <thead>
                     <tr style="background: #0f172a; color: #ffffff; text-align: left;">
                         <th style="padding: 9px 12px; border: 1px solid #334155; width: 45px; text-align:center;">#</th>
@@ -4453,29 +4454,36 @@ function openGatePassPrintModal(voucherNumber) {
             </table>
 
             <!-- Remarks & Notes -->
-            ${gp.remarks ? `<div style="font-size: 0.82rem; background: #fff7ed; border-left: 4px solid #D2232A; padding: 8px 12px; margin-bottom: 1.25rem;"><strong>Remarks:</strong> ${gp.remarks}</div>` : ''}
+            ${gp.remarks ? `<div class="print-avoid-break" style="font-size: 0.82rem; background: #fff7ed; border-left: 4px solid #D2232A; padding: 8px 12px; margin-bottom: 1rem;"><strong>Remarks:</strong> ${gp.remarks}</div>` : ''}
 
-            <div style="font-size: 0.74rem; color: #64748b; background: #f1f5f9; padding: 8px 12px; border-radius: 4px; margin-bottom: 2.5rem; line-height: 1.4;">
-                <strong>Statutory Notice:</strong> The materials specified above belong to HPCL Desur IRD Depot and are dispatched under authorized EMR custody. Transporter and receiving dealer must verify serial numbers upon arrival and adhere strictly to OISD / PESO safety compliance standards.
-            </div>
+            <div class="print-bottom-block" style="margin-top: auto; padding-top: 20px;">
+                <div style="font-size: 0.74rem; color: #475569; background: #f1f5f9; padding: 8px 12px; border-radius: 4px; margin-bottom: 2.25rem; line-height: 1.4; border: 1px solid #cbd5e1;">
+                    <strong>Statutory Notice:</strong> The materials specified above belong to HPCL Desur IRD Depot and are dispatched under authorized EMR custody. Transporter and receiving dealer must verify serial numbers upon arrival and adhere strictly to OISD / PESO safety compliance standards.
+                </div>
 
-            <!-- 4 Formal Signature Blocks -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; text-align: center; font-size: 0.78rem;">
-                <div style="border-top: 1.5px dashed #475569; padding-top: 8px;">
-                    <strong>Issued / Dispatched By</strong><br>
-                    <span style="color: #475569;">Vishal<br>(Junior Executive - RE)</span>
+                <!-- 4 Formal Signature Blocks -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; text-align: center; font-size: 0.78rem;">
+                    <div style="border-top: 1.5px dashed #475569; padding-top: 8px;">
+                        <strong>Issued / Dispatched By</strong><br>
+                        <span style="color: #475569;">Vishal<br>(Junior Executive - RE)</span>
+                    </div>
+                    <div style="border-top: 1.5px dashed #475569; padding-top: 8px;">
+                        <strong>Checked &amp; Verified By</strong><br>
+                        <span style="color: #475569;">Vinita Kumari<br>(Manager - RE)</span>
+                    </div>
+                    <div style="border-top: 1.5px dashed #475569; padding-top: 8px;">
+                        <strong>Approved By</strong><br>
+                        <span style="color: #475569;">Praise K James<br>(Manager - RE Head)</span>
+                    </div>
+                    <div style="border-top: 1.5px dashed #475569; padding-top: 8px;">
+                        <strong>Security Gate Out</strong><br>
+                        <span style="color: #475569;">Stamp &amp; Time Out<br>(Main Gate)</span>
+                    </div>
                 </div>
-                <div style="border-top: 1.5px dashed #475569; padding-top: 8px;">
-                    <strong>Checked &amp; Verified By</strong><br>
-                    <span style="color: #475569;">Vinita Kumari<br>(Manager - RE)</span>
-                </div>
-                <div style="border-top: 1.5px dashed #475569; padding-top: 8px;">
-                    <strong>Approved By</strong><br>
-                    <span style="color: #475569;">Praise K James<br>(Manager - RE Head)</span>
-                </div>
-                <div style="border-top: 1.5px dashed #475569; padding-top: 8px;">
-                    <strong>Security Gate Out</strong><br>
-                    <span style="color: #475569;">Stamp &amp; Time Out<br>(Main Gate)</span>
+
+                <div style="margin-top: 14px; border-top: 1px solid #e2e8f0; padding-top: 7px; display: flex; justify-content: space-between; font-size: 0.7rem; color: #64748b;">
+                    <span>HPCL Desur IRD Depot · Belgaum Regional Office (RRO)</span>
+                    <span>Official Equipment Movement Record · Single Page A4 Copy</span>
                 </div>
             </div>
         </div>

@@ -916,8 +916,8 @@ function printLetter(dlNo) {
         </tr>`).join('');
     const disp = l.status === 'dispatched';
     body.innerHTML = `
-    <div style="font-family:'Barlow',Arial,sans-serif; color:#0F2A4A; font-size:14px; line-height:1.5;">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:3px solid #0F2A4A; padding-bottom:12px;">
+    <div class="printable-letter-sheet" style="font-family:'Barlow',Arial,sans-serif; color:#0F2A4A; font-size:13.5px; line-height:1.5; display:flex; flex-direction:column;">
+        <div class="print-avoid-break" style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:3px solid #0F2A4A; padding-bottom:12px;">
             <div style="display:flex; gap:12px; align-items:center;">
                 <img src="HPCL.png" alt="HPCL" style="height:56px;">
                 <div>
@@ -952,24 +952,29 @@ function printLetter(dlNo) {
         </table>
         ${l.remarks ? `<p style="margin:0 0 12px;"><strong>Instructions:</strong> ${e(l.remarks)}</p>` : ''}
 
-        <div style="margin-top:36px; display:flex; justify-content:flex-end;">
-            <div style="text-align:left; min-width:220px;">
-                <div style="border-top:1px solid #0F2A4A; padding-top:6px;"><strong>${e(l.issued_by)}</strong></div>
-                <div>${e(l.designation)}</div>
-                <div style="color:#3D5470;">${e(l.office)}</div>
+        <div class="print-bottom-block" style="margin-top:auto; padding-top:24px;">
+            <div style="display:flex; justify-content:flex-end;">
+                <div style="text-align:left; min-width:220px;">
+                    <div style="border-top:1px solid #0F2A4A; padding-top:6px;"><strong>${e(l.issued_by)}</strong></div>
+                    <div>${e(l.designation)}</div>
+                    <div style="color:#3D5470;">${e(l.office)}</div>
+                </div>
             </div>
-        </div>
 
-        <div style="margin-top:28px; border:1.5px dashed #6B7F96; padding:12px 14px; font-size:13px;">
-            <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:16px; margin-bottom:6px;">Depot endorsement</div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 20px;">
-                <div>Dispatched on: <strong>${disp ? e(formatDisplayDate(l.dispatched_on)) : '____________'}</strong></div>
-                <div>EMR no: <strong>${disp ? e(l.emr_no) : '____________'}</strong></div>
-                <div>Vehicle no: <strong>${disp ? e(l.vehicle_no) : '____________'}</strong></div>
-                <div>Dispatched by: <strong>${disp ? e(l.dispatched_by) : '____________'}</strong></div>
+            <div style="margin-top:22px; border:1.5px dashed #6B7F96; padding:12px 14px; font-size:13px;">
+                <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:16px; margin-bottom:6px;">Depot endorsement</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 20px;">
+                    <div>Dispatched on: <strong>${disp ? e(formatDisplayDate(l.dispatched_on)) : '____________'}</strong></div>
+                    <div>EMR no: <strong>${disp ? e(l.emr_no) : '____________'}</strong></div>
+                    <div>Vehicle no: <strong>${disp ? e(l.vehicle_no) : '____________'}</strong></div>
+                    <div>Dispatched by: <strong>${disp ? e(l.dispatched_by) : '____________'}</strong></div>
+                </div>
+            </div>
+            <div style="margin-top:12px; border-top:1px solid #D5DDE6; padding-top:8px; display:flex; justify-content:space-between; font-size:11px; color:#6B7F96;">
+                <span>HPCL Desur IRD Depot · Belgaum Regional Office (RRO)</span>
+                <span>Generated from Stores Register</span>
             </div>
         </div>
-        <p style="margin-top:14px; font-size:11px; color:#6B7F96;">Generated from the HPCL Desur IRD stores register.</p>
     </div>`;
     modal.classList.add('active');
 }
