@@ -568,10 +568,11 @@ code { font-family: var(--font-cond); font-size: 0.95em; font-weight: 600; }
     display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end;
     margin-bottom: 16px;
 }
-.filter-group { display: flex; flex-direction: column; gap: 4px; min-width: 170px; }
+.filter-group { display: flex; flex-direction: column; gap: 4px; min-width: 150px; }
 .filter-group label { font-size: 0.82rem; color: var(--ink-2); font-weight: 500; }
 .filter-bar .spacer { flex: 1; }
 .search-group { flex: 1; min-width: 220px; max-width: 460px; }
+.stock-popup-search-group { max-width: 280px; }
 
 .form-control, .filter-select {
     width: 100%;

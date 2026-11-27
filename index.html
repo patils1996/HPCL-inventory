@@ -187,6 +187,10 @@
                         <select id="inv-make-filter" class="form-control"><option value="all">All makes</option></select>
                     </div>
                     <div class="filter-group">
+                        <label for="inv-variant-filter">Variant</label>
+                        <select id="inv-variant-filter" class="form-control"><option value="all">All variants</option></select>
+                    </div>
+                    <div class="filter-group">
                         <label for="inv-status-filter">Condition</label>
                         <select id="inv-status-filter" class="form-control">
                             <option value="all">Any condition</option>
@@ -1063,7 +1067,11 @@
             <div class="filter-bar" style="margin-bottom:12px;">
                 <div class="quick-filter-chips" id="stock-popup-chips" style="margin-bottom:0;"></div>
                 <div class="spacer"></div>
-                <div class="search-group" style="max-width:300px;">
+                <div class="filter-group" id="stock-popup-variant-wrap" style="min-width:165px;">
+                    <label for="stock-popup-variant" class="sr-only">Variant</label>
+                    <select id="stock-popup-variant" class="form-control"><option value="all">All variants</option></select>
+                </div>
+                <div class="search-group stock-popup-search-group">
                     <label for="stock-popup-search" class="sr-only">Filter items</label>
                     <input type="search" id="stock-popup-search" class="form-control" placeholder="Search serial, make, model, remarks…">
                 </div>

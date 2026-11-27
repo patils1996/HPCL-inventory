@@ -1388,35 +1388,70 @@ function updateCharts() {
 // ==========================================================================
 // Filter Dropdowns, Live Search & Sorting Setup
 // ==========================================================================
-function populateFilterDropdowns() {
-    const makeSelect = document.getElementById('inv-make-filter');
-    if (!makeSelect) return;
+function getInventoryVariantLabel(item, isDu) {
+    if (isDu) return safeStr(item.variant);
+    return stpHp(item) || 'STP';
+}
 
-    const currentVal = makeSelect.value;
+function populateSelectOptions(selectEl, values, defaultLabel, preferredVal) {
+    if (!selectEl) return;
+    const prevVal = preferredVal !== undefined ? preferredVal : (selectEl.value || 'all');
+    const sorted = Array.from(values).sort((a, b) => a.localeCompare(b));
+    const matched = sorted.find(v => safeLower(v) === safeLower(prevVal));
+
+    selectEl.innerHTML = `<option value="all">${escapeHtml(defaultLabel)}</option>`;
+    sorted.forEach(val => {
+        const opt = document.createElement('option');
+        opt.value = val;
+        opt.textContent = val;
+        if (matched && val === matched) opt.selected = true;
+        selectEl.appendChild(opt);
+    });
+    if (!matched) selectEl.value = 'all';
+}
+
+function populateFilterDropdowns() {
+    const typeSelect = document.getElementById('inv-type-filter');
+    const makeSelect = document.getElementById('inv-make-filter');
+    const variantSelect = document.getElementById('inv-variant-filter');
+    if (!makeSelect && !variantSelect) return;
+
+    const typeVal = typeSelect ? typeSelect.value : 'all';
+    const dus = (typeVal === 'all' || typeVal === 'du') && db.inventory && db.inventory.pressure_dus ? db.inventory.pressure_dus : [];
+    const stps = (typeVal === 'all' || typeVal === 'stp') && db.inventory && db.inventory.stps ? db.inventory.stps : [];
+
     const makesSet = new Set();
-    
-    (db.inventory && db.inventory.pressure_dus ? db.inventory.pressure_dus : []).forEach(d => {
+    dus.forEach(d => {
         const m = safeUpper(d.make);
         if (m) makesSet.add(m);
     });
-    (db.inventory && db.inventory.stps ? db.inventory.stps : []).forEach(s => {
+    stps.forEach(s => {
         const m = safeUpper(s.make);
         if (m) makesSet.add(m);
     });
+    populateSelectOptions(makeSelect, makesSet, 'All makes');
 
-    makeSelect.innerHTML = '<option value="all">All makes</option>';
-    Array.from(makesSet).sort().forEach(make => {
-        const opt = document.createElement('option');
-        opt.value = make;
-        opt.textContent = make;
-        if (make === currentVal) opt.selected = true;
-        makeSelect.appendChild(opt);
+    const activeMake = makeSelect ? makeSelect.value : 'all';
+    const variantsSet = new Set();
+    dus.forEach(raw => {
+        const item = normalizeRecord(raw);
+        if (activeMake !== 'all' && safeLower(item.make) !== safeLower(activeMake)) return;
+        const v = getInventoryVariantLabel(item, true);
+        if (v) variantsSet.add(v);
     });
+    stps.forEach(raw => {
+        const item = normalizeRecord(raw);
+        if (activeMake !== 'all' && safeLower(item.make) !== safeLower(activeMake)) return;
+        const v = getInventoryVariantLabel(item, false);
+        if (v) variantsSet.add(v);
+    });
+    populateSelectOptions(variantSelect, variantsSet, 'All variants');
 }
 
 function setupFilters() {
     const typeFilter = document.getElementById('inv-type-filter');
     const makeFilter = document.getElementById('inv-make-filter');
+    const variantFilter = document.getElementById('inv-variant-filter');
     const statusFilter = document.getElementById('inv-status-filter');
     const clearFiltersBtn = document.getElementById('clear-inv-filters');
     const globalSearch = document.getElementById('global-search');
@@ -1425,6 +1460,7 @@ function setupFilters() {
 
     if (typeFilter) {
         typeFilter.addEventListener('change', () => {
+            populateFilterDropdowns();
             syncQuickChips();
             invCurrentPage = 1;
             renderInventoryList();
@@ -1432,6 +1468,13 @@ function setupFilters() {
     }
     if (makeFilter) {
         makeFilter.addEventListener('change', () => {
+            populateFilterDropdowns();
+            invCurrentPage = 1;
+            renderInventoryList();
+        });
+    }
+    if (variantFilter) {
+        variantFilter.addEventListener('change', () => {
             invCurrentPage = 1;
             renderInventoryList();
         });
@@ -1448,10 +1491,12 @@ function setupFilters() {
         clearFiltersBtn.addEventListener('click', () => {
             if (typeFilter) typeFilter.value = 'all';
             if (makeFilter) makeFilter.value = 'all';
+            if (variantFilter) variantFilter.value = 'all';
             if (statusFilter) statusFilter.value = 'all';
             if (globalSearch) globalSearch.value = '';
             const clearBtn = document.getElementById('clear-search-btn');
             if (clearBtn) clearBtn.style.display = 'none';
+            populateFilterDropdowns();
             syncQuickChips();
             invCurrentPage = 1;
             renderInventoryList();
@@ -1474,6 +1519,7 @@ function setupFilters() {
             if (typeFilter) typeFilter.value = fType;
             if (statusFilter) statusFilter.value = fStatus;
 
+            populateFilterDropdowns();
             invCurrentPage = 1;
             renderInventoryList();
         });
@@ -1565,11 +1611,13 @@ function updateSortHeaderIcons(table, activeColumn, direction) {
 function getInventoryViewItems() {
     const typeElem = document.getElementById('inv-type-filter');
     const makeElem = document.getElementById('inv-make-filter');
+    const variantElem = document.getElementById('inv-variant-filter');
     const statusElem = document.getElementById('inv-status-filter');
     const searchElem = document.getElementById('global-search');
 
     const typeFilter = typeElem ? typeElem.value : 'all';
     const makeFilter = makeElem ? makeElem.value : 'all';
+    const variantFilter = variantElem ? variantElem.value : 'all';
     const statusFilter = statusElem ? statusElem.value : 'all';
     const searchVal = searchElem ? safeLower(searchElem.value) : '';
 
@@ -1580,6 +1628,7 @@ function getInventoryViewItems() {
             const item = normalizeRecord(raw);
             items.push({
                 ...item,
+                variant: getInventoryVariantLabel(item, true),
                 category: 'Dispensing Unit (DU)',
                 display_type: item.type || 'Pressure DU'
             });
@@ -1593,7 +1642,7 @@ function getInventoryViewItems() {
                 ...item,
                 type: 'STP',
                 display_type: 'Submersible Pump (STP)',
-                variant: item.variant ? (item.variant.includes('HP') ? item.variant : `${item.variant} HP`) : (item.hp_type ? `${item.hp_type} HP` : 'STP'),
+                variant: getInventoryVariantLabel(item, false),
                 category: 'Submersible Pump (STP)'
             });
         });
@@ -1601,6 +1650,10 @@ function getInventoryViewItems() {
 
     if (makeFilter !== 'all') {
         items = items.filter(i => safeLower(i.make) === safeLower(makeFilter));
+    }
+
+    if (variantFilter !== 'all') {
+        items = items.filter(i => safeLower(i.variant) === safeLower(variantFilter));
     }
 
     if (statusFilter !== 'all') {
@@ -1846,16 +1899,16 @@ function renderPagination(totalItems, startItem, endItem) {
 // ==========================================================================
 // Overview Stock Card Detail Popup (DUs / STPs / All Stock)
 // ==========================================================================
-let stockPopupState = { mode: 'du', filter: 'all' };
+let stockPopupState = { mode: 'du', filter: 'all', variant: 'all' };
 
 function getStockPopupBaseItems(mode) {
     const dus = (db.inventory && db.inventory.pressure_dus ? db.inventory.pressure_dus : []).map(raw => {
         const item = normalizeRecord(raw);
-        return { ...item, shortCat: 'DU', specLabel: item.variant || 'MPD', isDu: true };
+        return { ...item, shortCat: 'DU', specLabel: getInventoryVariantLabel(item, true) || 'MPD', isDu: true };
     });
     const stps = (db.inventory && db.inventory.stps ? db.inventory.stps : []).map(raw => {
         const item = normalizeRecord(raw);
-        return { ...item, shortCat: 'STP', specLabel: stpHp(item) || 'STP', isDu: false };
+        return { ...item, shortCat: 'STP', specLabel: getInventoryVariantLabel(item, false), isDu: false };
     });
     if (mode === 'du') return dus;
     if (mode === 'stp') return stps;
@@ -1863,7 +1916,7 @@ function getStockPopupBaseItems(mode) {
 }
 
 function getStockPopupFilteredItems() {
-    const { mode, filter } = stockPopupState;
+    const { mode, filter, variant } = stockPopupState;
     let items = getStockPopupBaseItems(mode);
     const searchInput = document.getElementById('stock-popup-search');
     const q = searchInput ? safeLower(searchInput.value) : '';
@@ -1885,6 +1938,10 @@ function getStockPopupFilteredItems() {
         }
     }
 
+    if (variant && variant !== 'all') {
+        items = items.filter(i => safeLower(i.specLabel) === safeLower(variant));
+    }
+
     if (q) {
         items = items.filter(i =>
             safeLower(i.serial_no).includes(q) ||
@@ -1903,12 +1960,18 @@ function renderStockPopupModal() {
     const titleEl = document.getElementById('stock-popup-title');
     const subEl = document.getElementById('stock-popup-sub');
     const chipsEl = document.getElementById('stock-popup-chips');
+    const variantSelect = document.getElementById('stock-popup-variant');
     const tbody = document.getElementById('stock-popup-tbody');
     const countEl = document.getElementById('stock-popup-count');
     if (!tbody) return;
 
-    const { mode, filter } = stockPopupState;
+    const { mode, filter, variant } = stockPopupState;
     const baseItems = getStockPopupBaseItems(mode);
+    const variantSet = new Set(baseItems.map(i => i.specLabel).filter(Boolean));
+    if (variantSelect) {
+        populateSelectOptions(variantSelect, variantSet, 'All variants', variant || 'all');
+        stockPopupState.variant = variantSelect.value || 'all';
+    }
     const filtered = getStockPopupFilteredItems();
 
     const titles = { du: 'Dispensing units in store', stp: 'Submersible pumps in store', all: 'All equipment in store' };
@@ -1972,9 +2035,11 @@ function renderStockPopupModal() {
 function openStockDetailPopup(mode = 'du', filter = 'all') {
     const modal = document.getElementById('stock-popup-modal');
     if (!modal) return;
-    stockPopupState = { mode, filter };
+    stockPopupState = { mode, filter, variant: 'all' };
     const searchInput = document.getElementById('stock-popup-search');
     if (searchInput) searchInput.value = '';
+    const variantSelect = document.getElementById('stock-popup-variant');
+    if (variantSelect) variantSelect.value = 'all';
     renderStockPopupModal();
     modal.classList.add('active');
 }
@@ -2013,7 +2078,22 @@ function setupStockPopupHandlers() {
         chipsEl.addEventListener('click', (e) => {
             const btn = e.target.closest('[data-popup-filter]');
             if (!btn) return;
-            stockPopupState.filter = btn.getAttribute('data-popup-filter') || 'all';
+            const nextFilter = btn.getAttribute('data-popup-filter') || 'all';
+            stockPopupState.filter = nextFilter;
+            if (nextFilter === '0.75' || nextFilter === '1.5' || nextFilter === 'du' || nextFilter === 'stp') {
+                stockPopupState.variant = 'all';
+            }
+            renderStockPopupModal();
+        });
+    }
+
+    const variantSelect = document.getElementById('stock-popup-variant');
+    if (variantSelect) {
+        variantSelect.addEventListener('change', () => {
+            stockPopupState.variant = variantSelect.value || 'all';
+            if (stockPopupState.variant !== 'all' && (stockPopupState.filter === '0.75' || stockPopupState.filter === '1.5')) {
+                stockPopupState.filter = 'all';
+            }
             renderStockPopupModal();
         });
     }
@@ -2052,13 +2132,26 @@ function setupStockPopupHandlers() {
             const modal = document.getElementById('stock-popup-modal');
             if (modal) modal.classList.remove('active');
             const typeFilter = document.getElementById('inv-type-filter');
+            const makeFilter = document.getElementById('inv-make-filter');
+            const variantFilter = document.getElementById('inv-variant-filter');
             const statusFilter = document.getElementById('inv-status-filter');
-            const { mode, filter } = stockPopupState;
+            const { mode, filter, variant } = stockPopupState;
             if (typeFilter) {
                 typeFilter.value = (mode === 'du' || filter === 'du') ? 'du' : ((mode === 'stp' || filter === 'stp') ? 'stp' : 'all');
             }
+            if (makeFilter) makeFilter.value = 'all';
             if (statusFilter) {
                 statusFilter.value = (filter === 'N' || filter === 'U' || filter === 'S') ? filter : 'all';
+            }
+            populateFilterDropdowns();
+            if (variantFilter) {
+                const targetVar = (variant && variant !== 'all')
+                    ? variant
+                    : ((filter === '0.75' || filter === '1.5') ? `${filter} HP` : 'all');
+                if (Array.from(variantFilter.options).some(o => safeLower(o.value) === safeLower(targetVar))) {
+                    const matchOpt = Array.from(variantFilter.options).find(o => safeLower(o.value) === safeLower(targetVar));
+                    variantFilter.value = matchOpt ? matchOpt.value : 'all';
+                }
             }
             syncQuickChips();
             invCurrentPage = 1;
