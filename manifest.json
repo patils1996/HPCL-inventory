@@ -1,13 +1,13 @@
 {
-  "name": "HPCL Active Inventory Portal",
-  "short_name": "HPCL Inventory",
-  "description": "HPCL Active Inventory, Inward/Outward Ledger & Gate Pass Portal",
+  "name": "HPCL Desur IRD Stores",
+  "short_name": "HPCL Stores",
+  "description": "Stores register, dispatch letters, EMRs and dispatch photos for HPCL Desur IRD depot",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#EDF1F5",
+  "theme_color": "#0F2A4A",
   "icons": [
     {
       "src": "icon-192.png",

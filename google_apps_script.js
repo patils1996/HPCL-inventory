@@ -1,88 +1,205 @@
 /**
  * HPCL Active Inventory Portal - Google Apps Script (Push & Pull Sync)
- * 
+ * Version 3.0
+ *
  * Instructions:
  * 1. Open your Google Sheet -> Extensions -> Apps Script
  * 2. Delete any existing code and paste this entire file.
  * 3. Click "Deploy" -> "New Deployment" -> Select type "Web App".
+ *    (Already deployed an older version? Use "Deploy" -> "Manage deployments" -> edit (pencil)
+ *     -> Version: "New version" -> Deploy, so the /exec URL stays the same.)
  * 4. Set Description to "HPCL Inventory Sync".
  * 5. Set "Execute as": "Me".
  * 6. Set "Who has access": "Anyone" (Crucial for mobile & browser sync).
  * 7. Click "Deploy", grant permissions, and copy the Web App URL!
  * 8. Paste the Web App URL into the HPCL Inventory Portal -> Backup & Sync tab.
+ *
+ * What changed in 3.0
+ * - New "Dispatch_Letters" sheet (office dispatch letters and their status).
+ * - EMR sheet gains dl_no, dispatched_by, photos_json and other_items_json columns.
+ * - New "upload_photo" action: dispatch photos are saved to Google Drive in a folder
+ *   "HPCL Dispatch Photos/<EMR no>" and shared as "anyone with the link can view" so other
+ *   devices can show them. Redeploying asks you to allow Drive access.
+ *
+ * What changed in 2.1
+ * - Multi-asset EMRs keep every asset: the full asset list is stored in the EMR sheet's
+ *   "items_json" column and rebuilt on pull (previously only the first row survived a round-trip).
+ * - Dates are returned as plain YYYY-MM-DD in the spreadsheet's time zone (previously they came back
+ *   as UTC timestamps, which showed the previous day in India).
+ * - All cells are written as plain text, so serial numbers such as "072163" or "202412000642" are
+ *   not turned into numbers / scientific notation by Sheets.
+ * - A script lock prevents two devices from overwriting each other mid-write.
  */
+
+var SHEETS = {
+  pressure_dus: {
+    name: "Pressure_DUs", aliases: ["Pressure_DUs", "Inventory", "Pressure DUs", "DUs"],
+    headers: ["sno", "type", "variant", "make", "model", "serial_no", "receipt_date", "status", "remarks"]
+  },
+  stps: {
+    name: "STPs", aliases: ["STPs", "STP"],
+    headers: ["sno", "hp_type", "make", "serial_no", "model", "receipt_date", "status", "remarks"]
+  },
+  inword: {
+    name: "Inword", aliases: ["Inword", "Inward"],
+    headers: ["item", "received_from", "received_date", "qty"]
+  },
+  stp_outword: {
+    name: "STP_Outword", aliases: ["STP_Outword", "STP_Outward", "STP OUTWORD"],
+    headers: ["sno", "hp_type", "make", "model", "serial_no", "status", "receipt_date", "gate_pass_date", "gate_pass_no", "destination", "vendor", "out_date", "emr_date", "emr_no"]
+  },
+  du_outword: {
+    name: "DU_Outword", aliases: ["DU_Outword", "DU_Outward", "DU OUTWORD"],
+    headers: ["sno", "type", "variant", "make", "model", "serial_no", "status", "receipt_date", "gate_pass_date", "gate_pass_no", "destination", "vendor", "out_date", "emr_date", "emr_no"]
+  },
+  tank_outword: {
+    name: "Tank_Outword", aliases: ["Tank_Outword", "Tank_Outward", "TANK OUTWORD"],
+    headers: ["sno", "tank_capacity", "gate_pass_date", "gate_pass_no", "destination", "vendor", "emr_date", "emr_no"]
+  },
+  others_outword: {
+    name: "Others_Outword", aliases: ["Others_Outword", "Others_Outward", "OTHERS OUTWORD"],
+    headers: ["sno", "material", "qty", "gate_pass_date", "gate_pass_no", "destination", "vendor", "emr_date", "emr_no"]
+  },
+  gate_passes: {
+    name: "EMR", aliases: ["EMR", "EMRs", "EMR_Records", "Gate_Passes", "Gate Passes"],
+    headers: ["emr_no", "category", "serial_no", "make", "model", "variant", "vendor", "destination", "out_date", "gate_pass_no", "vehicle_no", "driver", "remarks", "dl_no", "dispatched_by", "created_at", "items_json", "other_items_json", "photos_json"]
+  },
+  dispatch_letters: {
+    name: "Dispatch_Letters", aliases: ["Dispatch_Letters", "Dispatch Letters", "Letters"],
+    headers: ["dl_no", "dl_date", "status", "destination", "vendor", "purpose", "issued_by", "designation", "office", "ref", "remarks", "emr_no", "dispatched_on", "dispatched_by", "vehicle_no", "driver", "gate_pass_no", "cancel_reason", "created_at", "items_json", "other_items_json"]
+  }
+};
+
+var PHOTO_ROOT_NAME = "HPCL Dispatch Photos";
+
+function getPhotoFolder(emrNo) {
+  var props = PropertiesService.getScriptProperties();
+  var rootId = props.getProperty("PHOTO_ROOT_ID");
+  var root = null;
+  if (rootId) {
+    try { root = DriveApp.getFolderById(rootId); } catch (err) { root = null; }
+  }
+  if (!root) {
+    var it = DriveApp.getFoldersByName(PHOTO_ROOT_NAME);
+    root = it.hasNext() ? it.next() : DriveApp.createFolder(PHOTO_ROOT_NAME);
+    props.setProperty("PHOTO_ROOT_ID", root.getId());
+  }
+  var name = String(emrNo || "Unsorted").replace(/[\\/:*?"<>|]/g, "-");
+  var subs = root.getFoldersByName(name);
+  return subs.hasNext() ? subs.next() : root.createFolder(name);
+}
+
+function uploadPhoto(data) {
+  if (!data.data || !data.photo_id) {
+    return jsonResponse({ status: "error", message: "Photo data missing." });
+  }
+  var folder = getPhotoFolder(data.emr_no);
+  var fileName = data.photo_id + ".jpg";
+  // Re-uploads of the same photo return the existing file
+  var existing = folder.getFilesByName(fileName);
+  var file = existing.hasNext() ? existing.next() : null;
+  if (!file) {
+    var bytes = Utilities.base64Decode(data.data);
+    var blob = Utilities.newBlob(bytes, data.mime || "image/jpeg", fileName);
+    file = folder.createFile(blob);
+    file.setDescription("EMR " + (data.emr_no || "") + (data.dl_no ? " / " + data.dl_no : "") + " / taken " + (data.taken_at || ""));
+    try {
+      file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+    } catch (err) {
+      // Some Google Workspace domains block link sharing; the file is still saved.
+    }
+  }
+  return jsonResponse({ status: "success", file_id: file.getId(), url: file.getUrl() });
+}
+
+function jsonResponse(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
+}
 
 function doPost(e) {
   try {
-    var contents = e.postData ? e.postData.contents : "";
-    var data = {};
+    var contents = e && e.postData ? e.postData.contents : "";
+    var data = null;
     if (contents) {
-      try { data = JSON.parse(contents); } catch(err) {}
+      try { data = JSON.parse(contents); } catch (err) { data = null; }
     }
-    
-    // Check if this is a Pull request via POST
+    if (!data || typeof data !== "object") {
+      return jsonResponse({ status: "error", message: "Request body is not valid JSON." });
+    }
+
+    // Pull request via POST
     if (data.action === "pull") {
       return pullData();
     }
-    
-    // Otherwise it is a Push request: write incoming inventory data to sheets
-    pushData(data);
-    return ContentService.createTextOutput(JSON.stringify({
-      status: "success",
-      message: "Data successfully synced to Google Sheets!"
-    })).setMimeType(ContentService.MimeType.JSON);
+    if (data.action === "upload_photo") {
+      return uploadPhoto(data);
+    }
 
+    if (!data.inventory && !data.inword && !data.gate_passes && !data.du_outword && !data.stp_outword) {
+      return jsonResponse({ status: "error", message: "No inventory data found in request." });
+    }
+
+    var lock = LockService.getScriptLock();
+    if (!lock.tryLock(30000)) {
+      return jsonResponse({ status: "error", message: "Another device is syncing right now. Please retry in a few seconds." });
+    }
+    try {
+      pushData(data);
+    } finally {
+      lock.releaseLock();
+    }
+
+    return jsonResponse({ status: "success", message: "Data successfully synced to Google Sheets!", synced_at: new Date().toISOString() });
   } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({
-      status: "error",
-      message: err.toString()
-    })).setMimeType(ContentService.MimeType.JSON);
+    return jsonResponse({ status: "error", message: err.toString() });
   }
 }
 
 function doGet(e) {
   // GET request returns the full JSON database for Pull operations
-  return pullData();
+  try {
+    return pullData();
+  } catch (err) {
+    return jsonResponse({ status: "error", message: err.toString() });
+  }
+}
+
+function findSheet(ss, names) {
+  for (var k = 0; k < names.length; k++) {
+    var sh = ss.getSheetByName(names[k]);
+    if (sh) return sh;
+  }
+  // Case / space / underscore-insensitive match
+  var all = ss.getSheets();
+  for (var s = 0; s < all.length; s++) {
+    var sName = all[s].getName().toLowerCase().replace(/[\s_]/g, "");
+    for (var j = 0; j < names.length; j++) {
+      if (sName === names[j].toLowerCase().replace(/[\s_]/g, "")) return all[s];
+    }
+  }
+  return null;
 }
 
 function pullData() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var result = {
-    inventory: { pressure_dus: [], stps: [] },
-    inword: [], stp_outword: [], du_outword: [], tank_outword: [], others_outword: [], gate_passes: []
-  };
-  
-  function readSheet(sheetNames) {
-    if (!Array.isArray(sheetNames)) sheetNames = [sheetNames];
-    var sheet = null;
-    for (var k = 0; k < sheetNames.length; k++) {
-      sheet = ss.getSheetByName(sheetNames[k]);
-      if (sheet) break;
-    }
-    if (!sheet) {
-      // Case-insensitive match
-      var allSheets = ss.getSheets();
-      for (var s = 0; s < allSheets.length; s++) {
-        var sName = allSheets[s].getName().toLowerCase().replace(/[\s_]/g, '');
-        for (var k = 0; k < sheetNames.length; k++) {
-          if (sName === sheetNames[k].toLowerCase().replace(/[\s_]/g, '')) {
-            sheet = allSheets[s];
-            break;
-          }
-        }
-        if (sheet) break;
-      }
-    }
+  var tz = ss.getSpreadsheetTimeZone() || "Asia/Kolkata";
+
+  function readSheet(def) {
+    var sheet = findSheet(ss, def.aliases);
     if (!sheet) return [];
     var data = sheet.getDataRange().getValues();
     if (data.length < 2) return [];
-    var headers = data[0];
+    var headers = data[0].map(function (h) { return String(h).trim(); });
     var rows = [];
     for (var i = 1; i < data.length; i++) {
       var rowObj = {};
       var hasValue = false;
       for (var j = 0; j < headers.length; j++) {
+        if (!headers[j]) continue;
         var val = data[i][j];
+        if (val instanceof Date) {
+          val = Utilities.formatDate(val, tz, "yyyy-MM-dd");
+        }
         if (val !== "" && val !== null && val !== undefined) hasValue = true;
         rowObj[headers[j]] = val;
       }
@@ -90,79 +207,86 @@ function pullData() {
     }
     return rows;
   }
-  
-  result.inventory.pressure_dus = readSheet(["Pressure_DUs", "Inventory", "Pressure DUs", "DUs"]);
-  result.inventory.stps = readSheet(["STPs", "STP"]);
-  result.inword = readSheet(["Inword", "Inward"]);
-  result.stp_outword = readSheet(["STP_Outword", "STP_Outward", "STP OUTWORD"]);
-  result.du_outword = readSheet(["DU_Outword", "DU_Outward", "DU OUTWORD"]);
-  result.tank_outword = readSheet(["Tank_Outword", "Tank_Outward", "TANK OUTWORD"]);
-  result.others_outword = readSheet(["Others_Outword", "Others_Outward", "OTHERS OUTWORD"]);
-  result.gate_passes = readSheet(["EMR", "EMRs", "EMR_Records", "Gate_Passes", "Gate Passes"]);
-  
-  return ContentService.createTextOutput(JSON.stringify({
-    status: "success",
-    data: result
-  })).setMimeType(ContentService.MimeType.JSON);
+
+  // Turn every "<name>_json" column back into its array
+  function unpackJson(rows) {
+    rows.forEach(function (r) {
+      Object.keys(r).forEach(function (k) {
+        if (k.length > 5 && k.slice(-5) === "_json") {
+          if (r[k]) {
+            try { r[k.slice(0, -5)] = JSON.parse(r[k]); } catch (err) { /* leave flattened */ }
+          }
+          delete r[k];
+        }
+      });
+    });
+    return rows;
+  }
+  var gatePasses = unpackJson(readSheet(SHEETS.gate_passes));
+  var letters = unpackJson(readSheet(SHEETS.dispatch_letters));
+
+  var result = {
+    inventory: {
+      pressure_dus: readSheet(SHEETS.pressure_dus),
+      stps: readSheet(SHEETS.stps)
+    },
+    inword: readSheet(SHEETS.inword),
+    stp_outword: readSheet(SHEETS.stp_outword),
+    du_outword: readSheet(SHEETS.du_outword),
+    tank_outword: readSheet(SHEETS.tank_outword),
+    others_outword: readSheet(SHEETS.others_outword),
+    gate_passes: gatePasses,
+    dispatch_letters: letters
+  };
+
+  return jsonResponse({ status: "success", data: result });
 }
 
 function pushData(data) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  
-  function writeSheet(preferredName, possibleNames, headers, rows) {
+
+  function cellValue(row, key) {
+    var val = row[key];
+    if (key.length > 5 && key.slice(-5) === "_json") {
+      var arr = row[key.slice(0, -5)];
+      return Array.isArray(arr) && arr.length ? JSON.stringify(arr) : "";
+    }
+    // Gate Pass vs EMR field-name compatibility
+    if ((val === undefined || val === null || val === "") && key === "gate_pass_no") val = row.emr_no;
+    if ((val === undefined || val === null || val === "") && key === "gate_pass_date") val = row.emr_date;
+    if ((val === undefined || val === null || val === "") && key === "emr_no") val = row.gate_pass_no;
+    if ((val === undefined || val === null || val === "") && key === "emr_date") val = row.gate_pass_date;
+    if (val === undefined || val === null) return "";
+    if (typeof val === "object") return JSON.stringify(val);
+    return String(val);
+  }
+
+  function writeSheet(def, rows) {
     if (!rows || !Array.isArray(rows)) return;
-    if (!Array.isArray(possibleNames)) possibleNames = [possibleNames];
-    var sheet = null;
-    for (var k = 0; k < possibleNames.length; k++) {
-      sheet = ss.getSheetByName(possibleNames[k]);
-      if (sheet) break;
-    }
-    if (!sheet) {
-      sheet = ss.insertSheet(preferredName);
-    }
-    sheet.clear();
-    var payload = [headers];
+    var sheet = findSheet(ss, def.aliases);
+    if (!sheet) sheet = ss.insertSheet(def.name);
+
+    var payload = [def.headers];
     for (var i = 0; i < rows.length; i++) {
-      var row = [];
-      for (var j = 0; j < headers.length; j++) {
-        var key = headers[j];
-        var val = rows[i][key] !== undefined && rows[i][key] !== null ? rows[i][key] : "";
-        // Fallback checks for Gate Pass vs EMR compatibility
-        if (val === "" && key === "gate_pass_no" && rows[i]["emr_no"] !== undefined) val = rows[i]["emr_no"];
-        if (val === "" && key === "gate_pass_date" && rows[i]["emr_date"] !== undefined) val = rows[i]["emr_date"];
-        if (val === "" && key === "emr_no" && rows[i]["gate_pass_no"] !== undefined) val = rows[i]["gate_pass_no"];
-        if (val === "" && key === "emr_date" && rows[i]["gate_pass_date"] !== undefined) val = rows[i]["gate_pass_date"];
-        row.push(val);
-      }
-      payload.push(row);
+      var r = rows[i] || {};
+      payload.push(def.headers.map(function (key) { return cellValue(r, key); }));
     }
-    if (payload.length > 0) {
-      sheet.getRange(1, 1, payload.length, headers.length).setValues(payload);
-    }
+
+    sheet.clear();
+    var range = sheet.getRange(1, 1, payload.length, def.headers.length);
+    range.setNumberFormat("@"); // plain text: keeps serials / leading zeros / dates exactly as sent
+    range.setValues(payload);
+    sheet.getRange(1, 1, 1, def.headers.length).setFontWeight("bold");
+    sheet.setFrozenRows(1);
   }
-  
-  if (data.inventory && data.inventory.pressure_dus) {
-    writeSheet("Pressure_DUs", ["Pressure_DUs", "Inventory", "Pressure DUs"], ["sno", "type", "variant", "make", "model", "serial_no", "receipt_date", "status", "remarks"], data.inventory.pressure_dus);
-  }
-  if (data.inventory && data.inventory.stps) {
-    writeSheet("STPs", ["STPs", "STP"], ["sno", "hp_type", "make", "serial_no", "model", "receipt_date", "status", "remarks"], data.inventory.stps);
-  }
-  if (data.inword) {
-    writeSheet("Inword", ["Inword", "Inward"], ["item", "received_from", "received_date", "qty"], data.inword);
-  }
-  if (data.stp_outword) {
-    writeSheet("STP_Outword", ["STP_Outword", "STP_Outward", "STP OUTWORD"], ["sno", "hp_type", "make", "serial_no", "gate_pass_date", "gate_pass_no", "destination", "vendor", "out_date", "emr_date", "emr_no"], data.stp_outword);
-  }
-  if (data.du_outword) {
-    writeSheet("DU_Outword", ["DU_Outword", "DU_Outward", "DU OUTWORD"], ["sno", "type", "variant", "make", "model", "serial_no", "gate_pass_date", "gate_pass_no", "destination", "vendor", "out_date", "emr_date", "emr_no"], data.du_outword);
-  }
-  if (data.tank_outword) {
-    writeSheet("Tank_Outword", ["Tank_Outword", "Tank_Outward", "TANK OUTWORD"], ["sno", "tank_capacity", "gate_pass_date", "gate_pass_no", "destination", "vendor", "emr_date", "emr_no"], data.tank_outword);
-  }
-  if (data.others_outword) {
-    writeSheet("Others_Outword", ["Others_Outword", "Others_Outward", "OTHERS OUTWORD"], ["sno", "material", "qty", "gate_pass_date", "gate_pass_no", "destination", "vendor", "emr_date", "emr_no"], data.others_outword);
-  }
-  if (data.gate_passes) {
-    writeSheet("EMR", ["EMR", "EMRs", "EMR_Records", "Gate_Passes", "Gate Passes"], ["emr_no", "category", "serial_no", "make", "model", "vendor", "destination", "out_date", "gate_pass_no", "vehicle_no", "driver", "remarks"], data.gate_passes);
-  }
+
+  if (data.inventory && data.inventory.pressure_dus) writeSheet(SHEETS.pressure_dus, data.inventory.pressure_dus);
+  if (data.inventory && data.inventory.stps) writeSheet(SHEETS.stps, data.inventory.stps);
+  if (data.inword) writeSheet(SHEETS.inword, data.inword);
+  if (data.stp_outword) writeSheet(SHEETS.stp_outword, data.stp_outword);
+  if (data.du_outword) writeSheet(SHEETS.du_outword, data.du_outword);
+  if (data.tank_outword) writeSheet(SHEETS.tank_outword, data.tank_outword);
+  if (data.others_outword) writeSheet(SHEETS.others_outword, data.others_outword);
+  if (data.gate_passes) writeSheet(SHEETS.gate_passes, data.gate_passes);
+  if (data.dispatch_letters) writeSheet(SHEETS.dispatch_letters, data.dispatch_letters);
 }

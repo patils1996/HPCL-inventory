@@ -1,6 +1,10 @@
-const CACHE_NAME = 'hpcl-inventory-v2';
+const CACHE_NAME = 'hpcl-stores-v4';
 const ASSETS_TO_CACHE = [
   './index.html',
+  './css/app.css',
+  './js/app.js',
+  './js/dispatch.js',
+  './js/baseline-data.js',
   './manifest.json',
   './HPCL.png',
   './icon-192.png',
@@ -9,8 +13,8 @@ const ASSETS_TO_CACHE = [
   './favicon.png',
   './favicon.ico',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css',
-  'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap',
-  'https://cdn.jsdelivr.net/npm/chart.js',
+  'https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+Devanagari:wght@600;700&display=swap',
+  'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js'
 ];
 
@@ -46,6 +50,11 @@ self.addEventListener('fetch', (event) => {
   if (!url.startsWith('http://') && !url.startsWith('https://')) {
     return;
   }
+  // Live data: Google Sheets / Apps Script / Drive photos are always fetched fresh
+  if (url.includes('script.google.com') || url.includes('script.googleusercontent.com') ||
+      url.includes('docs.google.com') || url.includes('drive.google.com') || url.includes('/api/')) {
+    return;
+  }
 
   // Handle SPA navigation fallback
   if (event.request.mode === 'navigate') {
@@ -55,7 +64,23 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Stale-while-revalidate for cached assets
+  // Own files (HTML/JS/CSS/data): network first so a new release is never mixed with old cached code
+  if (new URL(url).origin === self.location.origin) {
+    event.respondWith(
+      fetch(event.request)
+        .then((res) => {
+          if (res && res.status === 200) {
+            const copy = res.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          }
+          return res;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // CDN libraries & fonts: stale-while-revalidate
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request)
