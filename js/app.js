@@ -284,6 +284,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupMobileNavigation();
     setupFilters();
     setupModals();
+    setupStockPopupHandlers();
     setupDataActions();
     setupExcelImport();
     setupBackendControls();
@@ -1840,6 +1841,231 @@ function renderPagination(totalItems, startItem, endItem) {
             }
         });
     });
+}
+
+// ==========================================================================
+// Overview Stock Card Detail Popup (DUs / STPs / All Stock)
+// ==========================================================================
+let stockPopupState = { mode: 'du', filter: 'all' };
+
+function getStockPopupBaseItems(mode) {
+    const dus = (db.inventory && db.inventory.pressure_dus ? db.inventory.pressure_dus : []).map(raw => {
+        const item = normalizeRecord(raw);
+        return { ...item, shortCat: 'DU', specLabel: item.variant || 'MPD', isDu: true };
+    });
+    const stps = (db.inventory && db.inventory.stps ? db.inventory.stps : []).map(raw => {
+        const item = normalizeRecord(raw);
+        return { ...item, shortCat: 'STP', specLabel: stpHp(item) || 'STP', isDu: false };
+    });
+    if (mode === 'du') return dus;
+    if (mode === 'stp') return stps;
+    return [...dus, ...stps];
+}
+
+function getStockPopupFilteredItems() {
+    const { mode, filter } = stockPopupState;
+    let items = getStockPopupBaseItems(mode);
+    const searchInput = document.getElementById('stock-popup-search');
+    const q = searchInput ? safeLower(searchInput.value) : '';
+
+    if (filter !== 'all') {
+        if (filter === 'du') {
+            items = items.filter(i => i.isDu);
+        } else if (filter === 'stp') {
+            items = items.filter(i => !i.isDu);
+        } else if (filter === 'N' || filter === 'U' || filter === 'S') {
+            items = items.filter(i => {
+                const st = safeUpper(i.status);
+                if (filter === 'N') return st === 'N' || st.includes('NEW');
+                if (filter === 'U') return st === 'U' || st.includes('USED');
+                return st === 'S' || st.includes('UNSERVICE') || st.includes('SCRAP') || st.includes('FAULTY');
+            });
+        } else if (filter === '0.75' || filter === '1.5') {
+            items = items.filter(i => !i.isDu && safeStr(i.hp_type || i.variant).includes(filter));
+        }
+    }
+
+    if (q) {
+        items = items.filter(i =>
+            safeLower(i.serial_no).includes(q) ||
+            safeLower(i.make).includes(q) ||
+            safeLower(i.model).includes(q) ||
+            safeLower(i.specLabel).includes(q) ||
+            safeLower(i.receipt_date).includes(q) ||
+            safeLower(i.remarks).includes(q)
+        );
+    }
+
+    return items;
+}
+
+function renderStockPopupModal() {
+    const titleEl = document.getElementById('stock-popup-title');
+    const subEl = document.getElementById('stock-popup-sub');
+    const chipsEl = document.getElementById('stock-popup-chips');
+    const tbody = document.getElementById('stock-popup-tbody');
+    const countEl = document.getElementById('stock-popup-count');
+    if (!tbody) return;
+
+    const { mode, filter } = stockPopupState;
+    const baseItems = getStockPopupBaseItems(mode);
+    const filtered = getStockPopupFilteredItems();
+
+    const titles = { du: 'Dispensing units in store', stp: 'Submersible pumps in store', all: 'All equipment in store' };
+    if (titleEl) titleEl.textContent = `${titles[mode] || 'Stock details'} (${baseItems.length})`;
+
+    // Summarize counts by make
+    const byMake = {};
+    baseItems.forEach(i => {
+        const m = safeUpper(i.make) || 'OTHER';
+        byMake[m] = (byMake[m] || 0) + 1;
+    });
+    const makeSummary = Object.keys(byMake).sort().map(m => `${m}: ${byMake[m]}`).join(' · ');
+    if (subEl) subEl.textContent = makeSummary || 'No units currently in depot stock';
+
+    if (chipsEl) {
+        const chipList = mode === 'du'
+            ? [['all', 'All DUs'], ['N', 'New'], ['U', 'Used'], ['S', 'Unserviceable']]
+            : mode === 'stp'
+                ? [['all', 'All STPs'], ['0.75', '0.75 HP'], ['1.5', '1.5 HP'], ['N', 'New'], ['U', 'Used']]
+                : [['all', 'All stock'], ['du', 'DUs'], ['stp', 'STPs'], ['S', 'Unserviceable']];
+        chipsEl.innerHTML = chipList.map(([val, lbl]) =>
+            `<button type="button" class="chip-btn ${filter === val ? 'active' : ''}" data-popup-filter="${val}">${lbl}</button>`
+        ).join('');
+    }
+
+    if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" class="empty-row"><strong>No matching items</strong>Try another filter or clear the search box.</td></tr>`;
+    } else {
+        const reservedMap = typeof getReservedSerials === 'function' ? getReservedSerials() : new Map();
+        const e = escapeHtml;
+        tbody.innerHTML = filtered.map((item, idx) => {
+            const makeDisplay = item.make ? item.make.toUpperCase() : 'GENERIC';
+            const makeClass = makeDisplay.toLowerCase().includes('gvr') ? 'make-gvr' : (makeDisplay.toLowerCase().includes('tokheim') ? 'make-tokheim' : (makeDisplay.toLowerCase().includes('florite') ? 'make-florite' : ''));
+            const reservedOn = reservedMap.get(safeLower(item.serial_no));
+            return `
+                <tr>
+                    <td class="text-muted">${idx + 1}</td>
+                    <td>${item.shortCat}</td>
+                    <td><span class="make-pill ${makeClass}">${e(makeDisplay)}</span></td>
+                    <td>${e(item.model) || '—'}</td>
+                    <td>
+                        <span class="copyable-serial" data-copy="${e(item.serial_no)}" title="Copy serial">${e(item.serial_no) || '—'}<i class="fa-regular fa-copy"></i></span>
+                        ${reservedOn ? `<div style="margin-top:3px;"><span class="tag tag-reserved">Reserved · ${e(reservedOn)}</span></div>` : ''}
+                    </td>
+                    <td>${e(item.specLabel) || '—'}</td>
+                    <td style="white-space:nowrap;">${e(formatDisplayDate(item.receipt_date)) || '—'}</td>
+                    <td>${formatStatusBadge(item.status)}</td>
+                    <td style="max-width:200px; font-size:0.86rem; color:var(--ink-2);" title="${e(item.remarks)}">${e(item.remarks) || ''}</td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    if (countEl) {
+        countEl.textContent = filtered.length === baseItems.length
+            ? `Showing all ${baseItems.length} item${baseItems.length === 1 ? '' : 's'}`
+            : `Showing ${filtered.length} of ${baseItems.length} items`;
+    }
+}
+
+function openStockDetailPopup(mode = 'du', filter = 'all') {
+    const modal = document.getElementById('stock-popup-modal');
+    if (!modal) return;
+    stockPopupState = { mode, filter };
+    const searchInput = document.getElementById('stock-popup-search');
+    if (searchInput) searchInput.value = '';
+    renderStockPopupModal();
+    modal.classList.add('active');
+}
+
+function setupStockPopupHandlers() {
+    const strip = document.querySelector('#tab-dashboard .stock-strip');
+    if (strip) {
+        strip.addEventListener('click', (e) => {
+            const subBtn = e.target.closest('.sub-chip-link[data-stock-popup]');
+            if (subBtn) {
+                e.stopPropagation();
+                openStockDetailPopup(subBtn.getAttribute('data-stock-popup'), subBtn.getAttribute('data-stock-filter') || 'all');
+                return;
+            }
+            const cell = e.target.closest('.stock-cell-clickable[data-stock-popup]');
+            if (cell) {
+                openStockDetailPopup(cell.getAttribute('data-stock-popup'), 'all');
+                return;
+            }
+            if (e.target.closest('[data-goto-outward]')) {
+                const nav = document.querySelector('.nav-item[data-tab="outward"]');
+                if (nav) nav.click();
+            }
+        });
+        strip.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            const cell = e.target.closest('.stock-cell-clickable');
+            if (!cell) return;
+            e.preventDefault();
+            cell.click();
+        });
+    }
+
+    const chipsEl = document.getElementById('stock-popup-chips');
+    if (chipsEl) {
+        chipsEl.addEventListener('click', (e) => {
+            const btn = e.target.closest('[data-popup-filter]');
+            if (!btn) return;
+            stockPopupState.filter = btn.getAttribute('data-popup-filter') || 'all';
+            renderStockPopupModal();
+        });
+    }
+
+    const searchInput = document.getElementById('stock-popup-search');
+    if (searchInput) {
+        searchInput.addEventListener('input', renderStockPopupModal);
+    }
+
+    const tbody = document.getElementById('stock-popup-tbody');
+    if (tbody) {
+        tbody.addEventListener('click', (e) => {
+            const copyEl = e.target.closest('.copyable-serial');
+            if (copyEl) copyToClipboard(copyEl.getAttribute('data-copy'), 'Serial Number');
+        });
+    }
+
+    const exportBtn = document.getElementById('stock-popup-export-btn');
+    if (exportBtn) {
+        exportBtn.addEventListener('click', () => {
+            const items = getStockPopupFilteredItems();
+            const today = todayLocal().replace(/\//g, '-');
+            let csv = csvRow(['S.No', 'Category', 'Make', 'Model', 'Serial No', 'Variant / HP', 'Receipt Date', 'Condition', 'Remarks']);
+            items.forEach((d, idx) => {
+                csv += csvRow([idx + 1, d.isDu ? 'Dispenser' : 'STP', d.make, d.model, d.serial_no, d.specLabel, formatDisplayDate(d.receipt_date), d.status, d.remarks]);
+            });
+            const fileName = `hpcl_${stockPopupState.mode}_stock_${today}.csv`;
+            downloadTextFile('\ufeff' + csv, fileName, 'text/csv;charset=utf-8');
+            showToast(`CSV exported: ${fileName}`);
+        });
+    }
+
+    const gotoTabBtn = document.getElementById('stock-popup-goto-tab');
+    if (gotoTabBtn) {
+        gotoTabBtn.addEventListener('click', () => {
+            const modal = document.getElementById('stock-popup-modal');
+            if (modal) modal.classList.remove('active');
+            const typeFilter = document.getElementById('inv-type-filter');
+            const statusFilter = document.getElementById('inv-status-filter');
+            const { mode, filter } = stockPopupState;
+            if (typeFilter) {
+                typeFilter.value = (mode === 'du' || filter === 'du') ? 'du' : ((mode === 'stp' || filter === 'stp') ? 'stp' : 'all');
+            }
+            if (statusFilter) {
+                statusFilter.value = (filter === 'N' || filter === 'U' || filter === 'S') ? filter : 'all';
+            }
+            syncQuickChips();
+            invCurrentPage = 1;
+            const nav = document.querySelector('.nav-item[data-tab="inventory"]');
+            if (nav) nav.click();
+        });
+    }
 }
 
 // ==========================================================================

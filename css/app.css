@@ -431,11 +431,22 @@ code { font-family: var(--font-cond); font-size: 0.95em; font-weight: 600; }
     border: 1px solid var(--rule);
     border-radius: var(--r-lg);
 }
-.stock-cell { padding: 16px 20px; border-right: 1px solid var(--rule); }
+.stock-cell { padding: 16px 20px; border-right: 1px solid var(--rule); transition: background-color 0.14s ease; }
 .stock-cell:last-child { border-right: 0; }
-.stock-cell .label { color: var(--ink-2); font-weight: 500; font-size: 0.92rem; }
+.stock-cell .label { color: var(--ink-2); font-weight: 500; font-size: 0.92rem; display: flex; align-items: center; justify-content: space-between; gap: 6px; }
 .stock-cell .value { font-family: var(--font-cond); font-size: 2.2rem; font-weight: 600; line-height: 1.1; }
 .stock-cell .sub { font-size: 0.85rem; color: var(--ink-3); }
+.stock-cell-clickable { cursor: pointer; user-select: none; }
+.stock-cell-clickable:hover { background: var(--surface-2); }
+.stock-cell-clickable:hover .value { color: var(--blue); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+.stock-link-icon { font-size: 0.75rem; color: var(--ink-3); opacity: 0.65; transition: opacity 0.14s, color 0.14s; }
+.stock-cell-clickable:hover .stock-link-icon { opacity: 1; color: var(--blue); }
+.sub-chip-link {
+    background: none; border: 0; padding: 1px 4px; margin: -1px -3px;
+    font: inherit; color: inherit; cursor: pointer; border-radius: var(--r-sm);
+    text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px;
+}
+.sub-chip-link:hover { color: var(--blue); background: var(--blue-wash); text-decoration-style: solid; }
 
 .charts-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 18px; }
 .chart-wrapper { position: relative; height: 260px; padding: 14px 18px 18px; }
@@ -443,6 +454,7 @@ code { font-family: var(--font-cond); font-size: 0.95em; font-weight: 600; }
 /* ---------- Tables ---------- */
 .table-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-lg); overflow: hidden; }
 .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+#stock-popup-table thead th { position: sticky; top: 0; z-index: 2; }
 .data-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
 .data-table th {
     text-align: left;

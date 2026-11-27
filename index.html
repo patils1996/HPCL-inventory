@@ -92,49 +92,39 @@
                 <div class="panel-header">
                     <div>
                         <h2>Overview</h2>
-                        <p>Equipment in store at Desur IRD and where each dispatch stands.</p>
+                        <p>Equipment currently in store at Desur IRD. Click any stock count to inspect the list.</p>
                     </div>
                     <div class="panel-actions">
                         <button class="btn btn-outline" data-open-letter><i class="fa-solid fa-envelope-open-text"></i> Issue dispatch letter</button>
                     </div>
                 </div>
 
-                <div class="dispatch-line" aria-label="Dispatch progress">
-                    <a class="dl-stage" data-goto-letters="issued">
-                        <span class="stage-name"><i class="fa-solid fa-envelope"></i> Letters issued by office</span>
-                        <span class="stage-count" id="dl-count-total">0</span>
-                        <span class="stage-note" id="dl-note-total">This financial year</span>
-                    </a>
-                    <a class="dl-stage waiting" id="dl-stage-waiting" data-goto-letters="issued">
-                        <span class="stage-name"><i class="fa-solid fa-hourglass-half"></i> Waiting at depot</span>
-                        <span class="stage-count" id="dl-count-waiting">0</span>
-                        <span class="stage-note" id="dl-note-waiting">Nothing pending</span>
-                    </a>
-                    <a class="dl-stage done" data-goto-letters="dispatched">
-                        <span class="stage-name"><i class="fa-solid fa-camera"></i> Dispatched with photo</span>
-                        <span class="stage-count" id="dl-count-done">0</span>
-                        <span class="stage-note" id="dl-note-done">&nbsp;</span>
-                    </a>
-                </div>
-
-                <div class="stock-strip section-gap">
-                    <div class="stock-cell">
-                        <div class="label">Dispensing units</div>
+                <div class="stock-strip">
+                    <div class="stock-cell stock-cell-clickable" data-stock-popup="du" role="button" tabindex="0" title="Click to view Dispensing Units in store">
+                        <div class="label">Dispensing units <i class="fa-solid fa-up-right-from-square stock-link-icon" aria-hidden="true"></i></div>
                         <div class="value" id="stat-total-dus">0</div>
-                        <div class="sub"><span id="stat-new-dus">0</span> new · <span id="stat-used-dus">0</span> used</div>
+                        <div class="sub">
+                            <button type="button" class="sub-chip-link" data-stock-popup="du" data-stock-filter="N"><span id="stat-new-dus">0</span> new</button>
+                            ·
+                            <button type="button" class="sub-chip-link" data-stock-popup="du" data-stock-filter="U"><span id="stat-used-dus">0</span> used</button>
+                        </div>
                     </div>
-                    <div class="stock-cell">
-                        <div class="label">Submersible pumps</div>
+                    <div class="stock-cell stock-cell-clickable" data-stock-popup="stp" role="button" tabindex="0" title="Click to view Submersible Pumps in store">
+                        <div class="label">Submersible pumps <i class="fa-solid fa-up-right-from-square stock-link-icon" aria-hidden="true"></i></div>
                         <div class="value" id="stat-total-stps">0</div>
-                        <div class="sub"><span id="stat-075hp-stps">0</span> × 0.75 HP · <span id="stat-15hp-stps">0</span> × 1.5 HP</div>
+                        <div class="sub">
+                            <button type="button" class="sub-chip-link" data-stock-popup="stp" data-stock-filter="0.75"><span id="stat-075hp-stps">0</span> × 0.75 HP</button>
+                            ·
+                            <button type="button" class="sub-chip-link" data-stock-popup="stp" data-stock-filter="1.5"><span id="stat-15hp-stps">0</span> × 1.5 HP</button>
+                        </div>
                     </div>
-                    <div class="stock-cell">
-                        <div class="label">Total in store</div>
+                    <div class="stock-cell stock-cell-clickable" data-stock-popup="all" role="button" tabindex="0" title="Click to view all stock in store">
+                        <div class="label">Total in store <i class="fa-solid fa-up-right-from-square stock-link-icon" aria-hidden="true"></i></div>
                         <div class="value" id="stat-total-active">0</div>
                         <div class="sub"><span id="metric-stock-health">0 reserved on letters</span></div>
                     </div>
-                    <div class="stock-cell">
-                        <div class="label">Outward entries</div>
+                    <div class="stock-cell stock-cell-clickable" data-goto-outward role="button" tabindex="0" title="Open Outward ledger">
+                        <div class="label">Outward entries <i class="fa-solid fa-up-right-from-square stock-link-icon" aria-hidden="true"></i></div>
                         <div class="value" id="stat-total-outpasses">0</div>
                         <div class="sub">DUs, STPs, tanks &amp; others</div>
                     </div>
@@ -1058,6 +1048,58 @@
     <option value="Upgradation / automation"></option>
     <option value="Return to vendor for repair"></option>
 </datalist>
+
+<!-- Overview Stock Detail Popup -->
+<div id="stock-popup-modal" class="modal-overlay">
+    <div class="modal-content wide" style="max-width:960px;">
+        <div class="modal-header">
+            <div>
+                <h4 id="stock-popup-title">Stock details</h4>
+                <div class="sub" id="stock-popup-sub"></div>
+            </div>
+            <button class="modal-close" data-close-modal aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="filter-bar" style="margin-bottom:12px;">
+                <div class="quick-filter-chips" id="stock-popup-chips" style="margin-bottom:0;"></div>
+                <div class="spacer"></div>
+                <div class="search-group" style="max-width:300px;">
+                    <label for="stock-popup-search" class="sr-only">Filter items</label>
+                    <input type="search" id="stock-popup-search" class="form-control" placeholder="Search serial, make, model, remarks…">
+                </div>
+            </div>
+            <div class="table-card">
+                <div class="mobile-table-hint"><i class="fa-solid fa-arrows-left-right"></i> Scroll horizontally to view all columns</div>
+                <div class="table-responsive" style="max-height:54vh; overflow:auto;">
+                    <table class="data-table" id="stock-popup-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Category</th>
+                                <th>Make</th>
+                                <th>Model</th>
+                                <th>Serial no</th>
+                                <th>Variant / HP</th>
+                                <th>Received</th>
+                                <th>Condition</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stock-popup-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-actions" style="justify-content:space-between; align-items:center;">
+                <span class="text-muted" id="stock-popup-count" style="font-size:0.88rem;"></span>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <button type="button" class="btn btn-outline" id="stock-popup-export-btn"><i class="fa-solid fa-download"></i> Export CSV</button>
+                    <button type="button" class="btn btn-outline" id="stock-popup-goto-tab"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open stock tab</button>
+                    <button type="button" class="btn btn-primary" data-close-modal>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Mobile bottom navigation -->
 <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Mobile navigation">
