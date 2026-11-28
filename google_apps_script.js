@@ -75,7 +75,7 @@ var META_SHEET_NAME = "_Sync_Meta";
 
 function isValidExecUrl(u) {
   var s = String(u || "");
-  return s.indexOf("https://script.google.com/") === 0 && s.indexOf("/exec") !== -1;
+  return s.indexOf("https://script.google.com/") === 0 && s.indexOf("/exec") !== -1 && s.indexOf("/dev") === -1;
 }
 
 function readSyncMeta(ss) {

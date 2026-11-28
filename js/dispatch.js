@@ -917,16 +917,16 @@ function printLetter(dlNo) {
     const disp = l.status === 'dispatched';
     body.innerHTML = `
     <div class="printable-letter-sheet" style="font-family:'Barlow',Arial,sans-serif; color:#0F2A4A; font-size:13.5px; line-height:1.5; display:flex; flex-direction:column;">
-        <div class="print-avoid-break" style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:3px solid #0F2A4A; padding-bottom:12px;">
-            <div style="display:flex; gap:12px; align-items:center;">
-                <img src="HPCL.png" alt="HPCL" style="height:56px;">
+        <div class="print-avoid-break print-masthead" style="border-bottom:3px solid #0F2A4A; padding-bottom:12px;">
+            <div class="print-brand-row">
+                <img src="HPCL.png" alt="HPCL">
                 <div>
                     <div style="font-family:'Noto Sans Devanagari',sans-serif; font-weight:700; color:#D2232A; font-size:15px;">हिन्दुस्तान पेट्रोलियम कॉर्पोरेशन लिमिटेड</div>
-                    <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:22px; line-height:1.1;">HINDUSTAN PETROLEUM CORPORATION LIMITED</div>
+                    <div class="print-brand-title-en" style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:22px; line-height:1.1;">HINDUSTAN PETROLEUM CORPORATION LIMITED</div>
                     <div style="color:#3D5470;">${e(l.office || 'Belgaum Regional Office')}</div>
                 </div>
             </div>
-            <div style="text-align:right; font-size:13px;">
+            <div class="print-masthead-right" style="font-size:13px;">
                 <div><strong>Ref:</strong> ${e(l.dl_no)}</div>
                 ${l.ref ? `<div><strong>File:</strong> ${e(l.ref)}</div>` : ''}
                 <div><strong>Date:</strong> ${e(formatDisplayDate(l.dl_date))}</div>
@@ -939,17 +939,19 @@ function printLetter(dlNo) {
         <p style="margin:0 0 12px;">Please release the following equipment from Desur IRD stock to <strong>${e(l.vendor)}</strong>${l.purpose ? ` for <strong>${e(l.purpose)}</strong>` : ''} at <strong>${e(l.destination)}</strong>.
         At the time of dispatch, issue the EMR, record the vehicle number and add photographs of the loaded material in the stores register.</p>
 
-        <table style="width:100%; border-collapse:collapse; font-size:13px; margin:10px 0 14px;">
-            <thead><tr style="background:#0F2A4A; color:#fff;">
-                <th style="${cell} border-color:#0F2A4A; width:36px;">#</th>
-                <th style="${cell} border-color:#0F2A4A; text-align:left;">Equipment</th>
-                <th style="${cell} border-color:#0F2A4A; text-align:left;">Make &amp; model</th>
-                <th style="${cell} border-color:#0F2A4A; text-align:left;">Serial no</th>
-                <th style="${cell} border-color:#0F2A4A; text-align:left;">Condition</th>
-                <th style="${cell} border-color:#0F2A4A; width:50px;">Qty</th>
-            </tr></thead>
-            <tbody>${rows}</tbody>
-        </table>
+        <div class="print-table-wrap">
+            <table style="width:100%; border-collapse:collapse; font-size:13px; margin:10px 0 14px;">
+                <thead><tr style="background:#0F2A4A; color:#fff;">
+                    <th style="${cell} border-color:#0F2A4A; width:36px;">#</th>
+                    <th style="${cell} border-color:#0F2A4A; text-align:left;">Equipment</th>
+                    <th style="${cell} border-color:#0F2A4A; text-align:left;">Make &amp; model</th>
+                    <th style="${cell} border-color:#0F2A4A; text-align:left;">Serial no</th>
+                    <th style="${cell} border-color:#0F2A4A; text-align:left;">Condition</th>
+                    <th style="${cell} border-color:#0F2A4A; width:50px;">Qty</th>
+                </tr></thead>
+                <tbody>${rows}</tbody>
+            </table>
+        </div>
         ${l.remarks ? `<p style="margin:0 0 12px;"><strong>Instructions:</strong> ${e(l.remarks)}</p>` : ''}
 
         <div class="print-bottom-block" style="margin-top:auto; padding-top:24px;">
@@ -963,14 +965,14 @@ function printLetter(dlNo) {
 
             <div style="margin-top:22px; border:1.5px dashed #6B7F96; padding:12px 14px; font-size:13px;">
                 <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:16px; margin-bottom:6px;">Depot endorsement</div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 20px;">
+                <div class="print-endorse-grid">
                     <div>Dispatched on: <strong>${disp ? e(formatDisplayDate(l.dispatched_on)) : '____________'}</strong></div>
                     <div>EMR no: <strong>${disp ? e(l.emr_no) : '____________'}</strong></div>
                     <div>Vehicle no: <strong>${disp ? e(l.vehicle_no) : '____________'}</strong></div>
                     <div>Dispatched by: <strong>${disp ? e(l.dispatched_by) : '____________'}</strong></div>
                 </div>
             </div>
-            <div style="margin-top:12px; border-top:1px solid #D5DDE6; padding-top:8px; display:flex; justify-content:space-between; font-size:11px; color:#6B7F96;">
+            <div class="print-footer-row" style="margin-top:12px; border-top:1px solid #D5DDE6; padding-top:8px; font-size:11px; color:#6B7F96;">
                 <span>HPCL Desur IRD Depot · Belgaum Regional Office (RRO)</span>
                 <span>Generated from Stores Register</span>
             </div>

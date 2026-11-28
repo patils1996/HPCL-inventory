@@ -37,7 +37,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+Devanagari:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/app.css?v=20261127d">
+    <link rel="stylesheet" href="css/app.css?v=20261128a">
 </head>
 <body>
 <div class="app">
@@ -461,7 +461,7 @@
                                 <button id="btn-test-sheets" class="btn btn-ghost"><i class="fa-solid fa-bolt"></i> Test connection</button>
                                 <button id="btn-copy-team-link" class="btn btn-ghost" title="Copy link that auto-configures other phones &amp; laptops"><i class="fa-solid fa-share-nodes"></i> Copy Team Link</button>
                                 <button id="btn-copy-script" class="btn btn-ghost"><i class="fa-regular fa-copy"></i> Copy Apps Script</button>
-                                <button id="btn-view-script" class="btn btn-ghost"><i class="fa-solid fa-code"></i> Setup steps</button>
+                                <button id="btn-view-script" class="btn btn-ghost"><i class="fa-solid fa-code"></i> Setup Push</button>
                             </div>
                             <p id="sheets-instructions-text" class="callout" style="margin-top:14px;"></p>
                         </div>
@@ -1071,6 +1071,44 @@
     <option value="Return to vendor for repair"></option>
 </datalist>
 
+<!-- Enable Two-Way Push Sync Modal -->
+<div id="enable-push-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width:620px;">
+        <div class="modal-header">
+            <div>
+                <h4>Enable Two-Way Push to Google Sheets</h4>
+                <div class="sub">All phones &amp; laptops currently have a pull-only Sheet link. Setup once so everyone can push updates.</div>
+            </div>
+            <button class="modal-close" data-close-modal aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="callout" style="margin-top:0; margin-bottom:14px;">
+                <strong>Why is Push showing pull-only?</strong> A <code>docs.google.com/spreadsheets</code> URL only allows reading data. To save changes back from phones &amp; PCs, connect your Google Apps Script Web App URL (ending in <code>/exec</code>).
+            </div>
+            <ol style="margin:0 0 14px 18px; padding:0; display:flex; flex-direction:column; gap:10px; font-size:0.92rem;">
+                <li>
+                    Open your HPCL Google Sheet and go to <strong>Extensions → Apps Script</strong>:
+                    <div style="margin-top:6px; display:flex; gap:8px; flex-wrap:wrap;">
+                        <a href="https://docs.google.com/spreadsheets/d/1Rlyd-8qgXJwu6vaCgRBoQFTZtv9UjgmOMXG_29JJQEw/edit" target="_blank" rel="noopener" class="btn btn-outline btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Google Sheet</a>
+                        <button type="button" class="btn btn-outline btn-sm" id="modal-copy-apps-script"><i class="fa-regular fa-copy"></i> Copy Apps Script v3.1</button>
+                    </div>
+                </li>
+                <li>Replace any old code with the copied script, then click <strong>Deploy → New deployment</strong> (or <strong>Manage deployments → Edit → New version</strong>), set Type = <strong>Web app</strong>, Execute as = <strong>Me</strong>, Who has access = <strong>Anyone</strong>, and click <strong>Deploy</strong>.</li>
+                <li>Copy the generated Web App URL (must end in <code>/exec</code>, not <code>/dev</code>) and paste it below:</li>
+            </ol>
+            <div class="form-group" style="margin-bottom:10px;">
+                <label for="enable-push-exec-input">Apps Script Web App URL (<code>/exec</code>)</label>
+                <input type="url" id="enable-push-exec-input" class="form-control" placeholder="https://script.google.com/macros/s/…/exec">
+            </div>
+            <p class="text-muted" style="font-size:0.84rem; margin:0 0 10px;">Once one admin pushes with v3.1, this <code>/exec</code> link is saved inside Google Sheets (<code>_Sync_Meta</code>) so every other phone and computer automatically gets Push access too.</p>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+                <button type="button" class="btn btn-primary" id="enable-push-save-btn"><i class="fa-solid fa-cloud-arrow-up"></i> Save &amp; Push Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Overview Stock Detail Popup -->
 <div id="stock-popup-modal" class="modal-overlay">
     <div class="modal-content wide" style="max-width:960px;">
@@ -1139,8 +1177,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="js/baseline-data.js?v=20261127d"></script>
-<script src="js/app.js?v=20261127d"></script>
-<script src="js/dispatch.js?v=20261127d"></script>
+<script src="js/baseline-data.js?v=20261128a"></script>
+<script src="js/app.js?v=20261128a"></script>
+<script src="js/dispatch.js?v=20261128a"></script>
 </body>
 </html>

@@ -1,4 +1,6 @@
 const DEFAULT_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/1Rlyd-8qgXJwu6vaCgRBoQFTZtv9UjgmOMXG_29JJQEw/edit?gid=990657005#gid=990657005';
+// Optional: paste your deployed Apps Script /exec URL here so all users get Push by default even before _Sync_Meta is created.
+const DEFAULT_EXEC_URL = '';
 let db = {};
 
 let backendActive = false;
@@ -324,9 +326,13 @@ async function detectBackend() {
         }
     } catch (e) { /* ignore malformed URL params */ }
 
-    let savedUrl = localStorage.getItem('hpcl_sheets_url') || DEFAULT_SHEETS_URL;
+    let savedUrl = localStorage.getItem('hpcl_sheets_url') || (isAppsScriptUrl(DEFAULT_EXEC_URL) ? DEFAULT_EXEC_URL : DEFAULT_SHEETS_URL);
     if (savedUrl.includes('/macros/library/')) {
-        savedUrl = DEFAULT_SHEETS_URL;
+        savedUrl = isAppsScriptUrl(DEFAULT_EXEC_URL) ? DEFAULT_EXEC_URL : DEFAULT_SHEETS_URL;
+        localStorage.setItem('hpcl_sheets_url', savedUrl);
+    }
+    if (isAppsScriptUrl(DEFAULT_EXEC_URL) && !isAppsScriptUrl(savedUrl)) {
+        savedUrl = DEFAULT_EXEC_URL;
         localStorage.setItem('hpcl_sheets_url', savedUrl);
     }
     if (!localStorage.getItem('hpcl_sheets_url')) localStorage.setItem('hpcl_sheets_url', savedUrl);
@@ -589,7 +595,8 @@ function saveState(opts = {}) {
 
 function isAppsScriptUrl(url) {
     const u = safeStr(url);
-    return u.includes('script.google.com') && (u.includes('/exec') || u.includes('/macros/s/'));
+    if (!u || u.includes('/dev') || u.includes('/macros/library/') || u.includes('/edit')) return false;
+    return u.includes('script.google.com') && u.includes('/macros/') && u.includes('/exec');
 }
 
 // Several saves in quick succession (e.g. an Excel import) are pushed once.
@@ -702,8 +709,8 @@ async function pullCloudSnapshot(url) {
     }
 
     if (url.includes('script.google.com')) {
-        if (!url.includes('/exec') && !url.includes('/macros/s/')) {
-            throw new Error("Invalid Apps Script URL: Please click 'Deploy' -> 'New Deployment' -> 'Web App' in Google Apps Script and copy the Web App URL (ending in /exec).");
+        if (!isAppsScriptUrl(url)) {
+            throw new Error("Invalid Apps Script URL: Please click 'Deploy' -> 'New Deployment' -> 'Web App' in Google Apps Script and copy the Web App URL (ending in /exec, not /dev).");
         }
 
         let pullUrl = url;
@@ -886,12 +893,16 @@ async function pushToGoogleSheets(url, dataPayload, opts = {}) {
         throw new Error("You pasted an Apps Script Library link (/macros/library/). Deploy as a Web App (click 'Setup steps') and paste the /exec URL instead.");
     }
 
+    if (url.includes('/dev')) {
+        throw new Error("You pasted a test /dev Apps Script URL. Click 'Deploy -> New deployment -> Web app (Who has access: Anyone)' in Google Apps Script and paste the production URL ending in /exec.");
+    }
+
     if (url.includes('docs.google.com/spreadsheets')) {
         throw new Error("A Google Sheet link can only pull (read) data.\n\nTo push data and upload photos:\n1. Open your Google Sheet -> Extensions -> Apps Script.\n2. Click 'Copy Apps Script' here and paste it into Apps Script.\n3. Click Deploy -> New deployment -> Web app (Execute as: Me, Who has access: Anyone).\n4. Paste the /exec Web App URL above and click 'Push now'.");
     }
 
     if (!isAppsScriptUrl(url)) {
-        throw new Error("To push to Google Sheets, paste a deployed Apps Script Web App URL (e.g. https://script.google.com/macros/s/.../exec).\n\nClick 'Setup steps' or 'Copy Apps Script' to set it up.");
+        throw new Error("To push to Google Sheets, paste a deployed Apps Script Web App URL (e.g. https://script.google.com/macros/s/.../exec).\n\nClick 'Setup Push' or 'Copy Apps Script' to set it up.");
     }
 
     setTopSyncState(true);
@@ -3864,28 +3875,69 @@ function setupBackendControls() {
         updateSheetsStatusBadge();
     };
 
+    const openEnablePushModal = (prefill = '') => {
+        const modal = document.getElementById('enable-push-modal');
+        const input = document.getElementById('enable-push-exec-input');
+        if (input) input.value = isAppsScriptUrl(prefill) ? prefill : '';
+        if (modal) modal.classList.add('active');
+    };
+
+    const runPushWithUrl = async (url, triggerBtn = null) => {
+        persistUrlOnly(url);
+        if (sheetIdInput) sheetIdInput.value = url;
+        if (triggerBtn) {
+            triggerBtn.disabled = true;
+            triggerBtn.dataset.origHtml = triggerBtn.innerHTML;
+            triggerBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Pushing...';
+        }
+        try {
+            await pushToGoogleSheets(url, db, { force: true });
+            showToast("Pushed local data to Google Sheets!");
+            return true;
+        } catch (err) {
+            alert("Push to Sheets error:\n" + err.message);
+            return false;
+        } finally {
+            if (triggerBtn) {
+                triggerBtn.disabled = false;
+                triggerBtn.innerHTML = triggerBtn.dataset.origHtml || 'Push now';
+            }
+        }
+    };
+
     const btnPush = document.getElementById('btn-push-sheets');
     if (btnPush) {
         btnPush.addEventListener('click', async () => {
             const url = sheetIdInput.value.trim();
-            if (!url) {
-                alert("Please paste your Google Apps Script /exec Web App URL first.");
+            if (!isAppsScriptUrl(url)) {
+                openEnablePushModal(url);
                 return;
             }
-            persistUrlOnly(url);
+            await runPushWithUrl(url, btnPush);
+        });
+    }
 
-            btnPush.disabled = true;
-            const originalText = btnPush.innerHTML;
-            btnPush.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Pushing...';
+    const modalCopyScript = document.getElementById('modal-copy-apps-script');
+    if (modalCopyScript) {
+        modalCopyScript.addEventListener('click', async () => {
+            const btn = document.getElementById('btn-copy-script');
+            if (btn) btn.click();
+        });
+    }
 
-            try {
-                await pushToGoogleSheets(url, db, { force: true });
-                showToast("Pushed local data to Google Sheets!");
-            } catch (err) {
-                alert("Push to Sheets error:\n" + err.message);
-            } finally {
-                btnPush.disabled = false;
-                btnPush.innerHTML = originalText;
+    const enablePushSaveBtn = document.getElementById('enable-push-save-btn');
+    if (enablePushSaveBtn) {
+        enablePushSaveBtn.addEventListener('click', async () => {
+            const execInput = document.getElementById('enable-push-exec-input');
+            const url = execInput ? execInput.value.trim() : '';
+            if (!isAppsScriptUrl(url)) {
+                alert("Please paste a valid Google Apps Script Web App URL ending in /exec (not the Sheet URL or /dev URL).");
+                return;
+            }
+            const ok = await runPushWithUrl(url, enablePushSaveBtn);
+            if (ok) {
+                const modal = document.getElementById('enable-push-modal');
+                if (modal) modal.classList.remove('active');
             }
         });
     }
@@ -3964,18 +4016,7 @@ function setupBackendControls() {
     const btnViewScript = document.getElementById('btn-view-script');
     if (btnViewScript) {
         btnViewScript.addEventListener('click', () => {
-            const scriptInstructions = `Google Apps Script v3.1 Setup (Shared Multi-Device Push + Pull + Photo Upload):
-
-1. Open your Google Sheet -> Extensions -> Apps Script.
-2. Delete existing code, click "Copy Apps Script" in this app, and paste it in.
-3. Click Deploy -> New deployment (or Manage deployments -> Edit -> New version).
-4. Type: Web app
-5. Execute as: Me
-6. Who has access: Anyone  (Required for Push & Pull from any device)
-7. Click Deploy, grant permissions (including Google Drive for photos), and copy the URL ending in /exec.
-8. Paste that /exec URL into "Apps Script Web App URL" and click "Push now".
-9. Share "Copy Team Link" (or wait for auto-discovery) so phones and office PCs all share one live register.`;
-            alert(scriptInstructions);
+            openEnablePushModal(sheetIdInput.value.trim());
         });
     }
 
@@ -5010,16 +5051,16 @@ function openGatePassPrintModal(voucherNumber) {
     container.innerHTML = `
         <div class="printable-pass-sheet" style="font-family: 'Barlow', Arial, sans-serif; color: #0f172a; line-height: 1.45; display: flex; flex-direction: column;">
             <!-- Header with Official Crest & Dual Language -->
-            <div class="print-avoid-break" style="border-bottom: 2.5px solid #004899; padding-bottom: 1rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
-                <div style="display:flex; align-items:center; gap: 14px;">
-                    <img src="HPCL.png" alt="HPCL Crest" style="height: 52px; width: auto; object-fit: contain;">
+            <div class="print-avoid-break print-masthead" style="border-bottom: 2.5px solid #004899; padding-bottom: 1rem; margin-bottom: 1rem;">
+                <div class="print-brand-row">
+                    <img src="HPCL.png" alt="HPCL Crest">
                     <div>
                         <h3 style="margin: 0; font-size: 1.05rem; color: #D2232A; font-weight: 700; font-family: 'Noto Sans Devanagari', sans-serif;">हिन्दुस्तान पेट्रोलियम कॉर्पोरेशन लिमिटेड</h3>
-                        <h2 style="margin: 2px 0 0 0; font-size: 1.35rem; color: #004899; text-transform: uppercase; font-weight: 800; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;">HINDUSTAN PETROLEUM CORPORATION LIMITED</h2>
+                        <h2 class="print-brand-title-en" style="margin: 2px 0 0 0; font-size: 1.35rem; color: #004899; text-transform: uppercase; font-weight: 800; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;">HINDUSTAN PETROLEUM CORPORATION LIMITED</h2>
                         <p style="margin: 3px 0 0 0; font-size: 0.85rem; color: #475569; font-weight: 600;">Desur IRD Depot, Belgaum Regional Office (RRO) - 590014</p>
                     </div>
                 </div>
-                <div style="text-align: right;">
+                <div class="print-masthead-right">
                     <span style="display: inline-block; background: #004899; color: #ffffff; padding: 4px 14px; border-radius: 4px; font-weight: 800; font-size: 0.88rem; letter-spacing: 0.05em;">EMR CHALLAN</span>
                     <p style="margin: 5px 0 0 0; font-size: 1rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; color: #D2232A;">${emrDisplay}</p>
                     <span style="font-size: 0.72rem; color: #64748b; font-family: 'Barlow Condensed', sans-serif;">CODE: ${qrMockCode}</span>
@@ -5027,7 +5068,7 @@ function openGatePassPrintModal(voucherNumber) {
             </div>
 
             <!-- Dispatch Transport Details Grid -->
-            <div class="print-avoid-break" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1rem; font-size: 0.85rem; background: #f8fafc; padding: 1rem 1.15rem; border-radius: 6px; border: 1px solid #cbd5e1;">
+            <div class="print-avoid-break print-meta-grid" style="margin-bottom: 1rem; font-size: 0.85rem; background: #f8fafc; padding: 1rem 1.15rem; border-radius: 6px; border: 1px solid #cbd5e1;">
                 <div>
                     <p style="margin: 0 0 6px 0;"><strong>Out Date:</strong> <span style="font-weight:700;">${formatDisplayDate(gp.out_date) || '-'}</span></p>
                     ${gp.dl_no ? `<p style="margin: 0 0 6px 0;"><strong>Against Dispatch Letter:</strong> <span style="font-weight:700;">${gp.dl_no}</span></p>` : ''}
@@ -5043,21 +5084,23 @@ function openGatePassPrintModal(voucherNumber) {
             </div>
 
             <!-- Stores & Equipment Table -->
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.85rem; border: 1.5px solid #0f172a;">
-                <thead>
-                    <tr style="background: #0f172a; color: #ffffff; text-align: left;">
-                        <th style="padding: 9px 12px; border: 1px solid #334155; width: 45px; text-align:center;">#</th>
-                        <th style="padding: 9px 12px; border: 1px solid #334155;">Description of Stores</th>
-                        <th style="padding: 9px 12px; border: 1px solid #334155;">Make &amp; Model</th>
-                        <th style="padding: 9px 12px; border: 1px solid #334155;">Serial Number</th>
-                        <th style="padding: 9px 12px; border: 1px solid #334155; text-align:center; width: 90px;">Quantity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${equipmentRowsHtml}
-                    ${footerTotalHtml}
-                </tbody>
-            </table>
+            <div class="print-table-wrap">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; border: 1.5px solid #0f172a;">
+                    <thead>
+                        <tr style="background: #0f172a; color: #ffffff; text-align: left;">
+                            <th style="padding: 9px 12px; border: 1px solid #334155; width: 45px; text-align:center;">#</th>
+                            <th style="padding: 9px 12px; border: 1px solid #334155;">Description of Stores</th>
+                            <th style="padding: 9px 12px; border: 1px solid #334155;">Make &amp; Model</th>
+                            <th style="padding: 9px 12px; border: 1px solid #334155;">Serial Number</th>
+                            <th style="padding: 9px 12px; border: 1px solid #334155; text-align:center; width: 90px;">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${equipmentRowsHtml}
+                        ${footerTotalHtml}
+                    </tbody>
+                </table>
+            </div>
 
             <!-- Remarks & Notes -->
             ${gp.remarks ? `<div class="print-avoid-break" style="font-size: 0.82rem; background: #fff7ed; border-left: 4px solid #D2232A; padding: 8px 12px; margin-bottom: 1rem;"><strong>Remarks:</strong> ${gp.remarks}</div>` : ''}
@@ -5068,7 +5111,7 @@ function openGatePassPrintModal(voucherNumber) {
                 </div>
 
                 <!-- 4 Formal Signature Blocks -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; text-align: center; font-size: 0.78rem;">
+                <div class="print-sig-grid">
                     <div style="border-top: 1.5px dashed #475569; padding-top: 8px;">
                         <strong>Issued / Dispatched By</strong><br>
                         <span style="color: #475569;">Vishal<br>(Junior Executive - RE)</span>
@@ -5087,7 +5130,7 @@ function openGatePassPrintModal(voucherNumber) {
                     </div>
                 </div>
 
-                <div style="margin-top: 14px; border-top: 1px solid #e2e8f0; padding-top: 7px; display: flex; justify-content: space-between; font-size: 0.7rem; color: #64748b;">
+                <div class="print-footer-row" style="margin-top: 14px; border-top: 1px solid #e2e8f0; padding-top: 7px; font-size: 0.7rem; color: #64748b;">
                     <span>HPCL Desur IRD Depot · Belgaum Regional Office (RRO)</span>
                     <span>Official Equipment Movement Record · Single Page A4 Copy</span>
                 </div>
