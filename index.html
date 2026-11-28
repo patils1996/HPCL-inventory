@@ -37,7 +37,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+Devanagari:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/app.css?v=20261128a">
+    <link rel="stylesheet" href="css/app.css?v=20261128b">
 </head>
 <body>
 <div class="app">
@@ -450,8 +450,16 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <label for="sheets-spreadsheet-id">Apps Script Web App URL (or Google Sheet link for pull only)</label>
-                                <input type="text" id="sheets-spreadsheet-id" class="form-control" placeholder="https://script.google.com/macros/s/…/exec">
+                                <label for="sheets-spreadsheet-id">Apps Script Web App URL <span id="sync-url-lock-badge" class="status-badge" style="margin-left:6px; font-size:0.74rem;"><i class="fa-solid fa-lock"></i> Fixed</span></label>
+                                <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                                    <input type="text" id="sheets-spreadsheet-id" class="form-control" style="flex:1; min-width:200px; background:var(--surface-2);" readonly aria-readonly="true" placeholder="https://script.google.com/macros/s/…/exec">
+                                    <button type="button" id="btn-unlock-sheets-url" class="btn btn-outline btn-sm" title="Password required to edit URL"><i class="fa-solid fa-lock"></i> Change URL</button>
+                                </div>
+                            </div>
+                            <div id="sync-url-edit-actions" style="display:none; gap:8px; flex-wrap:wrap; margin:-4px 0 12px;">
+                                <button type="button" id="btn-save-custom-url" class="btn btn-primary btn-sm"><i class="fa-solid fa-check"></i> Save URL</button>
+                                <button type="button" id="btn-restore-default-url" class="btn btn-outline btn-sm"><i class="fa-solid fa-rotate-left"></i> Restore Fixed URL</button>
+                                <button type="button" id="btn-lock-sheets-url" class="btn btn-ghost btn-sm"><i class="fa-solid fa-lock"></i> Lock</button>
                             </div>
                             <label class="check-row"><input type="checkbox" id="sheets-auto-sync" checked> Push changes automatically when online</label>
                             <div class="panel-actions" style="margin-top:14px;">
@@ -1071,6 +1079,32 @@
     <option value="Return to vendor for repair"></option>
 </datalist>
 
+<!-- Admin Password Modal for Editing Sync URL -->
+<div id="unlock-url-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width:420px;">
+        <div class="modal-header">
+            <div>
+                <h4>Admin Password Required</h4>
+                <div class="sub">Enter the administrator password to edit the Google Sheets sync URL.</div>
+            </div>
+            <button class="modal-close" data-close-modal aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <form id="unlock-url-form">
+                <div class="form-group">
+                    <label for="unlock-url-password">Password</label>
+                    <input type="password" id="unlock-url-password" class="form-control" autocomplete="current-password" placeholder="Enter password" required>
+                    <div id="unlock-url-error" style="display:none; color:var(--red); font-size:0.84rem; margin-top:4px;"></div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="unlock-url-submit-btn"><i class="fa-solid fa-unlock"></i> Unlock</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Enable Two-Way Push Sync Modal -->
 <div id="enable-push-modal" class="modal-overlay">
     <div class="modal-content" style="max-width:620px;">
@@ -1177,8 +1211,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="js/baseline-data.js?v=20261128a"></script>
-<script src="js/app.js?v=20261128a"></script>
-<script src="js/dispatch.js?v=20261128a"></script>
+<script src="js/baseline-data.js?v=20261128b"></script>
+<script src="js/app.js?v=20261128b"></script>
+<script src="js/dispatch.js?v=20261128b"></script>
 </body>
 </html>

@@ -1,10 +1,10 @@
-const CACHE_NAME = 'hpcl-stores-v8';
+const CACHE_NAME = 'hpcl-stores-v9';
 const ASSETS_TO_CACHE = [
   './index.html',
-  './css/app.css?v=20261128a',
-  './js/app.js?v=20261128a',
-  './js/dispatch.js?v=20261128a',
-  './js/baseline-data.js?v=20261128a',
+  './css/app.css?v=20261128b',
+  './js/app.js?v=20261128b',
+  './js/dispatch.js?v=20261128b',
+  './js/baseline-data.js?v=20261128b',
   './manifest.json',
   './HPCL.png',
   './icon-192.png',

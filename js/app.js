@@ -1,6 +1,8 @@
 const DEFAULT_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/1Rlyd-8qgXJwu6vaCgRBoQFTZtv9UjgmOMXG_29JJQEw/edit?gid=990657005#gid=990657005';
-// Optional: paste your deployed Apps Script /exec URL here so all users get Push by default even before _Sync_Meta is created.
-const DEFAULT_EXEC_URL = '';
+const DEFAULT_EXEC_URL = 'https://script.google.com/macros/s/AKfycbzx2e88RqXoYY9m9iL8DVerfb84CWieQs9zwSZbeVHlV-6k62ZQzFkImWaTENMvDwm4fA/exec';
+const SYNC_URL_PASS_SALT = 'hpcl-desur-sync::';
+const SYNC_URL_PASS_HASH = 'f0515987838eabca2c5d31821c9c9399d74c54dcfa81d6ea41de381f68a21a80';
+let syncUrlUnlocked = false;
 let db = {};
 
 let backendActive = false;
@@ -311,38 +313,109 @@ document.addEventListener('DOMContentLoaded', async () => {
 // ==========================================================================
 // Backend Detection & State Management
 // ==========================================================================
+function sha256FallbackHex(input) {
+    const bytes = typeof TextEncoder !== 'undefined'
+        ? new TextEncoder().encode(input)
+        : Array.from(unescape(encodeURIComponent(input)), c => c.charCodeAt(0));
+    const K = [
+        0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+        0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+        0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+        0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+        0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+        0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+        0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+        0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+    ];
+    let H = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+    const len = bytes.length;
+    const paddedLen = ((len + 9 + 63) >> 6) << 6;
+    const padded = new Uint8Array(paddedLen);
+    padded.set(bytes);
+    padded[len] = 0x80;
+    const bitLen = len * 8;
+    const dv = new DataView(padded.buffer);
+    dv.setUint32(paddedLen - 8, Math.floor(bitLen / 0x100000000), false);
+    dv.setUint32(paddedLen - 4, bitLen >>> 0, false);
+
+    const w = new Uint32Array(64);
+    const rotr = (n, x) => (x >>> n) | (x << (32 - n));
+    for (let off = 0; off < paddedLen; off += 64) {
+        for (let i = 0; i < 16; i++) w[i] = dv.getUint32(off + i * 4, false);
+        for (let i = 16; i < 64; i++) {
+            const s0 = rotr(7, w[i - 15]) ^ rotr(18, w[i - 15]) ^ (w[i - 15] >>> 3);
+            const s1 = rotr(17, w[i - 2]) ^ rotr(19, w[i - 2]) ^ (w[i - 2] >>> 10);
+            w[i] = (w[i - 16] + s0 + w[i - 7] + s1) >>> 0;
+        }
+        let [a, b, c, d, e, f, g, h] = H;
+        for (let i = 0; i < 64; i++) {
+            const S1 = rotr(6, e) ^ rotr(11, e) ^ rotr(25, e);
+            const ch = (e & f) ^ (~e & g);
+            const t1 = (h + S1 + ch + K[i] + w[i]) >>> 0;
+            const S0 = rotr(2, a) ^ rotr(13, a) ^ rotr(22, a);
+            const maj = (a & b) ^ (a & c) ^ (b & c);
+            const t2 = (S0 + maj) >>> 0;
+            h = g; g = f; f = e; e = (d + t1) >>> 0;
+            d = c; c = b; b = a; a = (t1 + t2) >>> 0;
+        }
+        H = H.map((v, idx) => (v + [a, b, c, d, e, f, g, h][idx]) >>> 0);
+    }
+    return H.map(v => v.toString(16).padStart(8, '0')).join('');
+}
+
+async function verifySyncAdminPassword(candidate) {
+    const plain = String(candidate || '');
+    if (!plain) return false;
+    const msg = SYNC_URL_PASS_SALT + plain;
+    if (window.crypto && window.crypto.subtle && typeof TextEncoder !== 'undefined') {
+        try {
+            const buf = await window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+            const hex = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+            return hex === SYNC_URL_PASS_HASH;
+        } catch (e) { /* fall back to pure JS SHA-256 */ }
+    }
+    return sha256FallbackHex(msg) === SYNC_URL_PASS_HASH;
+}
+
+function getFixedDefaultSyncUrl() {
+    return isAppsScriptUrl(DEFAULT_EXEC_URL) ? DEFAULT_EXEC_URL : DEFAULT_SHEETS_URL;
+}
+
+function getActiveSyncUrl() {
+    if (localStorage.getItem('hpcl_sheets_url_custom') === 'true') {
+        const custom = safeStr(localStorage.getItem('hpcl_sheets_url'));
+        if (custom) return custom;
+    }
+    return getFixedDefaultSyncUrl();
+}
+
 async function detectBackend() {
-    let urlSyncApplied = false;
+    syncUrlUnlocked = false;
     try {
         const params = new URLSearchParams(window.location.search);
-        const syncParam = safeStr(params.get('sync'));
-        if (syncParam && (syncParam.includes('docs.google.com/spreadsheets') || isAppsScriptUrl(syncParam))) {
-            localStorage.setItem('hpcl_sheets_url', syncParam);
-            urlSyncApplied = true;
+        if (params.has('sync')) {
+            const syncParam = safeStr(params.get('sync'));
             params.delete('sync');
             const cleanQuery = params.toString();
             const cleanUrl = `${window.location.pathname}${cleanQuery ? '?' + cleanQuery : ''}${window.location.hash || ''}`;
             window.history.replaceState({}, '', cleanUrl);
+            if (syncParam && syncParam !== getActiveSyncUrl()) {
+                showToast("Sync URL is locked by administrator");
+            }
         }
     } catch (e) { /* ignore malformed URL params */ }
 
-    let savedUrl = localStorage.getItem('hpcl_sheets_url') || (isAppsScriptUrl(DEFAULT_EXEC_URL) ? DEFAULT_EXEC_URL : DEFAULT_SHEETS_URL);
-    if (savedUrl.includes('/macros/library/')) {
-        savedUrl = isAppsScriptUrl(DEFAULT_EXEC_URL) ? DEFAULT_EXEC_URL : DEFAULT_SHEETS_URL;
-        localStorage.setItem('hpcl_sheets_url', savedUrl);
-    }
-    if (isAppsScriptUrl(DEFAULT_EXEC_URL) && !isAppsScriptUrl(savedUrl)) {
-        savedUrl = DEFAULT_EXEC_URL;
-        localStorage.setItem('hpcl_sheets_url', savedUrl);
-    }
-    if (!localStorage.getItem('hpcl_sheets_url')) localStorage.setItem('hpcl_sheets_url', savedUrl);
+    const savedUrl = getActiveSyncUrl();
+    localStorage.setItem('hpcl_sheets_url', savedUrl);
     const savedAutoSync = localStorage.getItem('hpcl_sheets_auto_sync') !== 'false';
 
     const urlElem = document.getElementById('sheets-spreadsheet-id');
     const autoSyncElem = document.getElementById('sheets-auto-sync');
-    if (urlElem) urlElem.value = savedUrl;
+    if (urlElem) {
+        urlElem.value = savedUrl;
+        urlElem.readOnly = true;
+    }
     if (autoSyncElem) autoSyncElem.checked = savedAutoSync;
-    if (urlSyncApplied) showToast("Team sync link applied!");
 
     window.addEventListener('online', () => {
         showToast("Internet connected! Syncing with Google Sheets...");
@@ -651,8 +724,8 @@ function storeCloudMeta(meta) {
     if (meta.updated_at) localStorage.setItem('hpcl_cloud_updated_at', String(meta.updated_at));
     localStorage.setItem('hpcl_last_synced_at', new Date().toISOString());
 
-    const currentUrl = localStorage.getItem('hpcl_sheets_url') || '';
-    if (isAppsScriptUrl(meta.exec_url) && !isAppsScriptUrl(currentUrl)) {
+    const currentUrl = getActiveSyncUrl();
+    if (!isAppsScriptUrl(currentUrl) && isAppsScriptUrl(meta.exec_url) && localStorage.getItem('hpcl_sheets_url_custom') !== 'true') {
         localStorage.setItem('hpcl_sheets_url', meta.exec_url);
         const urlInput = document.getElementById('sheets-spreadsheet-id');
         if (urlInput) urlInput.value = meta.exec_url;
@@ -3831,20 +3904,163 @@ function setupBackendControls() {
     const autoSyncCheckbox = document.getElementById('sheets-auto-sync');
     const scanDirInput = document.getElementById('scan-directory-path');
     const mergeModeCheckbox = document.getElementById('scan-merge-mode');
-    
+    const unlockBtn = document.getElementById('btn-unlock-sheets-url');
+    const lockBtn = document.getElementById('btn-lock-sheets-url');
+    const saveCustomBtn = document.getElementById('btn-save-custom-url');
+    const restoreDefaultBtn = document.getElementById('btn-restore-default-url');
+    const editActionsBar = document.getElementById('sync-url-edit-actions');
+    const lockBadge = document.getElementById('sync-url-lock-badge');
+
     if (!sheetIdInput) return;
 
+    const applyUrlLockUi = (unlocked) => {
+        syncUrlUnlocked = !!unlocked;
+        sheetIdInput.readOnly = !syncUrlUnlocked;
+        sheetIdInput.setAttribute('aria-readonly', syncUrlUnlocked ? 'false' : 'true');
+        sheetIdInput.style.background = syncUrlUnlocked ? '' : 'var(--surface-2)';
+        if (!syncUrlUnlocked) sheetIdInput.value = getActiveSyncUrl();
+        if (unlockBtn) unlockBtn.style.display = syncUrlUnlocked ? 'none' : '';
+        if (editActionsBar) editActionsBar.style.display = syncUrlUnlocked ? 'flex' : 'none';
+        if (lockBadge) {
+            const isCustom = localStorage.getItem('hpcl_sheets_url_custom') === 'true';
+            lockBadge.innerHTML = syncUrlUnlocked
+                ? '<i class="fa-solid fa-unlock"></i> Editing'
+                : (isCustom ? '<i class="fa-solid fa-lock"></i> Custom (Locked)' : '<i class="fa-solid fa-lock"></i> Fixed');
+        }
+    };
+    applyUrlLockUi(false);
+
+    let afterUnlockCallback = null;
+    const unlockModal = document.getElementById('unlock-url-modal');
+    const unlockForm = document.getElementById('unlock-url-form');
+    const unlockPassInput = document.getElementById('unlock-url-password');
+    const unlockErrEl = document.getElementById('unlock-url-error');
+
+    const requestAdminUnlock = (onUnlocked) => {
+        if (syncUrlUnlocked) {
+            if (typeof onUnlocked === 'function') onUnlocked();
+            return;
+        }
+        afterUnlockCallback = typeof onUnlocked === 'function' ? onUnlocked : null;
+        if (unlockPassInput) unlockPassInput.value = '';
+        if (unlockErrEl) {
+            unlockErrEl.textContent = '';
+            unlockErrEl.style.display = 'none';
+        }
+        if (unlockModal) unlockModal.classList.add('active');
+        if (unlockPassInput) setTimeout(() => unlockPassInput.focus(), 60);
+    };
+
+    if (unlockForm) {
+        unlockForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const entered = unlockPassInput ? unlockPassInput.value : '';
+            const ok = await verifySyncAdminPassword(entered);
+            if (!ok) {
+                if (unlockErrEl) {
+                    unlockErrEl.textContent = 'Incorrect password.';
+                    unlockErrEl.style.display = 'block';
+                }
+                if (unlockPassInput) {
+                    unlockPassInput.value = '';
+                    unlockPassInput.focus();
+                }
+                return;
+            }
+            if (unlockPassInput) unlockPassInput.value = '';
+            if (unlockErrEl) unlockErrEl.style.display = 'none';
+            if (unlockModal) unlockModal.classList.remove('active');
+            applyUrlLockUi(true);
+            showToast('Sync URL unlocked for editing.');
+            if (typeof afterUnlockCallback === 'function') {
+                const cb = afterUnlockCallback;
+                afterUnlockCallback = null;
+                cb();
+            } else {
+                sheetIdInput.focus();
+                sheetIdInput.select();
+            }
+        });
+    }
+
+    if (unlockBtn) {
+        unlockBtn.addEventListener('click', () => requestAdminUnlock());
+    }
+    if (lockBtn) {
+        lockBtn.addEventListener('click', () => {
+            applyUrlLockUi(false);
+            showToast('Sync URL locked.');
+        });
+    }
+
+    const saveAuthorizedSyncUrl = (nextUrl) => {
+        const clean = safeStr(nextUrl);
+        if (!clean || (!isAppsScriptUrl(clean) && !clean.includes('docs.google.com/spreadsheets'))) {
+            alert("Enter a valid Google Apps Script /exec Web App URL or Google Sheet link.");
+            return false;
+        }
+        if (clean === getFixedDefaultSyncUrl()) {
+            localStorage.removeItem('hpcl_sheets_url_custom');
+        } else {
+            localStorage.setItem('hpcl_sheets_url_custom', 'true');
+        }
+        localStorage.setItem('hpcl_sheets_url', clean);
+        applyUrlLockUi(false);
+        updateSheetsStatusBadge();
+        return true;
+    };
+
+    if (saveCustomBtn) {
+        saveCustomBtn.addEventListener('click', () => {
+            if (!syncUrlUnlocked) {
+                requestAdminUnlock();
+                return;
+            }
+            if (saveAuthorizedSyncUrl(sheetIdInput.value)) {
+                showToast("Custom sync URL saved and locked!");
+                if (navigator.onLine) syncWithCloud({ reason: 'manual', manual: true });
+            }
+        });
+    }
+
+    if (restoreDefaultBtn) {
+        restoreDefaultBtn.addEventListener('click', () => {
+            if (!syncUrlUnlocked) {
+                requestAdminUnlock();
+                return;
+            }
+            localStorage.removeItem('hpcl_sheets_url_custom');
+            localStorage.setItem('hpcl_sheets_url', getFixedDefaultSyncUrl());
+            applyUrlLockUi(false);
+            updateSheetsStatusBadge();
+            showToast("Restored fixed default sync URL!");
+            if (navigator.onLine) syncWithCloud({ reason: 'manual', manual: true });
+        });
+    }
+
     const btnSaveConfig = () => {
-        const url = sheetIdInput.value.trim();
         const autoSync = autoSyncCheckbox ? autoSyncCheckbox.checked : true;
-        
-        localStorage.setItem('hpcl_sheets_url', url);
+        let activeUrl = getActiveSyncUrl();
+        if (syncUrlUnlocked) {
+            const candidate = sheetIdInput.value.trim();
+            if (candidate && candidate !== activeUrl && (isAppsScriptUrl(candidate) || candidate.includes('docs.google.com/spreadsheets'))) {
+                if (candidate === getFixedDefaultSyncUrl()) {
+                    localStorage.removeItem('hpcl_sheets_url_custom');
+                } else {
+                    localStorage.setItem('hpcl_sheets_url_custom', 'true');
+                }
+                localStorage.setItem('hpcl_sheets_url', candidate);
+                activeUrl = candidate;
+            }
+        } else {
+            sheetIdInput.value = activeUrl;
+        }
+
         localStorage.setItem('hpcl_sheets_auto_sync', autoSync ? 'true' : 'false');
-        
         showToast("Sync settings saved!");
         updateSheetsStatusBadge();
-        
-        if (url && autoSync && navigator.onLine) {
+
+        if (activeUrl && autoSync && navigator.onLine) {
             autoPushGoogleSheets();
         }
 
@@ -3853,7 +4069,7 @@ function setupBackendControls() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    sheet_id: url,
+                    sheet_id: activeUrl,
                     auto_sync: autoSync,
                     scan_directory: scanDirInput ? scanDirInput.value.trim() : '',
                     merge_mode: mergeModeCheckbox ? mergeModeCheckbox.checked : true
@@ -3862,18 +4078,10 @@ function setupBackendControls() {
         }
     };
 
-    [sheetIdInput, scanDirInput].forEach(elem => {
-        if (elem) elem.addEventListener('blur', btnSaveConfig);
-    });
-    sheetIdInput.addEventListener('change', btnSaveConfig);
+    if (scanDirInput) scanDirInput.addEventListener('blur', btnSaveConfig);
     [autoSyncCheckbox, mergeModeCheckbox].forEach(elem => {
         if (elem) elem.addEventListener('change', btnSaveConfig);
     });
-
-    const persistUrlOnly = (val) => {
-        localStorage.setItem('hpcl_sheets_url', val);
-        updateSheetsStatusBadge();
-    };
 
     const openEnablePushModal = (prefill = '') => {
         const modal = document.getElementById('enable-push-modal');
@@ -3883,8 +4091,6 @@ function setupBackendControls() {
     };
 
     const runPushWithUrl = async (url, triggerBtn = null) => {
-        persistUrlOnly(url);
-        if (sheetIdInput) sheetIdInput.value = url;
         if (triggerBtn) {
             triggerBtn.disabled = true;
             triggerBtn.dataset.origHtml = triggerBtn.innerHTML;
@@ -3908,9 +4114,9 @@ function setupBackendControls() {
     const btnPush = document.getElementById('btn-push-sheets');
     if (btnPush) {
         btnPush.addEventListener('click', async () => {
-            const url = sheetIdInput.value.trim();
+            const url = syncUrlUnlocked ? sheetIdInput.value.trim() : getActiveSyncUrl();
             if (!isAppsScriptUrl(url)) {
-                openEnablePushModal(url);
+                requestAdminUnlock(() => openEnablePushModal(url));
                 return;
             }
             await runPushWithUrl(url, btnPush);
@@ -3928,12 +4134,17 @@ function setupBackendControls() {
     const enablePushSaveBtn = document.getElementById('enable-push-save-btn');
     if (enablePushSaveBtn) {
         enablePushSaveBtn.addEventListener('click', async () => {
+            if (!syncUrlUnlocked) {
+                requestAdminUnlock();
+                return;
+            }
             const execInput = document.getElementById('enable-push-exec-input');
             const url = execInput ? execInput.value.trim() : '';
             if (!isAppsScriptUrl(url)) {
                 alert("Please paste a valid Google Apps Script Web App URL ending in /exec (not the Sheet URL or /dev URL).");
                 return;
             }
+            saveAuthorizedSyncUrl(url);
             const ok = await runPushWithUrl(url, enablePushSaveBtn);
             if (ok) {
                 const modal = document.getElementById('enable-push-modal');
@@ -3945,12 +4156,11 @@ function setupBackendControls() {
     const btnTestSheets = document.getElementById('btn-test-sheets');
     if (btnTestSheets) {
         btnTestSheets.addEventListener('click', async () => {
-            const url = sheetIdInput.value.trim();
+            const url = syncUrlUnlocked ? sheetIdInput.value.trim() : getActiveSyncUrl();
             if (!url) {
                 alert("Please enter a Google Sheet URL or Apps Script /exec Web App link first.");
                 return;
             }
-            persistUrlOnly(url);
             btnTestSheets.disabled = true;
             const originalHtml = btnTestSheets.innerHTML;
             btnTestSheets.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Testing...';
@@ -3986,16 +4196,8 @@ function setupBackendControls() {
     const btnCopyTeamLink = document.getElementById('btn-copy-team-link');
     if (btnCopyTeamLink) {
         btnCopyTeamLink.addEventListener('click', () => {
-            const url = (sheetIdInput.value || localStorage.getItem('hpcl_sheets_url') || '').trim();
-            if (!url) {
-                alert("Please paste your Google Sheet URL or Apps Script /exec link first.");
-                return;
-            }
-            const shareUrl = `${window.location.origin}${window.location.pathname}?sync=${encodeURIComponent(url)}`;
-            copyToClipboard(shareUrl, 'Team Sync Link');
-            if (!isAppsScriptUrl(url)) {
-                showToast("Copied pull-only link — paste your /exec URL first so mobile can push updates too.");
-            }
+            const shareUrl = `${window.location.origin}${window.location.pathname}`;
+            copyToClipboard(shareUrl, 'Portal Link');
         });
     }
 
@@ -4016,19 +4218,18 @@ function setupBackendControls() {
     const btnViewScript = document.getElementById('btn-view-script');
     if (btnViewScript) {
         btnViewScript.addEventListener('click', () => {
-            openEnablePushModal(sheetIdInput.value.trim());
+            requestAdminUnlock(() => openEnablePushModal(getActiveSyncUrl()));
         });
     }
 
     const btnPull = document.getElementById('btn-pull-sheets');
     if (btnPull) {
         btnPull.addEventListener('click', async () => {
-            const sheetUrl = sheetIdInput.value.trim();
+            const sheetUrl = syncUrlUnlocked ? sheetIdInput.value.trim() : getActiveSyncUrl();
             if (!sheetUrl) {
                 alert("Please paste your Google Sheet URL or Apps Script Link first.");
                 return;
             }
-            persistUrlOnly(sheetUrl);
             btnPull.disabled = true;
             const originalText = btnPull.innerHTML;
             btnPull.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Pulling...';
